@@ -1,0 +1,10 @@
+﻿I'm sorry, but errors were detected in your script. Please correct the
+errors listed below, and try again.
+
+
+File "game/script.rpy", line 27: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation.
+    scene bg classroom_01_day
+    ^
+
+Ren'Py Version: Ren'Py 7.4.8.1895
+Sat Oct  2 15:35:45 2021
