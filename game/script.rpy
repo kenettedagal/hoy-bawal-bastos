@@ -8,4 +8,5 @@ label start:
     # REPLACE THIS CODE WITH YOUR OWN LABEL TO TEST CODE.
     jump startKyleScript
 
-return
+    "Some text"
+    return
