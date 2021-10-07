@@ -8,5 +8,5 @@ label start:
     # REPLACE THIS CODE WITH YOUR OWN LABEL TO TEST CODE.
     jump startKyleScript
 
-    "Some text"
+    "Removed the text"
     return
