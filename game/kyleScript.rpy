@@ -203,6 +203,7 @@ label confrontation:
 
 label questionTime:
 
+    # Needs to be improved.
     menu:
         m "Ahhh… What is the Republic Act No. again? That has been approved on April 17,2019." 
 
@@ -220,4 +221,4 @@ label questionTime:
 
     # Implement a loop where the question will restart if wrong (?)   
 
-return
+    return
