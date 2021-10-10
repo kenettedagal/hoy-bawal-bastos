@@ -180,7 +180,7 @@ label confrontation:
 
     k "Wha..Whatt do you mean! In the first place I did not do anything wrong!!"
 
-    l "That’s not true!!! Mr.Ray please help me!!!! What I discuss to you last time is 
+    l "That’s not true!!! Mr.[p] please help me!!!! What I discuss to you last time is 
     true!!!"
 
     m "Don’t worry, dear client, we hear your humble words that’s why where here to bring the 
@@ -199,9 +199,9 @@ label confrontation:
 
     k "Wha…What kind of law are you talking about! Just get to the point already!!"
 
-    jump questionTime
+    jump firstQuestion
 
-label questionTime:
+label firstQuestion:
 
     # Needs to be improved.
     menu:
@@ -220,5 +220,42 @@ label questionTime:
             "Wrong"
 
     # Implement a loop where the question will restart if wrong (?)   
+
+    jump secondQuestion
+
+
+label secondQuestion: 
+
+    m "Mr.[k] Daberth, are you perhaps familiar to a law called Republic Act No. 11313?"
+
+    k "Oo…Ohh yeah like hell I know what is Republic Act 11313 anyway! Can you be more specific?"
+
+    e "Come on, [p] be more specific!"
+
+    M "O..Okay calm down Lieutenant…."
+
+    menu:
+        "{i}Of course I know this, Republic Act No. 11313 is also known as…{/i}"
+
+        "Safe Pace Act":
+            "Wrong"
+        
+        "Safe Guardian Act":
+            "Wrong"
+
+        "Safe Spaces Act":
+            "Correct"
+            jump secondQuestionCorrect:
+
+        "Safe Insurrance Act":
+            "Wrong"      
+
+label secondQuestionCorrect:
+
+    m "The Safe Spaces Act"
+
+    k "The Safe Spaces Act?"
+
+    
 
     return
