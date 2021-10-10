@@ -215,6 +215,7 @@ label firstQuestion:
 
         "Republic Act 11313":
             "Correct"
+            jump secondQuestion
 
         "Rebuild Act 11313":
             "Wrong"
@@ -256,6 +257,28 @@ label secondQuestionCorrect:
 
     k "The Safe Spaces Act?"
 
+    m "It seems your not familiar about what is Safe Space Act, Mr.Kenneth Daberth."
+
+    k "Well! Hell if I know!"
+
+    m "Then if you please, let me enlighten you about what is this Safe Spaces Act that I am speaking of."
+
+    k "Hmm! Sure! Why not! It’s not like I did something wrong anyway hehehe!!!...."
+
+    m "Ohh I am not sure about that. Then let me start..." 
     
+    m "Republic Act 11313 or also known as Safe 
+    Spaces Act, is a law that has been approved by the President on April 17, 2019."
+
+    # Find specific paragraph
+    m "Well, according to this law, it stated that intrusive leering and stalking is a violation to humans rights."
+
+    k "Wh…What the helll… I had no idea…"
+
+    m "Also for first offenders, violating this law could 
+    punish you by a 1000 pesos fine and a community service of twelve hours inclusive of 
+    attendance to a Gender Sensitivity Seminar to be conducted by the PNP in coordination with the LGU and the PCW."
+
+
 
     return
