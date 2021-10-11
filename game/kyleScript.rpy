@@ -365,5 +365,84 @@ label thirdQuestionCorrect
     z "YES SIR!"
 
     k "Ho…Hooyyoyoyoyo…This is bad….!!!!!! My mother will spank my ass at this rate she find out about this!!!!!!"
-    
+
+    e "Hahahah!!!.......Ah sorry…."
+
+    m "Mr.Kenneth Daberth, based on the investigation and evidence it seems the verdict is clear."
+
+    l "Finally……"
+
+    m "Mr.Kenneth Daberth, you are found guily!!!"
+
+    m "THIS CASE IS COM...."
+
+    jump suspectEscape
+
+label suspectEscape:
+
+    z "General!!!!!! The suspect is escaping!!!!!!"
+
+    m "Ahhh! Right when I finally I say my favorite line!!! This man deserve a harsh punishment!!! 
+    Lieutenant Elise, requesting for back-up!!!!"
+
+    e "“Geeshh! Am already here what are you talking…. Anyway, I got this. 
+    Zack hand me that stick in your evidence pouch or whatever you called that bag is."
+
+    z "YES MAAM!!!"
+
+    k "I BETTER RUN FAST!!!!, IMAGINE!!! IMAGINE IT!!! LIKE AM USING THE SKILL FLASHSTEPPPP LIKE IN THE GAME PoP!!!! HEEHEHEHEH!!!!!!! AM RUNNING SO FASH YAHOO!!!!! I WILL ESCAPE IN NO TIME."
+
+    e "Don’t worry I got this, I will throw this stick to his leg to lose his balance."
+
+    m "Ohhh, looks like it’s time to see the one of the legendary moves of Lieutenant Elise, The Gorrila Spear!!!!"
+
+    "{i}Elise sucessfully threw the stick and it hit Kenneth Daberth’s legs, losing its balance{/i}"
+
+    k "AWWWW MAMA DON’T HIT MEE!!!!!"
+
+    m "It seems the culprit is already experiencing the punishment of what he did!"
+
+    m "I guess the time has come"
+
+    z "YES SIR"
+
+    e "...."
+
+    m "THIS CASE IS COMPLETE!"
+
+    m "{i}Yeah... Finally.{/i}"
+
+    l "Ahh excuse meee Ahh genera….Mr.Ray thanks for helping me."
+
+    m "No worries, it’s our duty to help our people, right everyone?"
+
+    z "YES SIR"
+
+    e "...."
+
+    m "....Ahhh Lieutenant Elise? Somethings wrong?...."
+
+    e "Howww!!! Many times am gonna say this to you, why won’t you listen…..
+    THE MOST THINGS REALLY PIECE ME OFF WHEN YOU CALL ME OR GIVE NAMES THAT INCLUDE THE WORD GORRILA TO EVERY ACTIONS OR MOVES I DO!!!!!"
+
+    m "ohhh….ohhhhh come one Lieutenant.Elise am just kidding you know a leader must also show his humor to his subordinates sometimes right?? Right Major Zack?"
+
+    z "YES SIR!"
+
+    m "Is that the only thing you can say at least say somethings else!!!"
+
+    e "!!!!"
+
+    l "Ahh excuse me…to be honest looks like Mr.Ray also need to get punished for verbally abusing Miss.Elise."
+
+    m "WH…WHAT I JUST HELP YOU! YOU KNOW! ATLEAST SHOW SOME GRATITUDE!"
+
+    l "Amm…am So..Sorry!!!...."
+
+    e "!!!!"
+
+    "{i}Elise slowly approaches you.{/i}"
+
+    m "Hey calm down Lieutenant.Elise! Anyone alteast stop her please!!! AHHH!!!"
+
     return
