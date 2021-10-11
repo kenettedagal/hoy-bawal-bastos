@@ -298,7 +298,7 @@ label secondQuestionCorrect:
 
     l "!!!"
 
-    k "THIS UGLY WOMAN ACCUSATION IS NOT ENOUGH TO PROVE THAT I REALLY DID THOSE THINGS TO HER!!!!"
+    k "THIS UGLY WOMAN'S ACCUSATION IS NOT ENOUGH TO PROVE THAT I REALLY DID THOSE THINGS TO HER!!!!"
 
     m "Well, that’s true Mr.Kenneth Daberth"
 
@@ -316,8 +316,54 @@ label secondQuestionCorrect:
     
     m "But what? Major.Zack"
 
-    z "Well…I manage to gather a lot of evidence here in my evidence pouch archive but I don’t know which exactly what evidence you want me present right know, General."
+    z "Well… I manage to gather a lot of evidence here in my evidence pouch archive but I don’t know which exactly what evidence you want me present right know, General."
     
+    m "It’s fine Major.Zack, that’s one of your flaws but I understand. But don’t worry, rest assured because I got your covered."
     
+    e "You are sure about that?"
+
+    m "Well, of course. Major Zack show me all the evidences!"
+
+    z "YES SIR!"
+
+    jump thirdQuestion
+
+label thirdQuestion:
+    
+    "Above is the list Major Zack gathered."
+
+    menu:
+
+        m "{i}Well…..just like Major.Zack, Some of the things here are not even could be consider as evidence for this case.{/i}"
+        
+        "Stick":
+            "Wrong"
+
+        "Candy":
+            "Wrong"
+
+        "Zack's Phone"
+            jump thirdQuestionCorrect
+        
+        "Handkerchief"
+            "Wrong"
+        
+label thirdQuestionCorrect
+
+    m "Major.Zack"
+
+    z "YES SIR!?"
+
+    m "Am just wanna make sure, let me recall you, the phone called we had ealier you mention that you recorded the some scene right?"
+
+    z "Ohh yeah, I almost forget that I record him lately for evidence while this person has been desperately stalking and staring the client."
+    
+    k "What you got evidence!!!!"
+
+    m "Hahahahah, as always good work Major.Zack, not even the slightless I doubt your work."
+
+    z "YES SIR!"
+
+    k "Ho…Hooyyoyoyoyo…This is bad….!!!!!! My mother will spank my ass at this rate she find out about this!!!!!!"
     
     return
