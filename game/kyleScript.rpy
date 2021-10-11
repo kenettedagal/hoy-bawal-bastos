@@ -279,6 +279,45 @@ label secondQuestionCorrect:
     punish you by a 1000 pesos fine and a community service of twelve hours inclusive of 
     attendance to a Gender Sensitivity Seminar to be conducted by the PNP in coordination with the LGU and the PCW."
 
+    m "Ohh,Also don’t get me wrong this punishment I mentions is just for doing 
+    violation acts like intrusive learing. While the case of doing things like stalking to someone 
+    has more hasher punishment compare to this one."
 
+    k "!!!!!"
 
+    m "Hmmm…it seems you finally have some grasp about what is this law called Safe Space Act. 
+    Also as a reminder, I only mentioned the punishment for the first offenders. 
+    I wonder what will happen more if you commit more, 
+    well I only guarantine you that it will be of course become much more worse."
+
+    k "Hehehehehe…….hehehe…..hehehe"
+
+    m "Hmmm? Mr.[k] Daberth, are you feeling well right now?"
+
+    k "HEHEHEHE!!! WHERE IS YOUR EVIDENCE THAT I DID THOSE THINGS TO THIS UGLY WOMAN????!!!"
+
+    l "!!!"
+
+    k "THIS UGLY WOMAN ACCUSATION IS NOT ENOUGH TO PROVE THAT I REALLY DID THOSE THINGS TO HER!!!!"
+
+    m "Well, that’s true Mr.Kenneth Daberth"
+
+    k "GOOD! Now I will take my leave! Hehehehe……(GG easy…hehe…I guess I should play a one match of PoP to forget what happen here…how stupid…)"
+
+    m "Hold up, Mr.Kenneth Daberth… You have the right to remain silent but we have the evidence to prove that your not innocent!!!"
+
+    z "Really!!! We have the evidence General?!!!"
+
+    e "......."
+
+    m "Hahahhah….have you already forgetten already Major.Zack. You mention ealier on that you already manage to gather the evidence for this case."
+
+    z "What really? I don’t really remember I said that, but its true I prepare some evidence and I finally remember! But…"
+    
+    m "But what? Major.Zack"
+
+    z "Well…I manage to gather a lot of evidence here in my evidence pouch archive but I don’t know which exactly what evidence you want me present right know, General."
+    
+    
+    
     return
