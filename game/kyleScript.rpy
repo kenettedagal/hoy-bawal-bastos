@@ -33,12 +33,12 @@ label startKyleScript:
 
     centered "Case 1: \n\n\nKarl's Desperation"
     
-    centered "\“On the 7th of April Year 2019, a new law called {color=#f00}{b}Republic Act 11313{/b}{/color} 
+    centered "\“On the 17th of April Year 2019, a new law called {color=#f00}{b}Republic Act 11313{/b}{/color} 
     or also known as {color=#f00}{b}Safe Spaces Act{/b}{/color} has been approved by the president.\"" 
 
-    centered "\"This law stated that both men and women must have equality, 
+    centered "This law stated that both men and women must have equality, 
     security and safety not only in private, but also on the streets, public spaces, online, workplaces 
-    and educational and training institutions……\”"
+    and educational and training institutions……"
 
     #
     scene bg clubroom
@@ -233,7 +233,7 @@ label secondQuestion:
 
     e "Come on, [p] be more specific!"
 
-    M "O..Okay calm down Lieutenant…."
+    m "O..Okay calm down Lieutenant…."
 
     menu:
         "{i}Of course I know this, Republic Act No. 11313 is also known as…{/i}"
@@ -246,7 +246,7 @@ label secondQuestion:
 
         "Safe Spaces Act":
             "Correct"
-            jump secondQuestionCorrect:
+            jump secondQuestionCorrect
 
         "Safe Insurrance Act":
             "Wrong"      
@@ -342,13 +342,13 @@ label thirdQuestion:
         "Candy":
             "Wrong"
 
-        "Zack's Phone"
+        "Zack's Phone":
             jump thirdQuestionCorrect
         
-        "Handkerchief"
+        "Handkerchief":
             "Wrong"
         
-label thirdQuestionCorrect
+label thirdQuestionCorrect:
 
     m "Major.Zack"
 
