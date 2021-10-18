@@ -1,6 +1,7 @@
 label tutorial_start:
     # Ask user some questions aboutn VN, Safe Spaces, etc.
 
+    play music "audio/Shenanigans!.ogg" fadein 2.0
     define n = Character('Natasha')
     
     scene bg beautiful park 
@@ -85,8 +86,7 @@ label tutorial_start:
             
             n "That is magnificent! The extra knowledge that you'll learn here will definitely help you!"
 
-
-        
-
-
-    return
+    stop music fadeout 3.0
+    pause 3.0
+    jump yui_start_case_1
+    
