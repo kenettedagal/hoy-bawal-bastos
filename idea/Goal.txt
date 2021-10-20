@@ -3,3 +3,41 @@ Yui - transfer student
 	highschool setting
 	MC wants to be a lawyer or something
 	he will form the HBB club
+
+Consequences - earn HBB points. A specific story will unlock if (very low points) or (very high points)
+Flags - can set flags in story.
+
+low points - something like arrest. involving police. 
+high points - special story with girl.
+
+so every story, may quota
+
+example: to unlock special story 
+requires: 10 points.
+
+example: MC's friend will be arrested
+requires: < 10 points.
+
+Panel Req:
+1. Add timer in menu/questions.
+2. Add voice acting
+3. 20 levels (?)
+4. Review by expert.
+5. Story board complete
+
+TODO:
+1. Style GUI
+2. 
+
+
+Stories:
+1. Yui's Fortunate Accident.
+	a. Breakfast scene
+	b. What to ride
+	c. School Ceremony
+	d. 
+2. The HBB Club
+3. Corporate Office
+4. PUV (?)
+5. Streets, Alleyways (?)
+
