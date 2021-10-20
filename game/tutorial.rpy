@@ -7,8 +7,7 @@ label tutorial_start:
     scene bg beautiful park 
     with fade
 
-    show natasha talk
-    with dissolve
+    show natasha talk with dissolve
 
     "Hello! Welcome to our visual novel game...."
 
@@ -34,7 +33,7 @@ label tutorial_start:
     n "Now before you start playing, I will first ask some questions."
 
     menu:
-        n "Have you ever played a visual novel game before?"
+        n "Have you ever played a visual novel game before?" 
 
         "Yes, I've played some before.":
 
@@ -66,7 +65,9 @@ label tutorial_start:
                 "So where does the \"visual\" part come in?":
                     n "Visual novels have pictures and even music, sound effects, and sometimes voice acting to go along with the text."
 
-    n "Now that you have a some knowledge on visual novels..."
+    n "Now that you have some knowledge on visual novels..."
+
+    show natasha talk with dissolve
 
     menu:
         n "Do you know anything about the law called \"Safe Spaces Act\"?"
@@ -86,7 +87,83 @@ label tutorial_start:
             
             n "That is magnificent! The extra knowledge that you'll learn here will definitely help you!"
 
+    # Talk about HBB points
+    show natasha closed eyes_ with dissolve
+
+    n "I'm gonna say one last thing before I send you off, let me talk about {color=#40ff00}HBB points{/color}."
+
+    show natasha talk with dissolve
+
+    n "What is {color=#40ff00}HBB points{/color}? In this game, there will be decisions and questions wherein you need to select the right one."
+
+    n "The game comprises of 5 main stories. However there is a twist."
+
+    n "To unlock a special route in the main stories, you must achieve a certain number of points."
+
+    n "Selecting the {color=#f00}most correct{/color} decision will grant you the most points."
+
+    show natasha closed eyes_ with dissolve
+
+    n "I'll give an example!"
+
+    show natasha talk with dissolve
+
+    n "You see me passing in an alleyway. Then some random old men started catcalling on me."
+
+    show natasha cry with dissolve
+
+    n "I feel so scared because of what they did."
+
+    pause 1.0
+    menu whatToDo:
+        "What would you do?"
+
+        "Take out my phone and record.":
+            n "Honestly this is not a bad answer. But are you just gonna let me get harrassed?"
+
+            n "This can be a traumatic experience for me."
+
+            n "For this answer, I will reward you 2 HBB points."
+
+            show natasha closed eyes_ with dissolve
+
+            n "Try it again."
+
+            jump whatToDo
+
+        "Shout at the old men.":
+            n "Not the answer I was expecting."
+
+            n "They might beat you up, you know?"
+
+            n "For this answer, I will reward you 1 HBB point."
+
+            show natasha closed eyes_ with dissolve
+
+            n "Try it again."
+
+            jump whatToDo
+
+        "Talk to them calmly and call the police if they don't stop.":
+            show natasha closed eyes_ with dissolve
+            n "I think this is the best answer."
+
+            show natasha talk with dissolve
+
+            n "For this answer, I will reward you 3 HBB points."
+
+            n "You saved me from them and prevented them from doing anything."
+
+            show natasha blush with dissolve
+
+            n "I might fall for you, you know?"
+
+            show natasha closed eyes_ with dissolve
+
+            n "Just kidding!!!"
+
+
     stop music fadeout 3.0
-    pause 3.0
+    pause 2.0
     jump yui_start_case_1
     
