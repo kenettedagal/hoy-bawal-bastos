@@ -170,12 +170,13 @@ label goingToSchool:
     "Should I take a jeep or train today?"
 
     menu:
-        
+        # Story will diverge from this point. Will converge at some point.
+
         # Meet Yui
         "Take the train.":
             jump meetWithYui
 
-        # Meet Kurt
+        # Meet Kurt(friend)
         "Ride a jeep.":
             jump meetWithKurt
 
@@ -241,9 +242,88 @@ label meetWithYui:
 
     "Hopefully, this day goes successful."
 
-    
-    
+    "...."
+
+    "Operator" "Arriving at station. Please check your belongings before getting out. Thank you."
+
+    "{i}Footsteps of people{/i}"
+
+    "Moving closer towards the exit... I hear some conversation."
+
+    "???" "Hey there sexy little miss. Are you free tonight and have a drink." 
+
+    "???" "Don't worry, we won't do anything do bad to you hehehe..."
+
+    "???" "Do you need money or anything? Just tell us."
+
+    "I can see three old men harassing a young student girl."
+
+    "I notice that the girl is trembling and shaking."
+
+    "Girl" "Plea-please l-l-leave me alo-lone..." 
+
+    "???" "Hahaha!! She's scared like a child."
+
+    "???" "Hey, you're teasing her too much. She might report us."
+
+    "???" "Don't worry. She can't even say the sentence straight."
+
+    $ deathFlag = False
+
+    menu:
+        "What should I do?"
+
+
+        "I'll pick a fight with them." if deathFlag is False:
+            #deathFlag = True
+
+            m "Hey you bastards! Stop harrassing that girl."
+
+            "???" "Who the hell are you? His boyfriend perhaps?"
+
+            "???" "You little punk talking to me like that. I'll crush you."
+
+            "???" "Take this you pesky little boy."
+
+            "BAM!" with vpunch
+
+            "AAHHH!" with hpunch
+
+            "PAAAK!" with vpunch
+
+
+        "I'll go and inform the train security.":
+            m "Officer! Officer!!"
+
+            m "I saw three old men harassing a girl student! Please help me."
+
+            "Officer" "I see. Bring me to them."
+
+
+        "I'll pretend that I didn't hear the conversation.":
+            m "I should just ignore them..."
+
+            m "I don't wanna get in trouble."
+
+
+
 
 label schoolCeremony:
+    "B Highschool. A prestigious school where only the best can enter."
+
+    "I'm so lucky to be here."
+
+    "...."
+
+    "Student Council President" "To all the newcomers, I welcome you!"
+
+    "Student Council President" "I hope that you can achieve your dreams in this school."
+
+    "Student Council President" "To all those that are nearing graduation, I hope you achieved what you wanted here."
+
+    "Student Council President" "That is all for my speech. Thank you!"
+
+    "{i]Students clapping{/i}"
+
 
 return
