@@ -92,7 +92,7 @@ label backsidegym:
     l "Noo!! Please just get away from me! Stop following me!!"
     
     k "Hehehe…Come on, don’t you understand how I am obsessed to you.
-     I already gave you a lot of hints of how much I love you by staring at you romantically."
+    I already gave you a lot of hints of how much I love you by staring at you romantically."
 
     l "Please anyone help me!!...."
 
