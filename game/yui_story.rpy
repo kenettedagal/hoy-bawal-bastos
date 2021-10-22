@@ -3,6 +3,7 @@ image outside = im.Scale("images/bg outside.webp", 1920, 1080)
 
 define kk = Character('Kurt')
 define y = Character('Yui')
+define t = Character('Teacher Clarisse')
 
 default points = 0
 
@@ -424,7 +425,7 @@ label meetWithYui:
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
     $ deathFlag = False
-
+    $ metYui = True
     menu trainScene:
         "What should I do?"
 
@@ -652,7 +653,7 @@ label meetWithYui:
 
                     m "Errr... it is to..."
 
-                    jump info
+                    jump yuiInfo
 
                     
 
@@ -666,13 +667,29 @@ label meetWithYui:
             #Train end scene       
     "Officer" "Hey kids. You better get going now. I'll clean this mess up."
 
-    m "Yes Sir."
+    "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
+
+    "Officer" "Those guys broke the law by (1) Making unwanted invitations."
+
+    "Officer" "(2) Making statements of sexual comments and suggestions."
+
+    "Officer" "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
+
+    "Officer" "This may include cursing, leering and intrusive gazing, and taunting."
+
+    m "WOW! That's a really great law."
+
+    "Officer" "I know kid."
+
+    "Officer" "Now go on your way. I'll take care of them. In jail of course."
+    
+    m "Yes sir."
 
     y "Uhmmm..."
 
     y "See you Mark! Thank you again..."
 
-    m "Goodbye Yui. No worries. I just can't stand it when I see someone getting harassed."
+    m "Bye Yui. No worries. I just can't stand it when I see someone getting harassed."
 
     y "Uhhhm.. I hope I can see you aga-"
 
@@ -701,6 +718,521 @@ label schoolCeremony:
     "Student Council President" "That is all for my speech. Thank you!"
 
     "{i}Students clapping{/i}"
+
+    if metYui is True:
+        kk "Dude! I hope we are classmates in this new school year."
+
+        m "Oh please no."
+
+        kk "Why? I'm fun to hang out with right?"
+
+        m "Yeah yeah whatever you say."
+
+        "This is Kurt. My weird friend. Our friendship started weird. When I was in 1st Year, this guy randomly talked to me when I was eating alone in cafeteria."
+
+        "But I don't hate it at all."
+
+        kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
+
+        m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
+
+        kk "You poor little thing."
+
+        m "Well, don't even talk like you have one."
+
+        kk "Hahaha~ Don't worry about me. I'm more worried about your future."
+
+        m "I'm not a child for you to worry about."
+
+        kk "Haha!!"
+
+    else:
+        kk "Dude! I hope we are classmates in this new school year."
+
+        m "Oh please no."
+
+        kk "Why? I'm fun to hang out with right?"
+
+        m "Yeah yeah whatever you say."
+
+    jump afterCeremony
+
+label afterCeremony:
+    kk "Lemme check the school bulletin to know our section."
+
+    m "Sure dude. Gonna go to the bathroom first."
+
+    kk "Meet me in near the school bulletin okay?"
+    
+    m "Yeah just go."
+
+    "A new school year..."
+
+    "I hope it is fun..."
+
+    "Last year, I was a loner in my class."
+
+    "But thankfully, I met Kurt. He's a really good friend."
+
+    #Flag to check if USER accepts lunch invite
+    $ lunchWithYui = True
+
+    if metYui is True:
+
+        "???" "Hey..."
+
+        "???" "M-M-Mark!"
+
+        m "Ehhhhh!!!?"
+
+        m "Yui?! You go to my school?"
+
+        y "Y-Yeah! Did you not no-notice my uniform?"
+
+        m "I did not notice it at all. Oh my!"
+
+        m "So you are a First Year student."
+
+        m "Why didn't you tell me?"
+
+        m "No.. sorry. It's my fault."
+
+        y "No... it's fine!"
+
+        y "*whispers* You wouldn't want to go with a girl like me..."
+
+        m "What was that? You were mumbling something."
+
+        y "It's totally nothing!"
+
+        y "Uhm... M-M-Mark?"
+
+        m "Yeah?"
+
+        y "Can you help me get to my classroom?"
+
+        m "Are you perhaps lost?"
+
+        y "Yeah... this school is really big."
+
+        m "No wonders. It's just like me when I was a First Year student."
+
+        m "You are currently in the Second Year's building."
+
+        # This choice will determine who will eat lunch with MC
+        menu findRoomWithYui:
+    
+            "Go and find the classroom with Yui.":
+                m "Haaa.."
+
+                y "Waaaah.. I'm so sweaty."
+
+                m "Yeah it's kinda far from our building. Hahaha~"
+
+                "{i}8:50 AM{/i}"
+
+                m "The first bell is gonna ring now."
+
+                m "I'm going back now [y]!"
+
+                m "Have fun in there!"
+
+                y "W-w-waaaait Mark!"
+
+                y "Uhm...."
+
+                y "If it's fine with you.."
+
+                y "Can I treat you later in lunch? As a thanks for helping me..."
+
+                menu:
+                    "Ehhhh? I've never been invited by a girl to lunch. What should I do?"
+
+                    "Sure I'll go eat with you.":
+                        m "Sure I'll go eat with you."
+
+                        y "For real? Waaaah!"
+
+                        m "Wait why are you so happy?"
+
+                        m "Ready your money though. I'm a big eater."
+
+                        y "Ehehe.. sure! You can choose whatever you want."
+
+                        "{i}Ding dong dang {/i}"
+
+                        m "Oh crap that's the bell!"
+
+                        m "I'll be going now [y]!"
+
+                        y "See you later.... M-Mark."
+
+                        jump lunch
+
+                    "Sorry, maybe next time?":
+                        m "Sorry, maybe in another day."
+
+                        y "Oh.... that's... a shame."
+
+                        y "I... I see..."
+
+                        y "See you..."
+
+                        "She left running while her hands is in her eyes."
+
+                        "...."
+
+                        jump lunch
+
+            "Go to Kurt in the school bulletin and leave Yui":
+                $ lunchWithYui = False
+                m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
+
+                y "Ah.... Is that so?"
+
+                y "That's a real shame."
+
+                y "I'll be going now Mark."
+
+                "She left running while her hands is in her eyes."
+
+                "...."
+
+                jump lunch
+    else:
+
+        "???" "Uhmmm..."
+
+        "???" "Excu-cuse m-m-me....!"
+
+        "Looking at my back, there is someone pull my sleeves..."
+
+        m "Uhhhh.. Hello?"
+
+        m "You are?"
+
+        y "Can you help me get to my classroom?"
+
+        m "Are you perhaps lost?"
+
+        y "Yeah... this school is really big."
+
+        m "No wonders. It's just like me when I was a First Year student. Haha~"
+
+        m "You are currently in the Second Year's building."
+
+        jump findRoomWithYui
+
+label lunch:
+
+    if lunchWithYui is True:
+        "{i}Ding dong dang {/i}"
+
+        kk "Hey dude wanna go to cafeteria?"
+
+        m "Sorry dude. I'm meeting someone today."
+
+        kk "Meeting someone? Hey hey hey what's happening to Mr. Mark, huh?"
+
+        m "I'm going ahead. Eat with yourself."
+
+        kk "Wah! This little punk."
+
+        scene bg cafeteria
+
+        y "Hey Mark! Here!"
+
+        m "Sorry [y]. Did you wait?"
+
+        y "No... I just got here..."
+
+        m "Is that so? Then it's fine."
+
+        y "So what do you want to eat?"
+
+        y "Just tell me. I got everything covered."
+
+        menu:
+            "What should I eat?"
+
+            "Tonkotsu (Pork Bone) Ramen with Pork Slices and Egg.":
+                m "I want the Tonkotsu Ramen."
+
+                show yui surprised with dissolve
+
+                y "Eh, you like Japanese dishes?"
+
+                m "Yeah they taste good."
+
+                y "I... I see."
+
+            "Quarter Pound Burger with Large Fries.":
+                m "I want the Quarter Pounder Burger."
+
+                show yui surprised with dissolve
+
+                y "Eh, you like American fast-food?"
+
+                m "Yeah they taste good."
+
+                y "I... I see."
+
+            "12\" All Meat Pizza with Thin Crust.":
+                m "I want the All Meat Pizza."
+
+                show yui surprised with dissolve
+
+                y "Eh, you like pizza huh?"
+
+                m "Yeah they taste good."
+
+                y "I... I see."
+
+            "Risotto with Caesar Salad.":
+                m "I want the Risotto."
+
+                show yui surprised with dissolve
+
+                y "Eh, you like Italian food huh?"
+
+                m "Yeah they taste good."
+
+                y "I... I see." 
+
+            "All of it. All in. Just do it.":
+                m "I want everything in today's menu."
+
+                show yui surprised with dissolve
+                y "Ehhh? There's no way you can finish all of it."
+
+                m "I've done it once. With my friend of course."
+
+                m "The moment you said \"I've got everything covered\", I already knew what to do."
+
+                y "Hahaha~ Okay I get it!"
+    
+    else:
+        "{i}Ding dong dang {/i}"
+
+        scene bg cafeteria
+        
+        m "Dude this sucks."
+
+        kk "What?"
+
+        m "Why am I eating with you."
+
+        kk "Haha~ Just like I said. Go get a girlfriend."
+
+        m "Whatever."
+
+        "...."
+
+    jump socialStudiesQuiz
+
+label socialStudiesQuiz:
+
+    scene bg classroom
+    show clarrise 
+    with fade
+
+    t "Okay Class! Listen up!"
+
+    t "There will be a surprise quiz today."
+
+    t "It is a 10 item quiz. Make sure to review your notes."
+
+    t "The topic is about the Republic Act No. 11313 also known as \"Safe Spaces Act.\""
+
+    # Implement notes
+
+    if metYui is True:
+        "No way!!! I know this law. I could ace this test."
+
+        kk "Hey future Attorney Mark. Do you know this law?"
+
+        m "Of course. Leave it to me."
+    else:
+        "No way!!! I know this law. I could ace this test."
+
+        show kurt teeth with dissolve
+
+        kk "Hey dude. Isn't this what you've just told me earlier in the jeep?"
+
+        m "Yeah dude. Did you remember what I said?"
+
+        kk "I'll try to remember it haha~"
+
+    jump quiz
+
+label quiz:
+    $ quizPoint = 0
+    $ quizNum = []
+    show clarrise with dissolve
+    t "First Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        "It is the law that recognizes that both men and women must have equality, security, and safety not only 
+        in private but also on the streets, public spaces, online, workplaces and educational and training institutions."
+
+        "Republic Act No. 11616":
+            ""
+        "Republic Act No. 11313":
+            quizNum.append(1)
+        "Republic Act No. 11717":
+            ""
+        "Republic Act No. 11919":
+            ""
+    show clarrise with dissolve
+    t "Second Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+
+    show clarrise with dissolve
+    t "Third Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Fourth Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Fifth Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Sixth Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Seventh Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Eight Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+    show clarrise with dissolve
+    t "Ninth Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+
+    show clarrise with dissolve
+    t "Last Question!"
+
+    menu:
+        show clarrise talk with dissolve
+        ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+        "":
+            ""
+
+    "Class" "WAAAAAAA!"
+
+    kk "What the hell. That was hard."
+
+    m "Was it? I don't think so. Haha~"
+
+    # Show achievement if perfect
+    # Show test result
+
+
+
+label pervTeacher: 
+    
+
+
+
+        
+            
+         
+
 
 
 return
