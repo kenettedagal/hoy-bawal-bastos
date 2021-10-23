@@ -4,6 +4,7 @@ image outside = im.Scale("images/bg outside.webp", 1920, 1080)
 define kk = Character('Kurt')
 define y = Character('Yui')
 define t = Character('Teacher Clarisse')
+define b = Character('Butch')
 
 default points = 0
 
@@ -1215,24 +1216,447 @@ label quiz:
 
     "Class" "WAAAAAAA!"
 
+    "Everyone is turning their heads. Asking if they did well."
+
     kk "What the hell. That was hard."
 
     m "Was it? I don't think so. Haha~"
+
+    "Mark with a smile on his face, knew he did well."
 
     # Show achievement if perfect
     # Show test result
 
 
 
-label pervTeacher: 
+label pervTeacher:
+    scene black
+
+    centered "1 Week Later..."
     
+    scene classroom with fade
+
+    "Classroom noises...."
+
+    show kurt neutral with dissolve
+
+    kk "Hey Mark, did you hear the news?"
+
+    m "What news?"
+
+    kk "It's about [t]."
+
+    m "What happened to [t]."
+
+    kk "Based on what I heard, she got sick and is in the hospital."
+
+    kk "The school faculty doesn't know when she's going back."
+
+    m "She's in critical condition?"
+
+    kk "I don't know dude. That's all I know."
+
+    kk "Ohh! I almost forgot."
+
+    kk "There will be someone substituting [t]."
+
+    m "Who?"
+
+    kk "They say he's a nasty person."
+
+    m "O-ohh..."
+
+    "Noise of footsteps towards the door."
+
+    "???" "Hwehehehe... How you doin' everyone?"
+
+    "Everyone in the classroom gasped."
+
+    show teacher smile with dissolve
+
+    "???" "I hope we all get along, everyone hehehe~"
+
+    "???" "I will be your substitute teacher for this class."
+
+    "???" "Call me Professor Butch."
+
+    b "These are some nice looking girls, huh?"
+
+    b "Hehehehe... perfect for my taste."
+
+    "What the hell did he just say?"
+
+    "Looking at Kurt, he is about to stand up."
+
+    show kurt angry at left with dissolve
+
+    kk "What did you say?!"
+
+    m "You idiot..."
+
+    show teacher closed with dissolve
+
+    b "Oh did I ask you to talk? You'll be receiving a failing grade."
+
+    b "Hehehe~"
+
+    show kurt surprised with dissolve
+
+    kk "Wha-?"
+
+    "I whispered in Kurt's ears."
+
+    m "Just let it slide dude. I will find a way to report this nasty professor."
+
+    jump talkOnHarass
 
 
+label talkOnHarass:
 
+    scene black
+    centered "A few days later..."
+
+    if lunchWithYui is True:
+        scene schoolground
         
-            
-         
+        "What a nice landscape."
+
+        "I see [y] walking across the ground. With a sad expression on her face."
+
+        show yui sad with fade
+        m "Hey [y]! How's your class doing?"
+
+        m "You called me out to talk about something?"
+
+        y "Y-yeah..."
+
+        y "It's about that law you talked about."
+
+        m "The Safe Spaces Act? What about it?"
+
+        y "I have something to talk about related to it...."
+
+        m "Tell me about it."
+
+        "While clasping her hands firmly for a while, she finally opened her mouth."
+
+        y "It's about my professor..."
+
+        y "He's doing something bad... And I can't do anything to stop it."
+
+        m "Who's this professor? Is he teaching here?"
+
+        y "Y-yeah... I hate him. That disgusting person."
+
+        y "When he gave a test the other day... He stares at the girls in a lascivious manner."
+
+        y "When we are in the laboratory, he sneakily touches the butt of some of the girls."
+
+        y "Then he says, \"It's not my fault that you are sexy.\""
+
+        y "And then one time, he..."
+
+        show yui crying with dissolve
+
+        y "He suddenly touched my shoulders... and pinched it in a manner that is so disgusting. Then he whispered something to my ear."
+
+        m "WHAT?!" with vpunch
+
+        show yui angry with dissolve
+
+        y "Aaaaah! I hate him. Just remembering it makes me puke."
+
+        y "I was almost close to crying in the classroom. I was really shaking and trembling."
+
+        y "The girls in my class can't speak up to him. Also when the boys stand up for us, he gives them a failing mark."
+
+        m "Tell me who is this nasty person?"
+
+        show yui sad with dissolve
+
+        y "H-h-his name is Butch..."
+
+        y "They said he was a new faculty teacher..."
+
+        m "I see. So he's also teaching the First Year students. That damned bastard."
+
+        y "M-Mark! I have a favor! Please help me out."
+
+        m "Ahhhh..."
+
+        $ badEndingGame = False
+        $ helpedYui = False
+        menu:
+            "Should I help her out?"
+
+            "Help her.":
+                helpedYui = True
+
+                m "Okay [y] I will help you."
+
+                y "Thank you so much!"
+
+                y "Also before I forget to say... There was someone who took a video when he was doing the crime."
+
+                m "Really? Then this will be easy. It should be a solid evidence for his disgusting act."
+
+                jump arrestButch
+
+            "Don't help her.":
+                badEndingGame = True
+
+                m "I'm afraid I cannot help. I might get in trouble."
+
+                y "Is that so? That's a real shame..."
+
+                jump badEndStory
+                
+    else:
+        scene schoolground
+        show kurt neutral
+        with fade
+
+        kk "Dude... I have something to talk about."
+
+        kk "It's about that law you talked about."
+
+        m "The Safe Spaces Act? What about it?"
+
+        kk "I think we can use this law against that professor."
+
+        m "Tell me more about it."
+
+        kk "Just the other day, one of our girl classmate got sexually harassed."
+
+        m "Really? That's bad."
+
+        kk "I've also got stories from other girls in First Year. According to them..."
+
+        kk "When he gave a test the other day... He stares at the girls in a lascivious manner."
+
+        kk "When they are in the laboratory, he sneakily touches the butt of some of the girls."
+
+        kk "Then he says, \"It's not my fault that you are sexy.\""
+
+        kk "And then one time, he... he tried to grope someone."
+
+        m "Dude this is getting worse."
+
+        m "We really need to do something."
+
+        kk "Yeah I know. Here comes the good part dude."
+
+        m "What is good in this?"
+
+        kk "Someone took a video of that nasty bastard doing the crime."
+
+        m "Really? That a solid evidence then!"
+
+        kk "I know right! That disgusting creep should rot in jail forever."
+
+        kk "Now will you help me out?"
+
+        kk "Because of you, I learned of the Safe Spaces Act. I knew of the things which a person shouldn't ever do."
+
+        kk "You wanted to be an Attorney right? Help me use this \"Safe Spaces Act\" to arrest that nasty piece of ****."
+
+        menu:
+            "Should I help him?"
+
+            "Help him.":
+                jump arrestButch
+
+            "Don't help him.":
+                badEndingGame = True
+                jump badEndStory
+
+label arrestButch:
+
+    scene black
+    centered "A few days later..."
+
+    if helpedYui is True:
+        scene classroom
+        show teacher smile
+        with fade
+
+        b "Bring out a pen and paper. We will be having a surprise quiz."
+
+        "Everyone" "What?!!"
+
+        show kurt neutral
+
+        m "Something good will happen today."
+
+        kk "What? There's nothing good happening when there's a surprise quiz."
+
+        m "Just wait and see dude. Haha~"
+
+        kk "Whatever Attorney Mark."
+
+        m "Shut up."
+
+        scene black
+
+        centered "A few minutes later..."
+
+        scene hallway
+
+        "Footsteps can be heard in the hallway."
+
+        scene classroom
+
+        "???" "Excuse me. Please open the door."
+
+        show teacher closed with dissolve
+
+        b "Who the hell is disturbing my class!!!"
+
+        hide teacher closed
+
+        "Continuous knocking on the door."
+
+        "Creeeeek. The door opens."
+
+        "Uniformed personnels came in. They appear to be police."
+
+        show teacher closed with dissolve
+
+        b "Why is there police here?!!"
+
+        "Everyone" "What's happening? Why are they here? Did someone kill?"
+
+        "Policeman Carl" "Everyone please calm down."
+
+        "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
+
+        "The policeman looks at Butch."
+
+        b "What the hell are you looking at? I don't know anything about that."
+
+        "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
+
+        "Policeman Carl" "The complainant showed a solid proof of evidence."
+
+        "Policeman Carl" "You will be coming with us. Do not resist."
+
+        "Everyone" "*gasps*"
+
+        "Officer Greg" "Hey future Attorney! It looks like it went fine."
+
+        m "Waaah! Officer Greg you actually came."
+
+        "Officer Greg" "It's because of you, we caught this disgusting molester. Thank you."
+
+        m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
+
+        "Officer Greg" "Hahaha! I like that attitude. Keep doing good things young man."
+
+        m "Yes Sir!"
+
+    # Kurt scene
+    else:
+        scene classroom
+        show teacher smile
+        with fade
+
+        b "Bring out a pen and paper. We will be having a surprise quiz."
+
+        "Everyone" "What?!!"
+
+        show kurt neutral
+
+        m "Something good will happen today."
+
+        kk "Is it finally happening?"
+
+        m "Yeah I was informed it would be today."
+
+        kk "That's great. Now we just have to sit and watch. Great job Attorney Mark."
+
+        m "Hahahaha~"
+
+        scene black
+
+        centered "A few minutes later..."
+
+        scene hallway
+
+        "Footsteps can be heard in the hallway."
+
+        scene classroom
+
+        "???" "Excuse me. Please open the door."
+
+        show teacher closed with dissolve
+
+        b "Who the hell is disturbing my class!!!"
+
+        hide teacher closed
+
+        "Continuous knocking on the door."
+
+        "Creeeeek. The door opens."
+
+        "Uniformed personnels came in. They appear to be police."
+
+        show teacher closed with dissolve
+
+        b "Why is there police here?!!"
+
+        "Everyone" "What's happening? Why are they here? Did someone kill?"
+
+        "Policeman Carl" "Everyone please calm down."
+
+        "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
+
+        "The policeman looks at Butch."
+
+        b "What the hell are you looking at? I don't know anything about that."
+
+        "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
+
+        "Policeman Carl" "The complainant showed a solid proof of evidence."
+
+        "Policeman Carl" "You will be coming with us. Do not resist."
+
+        "Everyone" "*gasps*"
+
+        "Sound of handcuffs being placed on the hands."
+
+        "Officer Greg" "Hey future Attorney! It looks like it went fine."
+
+        m "Waaah! Officer Greg you actually came."
+
+        "Officer Greg" "It's because of you, we caught this disgusting molester. Thank you."
+
+        m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
+
+        "Officer Greg" "Hahaha! I like that attitude. Keep doing good things young man."
+
+        m "Yes Sir!"
+
+        kk "Hey! Don't forget about me!!"
+
+        "Officer Greg" "Oh yes, the Attorney's friend. You will also receive compensation."
+
+        kk "Nevermind compensation, why is my name \"Attorney's friend\"?!!!"
+
+        "Everyone" "HAHAHAHA!!!"
+
+        $ friendEnding = True
+    
+    jump yuiEnd
 
 
+label badEndStory:
+
+    scene black
+
+    centered "[b] went on to harass lots of students. This went on without anyone stopping him because of his position."
+
+    centered "When the police caught on to the news, [b] went on to hiding. Never getting caught for his crimes."
+
+    centered "BAD END"
 
 return
