@@ -1,5 +1,6 @@
 image kitchen = im.Scale("images/bg kitchen.webp", 1920, 1080)
 image outside = im.Scale("images/bg outside.webp", 1920, 1080)
+image aerial = im.Scale("images/school aerial.webp", 1920, 1080)
 
 define kk = Character('Kurt')
 define y = Character('Yui')
@@ -403,6 +404,8 @@ label meetWithYui:
 
     "Operator" "Arriving at station. Please check your belongings before getting out. Thank you."
 
+    scene bg train morning with fade
+
     "{i}Footsteps of people{/i}"
 
     "Moving closer towards the exit... I hear some conversation."
@@ -417,6 +420,8 @@ label meetWithYui:
 
     "I notice that the girl is trembling and shaking."
 
+    show yui worry with dissolve
+
     "Girl" "Plea-please l-l-leave me alo-lone..." 
 
     "???" "Hahaha!! She's scared like a child."
@@ -424,6 +429,8 @@ label meetWithYui:
     "???" "Hey, you're teasing her too much. She might report us."
 
     "???" "Boss, don't worry. She can't even say the sentence straight."
+
+    show yui worry closed with dissolve
 
     $ deathFlag = False
     $ metYui = True
@@ -441,6 +448,8 @@ label meetWithYui:
             "???" "You little punk talking to me like that. I'll crush you."
 
             "???" "Take this you pesky little boy."
+
+            show yui worry with dissolve
 
             "BAM!" with vpunch
 
@@ -460,10 +469,12 @@ label meetWithYui:
             "Good choice!"
             $ points += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
-
+            hide yui worry closed
             m "Officer! Officer!!"
 
             m "I saw three old men harassing a girl student! Please help me."
+
+            show officer with dissolve
 
             "Officer" "I see. Bring me to them."
 
@@ -479,21 +490,32 @@ label meetWithYui:
                 "???" "Dammnit!"
 
             #show Yui
+
+            hide officer
+            show yui wow with fade
             "Girl" "Uwaaaaah! Thank y-y-you sooo much!!"
 
             m "Ohhh... I didn't really do anything..."
+
+            show yui smile close with dissolve
 
             "Girl" "You saved my life...."
 
             m "Life?"
 
+            show yui smile opened with dissolve
+
             "Girl" "Uhm..."
 
             m "Yes?"
 
+            show yui neutral with dissolve
+
             "Girl" "Can you tell me your name?"
 
             m "Ohhh. My name is Mark. How about you?"
+
+            show yui blush with dissolve
 
             "Girl" "Y-Y-Yu.."
 
@@ -505,13 +527,19 @@ label meetWithYui:
 
             m "[y], huh? What a cute name."
 
+            show yui surprised blush with dissolve
+
             y "EHHH?!! Cute?"
 
             y "{i}......waaah!{/i}"
 
             m "Hey, [y]. I saw you earlier that you were shaking and trembling."
 
+            show yui worry with dissolve
+
             y "Yeah that was embarassing to see...."
+
+            show yui worry closed with dissolve
 
             y "You see, when I was a child... I had a trauma."
 
@@ -519,13 +547,19 @@ label meetWithYui:
 
             y "Uhmmm y-yes..."
 
+            show yui worry opened with dissolve
+
             y "When I was in 4th Grade, my boy classmates would make fun of my appearance."
 
             y "It made me stop going to school... And I was homeschooled since then."
 
             m "I can't imagine how you must feel. My heart hurts for you."
 
+            show yui worry closed with dissolve
+
             m "You know what? I have something interesting to tell you!"
+
+            show yui wow with dissolve
 
             y "What is it?"
 
@@ -533,50 +567,69 @@ label meetWithYui:
 
             y "A law? What kind of law?"
 
+            m "It is something related to what you experienced earlier."
+
+            $ yuiFirstAnswer = True
             menu yuiFirstQuestion:
                 "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
 
                 "Re-semiprivate Act No. 11313":
                     "Wrong answer!"
+                    $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
                 "Reprivate Act No. 11313":
                     "Think again..."
+                    $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
                 "Republic Act No. 11313":
                     "Great answer!"
-                    $ points += 3
-                    "You received {color=#40ff00}3 HBB Points.{/color}"
+
+                    if yuiFirstAnswer:
+
+                        $ points += 3
+                        "You received {color=#40ff00}3 HBB Points.{/color}"
                     
 
                 "Rebuild Act No. 11313":
                     "Not the right answer."
+                    $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
             #######################################
+
+            m "The law is Republic Act No. 11313."
+
             y "What is that law?"
 
             m "This law is..."
 
+            $ yuiSecondAnswer = True
             menu yuiSecondQuestion:
                 "It is also know as ...."
                 
                 "Safe Spaces Act":
                     "Correct!!"
-                    $ points += 3
-                    "You received {color=#40ff00}3 HBB Points.{/color}"
+
+                    if yuiSecondAnswer:
+
+                        $ points += 3
+                        "You received {color=#40ff00}3 HBB Points.{/color}"
                     
                 "Safe Pace Act":
                     "Wait this is wrong."
+                    $ yuiSecondAnswer = False
                     jump yuiSecondQuestion
                 
                 "Safe Guardian Act":
                     "Not the right answer."
+                    $ yuiSecondAnswer = False
                     jump yuiSecondQuestion
             
                 "Safe Insurrance Act":
-                    "Not the greatest answer."      
+                    "Not the greatest answer."
+                    $ yuiSecondAnswer = False      
                     jump yuiSecondQuestion
 
             y "So it is called \"Safe Spaces Act\"?"
@@ -586,11 +639,14 @@ label meetWithYui:
             #show kurt open mouth
             y "Uhm. But what does it mean?"
 
+            $ yuiThirdAnswer = True
+
             menu yuiThirdQuestion:
                 "Wait, what does the Safe Spaces Act mean again?"
 
                 "To protect Earth from aliens.":
-                    #show yui laugh
+                    show yui smile close with dissolve
+
                     y "Wait that's really funny~"
 
                     y "Please tell it to me seriously..."
@@ -598,16 +654,17 @@ label meetWithYui:
                     m "Hahaha~ I'm just kidding!"
 
                     m "The law was created to..."
-
-                    jump yuiInfo
+                    $ yuiThirdAnswer = False
+                    jump yuiThirdQuestion
 
         #See Space Spaces Act Implementing rules Section 5.  https://pcw.gov.ph/assets/files/2020/03/IRR-of-the-Safe-Spaces-Act.pdf?x98095
         # Implement some kind of notes system
                 "To protect men and women from gender-based sexual harassment.":
                     "Nice job! Correct answer."
-                    $ points += 3
-                    "You received {color=#40ff00}3 HBB Points.{/color}"
-                    
+                    if yuiThirdAnswer:
+                        $ points += 3
+                        "You received {color=#40ff00}3 HBB Points.{/color}"
+                    show yui neutral with dissolve
                     label yuiInfo:
                         m "To protect men and women from gender-based sexual harassment."
 
@@ -633,28 +690,38 @@ label meetWithYui:
 
                         m "h) Stalking."
 
+                        show yui wow with dissolve
+
                         y "That was a lot! How'd you memorize it?"
 
                         m "Well you know... I wanted to be a lawyer. So this much is not that big deal."
+
+                        show yui smile opened with dissolve
 
                         y "You wanted to be an attorney? That sounds really nice~"
 
                         m "Thank you ehehe..."
 
+                        show yui worry opened with dissolve
+
                         y "So what happens to the bad guys when they do those things?"
 
                         m "Uhm... Wait I'm kinda getting late for the school ceremony."
 
+                        show yui worry with dissolve
+
                         m "I'll talk to you again when I see you in this station!"
 
                 "To protect public and online spaces from danger.":
-                    kk "What danger? Please explain it clearly."
+                    y "What danger? Please explain it clearly."
 
                     m "Uhhhh.. wait let me remember..."
 
                     m "Errr... it is to..."
 
-                    jump yuiInfo
+                    $ yuiThirdAnswer = False
+
+                    jump yuiThirdQuestion
 
                     
 
@@ -663,9 +730,14 @@ label meetWithYui:
 
             m "I don't wanna get in trouble."
 
+            jump yui_end
+
             # IMPLEMENT BAD ENDING!
 
-            #Train end scene       
+            #Train end scene
+
+    hide yui worry
+    show officer with fade       
     "Officer" "Hey kids. You better get going now. I'll clean this mess up."
 
     "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
@@ -686,39 +758,64 @@ label meetWithYui:
     
     m "Yes sir."
 
+    hide officer
+
+    show yui worry opened with dissolve
+
     y "Uhmmm..."
 
     y "See you Mark! Thank you again..."
 
     m "Bye Yui. No worries. I just can't stand it when I see someone getting harassed."
 
+    show yui blush with dissolve
+
     y "Uhhhm.. I hope I can see you aga-"
+
+    with fade
 
     #Train sound
     "{i}A train passed by.{/i}"
 
     m "What?"
 
+    show yui surprised blush with dissolve
+
     y "No, nothing!!! Goodbye!"
+
+    scene black with fade
 
     jump schoolCeremony
 
 label schoolCeremony:
+
+    scene aerial with fade
     "B Highschool. A prestigious school where only the best can enter."
+
+    scene school building with fade
 
     "I'm so lucky to be here."
 
     "...."
 
-    "Student Council President" "To all the newcomers, I welcome you!"
+    scene audi1 with fade
+
+    "Student Council President" "To all the newcomer students, I welcome you!"
 
     "Student Council President" "I hope that you can achieve your dreams in this school."
 
+    scene audi2 with dissolve
+
     "Student Council President" "To all those that are nearing graduation, I hope you achieved what you wanted here."
+
+    scene audi3 with dissolve
 
     "Student Council President" "That is all for my speech. Thank you!"
 
     "{i}Students clapping{/i}"
+
+    show kurt teeth1 with dissolve
+    
 
     if metYui is True:
         kk "Dude! I hope we are classmates in this new school year."
@@ -729,9 +826,13 @@ label schoolCeremony:
 
         m "Yeah yeah whatever you say."
 
+        show kurt neutral with dissolve
+
         "This is Kurt. My weird friend. Our friendship started weird. When I was in 1st Year, this guy randomly talked to me when I was eating alone in cafeteria."
 
         "But I don't hate it at all."
+
+        show kurt teeth1 with dissolve
 
         kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
@@ -759,13 +860,20 @@ label schoolCeremony:
     jump afterCeremony
 
 label afterCeremony:
+
+    scene audi4 
+
+    show kurt neutral
+    with fade
     kk "Lemme check the school bulletin to know our section."
 
     m "Sure dude. Gonna go to the bathroom first."
 
-    kk "Meet me in near the school bulletin okay?"
+    kk "Meet me near the school bulletin okay?"
     
     m "Yeah just go."
+
+    scene football with fade
 
     "A new school year..."
 
@@ -777,6 +885,8 @@ label afterCeremony:
 
     #Flag to check if USER accepts lunch invite
     $ lunchWithYui = True
+
+    scene hallway
 
     if metYui is True:
 
@@ -921,6 +1031,8 @@ label afterCeremony:
         m "No wonders. It's just like me when I was a First Year student. Haha~"
 
         m "You are currently in the Second Year's building."
+
+        # ADD MORE
 
         jump findRoomWithYui
 
@@ -1071,25 +1183,26 @@ label quiz:
     $ quizNum = []
     show clarrise with dissolve
     t "First Question!"
+    show clarrise talk with dissolve
 
     menu:
-        show clarrise talk with dissolve
+        
         "It is the law that recognizes that both men and women must have equality, security, and safety not only 
         in private but also on the streets, public spaces, online, workplaces and educational and training institutions."
 
         "Republic Act No. 11616":
             ""
         "Republic Act No. 11313":
-            quizNum.append(1)
+            $ quizNum.append(1)
         "Republic Act No. 11717":
             ""
         "Republic Act No. 11919":
             ""
     show clarrise with dissolve
     t "Second Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1102,9 +1215,9 @@ label quiz:
 
     show clarrise with dissolve
     t "Third Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1116,9 +1229,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Fourth Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1130,9 +1243,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Fifth Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1144,9 +1257,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Sixth Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1158,9 +1271,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Seventh Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1172,9 +1285,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Eight Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1186,9 +1299,9 @@ label quiz:
             ""
     show clarrise with dissolve
     t "Ninth Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1201,9 +1314,9 @@ label quiz:
 
     show clarrise with dissolve
     t "Last Question!"
-
+    show clarrise talk with dissolve
     menu:
-        show clarrise talk with dissolve
+        
         ""
         "":
             ""
@@ -1390,7 +1503,7 @@ label talkOnHarass:
             "Should I help her out?"
 
             "Help her.":
-                helpedYui = True
+                $ helpedYui = True
 
                 m "Okay [y] I will help you."
 
@@ -1403,7 +1516,7 @@ label talkOnHarass:
                 jump arrestButch
 
             "Don't help her.":
-                badEndingGame = True
+                $ badEndingGame = True
 
                 m "I'm afraid I cannot help. I might get in trouble."
 
@@ -1467,7 +1580,7 @@ label talkOnHarass:
                 jump arrestButch
 
             "Don't help him.":
-                badEndingGame = True
+                $ badEndingGame = True
                 jump badEndStory
 
 label arrestButch:
