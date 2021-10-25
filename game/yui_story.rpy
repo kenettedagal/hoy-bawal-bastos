@@ -5,6 +5,8 @@ label yui_start_case_1:
     image hallway = im.Scale("images/hallways.webp", 1920, 1080)
     image pools = im.Scale("images/pool.webp", 1920, 1080)
     image classroom lunch1 = im.Scale("images/classroom lunch.webp", 1920,1080)
+    image classroom2 = im.Scale("images/classroom_2.webp",1920,1080)
+    image classroom morning = im.Scale("images/classroom_morning.webp",1920,1080)
     define kk = Character('Kurtney')
     define y = Character('Yui')
     define t = Character('Teacher Clarisse')
@@ -1103,7 +1105,7 @@ label afterCeremony:
 
                 scene hallway with fade
 
-                "She left running while her hands is in her eyes."
+                "She left running with a troubled expression on her face."
 
                 "...."
 
@@ -1238,10 +1240,12 @@ label lunch:
 
         y "Just tell me. I got everything covered."
 
+        scene bg cafeteria with fade
+
         menu:
             "What should I eat?"
 
-            "Tonkotsu (Pork Bone) Ramen with Pork Slices and Egg.":
+            "Tonkotsu(Pork) Ramen. {image=ramen.png}":
                 m "I want the Tonkotsu Ramen."
 
                 show yui wow with dissolve
@@ -1252,7 +1256,7 @@ label lunch:
 
                 y "I... I see."
 
-            "Quarter Pound Burger with Large Fries.":
+            "Quarter Pound Burger with Large Fries. {image=burger.jpg}":
                 m "I want the Quarter Pounder Burger."
 
                 show yui wow with dissolve
@@ -1263,7 +1267,7 @@ label lunch:
 
                 y "I... I see."
 
-            "12\" All Meat Pizza with Thin Crust.":
+            "12\" All Meat Pizza with Thin Crust. {image=pizza.jpg}":
                 m "I want the All Meat Pizza."
 
                 show yui wow with dissolve
@@ -1274,7 +1278,7 @@ label lunch:
 
                 y "I... I see."
 
-            "Risotto with Caesar Salad.":
+            "Apple Risotto. {image=risotto.jpg}":
                 m "I want the Risotto."
 
                 show yui wow with dissolve
@@ -1300,37 +1304,79 @@ label lunch:
                 y "Hahaha~ Okay I get it!"
     
     else:
-        "{i}Ding dong dang {/i}"
+        scene black with fade
 
-        scene bg cafeteria
+        pause 2.0
+
+        scene classroom lunch1 with fade
+
+        t "To get the answer of this equation..."
+
+        t "You must first..."
+
+        play sound "audio/bell.mp3" 
+
+        "{i}♫ Kin kon kan kon ♫{/i}"
+
+        show clarrise talk with dissolve
+
+        t "Okay Class! You may now take your lunch."
+
+        pause 1.0
+
+        scene classroom lunch1
+        show kurtney talk opened 
+        with fade
+
+        kk "Hey dude wanna go to cafeteria?"
+
+        m "Yeah sure. Are you going to treat me?"
+
+        show kurtney happy teeth with dissolve
+
+        kk "Keep on dreaming. Maybe I'll treat you when you get a girlfriend~"
+
+        scene bg cafeteria with fade
         
         m "Dude this sucks."
+
+        show kurtney talk opened with dissolve
 
         kk "What?"
 
         m "Why am I eating with you."
 
+        show kurtney happy teeth with dissolve
+
         kk "Haha~ Just like I said. Go get a girlfriend."
 
-        m "Whatever."
+        kk "And while you still don't have one, I'll eat with you so don't look like a loser!"
+
+        m "Whatever, keep eating."
 
         "...."
+        scene black with fade
+        pause 2.0
 
     jump socialStudiesQuiz
 
 label socialStudiesQuiz:
 
-    scene bg classroom
-    show clarrise 
+    scene classroom morning
+    show clarrise talk 
     with fade
 
     t "Okay Class! Listen up!"
 
     t "There will be a surprise quiz today."
 
+    show clarrise talk close with dissolve
+
     t "It is a 10 item quiz. Make sure to review your notes."
 
     t "The topic is about the Republic Act No. 11313 also known as \"Safe Spaces Act.\""
+
+    scene classroom morning with fade
 
     # Implement notes
 
@@ -1343,11 +1389,13 @@ label socialStudiesQuiz:
     else:
         "No way!!! I know this law. I could ace this test."
 
-        show kurt teeth with dissolve
+        show kurtney talk opened with dissolve
 
         kk "Hey dude. Isn't this what you've just told me earlier in the jeep?"
 
         m "Yeah dude. Did you remember what I said?"
+
+        show kurtney happy teeth with dissolve
 
         kk "I'll try to remember it haha~"
 
@@ -1356,9 +1404,13 @@ label socialStudiesQuiz:
 label quiz:
     $ quizPoint = 0
     $ quizNum = []
-    show clarrise with dissolve
+    scene classroom morning 
+    show clarrise talk
+    with fade
+
+    t "Okay Class! Ready or not, here I go!"
+    show clarrise talk close with dissolve
     t "First Question!"
-    show clarrise talk with dissolve
 
     menu:
         
