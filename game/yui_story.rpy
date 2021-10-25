@@ -1,20 +1,21 @@
-image kitchen = im.Scale("images/bg kitchen.webp", 1920, 1080)
-image outside = im.Scale("images/bg outside.webp", 1920, 1080)
-image aerial = im.Scale("images/school aerial.webp", 1920, 1080)
-
-define kk = Character('Kurt')
-define y = Character('Yui')
-define t = Character('Teacher Clarisse')
-define b = Character('Butch')
-
-default points = 0
-
 label yui_start_case_1:
+    image kitchen = im.Scale("images/bg kitchen.webp", 1920, 1080)
+    image outside = im.Scale("images/bg outside.webp", 1920, 1080)
+    image aerial = im.Scale("images/school aerial.webp", 1920, 1080)
+    image hallway = im.Scale("images/hallways.webp", 1920, 1080)
+    image pools = im.Scale("images/pool.webp", 1920, 1080)
+    image classroom lunch1 = im.Scale("images/classroom lunch.webp", 1920,1080)
+    define kk = Character('Kurtney')
+    define y = Character('Yui')
+    define t = Character('Teacher Clarisse')
+    define b = Character('Butch')
+
+    default points = 0
     define mm = Character('Mom')
    
 
     scene black
-    centered "Story #1\n\n\nYui's Melancholy"
+    centered "Story #1\n\n\nA New School Year"
     #Play iphone alarm tone
 
     pause 2.0
@@ -183,10 +184,12 @@ label goingToSchool:
 
         # Meet Yui
         "Take the train.":
+            $ metYui = True
             jump meetWithYui
 
         # Meet Kurt(friend)
         "Ride a jeep.":
+            $ metYui = False
             jump meetWithKurt
 
 
@@ -207,25 +210,35 @@ label meetWithKurt:
 
     "Ouch that hurts..."
 
-    m "Oh.. it is you Kurt!"
+    m "Oh.. it is you [kk]!"
 
-    show kurt happy with dissolve
+    show kurtney happy teeth with dissolve
 
     m "Why'd you hit me in the back of my head?"
+
+    show kurtney angry talk with dissolve
 
     kk "Dude you almost rode the jeep without me."
 
     m "Sorry I didn't notice you at all."
 
+    show kurtney smile with dissolve
+
     kk "Well its fine. Atleast I'm going to school with you."
 
-    "This is Kurt. My weird friend. Our friendship started weird. This guy randomly talked to me when I was eating alone in cafeteria."
+    "This is [kk]. My weird childhood friend."
+
+    "We have been friends since elementary school. She is a little boyish and sometimes annoying."
 
     "But I don't hate it at all."
+
+    show kurtney talk opened with dissolve
 
     kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
     m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
+
+    show kurtney happy teeth with dissolve
 
     kk "You poor little thing."
 
@@ -238,6 +251,8 @@ label meetWithKurt:
     kk "Haha!!"
 
     m "Hey, do you wanna hear something interesting?"
+
+    show kurtney talk opened with dissolve
 
     kk "What? If it's boring then I'm not listening to you."
 
@@ -276,6 +291,7 @@ label meetWithKurt:
             jump kurtFirstQuestion
 
     #######################################
+    show kurtney happy teeth with dissolve
     kk "That's cool. Tell me more about it."
 
     m "Yeah its a great law."
@@ -306,6 +322,7 @@ label meetWithKurt:
             $ firstTryWrong = True      
             jump kurtSecondQuestion
 
+    show kurtney talk opened with dissolve
     kk "So it is called \"Safe Spaces Act\"?"
 
     m "Yeah! It's a cool name right."
@@ -316,7 +333,12 @@ label meetWithKurt:
     menu kurtThirdQuestion:
         "Wait, what does the Safe Spaces Act mean again?"
 
-        "To protect Earth from aliens.":
+        "To protect Earth from aliens.":        
+
+            m "To protect Earth from aliens."
+
+            show kurtney angry talk with dissolve
+
             kk "Dude are you serious?"
 
             kk "Stop spouting nonsense."
@@ -333,8 +355,13 @@ label meetWithKurt:
             "Nice job! Correct answer."
             $ points += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
+
+            
             
             label kurtInfo:
+
+                show kurtney smile with dissolve
+
                 m "To protect men and women from gender-based sexual harassment."
 
                 m "Gender-based streets and public spaces sexual harassment include..."
@@ -359,21 +386,34 @@ label meetWithKurt:
                 
                 m "h) Stalking."
 
+                show kurtney talk opened with dissolve
+
                 kk "That was a lot! How'd you memorize it?"
 
                 m "Well you know... I wanted to be a lawyer. So this much is not that big deal."
+
+                show kurtney happy teeth with dissolve
 
                 kk "Attorney Mark? Sounds nice haha~"
 
                 m "Stop mocking me dude."
 
+                show kurtney talk opened with dissolve
+
                 kk "So what happens when I do any of those things?"
 
                 m "Let's continue later dude. We are close to the school."
 
+                show kurtney smile with dissolve
+
                 kk "Tell me about it okay? It's an interesting law."
 
         "To protect public and online spaces from danger.":
+
+            m "To protect public and online spaces from danger."
+
+            show kurtney angry talk with dissolve
+
             kk "What danger? Explain it clearly."
 
             m "Uhhhh.. wait let me remember..."
@@ -505,11 +545,7 @@ label meetWithYui:
 
             show yui smile opened with dissolve
 
-            "Girl" "Uhm..."
-
-            m "Yes?"
-
-            show yui neutral with dissolve
+            "Girl" "Uhmm..."
 
             "Girl" "Can you tell me your name?"
 
@@ -521,7 +557,11 @@ label meetWithYui:
 
             m "Yu?"
 
+            show yui surprised blush with dissolve
+
             "She's gotten a bit red of a sudden..."
+
+            show yui blush closed with dissolve
 
             "Girl" "Ple-please call me Yui."
 
@@ -530,6 +570,8 @@ label meetWithYui:
             show yui surprised blush with dissolve
 
             y "EHHH?!! Cute?"
+
+            show yui blush closed with dissolve
 
             y "{i}......waaah!{/i}"
 
@@ -814,7 +856,7 @@ label schoolCeremony:
 
     "{i}Students clapping{/i}"
 
-    show kurt teeth1 with dissolve
+    show kurtney happy teeth with dissolve
     
 
     if metYui is True:
@@ -822,25 +864,31 @@ label schoolCeremony:
 
         m "Oh please no."
 
+        show kurtney angry talk with dissolve
+
         kk "Why? I'm fun to hang out with right?"
 
         m "Yeah yeah whatever you say."
 
-        show kurt neutral with dissolve
+        "This is [kk]. My weird childhood friend."
 
-        "This is Kurt. My weird friend. Our friendship started weird. When I was in 1st Year, this guy randomly talked to me when I was eating alone in cafeteria."
+        "We have been friends since elementary school. She is a little boyish and sometimes annoying."
 
         "But I don't hate it at all."
 
-        show kurt teeth1 with dissolve
+        show kurtney happy teeth with dissolve
 
         kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
         m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
 
+        show kurtney smile with dissolve
+
         kk "You poor little thing."
 
         m "Well, don't even talk like you have one."
+
+        show kurtney happy teeth with dissolve
 
         kk "Hahaha~ Don't worry about me. I'm more worried about your future."
 
@@ -853,6 +901,8 @@ label schoolCeremony:
 
         m "Oh please no."
 
+        show kurtney angry talk
+
         kk "Why? I'm fun to hang out with right?"
 
         m "Yeah yeah whatever you say."
@@ -863,7 +913,7 @@ label afterCeremony:
 
     scene audi4 
 
-    show kurt neutral
+    show kurtney smile
     with fade
     kk "Lemme check the school bulletin to know our section."
 
@@ -879,14 +929,16 @@ label afterCeremony:
 
     "I hope it is fun..."
 
+    scene pools with fade
+
     "Last year, I was a loner in my class."
 
-    "But thankfully, I met Kurt. He's a really good friend."
+    "But thankfully, I have [kk]. She's a really good childhood friend."
 
     #Flag to check if USER accepts lunch invite
     $ lunchWithYui = True
 
-    scene hallway
+    scene hallway with fade
 
     if metYui is True:
 
@@ -894,9 +946,13 @@ label afterCeremony:
 
         "???" "M-M-Mark!"
 
+        show yui blush closed with dissolve
+
         m "Ehhhhh!!!?"
 
         m "Yui?! You go to my school?"
+
+        show yui blush with dissolve
 
         y "Y-Yeah! Did you not no-notice my uniform?"
 
@@ -908,13 +964,11 @@ label afterCeremony:
 
         m "No.. sorry. It's my fault."
 
-        y "No... it's fine!"
+        show yui smile close with dissolve
 
-        y "*whispers* You wouldn't want to go with a girl like me..."
+        y "No... it's fine! I forgot to tell you we go to the same school."
 
-        m "What was that? You were mumbling something."
-
-        y "It's totally nothing!"
+        show yui worry opened with dissolve
 
         y "Uhm... M-M-Mark?"
 
@@ -924,23 +978,35 @@ label afterCeremony:
 
         m "Are you perhaps lost?"
 
+        show yui smile close with dissolve
+
         y "Yeah... this school is really big."
 
         m "No wonders. It's just like me when I was a First Year student."
 
         m "You are currently in the Second Year's building."
 
+        scene hallway with fade
+
         # This choice will determine who will eat lunch with MC
         menu findRoomWithYui:
     
             "Go and find the classroom with Yui.":
+
+                scene school building with fade
                 m "Haaa.."
+
+                show yui blush closed with dissolve
 
                 y "Waaaah.. I'm so sweaty."
 
                 m "Yeah it's kinda far from our building. Hahaha~"
 
-                "{i}8:50 AM{/i}"
+                m "Just go inside there. All First Year classes are in this building."
+
+                show yui blush with dissolve
+
+                "{i}8:50 AM...{/i}"
 
                 m "The first bell is gonna ring now."
 
@@ -948,9 +1014,13 @@ label afterCeremony:
 
                 m "Have fun in there!"
 
+                show yui blush closed with dissolve
+
                 y "W-w-waaaait Mark!"
 
                 y "Uhm...."
+
+                show yui blush with dissolve
 
                 y "If it's fine with you.."
 
@@ -962,7 +1032,11 @@ label afterCeremony:
                     "Sure I'll go eat with you.":
                         m "Sure I'll go eat with you."
 
+                        show yui wow with dissolve
+
                         y "For real? Waaaah!"
+
+                        show yui smile close with dissolve
 
                         m "Wait why are you so happy?"
 
@@ -970,11 +1044,19 @@ label afterCeremony:
 
                         y "Ehehe.. sure! You can choose whatever you want."
 
-                        "{i}Ding dong dang {/i}"
+                        play sound "audio/bell.mp3" 
+
+                        "{i}♫ Kin kon kan kon ♫{/i}"
+
+                        show yui worry with dissolve
+
+                        pause 2.0
 
                         m "Oh crap that's the bell!"
 
                         m "I'll be going now [y]!"
+
+                        show yui smile opened with dissolve
 
                         y "See you later.... M-Mark."
 
@@ -983,11 +1065,19 @@ label afterCeremony:
                     "Sorry, maybe next time?":
                         m "Sorry, maybe in another day."
 
+                        show yui worry with dissolve
+
                         y "Oh.... that's... a shame."
+
+                        show yui worry closed with dissolve
 
                         y "I... I see..."
 
+                        show yui smile close with dissolve
+
                         y "See you..."
+
+                        scene school building with fade
 
                         "She left running while her hands is in her eyes."
 
@@ -999,11 +1089,19 @@ label afterCeremony:
                 $ lunchWithYui = False
                 m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
 
+                show yui worry with dissolve
+
                 y "Ah.... Is that so?"
+
+                show yui worry closed with dissolve
 
                 y "That's a real shame."
 
+                show yui smile close with dissolve
+
                 y "I'll be going now Mark."
+
+                scene hallway with fade
 
                 "She left running while her hands is in her eyes."
 
@@ -1018,48 +1116,123 @@ label afterCeremony:
 
         "Looking at my back, there is someone pull my sleeves..."
 
+        show yui smile close with fade
+
         m "Uhhhh.. Hello?"
 
         m "You are?"
 
-        y "Can you help me get to my classroom?"
+        "Girl" "Can you help me get to my classroom?"
 
         m "Are you perhaps lost?"
 
-        y "Yeah... this school is really big."
+        show yui worry opened with dissolve
+
+        "Girl" "Yeah... this school is really big."
 
         m "No wonders. It's just like me when I was a First Year student. Haha~"
 
         m "You are currently in the Second Year's building."
 
+        show yui neutral with dissolve
+
+        "Girl" "Uhmm..."
+
+        "Girl" "Can you tell me your name?"
+
+        m "Ohhh. My name is Mark. How about you?"
+
+        show yui blush with dissolve
+
+        "Girl" "Y-Y-Yu.."
+
+        m "Yu?"
+
+        show yui surprised blush with dissolve
+
+        "She's gotten a bit red of a sudden..."
+
+        show yui blush closed with dissolve
+
+        "Girl" "Ple-please call me Yui."
+
+        m "[y], huh? What a cute name."
+
+        show yui surprised blush with dissolve
+
+        y "EHHH?!! Cute?"
+
+        show yui blush closed with dissolve
+
+        y "{i}......waaah!{/i}"
+
         # ADD MORE
+
+        scene hallway with dissolve
 
         jump findRoomWithYui
 
 label lunch:
 
     if lunchWithYui is True:
-        "{i}Ding dong dang {/i}"
+
+        scene black with fade
+
+        pause 2.0
+
+        scene classroom lunch1 with fade
+
+        t "To get the answer of this equation..."
+
+        t "You must first..."
+
+        play sound "audio/bell.mp3" 
+
+        "{i}♫ Kin kon kan kon ♫{/i}"
+
+        show clarrise talk with dissolve
+
+        t "Okay Class! You may now take your lunch."
+
+        pause 1.0
+
+        scene classroom lunch1
+        show kurtney talk opened 
+        with fade
 
         kk "Hey dude wanna go to cafeteria?"
 
         m "Sorry dude. I'm meeting someone today."
 
+        show kurtney happy teeth with dissolve
+
         kk "Meeting someone? Hey hey hey what's happening to Mr. Mark, huh?"
 
         m "I'm going ahead. Eat with yourself."
 
+        show kurtney angry talk with dissolve
+
         kk "Wah! This little punk."
 
-        scene bg cafeteria
+        scene black with fade
+        
+        pause 1.0
+
+        scene bg cafeteria with fade
+
+        show yui smile close with dissolve
 
         y "Hey Mark! Here!"
 
         m "Sorry [y]. Did you wait?"
 
+        show yui neutral with dissolve
+
         y "No... I just got here..."
 
         m "Is that so? Then it's fine."
+
+        show yui smile opened with dissolve
 
         y "So what do you want to eat?"
 
@@ -1071,7 +1244,7 @@ label lunch:
             "Tonkotsu (Pork Bone) Ramen with Pork Slices and Egg.":
                 m "I want the Tonkotsu Ramen."
 
-                show yui surprised with dissolve
+                show yui wow with dissolve
 
                 y "Eh, you like Japanese dishes?"
 
@@ -1082,7 +1255,7 @@ label lunch:
             "Quarter Pound Burger with Large Fries.":
                 m "I want the Quarter Pounder Burger."
 
-                show yui surprised with dissolve
+                show yui wow with dissolve
 
                 y "Eh, you like American fast-food?"
 
@@ -1093,7 +1266,7 @@ label lunch:
             "12\" All Meat Pizza with Thin Crust.":
                 m "I want the All Meat Pizza."
 
-                show yui surprised with dissolve
+                show yui wow with dissolve
 
                 y "Eh, you like pizza huh?"
 
@@ -1104,7 +1277,7 @@ label lunch:
             "Risotto with Caesar Salad.":
                 m "I want the Risotto."
 
-                show yui surprised with dissolve
+                show yui wow with dissolve
 
                 y "Eh, you like Italian food huh?"
 
@@ -1115,12 +1288,14 @@ label lunch:
             "All of it. All in. Just do it.":
                 m "I want everything in today's menu."
 
-                show yui surprised with dissolve
+                show yui wow with dissolve
                 y "Ehhh? There's no way you can finish all of it."
 
                 m "I've done it once. With my friend of course."
 
                 m "The moment you said \"I've got everything covered\", I already knew what to do."
+
+                show yui smile close with dissolve
 
                 y "Hahaha~ Okay I get it!"
     
