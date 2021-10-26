@@ -157,6 +157,7 @@ label goingToSchool:
 
     "Hmmm. As expected, there will be a class introduction soon. How should I introduce myself?"
 
+
     "Ehem....."
 
     "\"How y'all doin' everyone! The greatest future lawyer is in this class. The name's Mark!\""
@@ -458,7 +459,7 @@ label meetWithYui:
 
     "???" "Do you need money or anything? Just tell us."
 
-    "I can see three old men harassing a young student girl."
+    "I can see three old men sexually harassing a young student girl."
 
     "I notice that the girl is trembling and shaking."
 
@@ -483,7 +484,7 @@ label meetWithYui:
         "I'll pick a fight with them." if deathFlag is False:
             $ deathFlag = True
 
-            m "Hey you bastards! Stop harrassing that girl."
+            m "Hey you bastards! Stop sexually harrassing that girl."
 
             "???" "Who the hell are you? His boyfriend perhaps?"
 
@@ -514,7 +515,7 @@ label meetWithYui:
             hide yui worry closed
             m "Officer! Officer!!"
 
-            m "I saw three old men harassing a girl student! Please help me."
+            m "I saw three old men catcalling and sexually harassing a girl student! Please help me."
 
             show officer with dissolve
 
@@ -523,7 +524,7 @@ label meetWithYui:
             label withOfficer:
                 m "Officer! Here!"
 
-                m "These old men are harassing this girl."
+                m "These old men are catcalling and making unwanted invitations to this girl."
 
                 "???" "What the hell. Run guys!!"
 
@@ -786,7 +787,7 @@ label meetWithYui:
 
     "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
 
-    "Officer" "Those guys broke the law by (1) Making unwanted invitations."
+    "Officer" "Those guys broke the law by (1) Catcalling and making unwanted invitations."
 
     "Officer" "(2) Making statements of sexual comments and suggestions."
 
@@ -1196,6 +1197,10 @@ label lunch:
 
         t "Okay Class! You may now take your lunch."
 
+        t "We will have a quiz after your lunch."
+
+        "Everyone" "WHAT?!!"
+
         pause 1.0
 
         scene classroom lunch1
@@ -1430,14 +1435,16 @@ label quiz:
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Republic Act No. 11313 is commonly known as \"S____ S______ A__\""
+
+        "Save Spaceship Act":
             ""
-        "":
+        "Safe Spaces Act":
             ""
-        "":
+            $ quizNum.append(1)
+        "Sale Summer Act":
             ""
-        "":
+        "Super Smash Act":
             ""
 
     show clarrise with dissolve
@@ -1445,98 +1452,79 @@ label quiz:
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Catcalling is a gender-based sexual harassment covered in Safe Spaces Act."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+
     show clarrise with dissolve
     t "Fourth Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Making unwanted invitations is a gender-based sexual harassment covered in Safe Spaces Act."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+        
     show clarrise with dissolve
     t "Fifth Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Stalking is included as a gender-based sexual harassment in Safe Spaces Act."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+        
     show clarrise with dissolve
     t "Sixth Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Situation: You see your classmate in the classroom getting sexually harassed by a teacher. What do you do?"
+        "Do nothing.":
             ""
-        "":
+        "Join in the act.":
             ""
-        "":
+        "Confront the teacher.":
             ""
-        "":
+        "Record the evidence and report to the faculty/police.":
             ""
     show clarrise with dissolve
     t "Seventh Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Gender-based sexual harassment can also be commited in Public Utility Vehicles(PUV)."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+        
     show clarrise with dissolve
     t "Eight Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Gender-based sexual harassment can also be commited in Streets and Public Spaces."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+        
     show clarrise with dissolve
     t "Ninth Question!"
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "The cyberspace is also covered in Safe Spaces Act."
+        "True":
             ""
-        "":
-            ""
-        "":
-            ""
-        "":
+        "False":
             ""
 
     show clarrise with dissolve
@@ -1544,21 +1532,25 @@ label quiz:
     show clarrise talk with dissolve
     menu:
         
-        ""
-        "":
+        "Public masturbation or flashing of private parts, groping, making offensive body gestures at someone, 
+        and other similar lewd sexual actions is a gender-based sexual harassment in Safe Spaces Act."
+        "True":
             ""
-        "":
+        "False":
             ""
-        "":
-            ""
-        "":
-            ""
+        
+    
+    scene classroom morning with fade
 
     "Class" "WAAAAAAA!"
 
     "Everyone is turning their heads. Asking if they did well."
 
+    show kurtney talk opened with dissolve
+
     kk "What the hell. That was hard."
+
+    hide kurtney talk opened
 
     m "Was it? I don't think so. Haha~"
 
@@ -1570,11 +1562,11 @@ label quiz:
 
 
 label pervTeacher:
-    scene black
+    scene black with fade
 
     centered "1 Week Later..."
     
-    scene classroom with fade
+    scene classroom lunch1 with fade
 
     "Classroom noises...."
 
