@@ -118,7 +118,7 @@ label tutorial_start:
     menu whatToDo:
         "What would you do?"
 
-        "Take out my phone and record.":
+        "Record it and post in social media.":
             n "Honestly this is not a bad answer. But are you just gonna let me get harrassed?"
 
             n "This can be a traumatic experience for me."
