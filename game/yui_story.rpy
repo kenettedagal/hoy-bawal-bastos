@@ -7,6 +7,9 @@ label yui_start_case_1:
     image classroom lunch1 = im.Scale("images/classroom lunch.webp", 1920,1080)
     image classroom2 = im.Scale("images/classroom_2.webp",1920,1080)
     image classroom morning = im.Scale("images/classroom_morning.webp",1920,1080)
+    image walk = im.Scale("images/walk1.webp", 1920, 1080)
+    image school gate = im.Scale("images/school gate1.webp", 1920, 1080)
+
     define kk = Character('Kurtney')
     define y = Character('Yui')
     define t = Character('Teacher Clarisse')
@@ -157,10 +160,9 @@ label goingToSchool:
 
     "Hmmm. As expected, there will be a class introduction soon. How should I introduce myself?"
 
-
     "Ehem....."
 
-    "\"How y'all doin' everyone! The greatest future lawyer is in this class. The name's Mark!\""
+    "\"How y'all doin' everyone! The greatest future attorney is in this class. The name's Mark!\""
 
     "How's that? Hmmm..."
 
@@ -168,13 +170,13 @@ label goingToSchool:
 
     "How about..."
 
-    "\"Pleased to meet you everyone. Please call me Mark. I love anime and manga.\""
+    "\"Pleased to meet you everyone. Please call me Mark.\""
 
     "...."
 
     "Yeah that'll work. Short and simple."
     
-    "They don't need to know that I am dreaming to be a lawyer someday."
+    "They don't need to know that I am dreaming to be a attorney someday."
 
     "{i}8:15 AM...{/i}"
 
@@ -237,6 +239,34 @@ label meetWithKurt:
 
     show kurtney talk opened with dissolve
 
+    kk "Did you know? Something crazy happened to me today. Good thing I found you."
+
+    m "What happened?"
+
+    kk "There was this guy... standing at the corner of our street."
+
+    kk "He looked unfamiliar to me so I asked him if he was looking for someone or he got lost."
+
+    m "So? Was he lost or what?"
+
+    show kurtney angry talk with dissolve
+
+    kk "Crazy freaking dude told me, \"You look beautiful today as well.\""
+
+    m "That's sexual harassment..."
+
+    m "What does he look like?"
+
+    kk "He wears a hoodie and a sweat pants."
+
+    m "Let me know when you see this guy again."
+
+    show kurtney happy teeth with dissolve
+
+    kk "Thanks dude! I'm lucky I have someone like you."
+
+    kk "Ohhhh and speaking of you..."
+
     kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
     m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
@@ -254,6 +284,8 @@ label meetWithKurt:
     kk "Haha!!"
 
     m "Hey, do you wanna hear something interesting?"
+
+    m "It is related to what happened to you earlier."
 
     show kurtney talk opened with dissolve
 
@@ -393,7 +425,7 @@ label meetWithKurt:
 
                 kk "That was a lot! How'd you memorize it?"
 
-                m "Well you know... I wanted to be a lawyer. So this much is not that big deal."
+                m "Well you know... I wanted to be an attorney. So this much is not that big deal."
 
                 show kurtney happy teeth with dissolve
 
@@ -426,6 +458,168 @@ label meetWithKurt:
             jump kurtInfo
 
         ########################################
+
+    scene walk with fade
+
+    "A peaceful morning for a first day of school."
+
+    "Or so I thought..."
+
+    show kurtney happy teeth with dissolve
+
+    kk "Hahaha~ I miss summer vacation."
+
+    m "Oh shut up. All you do is play games and watch anime."
+
+    kk "Are you talking about yourself? Ahahaha~"
+
+    m "Whatever."
+
+    scene walk with fade
+
+    "While peacefully chatting ang walking to school, [kk] saw something she doesn't want to see."
+
+    show kurtney talk opened with dissolve
+
+    kk "Hey, Mark..."
+
+    m "Hmmm?"
+
+    kk "Look behind our back..."
+
+    m "Back?"
+
+    m "What the hell? Is that the stalker guy from what you've said earlier?"
+
+    show kurtney smile with dissolve
+
+    kk "Watch your mouth. He might hear you and do something bad."
+
+    m "And now you're concerned for me?"
+
+    m "I should be the one worrying for you."
+
+    show kurtney blush close with dissolve
+
+    kk "Of course, you're my precious childhood friend."
+
+    m "Hahaha~ whatever. I got this."
+
+    scene walk with fade
+
+    menu:
+        "What should I do?"
+
+        "Run straight to the school gate.":
+            m "[kk]..."
+
+            show kurtney talk opened with dissolve
+
+            kk "Yeah?"
+
+            m "Hold my hand."
+
+            show kurtney blush small with dissolve
+
+            kk "Wha? Are you st-stupid?"
+
+            m "Do it!"
+
+            show kurtney blush close with dissolve
+
+            kk "O-o-okayyy...."
+
+            scene school gate with fade
+
+            "With all my might and strength reserved for this day, I grabbed [kk]'s hand and ran like a mad dog."
+
+            "Looking at my back, the guy is nowhere to be seen."
+
+            m "Pant pant pant..."
+
+            show kurtney blush close with dissolve
+
+            kk "Hey tell me what're you trying to do before doing that..."
+
+            kk "Stupid..."
+
+            m "Hahaha~ I just want to get away though. Why did you suddenly become red?"
+
+
+            
+        "Pick a fight with the stalker.":
+
+            m "Hey, what do you want?"
+
+            "???" "Hmmm.. Are you her boyfriend?"
+
+            m "No! She's my childhood friend."
+
+            "???" "Then take this."
+
+            "BAM!" with vpunch
+
+            "AAHHH!" with hpunch
+
+            "PAAAK!" with vpunch
+
+            m "AAAAAAH!!!"
+
+            scene black with fade
+            pause 1.0
+            scene walk with fade
+
+            show kurtney worry with dissolve
+
+            kk "Heyyyyyyy..."
+
+            kk "Wake up Mark..."
+
+            m "What the heck happened?"
+
+            show kurtney happy teeth with dissolve
+
+            kk "Well, he knocked the soul out of you. Hahaha~"
+
+            m "This is no laughing matter. What happened to him?"
+
+            show kurtney smile with dissolve
+
+            kk "He ran away when a lot of people were looking at us."
+
+            m "O-ohhh I see... Ughhhh my head hurts."
+
+            "Achievement Unlocked: Punched in the Face"
+
+        "Confront the stalker and tell him that you'll report him to the police.":
+                $ points += 3
+                "You received {color=#40ff00}3 HBB Points.{/color}"
+
+                scene walk with fade 
+
+                m "Excuse me. Stop whatever you're doing. You're disrupting our lives."
+
+                "???" "Who the hell are you?"
+
+                m "I am her friend. I will report you to the police this instant!"
+
+                "???" "Calm down. I'll leave now. Enjoy your day."
+
+                scene walk with fade
+
+                "After a few minutes, the stalker was out of sight."
+
+                m "Sighhhh. Hopefully this doesn't happen to you again."
+
+                show kurtney worry with dissolve
+
+                kk "I hope so. You'll be there to protect me right?"
+
+                m "Nope. Not me. But the police. Haha~"
+
+                show kurtney angry talk with dissolve
+
+                kk "Wha?! Stupid."
 
     jump schoolCeremony
 
@@ -739,7 +933,7 @@ label meetWithYui:
 
                         y "That was a lot! How'd you memorize it?"
 
-                        m "Well you know... I wanted to be a lawyer. So this much is not that big deal."
+                        m "Well you know... I wanted to be an attorney. So this much is not that big deal."
 
                         show yui smile opened with dissolve
 
