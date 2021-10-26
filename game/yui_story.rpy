@@ -243,7 +243,7 @@ label meetWithKurt:
 
     show kurtney happy teeth with dissolve
 
-    kk "You poor little thing."
+    kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
     m "Well, don't even talk like you have one."
 
@@ -887,7 +887,7 @@ label schoolCeremony:
 
         show kurtney smile with dissolve
 
-        kk "You poor little thing."
+        kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
         m "Well, don't even talk like you have one."
 
@@ -1088,7 +1088,7 @@ label afterCeremony:
 
                         jump lunch
 
-            "Go to Kurt in the school bulletin and leave Yui":
+            "Go to [kk] in the school bulletin and leave Yui":
                 $ lunchWithYui = False
                 m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
 
@@ -1327,6 +1327,10 @@ label lunch:
 
         t "Okay Class! You may now take your lunch."
 
+        t "We will have a quiz after your lunch."
+
+        "Everyone" "WHAT?!!"
+
         pause 1.0
 
         scene classroom lunch1
@@ -1388,6 +1392,8 @@ label socialStudiesQuiz:
     if metYui is True:
         "No way!!! I know this law. I could ace this test."
 
+        show kurtney talk opened with dissolve
+
         kk "Hey future Attorney Mark. Do you know this law?"
 
         m "Of course. Leave it to me."
@@ -1426,13 +1432,14 @@ label quiz:
             ""
         "Republic Act No. 11313":
             $ quizNum.append(1)
+            m "Alright! That was an easy one."
         "Republic Act No. 11717":
             ""
         "Republic Act No. 11919":
             ""
-    show clarrise with dissolve
-    t "Second Question!"
     show clarrise talk with dissolve
+    t "Second Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Republic Act No. 11313 is commonly known as \"S____ S______ A__\""
@@ -1440,49 +1447,52 @@ label quiz:
         "Save Spaceship Act":
             ""
         "Safe Spaces Act":
-            ""
+            m "Okay got that one in the bag!"
             $ quizNum.append(1)
         "Sale Summer Act":
             ""
         "Super Smash Act":
             ""
 
-    show clarrise with dissolve
-    t "Third Question!"
     show clarrise talk with dissolve
+    t "Third Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Catcalling is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            ""
+            m "That is a freebie."
+            $ quizNum.append(1)
         "False":
             ""
 
-    show clarrise with dissolve
-    t "Fourth Question!"
     show clarrise talk with dissolve
+    t "Fourth Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Making unwanted invitations is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            ""
+            m "Easy."
+            $ quizNum.append(1)
         "False":
             ""
         
-    show clarrise with dissolve
-    t "Fifth Question!"
     show clarrise talk with dissolve
+    t "Fifth Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Stalking is included as a gender-based sexual harassment in Safe Spaces Act."
         "True":
-            ""
+            m "Okay doing good!"
+            $ quizNum.append(1)
         "False":
             ""
         
-    show clarrise with dissolve
-    t "Sixth Question!"
     show clarrise talk with dissolve
+    t "Sixth Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Situation: You see your classmate in the classroom getting sexually harassed by a teacher. What do you do?"
@@ -1493,49 +1503,55 @@ label quiz:
         "Confront the teacher.":
             ""
         "Record the evidence and report to the faculty/police.":
-            ""
-    show clarrise with dissolve
-    t "Seventh Question!"
+            m "Nice going!"
+            $ quizNum.append(1)
+
     show clarrise talk with dissolve
+    t "Seventh Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Gender-based sexual harassment can also be commited in Public Utility Vehicles(PUV)."
         "True":
-            ""
+            m "That wasn't hard."
+            $ quizNum.append(1)
         "False":
             ""
         
-    show clarrise with dissolve
-    t "Eight Question!"
     show clarrise talk with dissolve
+    t "Eight Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Gender-based sexual harassment can also be commited in Streets and Public Spaces."
         "True":
-            ""
+            m "The easiest."
+            $ quizNum.append(1)
         "False":
             ""
         
-    show clarrise with dissolve
-    t "Ninth Question!"
     show clarrise talk with dissolve
+    t "Ninth Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "The cyberspace is also covered in Safe Spaces Act."
         "True":
-            ""
+            m "Got it in the bag."
+            $ quizNum.append(1)
         "False":
             ""
 
-    show clarrise with dissolve
-    t "Last Question!"
     show clarrise talk with dissolve
+    t "Last Question!"
+    show clarrise talk close with dissolve
     menu:
         
         "Public masturbation or flashing of private parts, groping, making offensive body gestures at someone, 
         and other similar lewd sexual actions is a gender-based sexual harassment in Safe Spaces Act."
         "True":
-            ""
+            m "Easy money."
+            $ quizNum.append(1)
         "False":
             ""
         
@@ -1570,7 +1586,7 @@ label pervTeacher:
 
     "Classroom noises...."
 
-    show kurt neutral with dissolve
+    show kurtney talk opened with dissolve
 
     kk "Hey Mark, did you hear the news?"
 
@@ -1594,9 +1610,13 @@ label pervTeacher:
 
     m "Who?"
 
+    show kurtney angry talk with dissolve
+
     kk "They say he's a nasty person."
 
     m "O-ohh..."
+
+    hide kurtney angry talk with dissolve
 
     "Noise of footsteps towards the door."
 
@@ -1604,7 +1624,7 @@ label pervTeacher:
 
     "Everyone in the classroom gasped."
 
-    show teacher smile with dissolve
+    show teacher smile at right with dissolve
 
     "???" "I hope we all get along, everyone hehehe~"
 
@@ -1618,9 +1638,9 @@ label pervTeacher:
 
     "What the hell did he just say?"
 
-    "Looking at Kurt, he is about to stand up."
+    "Looking at [kk], she is about to stand up."
 
-    show kurt angry at left with dissolve
+    show kurtney talk angry at left with dissolve
 
     kk "What did you say?!"
 
@@ -1632,9 +1652,11 @@ label pervTeacher:
 
     b "Hehehe~"
 
-    show kurt surprised with dissolve
+    show kurtney talk opened at left with dissolve
 
     kk "Wha-?"
+
+    show kurtney talk angry at left with dissolve
 
     "I whispered in Kurt's ears."
 
@@ -1644,8 +1666,8 @@ label pervTeacher:
 
 
 label talkOnHarass:
-
-    scene black
+    $ helpedYui = False
+    scene black with fade
     centered "A few days later..."
 
     if lunchWithYui is True:
@@ -1745,7 +1767,7 @@ label talkOnHarass:
                 
     else:
         scene schoolground
-        show kurt neutral
+        show kurt talk opened
         with fade
 
         kk "Dude... I have something to talk about."
@@ -1754,15 +1776,23 @@ label talkOnHarass:
 
         m "The Safe Spaces Act? What about it?"
 
+        show kurtney smile with dissolve
+
         kk "I think we can use this law against that professor."
 
         m "Tell me more about it."
+
+        show kurtney angry talk with dissolve
 
         kk "Just the other day, one of our girl classmate got sexually harassed."
 
         m "Really? That's bad."
 
+        show kurtney talk opened with dissolve
+
         kk "I've also got stories from other girls in First Year. According to them..."
+
+        show kurtney angry talk with dissolve
 
         kk "When he gave a test the other day... He stares at the girls in a lascivious manner."
 
@@ -1786,19 +1816,23 @@ label talkOnHarass:
 
         kk "I know right! That disgusting creep should rot in jail forever."
 
+        show kurtney happy teeth with dissolve
+
         kk "Now will you help me out?"
+
+        show kurtney smile with dissolve
 
         kk "Because of you, I learned of the Safe Spaces Act. I knew of the things which a person shouldn't ever do."
 
         kk "You wanted to be an Attorney right? Help me use this \"Safe Spaces Act\" to arrest that nasty piece of ****."
 
         menu:
-            "Should I help him?"
+            "Should I help her?"
 
-            "Help him.":
+            "Help her.":
                 jump arrestButch
 
-            "Don't help him.":
+            "Don't help her.":
                 $ badEndingGame = True
                 jump badEndStory
 
