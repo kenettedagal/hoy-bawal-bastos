@@ -34,7 +34,7 @@ screen testScreen():
                 text ""
                 text "Date Approved: April 17, 2019" xalign 0.5
                 text "\n\nThe {color=#ff3d3d}{u}Safe Spaces Act{/u}{/color} is an act defining gender-based sexual harassment in streets, public spaces, online, workplaces, and educational or training institutions."xalign 0.5 justify True
-                if yuiStoryProgress == 2:
+                if yuiStoryProgress >= 2:
                      
                     text "\n      {color=#ff3d3d}List of Violations{/color} (from SEC.5 of Safe Spaces Act):\n\na) Catcalling, wolf-whistling, unwanted invitations, misogynistic, transphobic, homophobic,and sexist slurs;\n\nb) Persistent uninvited comments or gestures on a person's appearance;\n\nc) Relentless requests for personal details;\n\nd) Statement of sexual comments and suggestions;\n\ne) Public masturbation or flashing of private parts, groping, making offensive body gestures at someone, and other similar lewd sexual actions;\n\nf) Any advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety. This may include cursing, leering and intrusive gazing, and taunting;\n\ng) Persistent telling of sexual jokes, use of sexual names;\n\nh) Stalking." xalign 0.5 justify True line_spacing 10
 
