@@ -16,6 +16,7 @@ label yui_start_case_1:
     define b = Character('Butch')
 
     default points = 0
+    default yuiStoryProgress = 0
     define mm = Character('Mom')
    
 
@@ -113,9 +114,10 @@ label breakfastWithMom:
         "Bacon":
             m "Crispy and juicy bacon. The best breakfast food invented."
 
-        "Ofcourse, all of it!":
+        "Of course, all of it!":
             m "All of these dishes in one plate..."
             m "I hope my stomach won't hurt when I'm outside. Haha...."
+            mm "I hope so too! Ahahaha~"
             
     m "Thank you for the food, Mom!"
 
@@ -143,6 +145,8 @@ label law:
     
     scene black
 
+    $ yuiStoryProgress += 1
+
     centered "\“On the 17th of April Year 2019, a new law called {color=#f00}{b}Republic Act No. 11313{/b}{/color} 
     or also known as {color=#f00}{b}Safe Spaces Act{/b}{/color} has been approved by the President.\""
 
@@ -152,6 +156,26 @@ label law:
     centered "This law stated that both men and women must have equality, 
     security and safety not only in private, but also on the streets, public spaces, online, workplaces 
     and educational and training institutions."
+
+    scene kitchen with fade
+
+    "I should probably take some notes of this law..."
+
+    show screen newNote with fade
+
+    pause 1.5
+
+    show natasha talk with dissolve
+
+    n "Hey its me again~"
+
+    show screen showNotesButton with dissolve
+
+    n "If you look at the top left part of the screen, there is a button."
+
+    n "This button will log important parts of the law. So always check it out~"
+
+    n "Bye now!"
 
 label goingToSchool:
 
@@ -186,7 +210,8 @@ label goingToSchool:
 
     menu:
         # Story will diverge from this point. Will converge at some point.
-
+        "Should I take a jeep or train today?"
+        
         # Meet Yui
         "Take the train.":
             $ metYui = True
@@ -394,6 +419,9 @@ label meetWithKurt:
             
             
             label kurtInfo:
+                $ yuiStoryProgress += 1
+                show screen newNote with fade
+                pause 1.0
 
                 show kurtney smile with dissolve
 
@@ -903,8 +931,13 @@ label meetWithYui:
                     if yuiThirdAnswer:
                         $ points += 3
                         "You received {color=#40ff00}3 HBB Points.{/color}"
+                    
                     show yui neutral with dissolve
                     label yuiInfo:
+                        $ yuiStoryProgress += 1
+                        show screen newNote with fade
+                        pause 1.0
+
                         m "To protect men and women from gender-based sexual harassment."
 
                         m "Gender-based streets and public spaces sexual harassment include..."
@@ -942,8 +975,6 @@ label meetWithYui:
                         m "Thank you ehehe..."
 
                         show yui worry opened with dissolve
-
-                        y "So what happens to the bad guys when they do those things?"
 
                         m "Uhm... Wait I'm kinda getting late for the school ceremony."
 
@@ -992,6 +1023,31 @@ label meetWithYui:
     m "WOW! That's a really great law."
 
     "Officer" "I know kid."
+
+    "Officer" "Do you want to learn about the punishments of Safe Spaces Act?"
+
+    menu punishments:
+        
+        "Officer" "Do you want to learn about the punishments of Safe Spaces Act?"
+
+        "Yes, please tell me about the punishments.":
+            hide officer
+            $ points += 3
+            "You received {color=#40ff00}3 HBB Points.{/color}"
+            show screen newNote
+            pause 1.5
+            show yui smile close with dissolve
+
+            y "I-I-I want to learn it too..."
+
+            hide yui smile close
+            show officer
+            with dissolve
+            "Officer" "Sure thing. Lemme just take out my handbook."
+
+
+        "No, I don't really care.":
+            $ points -= 3
 
     "Officer" "Now go on your way. I'll take care of them. In jail of course."
     
