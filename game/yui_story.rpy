@@ -14,6 +14,7 @@ label yui_start_case_1:
     define y = Character('Yui')
     define t = Character('Teacher Clarisse')
     define b = Character('Butch')
+    define s = Character(None, kind=nvl)
 
     default points = 0
     default yuiStoryProgress = 0
@@ -420,8 +421,6 @@ label meetWithKurt:
             
             label kurtInfo:
                 $ yuiStoryProgress += 1
-                show screen newNote with fade
-                pause 1.0
 
                 show kurtney smile with dissolve
 
@@ -448,6 +447,9 @@ label meetWithKurt:
                 m "And last but not the least."
                 
                 m "h) Stalking."
+
+                show screen newNote with fade
+                pause 1.0
 
                 show kurtney talk opened with dissolve
 
@@ -648,6 +650,137 @@ label meetWithKurt:
                 show kurtney angry talk with dissolve
 
                 kk "Wha?! Stupid."
+
+                hide kurtney angry talk with dissolve
+
+    
+label kurtneyOfficerScene:
+
+    show officer with fade  
+
+    "???" "Excuse me!"
+
+    kk "Ehhh? A police officer?"
+
+    m "Oh great. This makes things easy."
+
+    "The police officer was running towards us with a confused look on his face."
+
+    "Officer" "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
+
+    m "Uhmmmm my friend here was getting stalked by someone..."
+
+    "Officer" "A stalker huh?"
+
+    "Officer" "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
+
+    m "Yes sir, I've read a bit about that law."
+
+    hide officer
+    show kurtney talk opened 
+    with dissolve
+
+    kk "Hey Mark. It was that law that you told me earlier right?"
+
+    m "Yeah it is."
+
+    hide kurtney talk opened
+    show officer
+    with dissolve
+
+    "Officer" "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
+
+    $ yuiStoryProgress += 1
+
+    menu :
+        
+        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+
+        "Yes, please tell me about the punishments.":
+            hide officer with dissolve
+            $ points += 3
+            "You received {color=#40ff00}3 HBB Points.{/color}"
+            
+            show kurtney happy teeth with dissolve
+
+            kk "!!!!"
+
+            kk "I-I-I want to learn it too..."
+
+            hide kurtney happy teeth
+            show officer
+            with dissolve
+            "Officer" "Sure thing. Lemme just take out my handbook."
+
+            pause 2.0
+
+            "Officer" "Uhhh it says here..."
+
+            "Officer" "On Section 12 of the Safe Spaces Act, 
+            it states the {color=#ff3d3d}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
+
+            "Officer" "This is quite long so listen carefully okay?"
+
+            with fade
+
+            
+            s "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs, persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination, the use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs, the persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+
+            nvl clear
+            
+            s "{color=#ff3d3d}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+
+            nvl clear
+
+            s "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
+
+            nvl clear 
+
+            s "{color=#ff3d3d}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
+
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
+
+            nvl clear
+
+            s "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person; or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+
+            nvl clear
+
+            s "{color=#ff3d3d}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
+            
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
+
+            nvl hide
+
+            hide officer
+
+            with fade
+
+            m "......"
+
+            m "My head hurts... Ahahaha!"
+
+            show kurtney talk opened with dissolve
+
+            y "Wait, that's a really good law, Officer!"
+            
+            hide kurtney talk closed
+
+        "No, I don't really care.":
+            $ points -= 3
+
+    show screen newNote with fade
+    pause 2.0
+
+    
 
     jump schoolCeremony
 
@@ -935,8 +1068,7 @@ label meetWithYui:
                     show yui neutral with dissolve
                     label yuiInfo:
                         $ yuiStoryProgress += 1
-                        show screen newNote with fade
-                        pause 1.0
+                        
 
                         m "To protect men and women from gender-based sexual harassment."
 
@@ -962,6 +1094,9 @@ label meetWithYui:
 
                         m "h) Stalking."
 
+                        show screen newNote with fade
+                        pause 1.0
+
                         show yui wow with dissolve
 
                         y "That was a lot! How'd you memorize it?"
@@ -974,13 +1109,6 @@ label meetWithYui:
 
                         m "Thank you ehehe..."
 
-                        show yui worry opened with dissolve
-
-                        m "Uhm... Wait I'm kinda getting late for the school ceremony."
-
-                        show yui worry with dissolve
-
-                        m "I'll talk to you again when I see you in this station!"
 
                 "To protect public and online spaces from danger.":
                     y "What danger? Please explain it clearly."
@@ -1006,7 +1134,9 @@ label meetWithYui:
 
             #Train end scene
 
-    hide yui worry
+    
+
+    hide yui smile opened
     show officer with fade       
     "Officer" "Hey kids. You better get going now. I'll clean this mess up."
 
@@ -1024,19 +1154,22 @@ label meetWithYui:
 
     "Officer" "I know kid."
 
-    "Officer" "Do you want to learn about the punishments of Safe Spaces Act?"
+    "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+
+    $ yuiStoryProgress += 1
 
     menu punishments:
         
-        "Officer" "Do you want to learn about the punishments of Safe Spaces Act?"
+        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         "Yes, please tell me about the punishments.":
-            hide officer
+            hide officer with dissolve
             $ points += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
-            show screen newNote
-            pause 1.5
+            
             show yui smile close with dissolve
+
+            y "!!!!"
 
             y "I-I-I want to learn it too..."
 
@@ -1045,15 +1178,85 @@ label meetWithYui:
             with dissolve
             "Officer" "Sure thing. Lemme just take out my handbook."
 
+            pause 2.0
+
+            "Officer" "Uhhh it says here..."
+
+            "Officer" "On Section 12 of the Safe Spaces Act, 
+            it states the {color=#ff3d3d}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
+
+            "Officer" "This is quite long so listen carefully okay?"
+
+            with fade
+            
+            s "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs, persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination, the use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs, the persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+
+            nvl clear
+            
+            s "{color=#ff3d3d}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+
+            nvl clear
+
+            s "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
+
+            nvl clear 
+
+            s "{color=#ff3d3d}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
+
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
+
+            nvl clear
+
+            s "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person; or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+
+            nvl clear
+
+            s "{color=#ff3d3d}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
+
+            s "{color=#ff3d3d}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
+            
+            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
+
+            nvl hide
+
+            hide officer
+
+            with fade
+
+            m "......"
+
+            m "My head hurts... Ahahaha!"
+
+            show yui wow with dissolve
+
+            y "Wait, that's a really good law, Officer!"
+
+            scene bg train morning with fade
+            
 
         "No, I don't really care.":
             $ points -= 3
 
+    show screen newNote 
+    pause 2.0
+
+    show officer
+
     "Officer" "Now go on your way. I'll take care of them. In jail of course."
     
-    m "Yes sir."
+    m "Sir, can I ask for your name?"
 
-    hide officer
+    "Officer" "Oh it's Greg. Find me whenever you are troubled."
+
+    m "Thank you very much sir!"
+
+    hide officer with fade
 
     show yui worry opened with dissolve
 
