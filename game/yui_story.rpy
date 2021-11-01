@@ -360,7 +360,7 @@ label meetWithKurt:
     $ firstTryWrong = False
 
     menu kurtSecondQuestion:
-        "It is also know as ...."
+        "It is also known as ...."
         
         "Safe Spaces Act":
             "Great answer!"
@@ -1866,7 +1866,7 @@ label socialStudiesQuiz:
     jump quiz
 
 label quiz:
-    $ quizPoint = 0
+    $ quizPoints = 0
     $ quizNum = []
     scene classroom morning 
     show clarrise talk
@@ -2007,6 +2007,11 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
+    python:
+        for i in quizNum: 
+            if quizNum[i] == 1:
+                quizPoints += 1
+
         
     
     scene classroom morning with fade
@@ -2022,6 +2027,8 @@ label quiz:
     hide kurtney talk opened
 
     m "Was it? I don't think so. Haha~"
+
+    m "I got [quizPoints] points baby."
 
     "Mark with a smile on his face, knew he did well."
 
