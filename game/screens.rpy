@@ -4,6 +4,10 @@
 
 init offset = -1
 
+screen updateHBBPoints():
+    frame:
+        xalign 1.0
+
 screen newNote():
 
     modal True

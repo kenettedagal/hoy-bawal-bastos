@@ -111,6 +111,7 @@ label breakfastWithMom:
     show mom happy closed at left with dissolve
     mm "I made your favorite foods! A scrambled egg, tocino and some bacon."
     $ timeout_label = None
+    hide mom happy with dissolve
     menu: 
         
         mm "What do you wanna eat?"
@@ -333,6 +334,8 @@ label meetWithKurt:
 
     kk "What kind of law?"
 
+    hide kurtney talk opened with dissolve
+
     $ firstTryWrong = False
     $ timeout = 15
     $ timeout_label = "kurtFirstQuestionTimerOut"
@@ -374,6 +377,10 @@ label meetWithKurt:
         kk "That's cool. Tell me more about it."
 
         m "Yeah its a great law."
+
+        m "It is also known as ...."
+
+        hide kurtney happy teeth with dissolve
 
         $ firstTryWrong = False
         $ timeout = 15
@@ -422,6 +429,8 @@ label meetWithKurt:
         $ timeout = 10
         $ timeout_label = "kurtInfo"
 
+        hide kurtney talk opened with dissolve 
+
     menu kurtThirdQuestion:
         "Wait, what does the Safe Spaces Act mean again?"
 
@@ -438,6 +447,7 @@ label meetWithKurt:
             m "Hahaha~ I'm just kidding!"
 
             m "The law was created to..."
+            
 
             jump kurtInfo
 
@@ -723,6 +733,8 @@ label kurtneyOfficerScene:
 
     $ yuiStoryProgress += 1
 
+    hide officer with dissolve
+
     menu :
         
         "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
@@ -860,7 +872,11 @@ label meetWithYui:
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
     show yui worry closed with dissolve
+    pause 3
 
+    hide yui worry closed with dissolve 
+    $ timeout = 10
+    $ timeout_label = "notSaveYui"
     $ deathFlag = False
     $ metYui = True
     menu trainScene:
@@ -999,78 +1015,109 @@ label meetWithYui:
             y "A law? What kind of law?"
 
             m "It is something related to what you experienced earlier."
-
+            $ timeout = 15
+            $ timeout_label = "yuiFirstQuestionTimerOut"
             $ yuiFirstAnswer = True
+            hide yui wow with dissolve
             menu yuiFirstQuestion:
                 "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
 
                 "Re-semiprivate Act No. 11313":
+                    m "Re-semiprivate Act No. 11313"
+
                     "Wrong answer!"
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
                 "Reprivate Act No. 11313":
-                    "Think again..."
+                    m "Reprivate Act No. 11313"
+                    "Not this... Think again..."
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
                 "Republic Act No. 11313":
+                    m "Republic Act No. 11313"
                     "Great answer!"
 
                     if yuiFirstAnswer:
 
                         $ points += 3
                         "You received {color=#40ff00}3 HBB Points.{/color}"
+                    jump yuiIntroSecond
                     
 
                 "Rebuild Act No. 11313":
+                    m "Rebuild Act No. 11313"
                     "Not the right answer."
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
             #######################################
 
+            label yuiFirstQuestionTimerOut:
+                m "Correct Answer: Republic Act No. 11313"
+
+            label yuiIntroSecond:
+
             m "The law is Republic Act No. 11313."
+
+            show yui wow with dissolve
 
             y "What is that law?"
 
             m "This law is..."
-
+            $ timeout_label = "yuiSecondQuestionTimerOut"
             $ yuiSecondAnswer = True
+            hide yui wow with dissolve
             menu yuiSecondQuestion:
-                "It is also know as ...."
+                "It is also known as ...."
                 
                 "Safe Spaces Act":
+                    m "Safe Spaces Act"
                     "Correct!!"
 
                     if yuiSecondAnswer:
 
                         $ points += 3
                         "You received {color=#40ff00}3 HBB Points.{/color}"
+                    jump yuiThirdIntro
                     
                 "Safe Pace Act":
+                    m "Safe Pace Act"
                     "Wait this is wrong."
                     $ yuiSecondAnswer = False
                     jump yuiSecondQuestion
                 
                 "Safe Guardian Act":
+                    m "Safe Guardian Act"
                     "Not the right answer."
                     $ yuiSecondAnswer = False
                     jump yuiSecondQuestion
             
                 "Safe Insurrance Act":
+                    m "Safe Guardian Act"
                     "Not the greatest answer."
                     $ yuiSecondAnswer = False      
                     jump yuiSecondQuestion
 
-            y "So it is called \"Safe Spaces Act\"?"
+            label yuiSecondQuestionTimerOut:
+                m "Safe Spaces Act"
+            
+            label yuiThirdIntro:
 
-            m "Yeah! It's a cool name right?"
+                show yui wow with dissolve
 
-            #show kurt open mouth
-            y "Uhm. But what does it mean?"
+                y "So it is called \"Safe Spaces Act\"?"
 
-            $ yuiThirdAnswer = True
+                m "Yeah! It's a cool name right?"
+
+                #show kurt open mouth
+                y "Uhm. But what does it mean?"
+
+                $ yuiThirdAnswer = True
+                $ timeout_label = "yuiInfo"
+
+                hide yui wow with dissolve
 
             menu yuiThirdQuestion:
                 "Wait, what does the Safe Spaces Act mean again?"
@@ -1140,6 +1187,8 @@ label meetWithYui:
 
                         m "Thank you ehehe..."
 
+                        jump yuiConflictResolved
+
 
                 "To protect public and online spaces from danger.":
                     y "What danger? Please explain it clearly."
@@ -1155,39 +1204,49 @@ label meetWithYui:
                     
 
         "I'll pretend that I didn't hear the conversation.":
-            m "I should just ignore them..."
+            jump notSaveYui
+            
 
-            m "I don't wanna get in trouble."
+            
+    label notSaveYui:
+        "I'll pretend that I didn't hear the conversation."
 
-            jump yui_end
+        "I should just ignore them..."
 
-            # IMPLEMENT BAD ENDING!
+        "I don't wanna get in trouble."
 
-            #Train end scene
+        jump yui_end
+
+        # IMPLEMENT BAD ENDING!
 
     
+    label yuiConflictResolved:
+        hide yui smile opened
+        show officer with fade       
+        "Officer" "Hey kids. You better get going now. I'll clean this mess up."
 
-    hide yui smile opened
-    show officer with fade       
-    "Officer" "Hey kids. You better get going now. I'll clean this mess up."
+        "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
 
-    "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
+        "Officer" "Those guys broke the law by (1) Catcalling and making unwanted invitations."
 
-    "Officer" "Those guys broke the law by (1) Catcalling and making unwanted invitations."
+        "Officer" "(2) Making statements of sexual comments and suggestions."
 
-    "Officer" "(2) Making statements of sexual comments and suggestions."
+        "Officer" "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
 
-    "Officer" "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
+        "Officer" "This may include cursing, leering and intrusive gazing, and taunting."
 
-    "Officer" "This may include cursing, leering and intrusive gazing, and taunting."
+        m "WOW! That's a really great law."
 
-    m "WOW! That's a really great law."
+        "Officer" "I know kid."
 
-    "Officer" "I know kid."
+        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
 
-    "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+        $ yuiStoryProgress += 1
 
-    $ yuiStoryProgress += 1
+        $ timeout = 10
+        $ timeout_label = "ignorePunishment"
+
+        hide officer with dissolve
 
     menu punishments:
         
@@ -1273,6 +1332,18 @@ label meetWithYui:
 
         "No, I don't really care.":
             $ points -= 3
+    
+    label ignorePunishment:
+
+        m "No, I don't really care."
+
+        show officer with dissolve
+
+        "Officer" "Ohhhh that's a shame."
+
+        $ points -= 3
+        "Your {color=#ff3d3d}HBB Points{/color} have been deducted by 3!"
+
 
     show screen newNote 
     pause 2.0
@@ -1476,6 +1547,7 @@ label afterCeremony:
         scene hallway with fade
 
         # This choice will determine who will eat lunch with MC
+        $ timeout_label = "leaveYui"
         menu findRoomWithYui:
     
             "Go and find the classroom with Yui.":
@@ -1512,6 +1584,8 @@ label afterCeremony:
                 y "If it's fine with you.."
 
                 y "Can I treat you later in lunch? As a thanks for helping me..."
+
+                $ timeout_label = "notLunch"
 
                 menu:
                     "Ehhhh? I've never been invited by a girl to lunch. What should I do?"
@@ -1550,51 +1624,55 @@ label afterCeremony:
                         jump lunch
 
                     "Sorry, maybe next time?":
-                        m "Sorry, maybe in another day."
 
-                        show yui worry with dissolve
+                        label notLunch:
+                            m "Sorry, maybe in another day."
 
-                        y "Oh.... that's... a shame."
+                            show yui worry with dissolve
 
-                        show yui worry closed with dissolve
+                            y "Oh.... that's... a shame."
 
-                        y "I... I see..."
+                            show yui worry closed with dissolve
 
-                        show yui smile close with dissolve
+                            y "I... I see..."
 
-                        y "See you..."
+                            show yui smile close with dissolve
 
-                        scene school building with fade
+                            y "See you..."
 
-                        "She left running while her hands is in her eyes."
+                            scene school building with fade
 
-                        "...."
+                            "She left running while her hands is in her eyes."
 
-                        jump lunch
+                            "...."
+
+                            jump lunch
 
             "Go to [kk] in the school bulletin and leave Yui":
-                $ lunchWithYui = False
-                m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
 
-                show yui worry with dissolve
+                label leaveYui:
+                    $ lunchWithYui = False
+                    m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
 
-                y "Ah.... Is that so?"
+                    show yui worry with dissolve
 
-                show yui worry closed with dissolve
+                    y "Ah.... Is that so?"
 
-                y "That's a real shame."
+                    show yui worry closed with dissolve
 
-                show yui smile close with dissolve
+                    y "That's a real shame."
 
-                y "I'll be going now Mark."
+                    show yui smile close with dissolve
 
-                scene hallway with fade
+                    y "I'll be going now Mark."
 
-                "She left running with a troubled expression on her face."
+                    scene hallway with fade
 
-                "...."
+                    "She left running with a troubled expression on her face."
 
-                jump lunch
+                    "...."
+
+                    jump lunch
     else:
 
         "???" "Uhmmm..."
@@ -1731,6 +1809,7 @@ label lunch:
 
         scene bg cafeteria with fade
 
+        $ timeout_label = None
         menu:
             "What should I eat?"
 
@@ -1902,11 +1981,13 @@ label quiz:
     scene classroom morning 
     show clarrise talk
     with fade
-
+    hide screen showNotesButton
     t "Okay Class! Ready or not, here I go!"
     show clarrise talk close with dissolve
     t "First Question!"
-
+    hide clarrise talk close with dissolve
+    $ timeout = 20
+    $ timeout_label = "one"
     menu:
         
         "It is the law that recognizes that both men and women must have equality, security, and safety not only 
@@ -1921,9 +2002,12 @@ label quiz:
             ""
         "Republic Act No. 11919":
             ""
+    label one:
+    $ timeout_label = "two"
     show clarrise talk with dissolve
     t "Second Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
     menu:
         
         "Republic Act No. 11313 is commonly known as \"S____ S______ A__\""
@@ -1937,10 +2021,13 @@ label quiz:
             ""
         "Super Smash Act":
             ""
-
+    label two:
+    $ timeout = 10
     show clarrise talk with dissolve
     t "Third Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "three"
     menu:
         
         "Catcalling is a gender-based sexual harassment covered in Safe Spaces Act."
@@ -1949,10 +2036,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-
+    label three:
     show clarrise talk with dissolve
     t "Fourth Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "four"
     menu:
         
         "Making unwanted invitations is a gender-based sexual harassment covered in Safe Spaces Act."
@@ -1961,10 +2050,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-        
+    label four:
     show clarrise talk with dissolve
     t "Fifth Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "five"
     menu:
         
         "Stalking is included as a gender-based sexual harassment in Safe Spaces Act."
@@ -1973,10 +2064,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-        
+    label five:
     show clarrise talk with dissolve
     t "Sixth Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "six"
     menu:
         
         "Situation: You see your classmate in the classroom getting sexually harassed by a teacher. What do you do?"
@@ -1989,10 +2082,12 @@ label quiz:
         "Record the evidence and report to the faculty/police.":
             m "Nice going!"
             $ quizNum.append(1)
-
+    label six:
     show clarrise talk with dissolve
     t "Seventh Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "seven"
     menu:
         
         "Gender-based sexual harassment can also be commited in Public Utility Vehicles(PUV)."
@@ -2001,10 +2096,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-        
+    label seven:    
     show clarrise talk with dissolve
     t "Eight Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "eight"
     menu:
         
         "Gender-based sexual harassment can also be commited in Streets and Public Spaces."
@@ -2013,10 +2110,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-        
+    label eight:
     show clarrise talk with dissolve
     t "Ninth Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "nine"
     menu:
         
         "The cyberspace is also covered in Safe Spaces Act."
@@ -2025,10 +2124,12 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
-
+    label nine:
     show clarrise talk with dissolve
     t "Last Question!"
     show clarrise talk close with dissolve
+    hide clarrise talk close with dissolve
+    $ timeout_label = "ten"
     menu:
         
         "Public masturbation or flashing of private parts, groping, making offensive body gestures at someone, 
@@ -2038,6 +2139,9 @@ label quiz:
             $ quizNum.append(1)
         "False":
             ""
+    label ten:
+    
+    # Check quiz score
     python:
         for i in quizNum: 
             if quizNum[i] == 1:
@@ -2115,7 +2219,7 @@ label pervTeacher:
 
     "Everyone in the classroom gasped."
 
-    show teacher smile at right with dissolve
+    show teacher smile1 at right with dissolve
 
     "???" "I hope we all get along, everyone hehehe~"
 
@@ -2137,21 +2241,27 @@ label pervTeacher:
 
     m "You idiot..."
 
-    show teacher closed with dissolve
+    show teacher closed1 with dissolve
 
     b "Oh did I ask you to talk? You'll be receiving a failing grade."
 
     b "Hehehe~"
 
-    show kurtney talk opened at left with dissolve
+    hide teacher closed1 with dissolve
+
+    show kurtney talk opened at center with dissolve
 
     kk "Wha-?"
 
-    show kurtney talk angry at left with dissolve
+    show kurtney talk angry at center with dissolve
 
     "I whispered in Kurt's ears."
 
     m "Just let it slide dude. I will find a way to report this nasty professor."
+
+    show kurtney smile with dissolve
+
+    kk "O-O-Okaay..."
 
     jump talkOnHarass
 
@@ -2168,12 +2278,16 @@ label talkOnHarass:
 
         "I see [y] walking across the ground. With a sad expression on her face."
 
-        show yui sad with fade
+        show yui worry closed with fade
         m "Hey [y]! How's your class doing?"
 
         m "You called me out to talk about something?"
 
+        show yui worry opened with dissolve
+
         y "Y-yeah..."
+
+        show yui worry with dissolve
 
         y "It's about that law you talked about."
 
@@ -2183,13 +2297,19 @@ label talkOnHarass:
 
         m "Tell me about it."
 
+        hide yui worry with dissolve
+
         "While clasping her hands firmly for a while, she finally opened her mouth."
+
+        show yui worry opened with dissolve
 
         y "It's about my professor..."
 
         y "He's doing something bad... And I can't do anything to stop it."
 
         m "Who's this professor? Is he teaching here?"
+
+        show yui angry with dissolve
 
         y "Y-yeah... I hate him. That disgusting person."
 
@@ -2201,7 +2321,7 @@ label talkOnHarass:
 
         y "And then one time, he..."
 
-        show yui crying with dissolve
+        show yui crying with fade
 
         y "He suddenly touched my shoulders... and pinched it in a manner that is so disgusting. Then he whispered something to my ear."
 
@@ -2217,7 +2337,7 @@ label talkOnHarass:
 
         m "Tell me who is this nasty person?"
 
-        show yui sad with dissolve
+        show yui worry opened with dissolve
 
         y "H-h-his name is Butch..."
 
@@ -2225,12 +2345,16 @@ label talkOnHarass:
 
         m "I see. So he's also teaching the First Year students. That damned bastard."
 
+        show yui worry with dissolve
+
         y "M-Mark! I have a favor! Please help me out."
 
         m "Ahhhh..."
 
         $ badEndingGame = False
         $ helpedYui = False
+        $ timeout = 10
+        $ timeout_label = "ignorePerv"
         menu:
             "Should I help her out?"
 
@@ -2248,14 +2372,17 @@ label talkOnHarass:
                 jump arrestButch
 
             "Don't help her.":
-                $ badEndingGame = True
-
-                m "I'm afraid I cannot help. I might get in trouble."
-
-                y "Is that so? That's a real shame..."
-
-                jump badEndStory
+                jump ignorePerv
                 
+        label ignorePerv:
+            $ badEndingGame = True
+
+            m "I'm afraid I cannot help. I might get in trouble."
+
+            y "Is that so? That's a real shame..."
+
+            jump badEndStory
+
     else:
         scene schoolground
         show kurt talk opened
@@ -2317,6 +2444,7 @@ label talkOnHarass:
 
         kk "You wanted to be an Attorney right? Help me use this \"Safe Spaces Act\" to arrest that nasty piece of ****."
 
+
         menu:
             "Should I help her?"
 
@@ -2324,8 +2452,7 @@ label talkOnHarass:
                 jump arrestButch
 
             "Don't help her.":
-                $ badEndingGame = True
-                jump badEndStory
+                jump ignorePerv
 
 label arrestButch:
 

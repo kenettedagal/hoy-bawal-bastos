@@ -120,6 +120,8 @@ label tutorial_start:
 
     pause 2.0
 
+    hide natasha cry with dissolve
+
     $ timeout_label = "natashaChoice3"
     $ timeout = 15
 
@@ -143,20 +145,24 @@ label natashaChoice1:
 
     "I will record it and post in social media."
 
+    show natasha closed eyes_ with dissolve
+
     n "Honestly this is not a bad answer. But are you just gonna let me get harrassed?"
 
     n "This can be a traumatic experience for me."
 
     n "For this answer, I will reward you 2 HBB points."
-
-    show natasha closed eyes_ with dissolve
-
+    
     n "Try it again."
+
+    with fade
 
     jump whatToDo
 
 label natashaChoice2:
     "Shout at the old men."
+
+    show natasha closed eyes_ with dissolve
 
     n "Not the answer I was expecting."
 
@@ -164,9 +170,9 @@ label natashaChoice2:
 
     n "For this answer, I will reward you 1 HBB point."
 
-    show natasha closed eyes_ with dissolve
-
     n "Try it again."
+
+    with fade
 
     jump whatToDo
 
