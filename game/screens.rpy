@@ -267,12 +267,34 @@ style input:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#choice
 
+default timeout = 10.0
+
+default timeout_label = None
+
+default persistent.timed_choices = True
 screen choice(items):
     style_prefix "choice"
-
+    
     vbox:
         for i in items:
             textbutton i.caption action i.action
+            
+    if (timeout_label is not None) and persistent.timed_choices:
+        text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55 
+        bar:
+            
+            xalign 0.5
+            ypos 100
+            xsize 740
+            value AnimatedValue(old_value=0.0, value=1.0, range=1.0, delay=timeout)
+        timer timeout action Jump(timeout_label)
+
+#screen choice(items):
+#    style_prefix "choice"
+#
+#    vbox:
+#        for i in items:
+#            textbutton i.caption action i.action
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,

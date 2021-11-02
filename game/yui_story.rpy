@@ -15,6 +15,8 @@ label yui_start_case_1:
     define t = Character('Teacher Clarisse')
     define b = Character('Butch')
     define s = Character(None, kind=nvl)
+    define mc = Character("Mark")
+
 
     default points = 0
     default yuiStoryProgress = 0
@@ -38,26 +40,13 @@ label yui_start_case_1:
     "Shut up Siri."
 
     "......"
-
+    $ timeout_label = "snooze"
+    $ timeout = 10
     menu:
 
         "Snooze alarm for 5 minutes":
-
-            scene black
-            "Zzzzzz...."
-
-            pause 2.0
-            play sound "audio/iphone.ogg"
-
-            scene bg room morning with dissolve
-
-            "{i}7:27 AM....{/i}"
-
-            play music "audio/Time for Rest.ogg" fadein 0.3 volume 0.2
-
-            m "NO WAY!!! I ALMOST SLEPT FOR ANOTHER 30 MINUTES!"
-
-            jump breakfastWithMom
+            jump snooze
+            
         
         "Get up and fix the bed":
             
@@ -68,6 +57,26 @@ label yui_start_case_1:
             "Another day, another dollar..."
 
             jump breakfastWithMom
+
+label snooze:
+    scene black
+
+    "Just a few more minutes...."
+
+    "Zzzzzz...."
+
+    pause 2.0
+    play sound "audio/iphone.ogg"
+
+    scene bg room morning with dissolve
+
+    "{i}7:27 AM....{/i}"
+
+    play music "audio/Time for Rest.ogg" fadein 0.3 volume 0.2
+
+    m "NO WAY!!! I ALMOST SLEPT FOR ANOTHER 30 MINUTES!"
+
+    jump breakfastWithMom
 
 
 label breakfastWithMom:
@@ -101,7 +110,7 @@ label breakfastWithMom:
 
     show mom happy closed at left with dissolve
     mm "I made your favorite foods! A scrambled egg, tocino and some bacon."
-
+    $ timeout_label = None
     menu: 
         
         mm "What do you wanna eat?"
@@ -201,14 +210,15 @@ label goingToSchool:
 
     "Yeah that'll work. Short and simple."
     
-    "They don't need to know that I am dreaming to be a attorney someday."
+    "They don't need to know that I am dreaming to be an attorney someday."
 
     "{i}8:15 AM...{/i}"
 
     "Oh!!! I didn't notice the time at all."
 
     "Should I take a jeep or train today?"
-
+    $ timeout = 8
+    $ timeout_label = "meetWithKurt"
     menu:
         # Story will diverge from this point. Will converge at some point.
         "Should I take a jeep or train today?"
@@ -220,11 +230,11 @@ label goingToSchool:
 
         # Meet Kurt(friend)
         "Ride a jeep.":
-            $ metYui = False
             jump meetWithKurt
 
 
 label meetWithKurt:
+    $ metYui = False
     scene bg jeep n with fade
     
     "Mark!"
@@ -324,6 +334,8 @@ label meetWithKurt:
     kk "What kind of law?"
 
     $ firstTryWrong = False
+    $ timeout = 15
+    $ timeout_label = "kurtFirstQuestionTimerOut"
 
     menu kurtFirstQuestion:
         "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
@@ -344,20 +356,28 @@ label meetWithKurt:
 
                 $ points += 3
                 "You received {color=#40ff00}3 HBB Points.{/color}"
-            
+            jump kurtIntroSecond
 
         "Rebuild Act No. 11313":
             "Not the right answer."
             $ firstTryWrong = True
             jump kurtFirstQuestion
 
+    label kurtFirstQuestionTimerOut:
+        $ firstTryWrong = True
+        m "Republic Act No. 11313"
+
     #######################################
-    show kurtney happy teeth with dissolve
-    kk "That's cool. Tell me more about it."
 
-    m "Yeah its a great law."
+    label kurtIntroSecond:
+        show kurtney happy teeth with dissolve
+        kk "That's cool. Tell me more about it."
 
-    $ firstTryWrong = False
+        m "Yeah its a great law."
+
+        $ firstTryWrong = False
+        $ timeout = 15
+        $ timeout_label = "kurtSecondQuestionTimerOut"
 
     menu kurtSecondQuestion:
         "It is also known as ...."
@@ -367,6 +387,7 @@ label meetWithKurt:
             if firstTryWrong is False:
                 $ points += 3
                 "You received {color=#40ff00}3 HBB Points.{/color}"
+            jump kurtIntroThird
             
         "Safe Pace Act":
             "Wait this is wrong."
@@ -383,13 +404,23 @@ label meetWithKurt:
             $ firstTryWrong = True      
             jump kurtSecondQuestion
 
-    show kurtney talk opened with dissolve
-    kk "So it is called \"Safe Spaces Act\"?"
+    label kurtSecondQuestionTimerOut:
+        $ firstTryWrong = True
+        m "Safe Spaces Act"
 
-    m "Yeah! It's a cool name right."
+    label kurtIntroThird:
 
-    #show kurt open mouth
-    kk "Sure. But what does it mean?"
+        show kurtney talk opened with dissolve
+        kk "So it is called \"Safe Spaces Act\"?"
+
+        m "Yeah! It's a cool name right."
+
+        #show kurt open mouth
+        kk "Sure. But what does it mean?"
+
+        $ firstTryWrong = False
+        $ timeout = 10
+        $ timeout_label = "kurtInfo"
 
     menu kurtThirdQuestion:
         "Wait, what does the Safe Spaces Act mean again?"
@@ -416,8 +447,6 @@ label meetWithKurt:
             "Nice job! Correct answer."
             $ points += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
-
-            
             
             label kurtInfo:
                 $ yuiStoryProgress += 1
@@ -472,6 +501,8 @@ label meetWithKurt:
                 show kurtney smile with dissolve
 
                 kk "Tell me about it okay? It's an interesting law."
+
+                
 
         "To protect public and online spaces from danger.":
 
