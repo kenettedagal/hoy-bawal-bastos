@@ -17,14 +17,14 @@ label yui_start_case_1:
     define s = Character(None, kind=nvl)
     define mc = Character("Mark")
 
-
+    default notebookOpen = False
     default points = 0
     default yuiStoryProgress = 0
     define mm = Character('Mom')
    
-
-    scene black
-    centered "Story #1\n\n\nA New School Year"
+    hide screen displayHBBPoints
+    scene school gate with fade
+    centered "{outlinecolor=#00ff00}{b}{color=#000}{size=50}Story #1{/size}\n\n\n{size=80}A New School Year{/size}{/color}{/b}{/outlinecolor}" 
     #Play iphone alarm tone
 
     pause 2.0
@@ -83,11 +83,14 @@ label breakfastWithMom:
 
     mm "Mark! Are you awake?"
 
-    play sound "audio/doorknock.mp3"
+    play sound "audio/doorknock.mp3" 
     pause 1.0
+    with hpunch
+    
     "....."
     play sound "audio/doorknock.mp3"
-    pause 2.0
+    pause 1.0
+    with hpunch
 
     "{i}Yawns...{/i}"
 
@@ -138,6 +141,8 @@ label breakfastWithMom:
 
     "...."
 
+    hide mom happy with dissolve
+
     menu:
         "I should first look at some news before leaving..."
 
@@ -177,6 +182,8 @@ label law:
     pause 1.5
 
     show natasha talk with dissolve
+
+    
 
     n "Hey its me again~"
 
@@ -1328,6 +1335,8 @@ label meetWithYui:
             y "Wait, that's a really good law, Officer!"
 
             scene bg train morning with fade
+
+            jump trainEndScene
             
 
         "No, I don't really care.":
@@ -1343,49 +1352,51 @@ label meetWithYui:
 
         $ points -= 3
         "Your {color=#ff3d3d}HBB Points{/color} have been deducted by 3!"
-
-
-    show screen newNote 
-    pause 2.0
-
-    show officer
-
-    "Officer" "Now go on your way. I'll take care of them. In jail of course."
     
-    m "Sir, can I ask for your name?"
+    label trainEndScene:
 
-    "Officer" "Oh it's Greg. Find me whenever you are troubled."
 
-    m "Thank you very much sir!"
+        show screen newNote 
+        pause 2.0
 
-    hide officer with fade
+        show officer
 
-    show yui worry opened with dissolve
+        "Officer" "Now go on your way. I'll take care of them. In jail of course."
+        
+        m "Sir, can I ask for your name?"
 
-    y "Uhmmm..."
+        "Officer" "Oh it's Greg. Find me whenever you are troubled."
 
-    y "See you Mark! Thank you again..."
+        m "Thank you very much sir!"
 
-    m "Bye Yui. No worries. I just can't stand it when I see someone getting harassed."
+        hide officer with fade
 
-    show yui blush with dissolve
+        show yui worry opened with dissolve
 
-    y "Uhhhm.. I hope I can see you aga-"
+        y "Uhmmm..."
 
-    with fade
+        y "See you Mark! Thank you again..."
 
-    #Train sound
-    "{i}A train passed by.{/i}"
+        m "Bye Yui. No worries. I just can't stand it when I see someone getting harassed."
 
-    m "What?"
+        show yui blush with dissolve
 
-    show yui surprised blush with dissolve
+        y "Uhhhm.. I hope I can see you aga-"
 
-    y "No, nothing!!! Goodbye!"
+        with fade
 
-    scene black with fade
+        #Train sound
+        "{i}A train passed by.{/i}"
 
-    jump schoolCeremony
+        m "What?"
+
+        show yui surprised blush with dissolve
+
+        y "No, nothing!!! Goodbye!"
+
+        scene black with fade
+
+        jump schoolCeremony
 
 label schoolCeremony:
 

@@ -4,9 +4,69 @@
 
 init offset = -1
 
-screen updateHBBPoints():
+# screen mirror:
+#     text "You got the mirror!":
+#   
+
+screen showNotebook():
+    modal True
+    $ notebookOpen = True
+    imagebutton:
+        yalign 0.01
+        xalign 0.01
+        xmaximum 200
+        ymaximum 200
+        idle "book.png"
+        activate_sound "audio/newspaper.wav"            
+        action Hide("showNotesButton")
+        if notebookOpen:
+            action [Hide("showNotebook"),Show("showNotesButton")] 
+            
+        else: 
+            action Show("showNotebook")
+
+    vbox:
+        xalign 0.5
+        image "images/notebook.jpg"
+
+screen showNotesButton():
+    modal False
     frame:
-        xalign 1.0
+        yalign 0.01
+        xalign 0.01
+        imagebutton:
+            xmaximum 200
+            ymaximum 200
+            idle "book.png"
+            activate_sound "audio/newspaper.wav"
+            #action [Show("testScreen",fade),Hide("showNotesButton")]
+            
+            if notebookOpen:
+                action [Hide("showNotebook"),Show("showNotesButton")] 
+                
+            else:
+                action [Show("showNotebook"),Hide("showNotesButton")]
+
+            
+
+screen displayHBBPoints():
+    modal False
+    frame:
+        xmaximum 300
+        ymaximum 100
+        xalign 0.999
+        yalign 0.003
+        vbox:
+            text "{color=#22ff00}HBB Points{/color}"
+            text "[points]" xalign 0.5
+            at transform:
+
+                align (0.5, 0.5) alpha 0.0
+                linear 0.5 alpha 1.0
+                pause 2
+                
+        
+
 
 screen newNote():
 
@@ -54,23 +114,16 @@ screen testScreen():
                     
 
                 
-                
-                text "\n\n"                
-                textbutton _("Close"):
+                text "\n\n-- End of Notes --\n" xalign 0.5 
+                                
+                textbutton _("{color=#40ff00}Close Notebook{/color}"):
                     xalign 0.5
                     yalign 0.5
                     
                     action [Hide("testScreen"), Show("showNotesButton", dissolve)]
                     
 
-screen showNotesButton():
-    modal False
-    frame:
-        yalign 0.01
-        xalign 0.01
-        textbutton _("Notebook"):
-            action [Show("testScreen",fade),Hide("showNotesButton")]
-            
+
 
 ################################################################################
 ## Styles
@@ -281,7 +334,7 @@ screen choice(items):
     
     vbox:
         for i in items:
-            textbutton i.caption action i.action
+            textbutton i.caption action i.action activate_sound "audio/menu.ogg"
             
     if (timeout_label is not None) and persistent.timed_choices:
         text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55 
@@ -319,6 +372,7 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
+    
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")

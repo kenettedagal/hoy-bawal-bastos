@@ -30,9 +30,13 @@ label tutorial_start:
     show natasha talk
     with dissolve
 
-    n "This visual novel game was created with the idea of educating people about Safe Spaces Act in an entertaining fashion!"
+    n "This visual novel game was created with the idea of educating people about {color=#22ff00}Safe Spaces Act{/color} in an entertaining fashion!"
 
     n "Now before you start playing, I will first ask some questions."
+
+    n "Have you ever played a visual novel game before?" 
+
+    hide natasha talk with dissolve
 
     menu:
         n "Have you ever played a visual novel game before?" 
@@ -71,6 +75,10 @@ label tutorial_start:
 
     show natasha talk with dissolve
 
+    n "Do you know anything about the law called \"Safe Spaces Act\"?"
+
+    hide natasha talk with dissolve
+
     menu:
         n "Do you know anything about the law called \"Safe Spaces Act\"?"
 
@@ -94,15 +102,21 @@ label tutorial_start:
 
     n "I'm gonna say one last thing before I send you off, let me talk about {color=#40ff00}HBB points{/color}."
 
-    show natasha talk with dissolve
+    n "If you look at the top right corner, there is a indicator of your current points."
 
-    n "What is {color=#40ff00}HBB points{/color}? In this game, there will be decisions and questions wherein you need to select the right one."
+    show screen displayHBBPoints 
 
-    n "The game comprises of 5 main stories. However there is a twist."
+    show natasha talk 
 
-    n "To unlock a special route in the main stories, you must achieve a certain number of points."
+    with dissolve
 
-    n "Selecting the {color=#f00}most correct{/color} decision will grant you the most points."
+    n "What is {color=#40ff00}HBB points{/color}? In this game, there will be decisions and questions wherein you need to select the {color=#40ff00}best answer{/color}."
+
+    n "The game comprises of 3 main stories. However there is a twist."
+
+    n "To unlock the {color=#40ff00}special ending{/color} in each of the main stories, you must reach a certain number of points."
+
+    n "Selecting the {color=#40ff00}most correct{/color} decision will grant you the most points."
 
     show natasha closed eyes_ with dissolve
 
@@ -151,13 +165,34 @@ label natashaChoice1:
 
     n "This can be a traumatic experience for me."
 
-    n "For this answer, I will reward you 2 HBB points."
     
-    n "Try it again."
+    play sound "audio/addPoints.mp3"
+    $ points += 2
+    show screen displayHBBPoints
+    n "For this answer, I will reward you {color=#22ff00}2 HBB points{/color}."
+    
+    
 
-    with fade
+    $ timeout_label = None
 
-    jump whatToDo
+    menu:
+        "Would you like to try selecting a different choice?"
+    
+        "Yes":
+
+            with fade
+
+            $ points = 0
+
+            $ timeout_label = "natashaChoice3"
+
+            jump whatToDo
+        
+        "No":
+            jump endTutorial
+
+
+    
 
 label natashaChoice2:
     "Shout at the old men."
@@ -168,13 +203,31 @@ label natashaChoice2:
 
     n "They might beat you up, you know?"
 
-    n "For this answer, I will reward you 1 HBB point."
+    play sound "audio/addPoints.mp3"
+    $ points += 1
+    show screen displayHBBPoints
 
-    n "Try it again."
+    n "For this answer, I will reward you {color=#22ff00}1 HBB point{/color}."
 
-    with fade
+    
 
-    jump whatToDo
+    $ timeout_label = None
+
+    menu:
+        "Would you like to try selecting a different choice?"
+    
+        "Yes":
+
+            with fade
+
+            $ points = 0
+
+            $ timeout_label = "natashaChoice3"
+
+            jump whatToDo
+        
+        "No":
+            jump endTutorial
 
 label natashaChoice3:
     "Talk to them calmly and call the police if they don't stop."
@@ -185,9 +238,19 @@ label natashaChoice3:
 
     show natasha talk with dissolve
 
-    n "For this answer, I will reward you 3 HBB points."
+   
+    play sound "audio/addPoints.mp3"
+    if points < 3:
+        $ points = 3
+    else:
+        $ points += 3
+    
+    show screen displayHBBPoints
+    n "For this answer, I will reward you {color=#22ff00}3 HBB points{/color}."
 
-    n "You saved me from them and prevented them from doing anything."
+    
+
+    n "You saved me from them and prevented them from doing anything!!"
 
     show natasha blush with dissolve
 
@@ -197,11 +260,23 @@ label natashaChoice3:
 
     n "Just kidding!!! Hahaha~"
 
-    n "Okay let's now move on to the game!"
+    show natasha talk with dissolve
 
-    stop music fadeout 3.0
-    pause 2.0
-    jump yui_start_case_1
+    label endTutorial:
+
+        n "Since this is only a tutorial..."
+
+        n "The next time when you don't choose the best answer, you will {color=#f00}lose points!{/color}"
+
+        show natasha closed eyes_ with dissolve
+
+        n "Remember that okaaaaaaaaay?"
+
+        n "Okay let's now move on to the game!"
+
+        stop music fadeout 3.0
+        pause 2.0
+        jump yui_start_case_1
 
 
 
