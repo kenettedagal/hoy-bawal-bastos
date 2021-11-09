@@ -4,127 +4,6 @@
 
 init offset = -1
 
-# screen mirror:
-#     text "You got the mirror!":
-#   
-
-screen showNotebook():
-    modal True
-    $ notebookOpen = True
-    imagebutton:
-        yalign 0.01
-        xalign 0.01
-        xmaximum 200
-        ymaximum 200
-        idle "book.png"
-        activate_sound "audio/newspaper.wav"            
-        action Hide("showNotesButton")
-        if notebookOpen:
-            action [Hide("showNotebook"),Show("showNotesButton")] 
-            
-        else: 
-            action Show("showNotebook")
-
-    vbox:
-        xalign 0.5
-        image "images/notebook.jpg"
-
-screen showNotesButton():
-    modal False
-    frame:
-        yalign 0.01
-        xalign 0.01
-        imagebutton:
-            xmaximum 200
-            ymaximum 200
-            idle "book.png"
-            activate_sound "audio/newspaper.wav"
-            #action [Show("testScreen",fade),Hide("showNotesButton")]
-            
-            if notebookOpen:
-                action [Hide("showNotebook"),Show("showNotesButton")] 
-                
-            else:
-                action [Show("showNotebook"),Hide("showNotesButton")]
-
-            
-
-screen displayHBBPoints():
-    modal False
-    frame:
-        xmaximum 300
-        ymaximum 100
-        xalign 0.999
-        yalign 0.003
-        vbox:
-            text "{color=#22ff00}HBB Points{/color}"
-            text "[points]" xalign 0.5
-            at transform:
-
-                align (0.5, 0.5) alpha 0.0
-                linear 0.5 alpha 1.0
-                pause 2
-                
-        
-
-
-screen newNote():
-
-    modal True
-    frame:
-        xalign 0.5
-        yalign 0.5
-        xmaximum 400
-        ymaximum 300
-        vbox: 
-            text "New notes has been added to notebook!\n" xalign 0.5
-            textbutton "OK" action Hide("newNote") xalign 0.5 yalign 0.5 xmaximum 400
-
-screen testScreen():    
-    modal True
-    frame:
-        xalign 0.5
-        yalign 0.5
-        xmaximum 1200
-        ymaximum 800
-        viewport:
-            mousewheel True
-            scrollbars 'vertical'
-            vbox:
-                xfill True
-                spacing 20
-                
-                text "\n\n{color=#ff3d3d}{u}Republic Act No. 11313{/u}{/color} also known as \"{color=#ff3d3d}Safe Spaces Act{/color}\"." xalign 0.5
-                text ""
-                text "Date Approved: April 17, 2019" xalign 0.5
-                text "\n\nThe {color=#ff3d3d}{u}Safe Spaces Act{/u}{/color} is an act defining gender-based sexual harassment in streets, public spaces, online, workplaces, and educational or training institutions."xalign 0.5 justify True
-                
-                if yuiStoryProgress >= 2:  #List of Violations
-                     
-                    text "\n      {color=#ff3d3d}List of Violations{/color} (from SEC.5 of Safe Spaces Act):\n\na) Catcalling, wolf-whistling, unwanted invitations, misogynistic, transphobic, homophobic,and sexist slurs;\n\nb) Persistent uninvited comments or gestures on a person's appearance;\n\nc) Relentless requests for personal details;\n\nd) Statement of sexual comments and suggestions;\n\ne) Public masturbation or flashing of private parts, groping, making offensive body gestures at someone, and other similar lewd sexual actions;\n\nf) Any advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety. This may include cursing, leering and intrusive gazing, and taunting;\n\ng) Persistent telling of sexual jokes, use of sexual names;\n\nh) Stalking." xalign 0.5 justify True line_spacing 10
-
-                if yuiStoryProgress >= 3:  #Specific Acts and Penalties
-                    
-                    text "\n\n{color=#ff3d3d}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces. (from SEC. 12 of Safe Spaces Act)\n\na) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs, persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination, the use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs, the persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety.\n\n{color=#ff3d3d}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP.\n\n{color=#ff3d3d}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)\n\n{color=#ff3d3d}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)" xalign 0.5 justify True line_spacing 10
-
-                    text "\n\n\nb) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening or intimidating the offended party including flashing of private parts, publicmasturbation, groping, and similar lewd sexual actions.\n\n{color=#ff3d3d}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP.\n\n{color=#ff3d3d}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)\n\n{color=#ff3d3d}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)" xalign 0.5 justify True line_spacing 10
-
-                    text "\n\n\nc) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person; or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b).\n\n{color=#ff3d3d}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP.\n\n{color=#ff3d3d}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)\n\n{color=#ff3d3d}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)" xalign 0.5 justify True line_spacing 10
-                    
-                    
-
-                
-                text "\n\n-- End of Notes --\n" xalign 0.5 
-                                
-                textbutton _("{color=#40ff00}Close Notebook{/color}"):
-                    xalign 0.5
-                    yalign 0.5
-                    
-                    action [Hide("testScreen"), Show("showNotesButton", dissolve)]
-                    
-
-
-
 ################################################################################
 ## Styles
 ################################################################################
@@ -144,7 +23,6 @@ style hyperlink_text:
 style gui_text:
     properties gui.text_properties("interface")
 
-
 style button:
     properties gui.button_properties("button")
 
@@ -152,13 +30,11 @@ style button_text is gui_text:
     properties gui.text_properties("button")
     yalign 0.5
 
-
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
 
 style prompt_text is gui_text:
     properties gui.text_properties("prompt")
-
 
 style bar:
     ysize gui.bar_size
@@ -190,12 +66,9 @@ style vslider:
     base_bar Frame("gui/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/slider/vertical_[prefix_]thumb.png"
 
-
 style frame:
     padding gui.frame_borders.padding
     background Frame("gui/frame.png", gui.frame_borders, tile=gui.frame_tile)
-
-
 
 ################################################################################
 ## In-game screens
@@ -215,10 +88,18 @@ style frame:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
+## We need to redefine centered because the new say screen will cause the default
+## centered speaker to have the textbox shown behind it.
+define centered = Character(None, what_style="centered_text", window_style="centered_window", window_background=None)
+
 screen say(who, what):
     style_prefix "say"
 
     window:
+
+        background Transform(style.window.background, alpha=persistent.say_window_alpha)
+        ### IMPORTANT: The Transform() is holding the window background, and the alpha variable ties to our say window alpha
+
         id "window"
 
         if who is not None:
@@ -227,15 +108,14 @@ screen say(who, what):
                 id "namebox"
                 style "namebox"
                 text who id "who"
+                background Transform(style.namebox.background, alpha=persistent.say_window_alpha)
 
         text what id "what"
-
 
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     if not renpy.variant("small"):
         add SideImage() xalign 0.0 yalign 1.0
-
 
 ## Make the namebox available for styling through the Character object.
 init python:
@@ -249,6 +129,7 @@ style say_thought is say_dialogue
 style namebox is default
 style namebox_label is say_label
 
+default persistent.say_window_alpha = 0.75
 
 style window:
     xalign 0.5
@@ -256,7 +137,9 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    background gui.preference("ADVtextbox", "gui/textbox_1.png")
+    # background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+    ## ^ Old Version ^ Use if you do not intend to have texbox color options
 
 style namebox:
     xpos gui.name_xpos
@@ -275,10 +158,10 @@ style say_label:
 
 style say_dialogue:
     properties gui.text_properties("dialogue")
-
     xpos gui.dialogue_xpos
     xsize gui.dialogue_width
     ypos gui.dialogue_ypos
+    line_spacing gui.preference("dialogue_spacing", 3)
 
 
 ## Input screen ################################################################
@@ -331,15 +214,15 @@ default timeout_label = None
 default persistent.timed_choices = True
 screen choice(items):
     style_prefix "choice"
-    
+
     vbox:
         for i in items:
-            textbutton i.caption action i.action activate_sound "audio/menu.ogg"
-            
+            textbutton i.caption action i.action activate_sound "audio/sfx/confirm.ogg"
+
     if (timeout_label is not None) and persistent.timed_choices:
-        text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55 
+        text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55
         bar:
-            
+
             xalign 0.5
             ypos 100
             xsize 740
@@ -358,7 +241,6 @@ screen choice(items):
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
 
-
 style choice_vbox is vbox
 style choice_button is button
 style choice_button_text is button_text
@@ -372,7 +254,6 @@ style choice_vbox:
 
 style choice_button is default:
     properties gui.button_properties("choice_button")
-    
 
 style choice_button_text is default:
     properties gui.button_text_properties("choice_button")
@@ -390,21 +271,24 @@ screen quick_menu():
 
     if quick_menu:
 
+        # Add an in-game quick menu.
+
         hbox:
-            style_prefix "quick"
+            style_group "quick"
 
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Q.Save") action QuickSave()
-            textbutton _("Q.Load") action QuickLoad()
-            textbutton _("Prefs") action ShowMenu('preferences')
-
+            ## https://www.renpy.org/doc/html/self_voicing.html#creator-concerns
+            # imagebutton auto "foo.png" action None() alt "foo"
+            textbutton _("Back") action Rollback() alt "Back"
+            textbutton _("History") action ShowMenu('history') alt "History"
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) alt "Skip"
+            textbutton _("Auto") action Preference("auto-forward", "toggle") alt "Auto"
+            textbutton _("Save") action ShowMenu('save') alt "Save"
+            textbutton _("Q.Save") action QuickSave() alt "Quick Save"
+            textbutton _("Q.Load") action QuickLoad() alt "Quick Load"
+            textbutton _("Prefs") action ShowMenu('preferences') alt "Preferences"
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -444,38 +328,42 @@ screen navigation():
 
         if main_menu:
 
-            textbutton _("Start") action Start()
+            textbutton _("Start") action Start() alt "Start"
 
         else:
 
-            textbutton _("History") action ShowMenu("history")
+            # textbutton _("History") action ShowMenu("history") alt ""
 
-            textbutton _("Save") action ShowMenu("save")
+            textbutton _("Save") action ShowMenu("save") alt "Save"
 
-        textbutton _("Load") action ShowMenu("load")
+        textbutton _("Load") action ShowMenu("load") alt "Load"
 
-        textbutton _("Preferences") action ShowMenu("preferences")
+        textbutton _("Preferences") action ShowMenu("preferences") alt "Preferences"
 
         if _in_replay:
 
-            textbutton _("End Replay") action EndReplay(confirm=True)
+            textbutton _("End Replay") action EndReplay(confirm=True) alt "End Replay"
 
         elif not main_menu:
 
-            textbutton _("Main Menu") action MainMenu()
+            textbutton _("Main Menu") action MainMenu() alt "Main Menu"
 
-        textbutton _("About") action ShowMenu("about")
+        textbutton _("About") action ShowMenu("about") alt "About"
+
+        if main_menu:
+
+            textbutton _("Extras") action ShowMenu("achievements") alt "Extras"
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help")
+            textbutton _("Help") action ShowMenu("help") alt "Help"
 
         if renpy.variant("pc"):
 
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
-            textbutton _("Quit") action Quit(confirm=not main_menu)
+            textbutton _("Quit") action Quit(confirm=not main_menu) alt "Quit"
 
 
 style navigation_button is gui_button
@@ -500,21 +388,26 @@ screen main_menu():
     ## This ensures that any other menu screen is replaced.
     tag menu
 
+    style_prefix "main_menu"
+
     add gui.main_menu_background
 
     ## This empty frame darkens the main menu.
     frame:
-        style "main_menu_frame"
+        pass
 
     ## The use statement includes another screen inside this one. The actual
     ## contents of the main menu are in the navigation screen.
     use navigation
+    ### Note: I *personally* always separate the navigation of the main menu
+    ### and the game menu so the main menu can be more flexible in design. To
+    ### do so, comment out "use navigation" and put your buttons in using a vbox
+    ### or hbox, or however you want to lay those out.
+
 
     if gui.show_name:
 
         vbox:
-            style "main_menu_vbox"
-
             text "[config.name!t]":
                 style "main_menu_title"
 
@@ -863,33 +756,180 @@ screen preferences():
 
         vbox:
 
+            ## Standard Preferences
             hbox:
+
                 box_wrap True
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                if renpy.variant("pc"):
 
                     vbox:
                         style_prefix "radio"
                         label _("Display")
-                        textbutton _("Window") action Preference("display", "window")
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen")
+                        textbutton _("Window") action Preference("display", "window") alt "Set Display to Windowed"
+                        textbutton _("Fullscreen") action Preference("display", "fullscreen") alt "Set Display to Full Screen"
 
                 vbox:
                     style_prefix "radio"
                     label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable")
-                    textbutton _("Left") action Preference("rollback side", "left")
-                    textbutton _("Right") action Preference("rollback side", "right")
+                    textbutton _("Disable") action Preference("rollback side", "disable") alt "Disable Rollback Side"
+                    textbutton _("Left") action Preference("rollback side", "left") alt "Set Rollback Side to Left"
+                    textbutton _("Right") action Preference("rollback side", "right") alt "Set Rollback Side to Right"
 
                 vbox:
                     style_prefix "check"
                     label _("Skip")
-                    textbutton _("Unseen Text") action Preference("skip", "toggle")
-                    textbutton _("After Choices") action Preference("after choices", "toggle")
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+                    textbutton _("Unseen Text") action Preference("skip", "toggle") alt "Skip Unseen Text"
+                    textbutton _("After Choices") action Preference("after choices", "toggle") alt "Continue Skipping After Choices"
+                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle")) alt "Skip Transitions"
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
+
+            null height (4 * gui.pref_spacing)
+
+            ## Accessibility Preferences
+
+            hbox:
+
+                # box_wrap True
+
+                ## Change Typeface
+                ## Notes: Depending on what fonts you use, you will need to adjust
+                ## these numbers accordingly.
+                ## TODO: Adjust numbers as needed
+
+
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Typeface")
+
+                    textbutton _("NotoSans") action [gui.SetPreference("font", "gui/fonts/NotoSans-Regular.ttf"), SetVariable("typeface", "NotoSans"), gui.SetPreference("dialogue_spacing", 2)] alt "Change to NotoSans"
+
+                    textbutton _("DejaVuSans") action [gui.SetPreference("font", "DejaVuSans.ttf"), SetVariable("typeface", "DejaVuSans"), gui.SetPreference("dialogue_spacing", 2.01)] alt "Change to DejaVuSans"
+
+                    textbutton _("OpenDyslexic") action [gui.SetPreference("font", "_OpenDyslexic3-Regular.ttf"), SetVariable("typeface", "OpenDyslexic"), gui.SetPreference("dialogue_spacing", -4)]  alt "Change to OpenDyslexic"
+                    ## Note: Having so many actions set to a single radio button
+                    ## will cause some of the preferences in the same category to appear
+                    ## to be all selected, causing players some confusion. Some numbers
+                    ## have been set to 2.01 to prevent this from happening.
+
+                ## Change Font Size
+
+                vbox:
+                    style_prefix "radio"
+                    label _("Font Size")
+
+                    if renpy.variant("pc"):
+                        textbutton _("Large") action gui.SetPreference("size", 33) alt "Change to Large Size Text"
+                        textbutton _("Regular") action gui.SetPreference("size", 31) alt "Change to Regular Size Text"
+
+                    elif renpy.variant("mobile"):
+
+                        if typeface == "OpenDyslexic":
+                            textbutton _("Large") action gui.SetPreference("phone_size", 32)
+                            textbutton _("Regular") action gui.SetPreference("phone_size", 30)
+                            ## Note: due to the unique nature of the OpenDyslexic font, it needs
+                            ## to be just slightly smaller so as to not break the GUI
+
+                        else:
+                            textbutton _("Large") action gui.SetPreference("phone_size", 42)
+                            textbutton _("Regular") action gui.SetPreference("phone_size", 40)
+
+                ## Change Line Spacing
+
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Line Spacing")
+
+                    if typeface == "OpenDyslexic":
+
+                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", -2) alt "Change the height of the space between lines of dialogue"
+                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", -4) alt "Change the height of the space between lines of dialogue"
+
+                    elif typeface == "DejaVuSans":
+
+                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", 4.01) alt "Change the height of the space between lines of dialogue"
+                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", 2.01) alt "Change the height of the space between lines of dialogue"
+
+                    else:
+
+                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", 4) alt "Change the height of the space between lines of dialogue"
+                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", 2) alt "Change the height of the space between lines of dialogue"
+
+                    # # A template for making a new size option for text rendering
+                    # # Though, there is not much reason to add a small option...
+                    # textbutton _("Small") action gui.SetPreference("size", 25)
+
+                    # # A bar version of text size adjustments
+                    # # This messes with the rest of the GUI however, so I personally don't like it
+                    #  bar value Preference("font size")
+                    # bar value Preference("font line spacing")
+
+            null height (4 * gui.pref_spacing)
+
+            hbox:
+
+                ## Change Text Color
+
+                box_wrap True
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Text Color")
+
+                    textbutton _("White") action gui.SetPreference("color", "#ffffff") alt "Change to White Text"
+                    textbutton _("Cream") action gui.SetPreference("color", "#FBF0D9") alt "Change to Cream Text"
+                    textbutton _("Black") action gui.SetPreference("color", "#000000") alt "Change to Black Text"
+
+                ## Change Textbox Background
+
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Textbox Background")
+
+                    if renpy.variant("pc"):
+
+                        textbutton _("Black") action [gui.SetPreference("ADVtextbox", "gui/textbox_1.png"), gui.SetPreference("NVLtextbox", "gui/nvl_1.png")] alt "Change to Black Textbox"
+                        textbutton _("White") action [gui.SetPreference("ADVtextbox", "gui/textbox_2.png"), gui.SetPreference("NVLtextbox", "gui/nvl_2.png")]  alt "Change to White Textbox"
+
+                    elif renpy.variant("mobile"):
+
+                        textbutton _("Black") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox_1.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_1.png")]
+                        textbutton _("White") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox_2.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_2.png")]
+
+                ## Toggles
+                ## You can also create SetField() buttons with on/off variables if you prefer that look.
+
+                vbox:
+
+                    style_prefix "check"
+                    label _("Toggle")
+
+                    ## Turn Screenshake On or Off
+                    ## This setting can be found in captiontool.rpy
+
+                    textbutton "Screenshake" action ToggleField(persistent,"screenshake",true_value=True,false_value=False) alt "Toggle Screen Shake"
+
+                    ## Self-voicing does not work on smartphone devices, so this option only shows if the user is playing on a PC.
+
+                    if renpy.variant("pc"):
+
+                        textbutton _("Self-Voicing") action Preference("self voicing", "toggle") alt "Toggle Self-Voicing"
+
+                vbox:
+
+                    style_prefix "check"
+                    label _("Captions")
+
+                    textbutton _("Audio Titles") action ToggleVariable("persistent.sound_captions") alt "Toggle Sound Captions"
+                    textbutton _("Image Descriptions") action ToggleVariable("persistent.image_captions") alt "Toggle Image Descriptions"
+
+                ## This shows Ren'Py's built-in accessibility menu. This can also be displayed by pressing "A" on the keyboard when playing on a PC. As this option can break the way the game is displayed and also does not support translation as of the latest Ren'Py build, you may want to hide the option.
+                # textbutton _("More Options...") action Show("_accessibility")
 
             null height (4 * gui.pref_spacing)
 
@@ -907,6 +947,9 @@ screen preferences():
 
                     bar value Preference("auto-forward time")
 
+                    label _("Textbox Opacity")
+                    bar value FieldValue(persistent, 'say_window_alpha', 1.0, max_is_zero=False, offset=0, step=.2) xmaximum 525 alt "Textbox Opacity"
+
                 vbox:
 
                     if config.has_music:
@@ -923,7 +966,7 @@ screen preferences():
                             bar value Preference("sound volume")
 
                             if config.sample_sound:
-                                textbutton _("Test") action Play("sound", config.sample_sound)
+                                textbutton _("Test") action Play("sound", config.sample_sound) alt "Test"
 
 
                     if config.has_voice:
@@ -933,7 +976,7 @@ screen preferences():
                             bar value Preference("voice volume")
 
                             if config.sample_voice:
-                                textbutton _("Test") action Play("voice", config.sample_voice)
+                                textbutton _("Test") action Play("voice", config.sample_voice) alt "Test"
 
                     if config.has_music or config.has_sound or config.has_voice:
                         null height gui.pref_spacing
@@ -941,7 +984,95 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
+                            alt "Mute All"
 
+## v Old Version v
+# screen preferences():
+
+#     tag menu
+
+#     use game_menu(_("Preferences"), scroll="viewport"):
+
+#         vbox:
+
+#             hbox:
+#                 box_wrap True
+
+#                 if renpy.variant("pc") or renpy.variant("web"):
+
+#                     vbox:
+#                         style_prefix "radio"
+#                         label _("Display")
+#                         textbutton _("Window") action Preference("display", "window")
+#                         textbutton _("Fullscreen") action Preference("display", "fullscreen")
+
+#                 vbox:
+#                     style_prefix "radio"
+#                     label _("Rollback Side")
+#                     textbutton _("Disable") action Preference("rollback side", "disable")
+#                     textbutton _("Left") action Preference("rollback side", "left")
+#                     textbutton _("Right") action Preference("rollback side", "right")
+
+#                 vbox:
+#                     style_prefix "check"
+#                     label _("Skip")
+#                     textbutton _("Unseen Text") action Preference("skip", "toggle")
+#                     textbutton _("After Choices") action Preference("after choices", "toggle")
+#                     textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle"))
+
+#                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
+#                 ## added here, to add additional creator-defined preferences.
+
+#             null height (4 * gui.pref_spacing)
+
+#             hbox:
+#                 style_prefix "slider"
+#                 box_wrap True
+
+#                 vbox:
+
+#                     label _("Text Speed")
+
+#                     bar value Preference("text speed")
+
+#                     label _("Auto-Forward Time")
+
+#                     bar value Preference("auto-forward time")
+
+#                 vbox:
+
+#                     if config.has_music:
+#                         label _("Music Volume")
+
+#                         hbox:
+#                             bar value Preference("music volume")
+
+#                     if config.has_sound:
+
+#                         label _("Sound Volume")
+
+#                         hbox:
+#                             bar value Preference("sound volume")
+
+#                             if config.sample_sound:
+#                                 textbutton _("Test") action Play("sound", config.sample_sound)
+
+
+#                     if config.has_voice:
+#                         label _("Voice Volume")
+
+#                         hbox:
+#                             bar value Preference("voice volume")
+
+#                             if config.sample_voice:
+#                                 textbutton _("Test") action Play("voice", config.sample_voice)
+
+#                     if config.has_music or config.has_sound or config.has_voice:
+#                         null height gui.pref_spacing
+
+#                         textbutton _("Mute All"):
+#                             action Preference("all mute", "toggle")
+#                             style "mute_all_button"
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1013,7 +1144,6 @@ style slider_button_text:
 style slider_vbox:
     xsize 675
 
-
 ## History screen ##############################################################
 ##
 ## This is a screen that displays the dialogue history to the player. While
@@ -1022,47 +1152,110 @@ style slider_vbox:
 ##
 ## https://www.renpy.org/doc/html/history.html
 
+## Note: This is my custom version of the History screen that is not attached
+## to the game menu, and will appear in place of the textbox when called up.
+## Margins and Padding may need to be adjusted accordingly.
+
 screen history():
 
     tag menu
 
-    ## Avoid predicting this screen, as it can be very large.
     predict False
 
-    use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+    frame:
 
         style_prefix "history"
 
-        for h in _history_list:
+        label _("History")
 
-            window:
+        left_margin 200
+        right_margin 200
+        top_margin 50
+        bottom_margin 50
 
-                ## This lays things out properly if history_height is None.
-                has fixed:
-                    yfit True
+        left_padding 50
+        right_padding 100
+        top_padding 150
+        bottom_padding 100
 
-                if h.who:
+        vpgrid:
 
-                    label h.who:
-                        style "history_name"
-                        substitute False
+            cols 1
+            yinitial 1.0
 
-                        ## Take the color of the who text from the Character, if
-                        ## set.
-                        if "color" in h.who_args:
-                            text_color h.who_args["color"]
+            draggable True
+            mousewheel True
+            scrollbars "vertical"
 
-                $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
-                text what:
-                    substitute False
+            for h in _history_list:
 
-        if not _history_list:
-            label _("The dialogue history is empty.")
+                window:
 
+                    ## This lays things out properly if history_height is None.
+                    has fixed:
+                        yfit True
+
+                    if h.who:
+
+                        label h.who:
+                            style "history_name"
+
+                            ## Take the color of the who text from the Character, if
+                            ## set.
+                            if "color" in h.who_args:
+                                text_color h.who_args["color"]
+
+                    $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+                    text what
+
+            if not _history_list:
+
+                text "The dialogue history is empty." line_spacing 10
+                ## Adding line_spacing prevents the bottom of the text
+                ## from getting cut off. Adjust when replacing the
+                ## default fonts.
+
+        textbutton _("Return") action Return() yalign 1.1 xalign 1.0 alt "Return"
+
+## The old version of the History screen that's attached to the game menu.
+# screen history():
+
+#     tag menu
+
+#     ## Avoid predicting this screen, as it can be very large.
+#     predict False
+
+#     use game_menu(_("History"), scroll=("vpgrid" if gui.history_height else "viewport"), yinitial=1.0):
+
+#         style_prefix "history"
+
+#         for h in _history_list:
+
+#             window:
+
+#                 ## This lays things out properly if history_height is None.
+#                 has fixed:
+#                     yfit True
+
+#                 if h.who:
+
+#                     label h.who:
+#                         style "history_name"
+
+#                         ## Take the color of the who text from the Character, if
+#                         ## set.
+#                         if "color" in h.who_args:
+#                             text_color h.who_args["color"]
+
+#                 $ what = renpy.filter_text_tags(h.what, allow=gui.history_allow_tags)
+#                 text what
+
+#         if not _history_list:
+#             label _("The dialogue history is empty.")
 
 ## This determines what tags are allowed to be displayed on the history screen.
 
-define gui.history_allow_tags = { "alt", "noalt" }
+define gui.history_allow_tags =  { "alt", "noalt" }
 
 
 style history_window is empty
@@ -1098,13 +1291,15 @@ style history_text:
     min_width gui.history_text_width
     text_align gui.history_text_xalign
     layout ("subtitle" if gui.history_text_xalign else "tex")
+    color "#ffffff"
 
 style history_label:
     xfill True
 
 style history_label_text:
     xalign 0.5
-
+    ypos -100
+    size gui.label_text_size
 
 ## Help screen #################################################################
 ##
@@ -1127,11 +1322,11 @@ screen help():
 
             hbox:
 
-                textbutton _("Keyboard") action SetScreenVariable("device", "keyboard")
-                textbutton _("Mouse") action SetScreenVariable("device", "mouse")
+                textbutton _("Keyboard") action SetScreenVariable("device", "keyboard") alt "Keyboard"
+                textbutton _("Mouse") action SetScreenVariable("device", "mouse") alt "Mouse"
 
                 if GamepadExists():
-                    textbutton _("Gamepad") action SetScreenVariable("device", "gamepad")
+                    textbutton _("Gamepad") action SetScreenVariable("device", "gamepad") alt "Gamepad"
 
             if device == "keyboard":
                 use keyboard_help
@@ -1238,7 +1433,7 @@ screen gamepad_help():
         label _("Y/Top Button")
         text _("Hides the user interface.")
 
-    textbutton _("Calibrate") action GamepadCalibrate()
+    textbutton _("Calibrate") action GamepadCalibrate() alt "Calibrate Gamepad"
 
 
 style help_button is gui_button
@@ -1303,12 +1498,11 @@ screen confirm(message, yes_action, no_action):
                 xalign 0.5
                 spacing 150
 
-                textbutton _("Yes") action yes_action
-                textbutton _("No") action no_action
+                textbutton _("Yes") action yes_action alt "Yes"
+                textbutton _("No") action no_action alt "No"
 
     ## Right-click and escape answer "no".
     key "game_menu" action no_action
-
 
 style confirm_frame is gui_frame
 style confirm_prompt is gui_prompt
@@ -1325,6 +1519,7 @@ style confirm_frame:
 style confirm_prompt_text:
     text_align 0.5
     layout "subtitle"
+    color gui.accent_color
 
 style confirm_button:
     properties gui.button_properties("confirm_button")
@@ -1426,6 +1621,7 @@ style notify_frame:
 
 style notify_text:
     properties gui.text_properties("notify")
+    color gui.accent_color
 
 
 ## NVL screen ##################################################################
@@ -1434,10 +1630,13 @@ style notify_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#nvl
 
-
 screen nvl(dialogue, items=None):
 
     window:
+
+        background Transform(style.nvl_window.background, alpha=persistent.say_window_alpha)
+        ### IMPORTANT: The Transform() is holding the window background, and the alpha variable ties to our say window alpha
+
         style "nvl_window"
 
         has vbox:
@@ -1466,7 +1665,6 @@ screen nvl(dialogue, items=None):
 
     add SideImage() xalign 0.0 yalign 1.0
 
-
 screen nvl_dialogue(dialogue):
 
     for d in dialogue:
@@ -1485,7 +1683,6 @@ screen nvl_dialogue(dialogue):
                 text d.what:
                     id d.what_id
 
-
 ## This controls the maximum number of NVL-mode entries that can be displayed at
 ## once.
 define config.nvl_list_length = gui.nvl_list_length
@@ -1503,7 +1700,8 @@ style nvl_window:
     xfill True
     yfill True
 
-    background "gui/nvl.png"
+    # background "gui/nvl.png"
+    background gui.preference("NVLtextbox", "gui/nvl_1.png")
     padding gui.nvl_borders.padding
 
 style nvl_entry:
@@ -1546,10 +1744,13 @@ style nvl_button_text:
     properties gui.button_text_properties("nvl_button")
 
 
-
 ################################################################################
 ## Mobile Variants
 ################################################################################
+
+### Notes: Unless your GUI varies a lot from default, you can honestly just
+### comment out the majority of these since they might actually break your
+### interface. Otherwise, be sure to replace the images in the "phone/" folder.
 
 style pref_vbox:
     variant "medium"
@@ -1573,12 +1774,17 @@ screen quick_menu():
             textbutton _("Back") action Rollback()
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Menu") action ShowMenu()
+            textbutton _("Prefs") action ShowMenu("preferences")
 
+
+style say_dialogue:
+    variant "small"
+    size gui.preference("phone_size", 40)
 
 style window:
     variant "small"
-    background "gui/phone/textbox.png"
+    background gui.preference("m_ADVtextbox", "gui/phone/textbox_1.png")
+    #background "gui/phone/textbox.png"
 
 style radio_button:
     variant "small"
@@ -1590,7 +1796,7 @@ style check_button:
 
 style nvl_window:
     variant "small"
-    background "gui/phone/nvl.png"
+    background gui.preference("m_NVLtextbox", "gui/phone/nvl_1.png") #"gui/phone/nvl.png"
 
 style main_menu_frame:
     variant "small"
@@ -1608,27 +1814,34 @@ style game_menu_content_frame:
     variant "small"
     top_margin 0
 
+# style game_menu_text:
+#     variant "mobile"
+#     size 33 #45
+
+# style game_menu_label_text:
+#     variant "mobile"
+#     size 51
 style pref_vbox:
     variant "small"
     xsize 600
 
-style bar:
-    variant "small"
-    ysize gui.bar_size
-    left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
-    right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
+# style bar:
+#     variant "small"
+#     ysize gui.bar_size
+#     left_bar Frame("gui/phone/bar/left.png", gui.bar_borders, tile=gui.bar_tile)
+#     right_bar Frame("gui/phone/bar/right.png", gui.bar_borders, tile=gui.bar_tile)
 
-style vbar:
-    variant "small"
-    xsize gui.bar_size
-    top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
-    bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
+# style vbar:
+#     variant "small"
+#     xsize gui.bar_size
+#     top_bar Frame("gui/phone/bar/top.png", gui.vbar_borders, tile=gui.bar_tile)
+#     bottom_bar Frame("gui/phone/bar/bottom.png", gui.vbar_borders, tile=gui.bar_tile)
 
-style scrollbar:
-    variant "small"
-    ysize gui.scrollbar_size
-    base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
-    thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+# style scrollbar:
+#     variant "small"
+#     ysize gui.scrollbar_size
+#     base_bar Frame("gui/phone/scrollbar/horizontal_[prefix_]bar.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
+#     thumb Frame("gui/phone/scrollbar/horizontal_[prefix_]thumb.png", gui.scrollbar_borders, tile=gui.scrollbar_tile)
 
 style vscrollbar:
     variant "small"
@@ -1636,11 +1849,11 @@ style vscrollbar:
     base_bar Frame("gui/phone/scrollbar/vertical_[prefix_]bar.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
     thumb Frame("gui/phone/scrollbar/vertical_[prefix_]thumb.png", gui.vscrollbar_borders, tile=gui.scrollbar_tile)
 
-style slider:
-    variant "small"
-    ysize gui.slider_size
-    base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
-    thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
+# style slider:
+    # variant "small"
+    # ysize gui.slider_size
+    # base_bar Frame("gui/phone/slider/horizontal_[prefix_]bar.png", gui.slider_borders, tile=gui.slider_tile)
+    # thumb "gui/phone/slider/horizontal_[prefix_]thumb.png"
 
 style vslider:
     variant "small"
@@ -1648,10 +1861,10 @@ style vslider:
     base_bar Frame("gui/phone/slider/vertical_[prefix_]bar.png", gui.vslider_borders, tile=gui.slider_tile)
     thumb "gui/phone/slider/vertical_[prefix_]thumb.png"
 
-style slider_vbox:
+style slider_pref_vbox:
     variant "small"
     xsize None
 
-style slider_slider:
+style slider_pref_slider:
     variant "small"
     xsize 900

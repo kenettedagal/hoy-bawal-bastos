@@ -1,31 +1,20 @@
 label tutorial_start:
     # Ask user some questions aboutn VN, Safe Spaces, etc.
-
-    play music "audio/Shenanigans!.ogg" fadein 2.0
-    define n = Character('Natasha')
+    
+    
+    define n = Character('Natasha',color='#eeff00')
     
     scene bg beautiful park 
-    with fade
+    show natasha talk 
+    with fade 
 
-
-
-    show natasha talk with dissolve
-
-    "Hello! Welcome to our visual novel game...."
+    $ play_music(tutorial, fadein=2)
+    "Hello! Welcome to our visual novel game...." 
 
     n "My name is Natasha and I will be your guide before you start playing!"
 
-    python:
-        player = renpy.input("What is your first name?", length=32)
-        player = player.strip()
-
-        if not p:
-            p = "Shy Guy"
-
     show natasha closed eyes_
     with dissolve
-
-    n "Hello [player]!"
 
     show natasha talk
     with dissolve
@@ -100,7 +89,7 @@ label tutorial_start:
     # Talk about HBB points
     show natasha closed eyes_ with dissolve
 
-    n "I'm gonna say one last thing before I send you off, let me talk about {color=#40ff00}HBB points{/color}."
+    n "One last thing before I send you off, let me talk about {color=#40ff00}HBB points{/color}."
 
     n "If you look at the top right corner, there is a indicator of your current points."
 
@@ -120,9 +109,9 @@ label tutorial_start:
 
     show natasha closed eyes_ with dissolve
 
-    n "I'll give an example! This time, I will include a {color=#f00}timer{/color}."
+    n "I'll give an example! This time, I will include a {color=#fbff00}timer{/color}."
 
-    n "When the {color=#f00}timer{/color} runs out, it will randomly select a choice. So you should think carefully, okaaaaay? "
+    n "When the {color=#fbff00}timer{/color} runs out, it will randomly select a choice. So you should think carefully, okaaaaay? "
 
     show natasha talk with dissolve
 
@@ -165,9 +154,8 @@ label natashaChoice1:
 
     n "This can be a traumatic experience for me."
 
-    
-    play sound "audio/addPoints.mp3"
-    $ points += 2
+    $ play_sound(addPoints)
+    $ hbbpoints += 2
     show screen displayHBBPoints
     n "For this answer, I will reward you {color=#22ff00}2 HBB points{/color}."
     
@@ -182,7 +170,7 @@ label natashaChoice1:
 
             with fade
 
-            $ points = 0
+            $ hbbpoints = 0
 
             $ timeout_label = "natashaChoice3"
 
@@ -203,8 +191,8 @@ label natashaChoice2:
 
     n "They might beat you up, you know?"
 
-    play sound "audio/addPoints.mp3"
-    $ points += 1
+    $ play_sound (addPoints)
+    $ hbbpoints += 1
     show screen displayHBBPoints
 
     n "For this answer, I will reward you {color=#22ff00}1 HBB point{/color}."
@@ -220,7 +208,7 @@ label natashaChoice2:
 
             with fade
 
-            $ points = 0
+            $ hbbpoints = 0
 
             $ timeout_label = "natashaChoice3"
 
@@ -239,11 +227,12 @@ label natashaChoice3:
     show natasha talk with dissolve
 
    
-    play sound "audio/addPoints.mp3"
-    if points < 3:
-        $ points = 3
+    $ play_sound (addPoints)
+    
+    if hbbpoints < 3:
+        $ hbbpoints = 3
     else:
-        $ points += 3
+        $ hbbpoints += 3
     
     show screen displayHBBPoints
     n "For this answer, I will reward you {color=#22ff00}3 HBB points{/color}."
@@ -265,6 +254,10 @@ label natashaChoice3:
     label endTutorial:
 
         n "Since this is only a tutorial..."
+
+        n "In some situations, you can change your answers but!"
+
+        n "You can only get the points if you get it right the first time."
 
         n "The next time when you don't choose the best answer, you will {color=#f00}lose points!{/color}"
 

@@ -2,9 +2,13 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 27: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation.
-    scene bg classroom_01_day
-    ^
+File "game/screens.rpy", line 24: u'python' is not a keyword argument or valid child for the imagebutton statement.
+    python:
+          ^
+
+File "game/screens.rpy", line 50: u'python' is not a keyword argument or valid child for the imagebutton statement.
+    python:
+          ^
 
 Ren'Py Version: Ren'Py 7.4.8.1895
-Sat Oct  2 15:35:45 2021
+Fri Nov  5 16:52:40 2021

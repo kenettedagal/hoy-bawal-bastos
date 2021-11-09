@@ -10,27 +10,49 @@ label yui_start_case_1:
     image walk = im.Scale("images/walk1.webp", 1920, 1080)
     image school gate = im.Scale("images/school gate1.webp", 1920, 1080)
 
-    define kk = Character('Kurtney')
-    define y = Character('Yui')
+    define kk = Character('Kurtney',color='#51ceff')
+    define y = Character('Yui',color='#f9b3ff')
     define t = Character('Teacher Clarisse')
     define b = Character('Butch')
-    define s = Character(None, kind=nvl)
+    define o = Character('Officer Greg', color='#30ff45')
     define mc = Character("Mark")
+    define m = Character("Me",color='#00ffea')
 
     default notebookOpen = False
-    default points = 0
+    default hbbpoints = 0
     default yuiStoryProgress = 0
-    define mm = Character('Mom')
-   
+    default notebookIndex = 0
+    define mm = Character('Mom',color='#00ff2a')
+    default badEndingGame = False
+    default kurtneyHelp = False
+
+    init python:
+        
+        def subtractPoints():
+            global hbbpoints
+            if hbbpoints >= 1:
+                hbbpoints -= 1
+                play_sound(subPoints)
+                "Your points are deducted by 1 HBB Point"
+
+    #START OF YUI STORY
+    stop music
     hide screen displayHBBPoints
     scene school gate with fade
-    centered "{outlinecolor=#00ff00}{b}{color=#000}{size=50}Story #1{/size}\n\n\n{size=80}A New School Year{/size}{/color}{/b}{/outlinecolor}" 
+    play music "audio/music/Piano6.ogg"
+    show screen titleYui with dissolve
+    pause 0.5
+    
+    
     #Play iphone alarm tone
-
     pause 2.0
-    play sound "audio/iphone.ogg" 
+    hide screen titleYui with dissolve
+    pause 0.5
+    stop music
+    
+    $ play_sound (phone) 
 
-    scene bg room morning with fade
+    scene bg room2 with fade
     
 
     "{i}7:00 AM....{/i}"
@@ -50,9 +72,9 @@ label yui_start_case_1:
         
         "Get up and fix the bed":
             
-            play music "audio/Time for Rest.ogg" fadein 0.3 volume 0.2  
+            $ play_music (rest, fadein=0.3) 
             
-            scene bg room morning with dissolve
+            scene bg room2 with dissolve
 
             "Another day, another dollar..."
 
@@ -66,13 +88,13 @@ label snooze:
     "Zzzzzz...."
 
     pause 2.0
-    play sound "audio/iphone.ogg"
+    $ play_sound (phone)
 
-    scene bg room morning with dissolve
+    scene bg room2 with dissolve
 
     "{i}7:27 AM....{/i}"
 
-    play music "audio/Time for Rest.ogg" fadein 0.3 volume 0.2
+    $ play_music (rest, fadein=0.3) 
 
     m "NO WAY!!! I ALMOST SLEPT FOR ANOTHER 30 MINUTES!"
 
@@ -81,18 +103,54 @@ label snooze:
 
 label breakfastWithMom:
 
+    "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
+
+    "Today marks the day of me being a Second-Year highschool student."
+
+    "I am your average highschool boy if you wanna know."
+
+    "I barely pass my subjects but I'm also quite decent at sports."
+
+    "Gotta brag when you gotta brag. Hahaha~"
+
+    "Becoming an Attorney is my dream."
+
+    "You know why?"
+
+    "Cause I have played lots of detective games!"
+
+    "Hahaha I know its nonsense but still..."
+
+    "Anyways! My hobbies are sleeping and watching anime."
+
+    "Wait is this even called hobbies? It's more of a \"I've got nothing else to do in life.\""
+
+    "Well...."
+
+    "Nothing eventful has happened yet in my life."
+
+    "I haven't even experienced the so called \"romance of highschool.\""
+
+    "I wonder if it starts now? Hahaha~"
+
+    "....."
+
     mm "Mark! Are you awake?"
 
-    play sound "audio/doorknock.mp3" 
-    pause 1.0
+    $ play_sound (doorknock) 
+    pause 0.5
     with hpunch
     
     "....."
-    play sound "audio/doorknock.mp3"
-    pause 1.0
+    $ play_sound (doorknock)
+    pause 0.5
     with hpunch
 
-    "{i}Yawns...{/i}"
+    pause 3.0
+
+    $ play_sound(yawn)
+
+    m "Oh yes. It definitely starts with my mom's yelling in the morning."
 
     m "Yes mom... Please stop knocking on the door."
 
@@ -131,7 +189,14 @@ label breakfastWithMom:
         "Of course, all of it!":
             m "All of these dishes in one plate..."
             m "I hope my stomach won't hurt when I'm outside. Haha...."
+
+            show mom worried with dissolve
             mm "I hope so too! Ahahaha~"
+            hide mom worried with dissolve
+
+    $ play_sound(eat,fadein=0.5)
+    "{i}Munch munch munch....{\i}"
+    pause 8
             
     m "Thank you for the food, Mom!"
 
@@ -142,18 +207,20 @@ label breakfastWithMom:
     "...."
 
     hide mom happy with dissolve
-
+    $ law = ''
     menu:
         "I should first look at some news before leaving..."
 
         "Grab the newspaper.":
-            play sound "audio/newspaper.wav"
+            $ play_sound (paper)
             pause 0.5
+            $ law = 'paper'
             jump law
 
         "Open the TV.":
-            play sound "audio/tv.wav"
+            $ play_sound (tv)
             pause 0.5
+            $ law = 'tv'
             jump law
 
 
@@ -163,27 +230,63 @@ label law:
 
     $ yuiStoryProgress += 1
 
-    centered "\“On the 17th of April Year 2019, a new law called {color=#f00}{b}Republic Act No. 11313{/b}{/color} 
-    or also known as {color=#f00}{b}Safe Spaces Act{/b}{/color} has been approved by the President.\""
+    if law == 'paper':
 
-    centered "The Safe Spaces Act is an act defining gender-based sexual harassment 
-    in streets, public spaces, online, workplaces, and educational or training institutions."  
+        show image "images/paper1.png" with dissolve
+        pause 5.0
+        hide image "images/paper1.png" with dissolve
+        play sound "audio/sfx/newspaper.wav" 
+        show image "images/ssacover.jpg" with dissolve
+        pause 8.0
+        play sound "audio/sfx/newspaper.wav"
+        hide image "images/ssacover.jpg"
+        show image "images/cnnssa.jpg" with dissolve
+        pause 12.0
+        play sound "audio/sfx/newspaper.wav"
+    
+    else:
+        show image "images/tv.jpg" with pixellate
+        pause 3.0
+        hide image "images/tv.jpg" with dissolve
+        show image "images/ssacover.jpg" with dissolve
+        pause 10.0
+        show image "images/cnnssa.jpg" with dissolve
+        pause 12.0
+        hide image "images/cnnssa.jpg"
+        show image "images/duterte.jpg" with dissolve
+        pause 5.0 
+        hide image "images/duterte.jpg" 
+         
+    
+    # Show punishments
 
-    centered "This law stated that both men and women must have equality, 
-    security and safety not only in private, but also on the streets, public spaces, online, workplaces 
-    and educational and training institutions."
+    show image "images/punishment1.jpg" with dissolve
+    pause 30.0
+    show image "images/punishment2.jpg" with dissolve
+    pause 20.0
+
+
+
+
+    # centered "\“On the 17th of April Year 2019, a new law called {color=#f00}{b}Republic Act No. 11313{/b}{/color} 
+    # or also known as {color=#f00}{b}Safe Spaces Act{/b}{/color} has been approved by the President.\""
+
+    # centered "The Safe Spaces Act is an act defining gender-based sexual harassment 
+    # in streets, public spaces, online, workplaces, and educational or training institutions."  
+
+    # centered "This law stated that both men and women must have equality, 
+    # security and safety not only in private, but also on the streets, public spaces, online, workplaces 
+    # and educational and training institutions."
 
     scene kitchen with fade
 
-    "I should probably take some notes of this law..."
+    "This is a really great law. I should probably take some notes of this law..."
 
     show screen newNote with fade
 
     pause 1.5
 
     show natasha talk with dissolve
-
-    
 
     n "Hey its me again~"
 
@@ -195,9 +298,16 @@ label law:
 
     n "Bye now!"
 
+    stop music fadeout 0.5
+
+    
+
 label goingToSchool:
 
     scene outside with fade
+
+    $ play_music(poppy)
+
     "Well, that was a great law. Hopefully I can teach someone about it."
 
     "Hmmm. As expected, there will be a class introduction soon. How should I introduce myself?"
@@ -222,11 +332,14 @@ label goingToSchool:
 
     "{i}8:15 AM...{/i}"
 
+    $ play_sound(carleave,fadein=1.5)
+
     "Oh!!! I didn't notice the time at all."
 
     "Should I take a jeep or train today?"
     $ timeout = 8
     $ timeout_label = "meetWithKurt"
+    show screen displayHBBPoints 
     menu:
         # Story will diverge from this point. Will converge at some point.
         "Should I take a jeep or train today?"
@@ -242,12 +355,28 @@ label goingToSchool:
 
 
 label meetWithKurt:
+    stop music
+    pause 0.5
+    play sound "audio/music/Piano2.ogg"fadein 0.3
+    scene school gate 
+    show screen jeepTransition 
+    with fade
+    pause 3.0
+    hide screen jeepTransition with dissolve
+    $ play_music(relax, fadein=8)
     $ metYui = False
     scene bg jeep n with fade
+    $ play_sound(people,fadein=3.0,fadeout=1.5)
+    pause 5
     
     "Mark!"
 
     "Mark!!!"
+
+    "Dude!!"
+
+    $ play_sound(carleave,fadein=3.0)
+
 
     "Uhmm someone is calling me?"
 
@@ -255,6 +384,7 @@ label meetWithKurt:
 
     "???" "Dude! Are you deaf?"
 
+    $ play_sound(punch,fadein=0.5)
     "Bam!!" with vpunch
 
     "Ouch that hurts..."
@@ -364,7 +494,8 @@ label meetWithKurt:
             "Correct!!"
             if firstTryWrong is False:
 
-                $ points += 3
+                $ hbbpoints += 3
+                $ play_sound(addPoints)
                 "You received {color=#40ff00}3 HBB Points.{/color}"
             jump kurtIntroSecond
 
@@ -399,27 +530,36 @@ label meetWithKurt:
         "Safe Spaces Act":
             "Great answer!"
             if firstTryWrong is False:
-                $ points += 3
+                $ hbbpoints += 3
+                $ play_sound(addPoints)
                 "You received {color=#40ff00}3 HBB Points.{/color}"
             jump kurtIntroThird
             
         "Safe Pace Act":
             "Wait this is wrong."
             $ firstTryWrong = True
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
             jump kurtSecondQuestion
         
         "Safe Guardian Act":
             "Not the right answer."
             $ firstTryWrong = True
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
             jump kurtSecondQuestion
        
         "Safe Insurrance Act":
             "Not the greatest answer."
-            $ firstTryWrong = True      
+            $ firstTryWrong = True
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"      
             jump kurtSecondQuestion
 
     label kurtSecondQuestionTimerOut:
         $ firstTryWrong = True
+        $ subtractPoints()
+        "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
         m "Safe Spaces Act"
 
     label kurtIntroThird:
@@ -441,7 +581,9 @@ label meetWithKurt:
     menu kurtThirdQuestion:
         "Wait, what does the Safe Spaces Act mean again?"
 
-        "To protect Earth from aliens.":        
+        "To protect Earth from aliens.":
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"        
 
             m "To protect Earth from aliens."
 
@@ -462,13 +604,14 @@ label meetWithKurt:
         # Implement some kind of notes system
         "To protect men and women from gender-based sexual harassment.":
             "Nice job! Correct answer."
-            $ points += 3
+            $ hbbpoints += 3
+            $ play_sound(addPoints)
             "You received {color=#40ff00}3 HBB Points.{/color}"
             
             label kurtInfo:
                 $ yuiStoryProgress += 1
 
-                show kurtney smile with dissolve
+                hide kurtney angry talk with dissolve
 
                 m "To protect men and women from gender-based sexual harassment."
 
@@ -522,6 +665,8 @@ label meetWithKurt:
                 
 
         "To protect public and online spaces from danger.":
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
 
             m "To protect public and online spaces from danger."
 
@@ -537,11 +682,24 @@ label meetWithKurt:
 
         ########################################
 
-    scene walk with fade
+    stop music
+    pause 0.5
+    play sound "audio/music/Piano5.ogg"fadein 0.3
+    scene walk
+    show screen stalkerTransition 
+    with fade
+    pause 3.0
+    hide screen stalkerTransition with dissolve
+    $ play_music(Lurking, fadein=8)
+    
+
+    $ play_sound(walking,fadein=0.3,fadeout=5.0)
+    scene black with fade
 
     "A peaceful morning for a first day of school."
 
     "Or so I thought..."
+    scene walk with fade
 
     show kurtney happy teeth with dissolve
 
@@ -567,6 +725,14 @@ label meetWithKurt:
 
     m "Back?"
 
+    hide kurtney talk opened
+
+    show hood1 with fade
+
+    pause 3.0
+
+    hide hood1 with fade
+
     m "What the hell? Is that the stalker guy from what you've said earlier?"
 
     show kurtney smile with dissolve
@@ -589,6 +755,9 @@ label meetWithKurt:
         "What should I do?"
 
         "Run straight to the school gate.":
+            pause 0.5
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
             m "[kk]..."
 
             show kurtney talk opened with dissolve
@@ -607,9 +776,15 @@ label meetWithKurt:
 
             kk "O-o-okayyy...."
 
-            scene school gate with fade
+            scene black with fade
+
+            $ play_sound(running)
 
             "With all my might and strength reserved for this day, I grabbed [kk]'s hand and ran like a mad dog."
+
+            "What a crazy person!"
+
+            scene school gate with fade
 
             "Looking at my back, the guy is nowhere to be seen."
 
@@ -626,8 +801,13 @@ label meetWithKurt:
 
             
         "Pick a fight with the stalker.":
+            pause 0.5
+            $ subtractPoints()
+            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
 
             m "Hey, what do you want?"
+
+            show hood1 with fade
 
             "???" "Hmmm.. Are you her boyfriend?"
 
@@ -635,9 +815,15 @@ label meetWithKurt:
 
             "???" "Then take this."
 
+            $ play_sound(punch)
+
             "BAM!" with vpunch
 
+            $ play_sound(punch)
+
             "AAHHH!" with hpunch
+
+            $ play_sound(punch)
 
             "PAAAK!" with vpunch
 
@@ -670,26 +856,36 @@ label meetWithKurt:
             "Achievement Unlocked: Punched in the Face"
 
         "Confront the stalker and tell him that you'll report him to the police.":
-                $ points += 3
+                pause 0.5
+                $ hbbpoints += 3
+                $ play_sound(addPoints)
                 "You received {color=#40ff00}3 HBB Points.{/color}"
 
                 scene walk with fade 
 
                 m "Excuse me. Stop whatever you're doing. You're disrupting our lives."
 
+                show hood1 with dissolve
+
                 "???" "Who the hell are you?"
 
                 m "I am her friend. I will report you to the police this instant!"
 
-                "???" "Calm down. I'll leave now. Enjoy your day."
+                "???" "Calm down buddy. No reason to be angry. I'll leave now. Enjoy your day."
+
+                hide hood1 
 
                 scene walk with fade
 
                 "After a few minutes, the stalker was out of sight."
 
+                stop music
+
                 m "Sighhhh. Hopefully this doesn't happen to you again."
 
                 show kurtney worry with dissolve
+
+                $ play_music(evans,fadein=1.5)
 
                 kk "I hope so. You'll be there to protect me right?"
 
@@ -703,8 +899,13 @@ label meetWithKurt:
 
     
 label kurtneyOfficerScene:
+    scene black with fade
 
-    show officer with fade  
+    pause 1.0 
+
+    scene walk with fade
+
+    show officer with dissolve  
 
     "???" "Excuse me!"
 
@@ -714,13 +915,13 @@ label kurtneyOfficerScene:
 
     "The police officer was running towards us with a confused look on his face."
 
-    "Officer" "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
+    o "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
 
     m "Uhmmmm my friend here was getting stalked by someone..."
 
-    "Officer" "A stalker huh?"
+    o "A stalker huh?"
 
-    "Officer" "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
+    o "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
 
     m "Yes sir, I've read a bit about that law."
 
@@ -736,7 +937,7 @@ label kurtneyOfficerScene:
     show officer
     with dissolve
 
-    "Officer" "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
+    o "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
 
     $ yuiStoryProgress += 1
 
@@ -744,11 +945,13 @@ label kurtneyOfficerScene:
 
     menu :
         
-        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+        o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         "Yes, please tell me about the punishments.":
             hide officer with dissolve
-            $ points += 3
+            pause 0.5
+            $ play_sound(addPoints)
+            $ hbbpoints += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
             
             show kurtney happy teeth with dissolve
@@ -760,59 +963,69 @@ label kurtneyOfficerScene:
             hide kurtney happy teeth
             show officer
             with dissolve
-            "Officer" "Sure thing. Lemme just take out my handbook."
+            o "Sure thing. Lemme just take out my handbook."
 
             pause 2.0
 
-            "Officer" "Uhhh it says here..."
+            o "Uhhh it says here..."
 
-            "Officer" "On Section 12 of the Safe Spaces Act, 
-            it states the {color=#ff3d3d}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
+            o "On Section 12 of the Safe Spaces Act, 
+            it states the Specific Acts and Penalties for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
-            "Officer" "This is quite long so listen carefully okay?"
+            o "This is quite long so listen carefully okay?"
+
+            with fade
+
+            
+            o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
+            
+            o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
+            
+            o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
+            
+            o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+
+            o "The penalties will be...!"
+            
+            o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+
+            o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+
+            o "The next on the list!"
 
             with fade
 
+            o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
             
-            s "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs, persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination, the use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs, the persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+            o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
 
-            nvl clear
-            
-            s "{color=#ff3d3d}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+            o "The penalties you will face is...!"
+             
+            o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+            o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
 
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+            o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
 
-            nvl clear
-
-            s "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
-
-            nvl clear 
-
-            s "{color=#ff3d3d}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
-
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
-
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
-
-            nvl clear
-
-            s "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person; or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
-
-            nvl clear
-
-            s "{color=#ff3d3d}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
-
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
-            
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
-
-            nvl hide
-
-            hide officer
+            o "Moving on!"
 
             with fade
+
+            o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
+
+            o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+
+            o "You will face the penalties of...!"
+
+            o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
+
+            o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
+            
+            o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
+
+            hide officer with fade
 
             m "......"
 
@@ -820,29 +1033,57 @@ label kurtneyOfficerScene:
 
             show kurtney talk opened with dissolve
 
-            y "Wait, that's a really good law, Officer!"
+            kk "Wait, that's a really good law, Officer!"
             
             hide kurtney talk closed
 
         "No, I don't really care.":
-            $ points -= 3
+            pause 0.5
+            $ subtractPoints()
+            "Your points have been deducted by 1 HBB Point."
+            
 
     show screen newNote with fade
     pause 2.0
-
-    
+    stop music
 
     jump schoolCeremony
 
 
 label meetWithYui:
-    scene bg train with fade
+    stop music
+    pause 1.5
+    play sound "audio/music/Transition1.ogg" fadein 1.0
+    scene bg train 
+    show screen trainTransition 
+    with fade
+    pause 3.0
+    hide screen trainTransition
 
+    scene train landscape with fade
+
+    $play_sound(trainambience,fadein=0.1)
+
+    pause 5.0
+
+    "Aaaaaaah~ The landscape is so nice."
+
+    "I wish every morning was something like this..."
+
+    "But that's a pointless wish."
+    
+    scene trainpeople with fade
+    pause 2.0
+    
     "Eh, it is surprisingly quiet today..."
 
     "Even though its the first day of class?"
 
     "Well, I shouldn't be complaining about this."
+
+    stop sound fadeout 5.0
+    
+    $ play_music(evans,fadein=1.0)
 
     "I kinda like this atmosphere."
 
@@ -850,11 +1091,21 @@ label meetWithYui:
 
     "...."
 
+    $ play_sound(operator, fadein=3.0,fadeout=0.5)
+
+    scene bg train with fade
+
+    pause 2.0
+
     "Operator" "Arriving at station. Please check your belongings before getting out. Thank you."
 
-    scene bg train morning with fade
+    pause 3.0
 
-    "{i}Footsteps of people{/i}"
+    scene bg train test with fade
+
+    $ play_sound(people,fadein=3.0,fadeout=1.0)
+
+    "{i}Crowd noises...{/i}"
 
     "Moving closer towards the exit... I hear some conversation."
 
@@ -870,7 +1121,11 @@ label meetWithYui:
 
     show yui worry with dissolve
 
-    "Girl" "Plea-please l-l-leave me alo-lone..." 
+    "Girl" "Plea-please l-l-leave me alo-lone..."
+
+    pause 2.0
+
+    hide yui worry with dissolve 
 
     "???" "Hahaha!! She's scared like a child."
 
@@ -891,6 +1146,8 @@ label meetWithYui:
 
 
         "I'll pick a fight with them." if deathFlag is False:
+            pause 0.5
+
             $ deathFlag = True
 
             m "Hey you bastards! Stop sexually harrassing that girl."
@@ -901,13 +1158,19 @@ label meetWithYui:
 
             "???" "Take this you pesky little boy."
 
-            show yui worry with dissolve
+            $ play_sound(punch)
 
             "BAM!" with vpunch
 
+            $ play_sound(punch)
+
             "AAHHH!" with hpunch
 
+            $ play_sound(punch)
+
             "PAAAK!" with vpunch
+
+            with fade
 
             m "AAAAAAH!!!"
 
@@ -919,7 +1182,8 @@ label meetWithYui:
 
         "I'll go and inform the train security.":
             "Good choice!"
-            $ points += 3
+            $ play_sound(addPoints)
+            $ hbbpoints += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
             hide yui worry closed
             m "Officer! Officer!!"
@@ -928,12 +1192,25 @@ label meetWithYui:
 
             show officer with dissolve
 
-            "Officer" "I see. Bring me to them."
+            o "I see. Bring me to them."
 
             label withOfficer:
+
+                hide officer with dissolve
+
+                with fade
+
                 m "Officer! Here!"
 
                 m "These old men are catcalling and making unwanted invitations to this girl."
+
+                show officer with dissolve
+
+                o "HEY YOU BASTARDS!"
+
+                o "Face the consequences of your crimes!"
+
+                with hpunch
 
                 "???" "What the hell. Run guys!!"
 
@@ -941,10 +1218,14 @@ label meetWithYui:
 
                 "???" "Dammnit!"
 
+                with vpunch
+
             #show Yui
 
             hide officer
-            show yui wow with fade
+            scene bg train morning
+            show yui wow 
+            with fade
             "Girl" "Uwaaaaah! Thank y-y-you sooo much!!"
 
             m "Ohhh... I didn't really do anything..."
@@ -1033,12 +1314,20 @@ label meetWithYui:
                     m "Re-semiprivate Act No. 11313"
 
                     "Wrong answer!"
+
+                    if hbbpoints >= 1:
+                        $ subtractPoints()
+                        "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
                 "Reprivate Act No. 11313":
                     m "Reprivate Act No. 11313"
                     "Not this... Think again..."
+                    if hbbpoints >= 1:
+                        $ subtractPoints()
+                        "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
@@ -1048,14 +1337,19 @@ label meetWithYui:
 
                     if yuiFirstAnswer:
 
-                        $ points += 3
+                        $ hbbpoints += 3
+                        $ play_sound(addPoints)
                         "You received {color=#40ff00}3 HBB Points.{/color}"
+                        
                     jump yuiIntroSecond
                     
 
                 "Rebuild Act No. 11313":
                     m "Rebuild Act No. 11313"
                     "Not the right answer."
+                    if hbbpoints >= 1:
+                        $ subtractPoints()
+                        "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
                     $ yuiFirstAnswer = False
                     jump yuiFirstQuestion
 
@@ -1085,7 +1379,8 @@ label meetWithYui:
 
                     if yuiSecondAnswer:
 
-                        $ points += 3
+                        $ hbbpoints += 3
+                        $ play_sound(addPoints)
                         "You received {color=#40ff00}3 HBB Points.{/color}"
                     jump yuiThirdIntro
                     
@@ -1093,21 +1388,34 @@ label meetWithYui:
                     m "Safe Pace Act"
                     "Wait this is wrong."
                     $ yuiSecondAnswer = False
+                    $ subtractPoints()
+                    "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                    
+
                     jump yuiSecondQuestion
                 
                 "Safe Guardian Act":
                     m "Safe Guardian Act"
                     "Not the right answer."
                     $ yuiSecondAnswer = False
+                    $ subtractPoints()
+                    "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                    
                     jump yuiSecondQuestion
             
                 "Safe Insurrance Act":
                     m "Safe Guardian Act"
                     "Not the greatest answer."
-                    $ yuiSecondAnswer = False      
+                    $ yuiSecondAnswer = False
+                    $ subtractPoints()
+                    "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                         
                     jump yuiSecondQuestion
 
             label yuiSecondQuestionTimerOut:
+                $ subtractPoints()
+                "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                
                 m "Safe Spaces Act"
             
             label yuiThirdIntro:
@@ -1130,6 +1438,10 @@ label meetWithYui:
                 "Wait, what does the Safe Spaces Act mean again?"
 
                 "To protect Earth from aliens.":
+                    pause 0.5
+                    $ subtractPoints()
+                    "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                    
                     show yui smile close with dissolve
 
                     y "Wait that's really funny~"
@@ -1147,7 +1459,8 @@ label meetWithYui:
                 "To protect men and women from gender-based sexual harassment.":
                     "Nice job! Correct answer."
                     if yuiThirdAnswer:
-                        $ points += 3
+                        $ play_sound(addPoints)
+                        $ hbbpoints += 3
                         "You received {color=#40ff00}3 HBB Points.{/color}"
                     
                     show yui neutral with dissolve
@@ -1198,6 +1511,10 @@ label meetWithYui:
 
 
                 "To protect public and online spaces from danger.":
+                    pause 0.5
+                    $ subtractPoints()
+                    "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                    
                     y "What danger? Please explain it clearly."
 
                     m "Uhhhh.. wait let me remember..."
@@ -1211,11 +1528,16 @@ label meetWithYui:
                     
 
         "I'll pretend that I didn't hear the conversation.":
+            pause 0.5
+            $ play_sound(subPoints)
+            "Your have lost all your points!"
+            $ hbbpoints -= hbbpoints
             jump notSaveYui
             
 
             
     label notSaveYui:
+        $ badEndingGame = True
         "I'll pretend that I didn't hear the conversation."
 
         "I should just ignore them..."
@@ -1230,23 +1552,23 @@ label meetWithYui:
     label yuiConflictResolved:
         hide yui smile opened
         show officer with fade       
-        "Officer" "Hey kids. You better get going now. I'll clean this mess up."
+        o "Hey kids. You better get going now. I'll clean this mess up."
 
-        "Officer" "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
+        o "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
 
-        "Officer" "Those guys broke the law by (1) Catcalling and making unwanted invitations."
+        o "Those guys broke the law by (1) Catcalling and making unwanted invitations."
 
-        "Officer" "(2) Making statements of sexual comments and suggestions."
+        o "(2) Making statements of sexual comments and suggestions."
 
-        "Officer" "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
+        o "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
 
-        "Officer" "This may include cursing, leering and intrusive gazing, and taunting."
+        o "This may include cursing, leering and intrusive gazing, and taunting."
 
         m "WOW! That's a really great law."
 
-        "Officer" "I know kid."
+        o "I know kid."
 
-        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+        o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         $ yuiStoryProgress += 1
 
@@ -1257,11 +1579,13 @@ label meetWithYui:
 
     menu punishments:
         
-        "Officer" "Do you want to learn more about the punishments of Safe Spaces Act?"
+        o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         "Yes, please tell me about the punishments.":
             hide officer with dissolve
-            $ points += 3
+            pause 0.5
+            $ hbbpoints += 3
+            $ play_sound(addPoints)
             "You received {color=#40ff00}3 HBB Points.{/color}"
             
             show yui smile close with dissolve
@@ -1273,58 +1597,68 @@ label meetWithYui:
             hide yui smile close
             show officer
             with dissolve
-            "Officer" "Sure thing. Lemme just take out my handbook."
+            o "Sure thing. Lemme just take out my handbook."
 
             pause 2.0
 
-            "Officer" "Uhhh it says here..."
+            o "Uhhh it says here..."
 
-            "Officer" "On Section 12 of the Safe Spaces Act, 
-            it states the {color=#ff3d3d}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
+            o "On Section 12 of the Safe Spaces Act, 
+            it states the {color=#30ff45}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
-            "Officer" "This is quite long so listen carefully okay?"
-
-            with fade
-            
-            s "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs, persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination, the use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs, the persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
-
-            nvl clear
-            
-            s "{color=#ff3d3d}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
-
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
-
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
-
-            nvl clear
-
-            s "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
-
-            nvl clear 
-
-            s "{color=#ff3d3d}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
-
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
-
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
-
-            nvl clear
-
-            s "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person; or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
-
-            nvl clear
-
-            s "{color=#ff3d3d}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
-
-            s "{color=#ff3d3d}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
-            
-            s "{color=#ff3d3d}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
-
-            nvl hide
-
-            hide officer
+            o "This is quite long so listen carefully okay?"
 
             with fade
+
+            o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
+            
+            o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
+            
+            o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
+            
+            o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+
+            o "The penalties will be...!"
+            
+            o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+
+            o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+
+            o "The next on the list!"
+
+            with fade
+
+            o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
+            
+            o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
+
+            o "The penalties you will face is...!"
+             
+            o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+
+            o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
+
+            o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
+
+            o "Moving on!"
+
+            with fade
+
+            o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
+
+            o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+
+            o "You will face the penalties of...!"
+
+            o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
+
+            o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
+            
+            o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
+
+            hide officer with fade
 
             m "......"
 
@@ -1340,7 +1674,7 @@ label meetWithYui:
             
 
         "No, I don't really care.":
-            $ points -= 3
+            jump ignorePunishment
     
     label ignorePunishment:
 
@@ -1348,10 +1682,11 @@ label meetWithYui:
 
         show officer with dissolve
 
-        "Officer" "Ohhhh that's a shame."
-
-        $ points -= 3
-        "Your {color=#ff3d3d}HBB Points{/color} have been deducted by 3!"
+        o "Ohhhh that's a shame."
+        $ subtractPoints()
+        $ hbbpoints -= 3
+        "Your {color=#30ff45}HBB Points{/color} have been deducted by 3!"
+        
     
     label trainEndScene:
 
@@ -1361,11 +1696,11 @@ label meetWithYui:
 
         show officer
 
-        "Officer" "Now go on your way. I'll take care of them. In jail of course."
+        o "Now go on your way. I'll take care of them. In jail of course."
         
         m "Sir, can I ask for your name?"
 
-        "Officer" "Oh it's Greg. Find me whenever you are troubled."
+        o "Oh it's Greg. Find me whenever you are troubled."
 
         m "Thank you very much sir!"
 
@@ -1381,27 +1716,46 @@ label meetWithYui:
 
         show yui blush with dissolve
 
-        y "Uhhhm.. I hope I can see you aga-"
+        y "Uhhhm.. I hope I..." 
+        
+        y "I can see you aga--"
 
-        with fade
+        scene black with fade
+
+        $ play_sound(trainpass,fadein=3.0,fadeout=2.0)
+
+        pause 5.0
 
         #Train sound
+
+        scene bg train morning with fade
         "{i}A train passed by.{/i}"
 
         m "What?"
 
         show yui surprised blush with dissolve
 
-        y "No, nothing!!! Goodbye!"
+        y "No, you heard nothing!!! Goodbye!"
 
         scene black with fade
+
+        stop music fadeout 1.0
 
         jump schoolCeremony
 
 label schoolCeremony:
 
-    scene aerial with fade
-    "B Highschool. A prestigious school where only the best can enter."
+    scene aerial 
+    show screen schoolTransition
+    with fade
+    play sound "audio/music/Piano2.ogg"
+
+    pause 5.0
+    hide screen schoolTransition
+    with fade
+
+    $ play_music(quirky,fadein=0.2)
+    "Borneul Highschool. A prestigious school where only the best can enter."
 
     scene school building with fade
 
@@ -1411,17 +1765,23 @@ label schoolCeremony:
 
     scene audi1 with fade
 
-    "Student Council President" "To all the newcomer students, I welcome you!"
+    pause 1.0 
 
-    "Student Council President" "I hope that you can achieve your dreams in this school."
+    $ play_sound(speaker,fadein=0.5,fadeout=0.5)
+
+    "President" "To all the newcomer students, I welcome you!"
+
+    "President" "I hope that you can achieve your dreams in this school."
 
     scene audi2 with dissolve
 
-    "Student Council President" "To all those that are nearing graduation, I hope you achieved what you wanted here."
+    "President" "To all those that are nearing graduation, I hope you achieved what you wanted here."
 
     scene audi3 with dissolve
 
-    "Student Council President" "That is all for my speech. Thank you!"
+    $ play_sound(clap,fadein=2.0)
+
+    "President" "That is all for my speech. Thank you!"
 
     "{i}Students clapping{/i}"
 
@@ -1476,6 +1836,9 @@ label schoolCeremony:
 
         m "Yeah yeah whatever you say."
 
+
+    
+
     jump afterCeremony
 
 label afterCeremony:
@@ -1506,8 +1869,16 @@ label afterCeremony:
 
     #Flag to check if USER accepts lunch invite
     $ lunchWithYui = True
+    stop music fadeout 2.0
+    pause 1.0
+    scene hallway 
+    show screen lostTransition
+    play sound "audio/music/Transition2.ogg"
+    with fade
+    pause 3.0
+    hide screen lostTransition
 
-    scene hallway with fade
+    $ play_music(legends,fadein=2.0)
 
     if metYui is True:
 
@@ -1556,6 +1927,8 @@ label afterCeremony:
         m "You are currently in the Second Year's building."
 
         scene hallway with fade
+
+
 
         # This choice will determine who will eat lunch with MC
         $ timeout_label = "leaveYui"
@@ -1616,7 +1989,7 @@ label afterCeremony:
 
                         y "Ehehe.. sure! You can choose whatever you want."
 
-                        play sound "audio/bell.mp3" 
+                        $ play_sound(bell) 
 
                         "{i}♫ Kin kon kan kon ♫{/i}"
 
@@ -1750,19 +2123,25 @@ label afterCeremony:
 
 label lunch:
 
+    stop music fadeout 1.0
+
+    pause 1.0
+
+    $ play_music(relax, fadein=2.0)
+
     if lunchWithYui is True:
 
         scene black with fade
 
         pause 2.0
 
-        scene classroom lunch1 with fade
+        scene class1 with fade
 
         t "To get the answer of this equation..."
 
         t "You must first..."
 
-        play sound "audio/bell.mp3" 
+        $ play_sound(bell) 
 
         "{i}♫ Kin kon kan kon ♫{/i}"
 
@@ -1772,11 +2151,13 @@ label lunch:
 
         t "We will have a quiz after your lunch."
 
+        with vpunch
+
         "Everyone" "WHAT?!!"
 
         pause 1.0
 
-        scene classroom lunch1
+        scene class1
         show kurtney talk opened 
         with fade
 
@@ -1802,7 +2183,13 @@ label lunch:
 
         show yui smile close with dissolve
 
+        pause 2.0
+
+        $ play_sound(people,fadein=2.0,fadeout=0.5)
+
         y "Hey Mark! Here!"
+
+        
 
         m "Sorry [y]. Did you wait?"
 
@@ -1881,19 +2268,21 @@ label lunch:
                 show yui smile close with dissolve
 
                 y "Hahaha~ Okay I get it!"
+
+                "Achievement Unlocked: Big EATER!"
     
     else:
         scene black with fade
 
         pause 2.0
 
-        scene classroom lunch1 with fade
+        scene class1 with fade
 
         t "To get the answer of this equation..."
 
         t "You must first..."
 
-        play sound "audio/bell.mp3" 
+        $ play_sound(bell) 
 
         "{i}♫ Kin kon kan kon ♫{/i}"
 
@@ -1903,11 +2292,13 @@ label lunch:
 
         t "We will have a quiz after your lunch."
 
+        with hpunch
+
         "Everyone" "WHAT?!!"
 
         pause 1.0
 
-        scene classroom lunch1
+        scene class1
         show kurtney talk opened 
         with fade
 
@@ -1927,15 +2318,80 @@ label lunch:
 
         kk "What?"
 
-        m "Why am I eating with you."
+        m "Nothing."
 
         show kurtney happy teeth with dissolve
 
-        kk "Haha~ Just like I said. Go get a girlfriend."
+        kk "Okay I'll treat to something just for today!"
 
-        kk "And while you still don't have one, I'll eat with you so don't look like a loser!"
+        kk "And while you still don't have a girlfriend, I'll eat with you so don't look like a loser!"
 
-        m "Whatever, keep eating."
+        m "Whatever!!! Arghhhh..."
+
+        $ timeout_label = None
+
+        menu:
+            "What should I eat?"
+
+            "Tonkotsu(Pork) Ramen. {image=ramen.png}":
+                m "I want the Tonkotsu Ramen."
+
+                show kurtney talk opened with dissolve
+
+                kk "Eh, you like Japanese dishes?"
+
+                m "Yeah they taste good."
+
+                kk "I... I see."
+
+            "Quarter Pound Burger with Large Fries. {image=burger.jpg}":
+                m "I want the Quarter Pounder Burger."
+
+                show kurtney talk opened with dissolve
+
+                kk "Eh, you like American fast-food?"
+
+                m "Yeah they taste good."
+
+                kk "I... I see."
+
+            "12\" All Meat Pizza with Thin Crust. {image=pizza.jpg}":
+                m "I want the All Meat Pizza."
+
+                show kurtney talk opened with dissolve
+
+                kk "Eh, you like pizza huh?"
+
+                m "Yeah they taste good."
+
+                kk "I... I see."
+
+            "Apple Risotto. {image=risotto.jpg}":
+                m "I want the Risotto."
+
+                show kurtney talk opened with dissolve
+
+                kk "Eh, you like Italian food huh?"
+
+                m "Yeah they taste good."
+
+                kk "I... I see." 
+
+            "All of it. All in. Just do it.":
+                m "I want everything in today's menu."
+
+                show kurtney talk opened with dissolve
+                kk "Ehhh? There's no way you can finish all of it."
+
+                m "Of course you'll help me. HAHAHA~"
+
+                m "The moment you said \"I've got everything covered\", I already knew what to do."
+
+                show kurtney talk opened with dissolve
+
+                kk "Hahaha~ Okay I get it!"
+
+                "Achievement Unlocked: Big EATER!"
 
         "...."
         scene black with fade
@@ -1944,14 +2400,18 @@ label lunch:
     jump socialStudiesQuiz
 
 label socialStudiesQuiz:
-
-    scene classroom morning
+    stop music fadeout 1.0
+    scene class1
     show clarrise talk 
     with fade
 
+    $ play_music(everyone,fadein=3.0)
     t "Okay Class! Listen up!"
 
+    
+
     t "There will be a surprise quiz today."
+    
 
     show clarrise talk close with dissolve
 
@@ -1959,7 +2419,7 @@ label socialStudiesQuiz:
 
     t "The topic is about the Republic Act No. 11313 also known as \"Safe Spaces Act.\""
 
-    scene classroom morning with fade
+    scene class1 with fade
 
     # Implement notes
 
@@ -1989,10 +2449,24 @@ label socialStudiesQuiz:
 label quiz:
     $ quizPoints = 0
     $ quizNum = []
-    scene classroom morning 
+    scene class1
+    show natasha talk 
+    with fade
+    n "Hey its me again!"
+
+    n "Your goal in this quiz to score high points! At the end of the quiz, your correct points will be added to HBB Points!"
+
+    n "Don't worry! Getting wrong answers will not reduce your points!"
+
+    n "Goodluck!"
+    hide natasha talk with dissolve
+    pause 2.0
+
     show clarrise talk
     with fade
     hide screen showNotesButton
+    show screen displayScore
+    
     t "Okay Class! Ready or not, here I go!"
     show clarrise talk close with dissolve
     t "First Question!"
@@ -2008,6 +2482,9 @@ label quiz:
             ""
         "Republic Act No. 11313":
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
             m "Alright! That was an easy one."
         "Republic Act No. 11717":
             ""
@@ -2028,6 +2505,9 @@ label quiz:
         "Safe Spaces Act":
             m "Okay got that one in the bag!"
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "Sale Summer Act":
             ""
         "Super Smash Act":
@@ -2045,6 +2525,9 @@ label quiz:
         "True":
             m "That is a freebie."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label three:
@@ -2059,6 +2542,9 @@ label quiz:
         "True":
             m "Easy."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label four:
@@ -2073,6 +2559,9 @@ label quiz:
         "True":
             m "Okay doing good!"
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label five:
@@ -2093,6 +2582,9 @@ label quiz:
         "Record the evidence and report to the faculty/police.":
             m "Nice going!"
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
     label six:
     show clarrise talk with dissolve
     t "Seventh Question!"
@@ -2105,6 +2597,9 @@ label quiz:
         "True":
             m "That wasn't hard."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label seven:    
@@ -2119,6 +2614,9 @@ label quiz:
         "True":
             m "The easiest."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label eight:
@@ -2133,6 +2631,9 @@ label quiz:
         "True":
             m "Got it in the bag."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label nine:
@@ -2148,19 +2649,17 @@ label quiz:
         "True":
             m "Easy money."
             $ quizNum.append(1)
+            $ quizPoints += 1
+            pause 0.5
+            $ play_sound(addPoints)
         "False":
             ""
     label ten:
     
     # Check quiz score
-    python:
-        for i in quizNum: 
-            if quizNum[i] == 1:
-                quizPoints += 1
-
         
-    
-    scene classroom morning with fade
+
+    scene class1 with fade
 
     "Class" "WAAAAAAA!"
 
@@ -2174,9 +2673,27 @@ label quiz:
 
     m "Was it? I don't think so. Haha~"
 
+    python:
+        for i in quizNum: 
+            if quizNum[i] == 1:
+                hbbpoints += 1
+
     m "I got [quizPoints] points baby."
 
+    pause 0.5
+
+    $ play_sound(addPoints)
+
+    "[quizPoints] points have been added to your HBB Points!"
+
+
+
     "Mark with a smile on his face, knew he did well."
+
+    hide screen displayScore
+    show screen showNotesButton
+    stop music fadeout 2.0
+    pause 2.0
 
     # Show achievement if perfect
     # Show test result
@@ -2184,15 +2701,29 @@ label quiz:
 
 
 label pervTeacher:
+    
+    scene class2
+    show screen pervTransition
+    play sound "audio/music/Piano5.ogg"
+
+    pause 3.0
+
+    hide screen pervTransition
+
     scene black with fade
 
     centered "1 Week Later..."
     
-    scene classroom lunch1 with fade
+    scene class2 with fade
+
+    $ play_sound(people,fadein=2.0,fadeout=3.0)
 
     "Classroom noises...."
+    pause 2.0
 
     show kurtney talk opened with dissolve
+
+    $ play_music(doll,fadein=3.0)
 
     kk "Hey Mark, did you hear the news?"
 
@@ -2216,6 +2747,8 @@ label pervTeacher:
 
     m "Who?"
 
+    $ play_sound(walking,fadein=0.5)
+
     show kurtney angry talk with dissolve
 
     kk "They say he's a nasty person."
@@ -2226,7 +2759,19 @@ label pervTeacher:
 
     "Noise of footsteps towards the door."
 
+    $ play_sound(doorcreak)
+
+    pause 2.0
+
+    $ play_sound(pervlaugh,fadein=1.0)
+
+    pause 1.0
+
     "???" "Hwehehehe... How you doin' everyone?"
+
+    stop sound fadeout 0.5
+
+    with hpunch
 
     "Everyone in the classroom gasped."
 
@@ -2283,7 +2828,7 @@ label talkOnHarass:
     centered "A few days later..."
 
     if lunchWithYui is True:
-        scene schoolground
+        scene school building with fade
         
         "What a nice landscape."
 
@@ -2371,8 +2916,15 @@ label talkOnHarass:
 
             "Help her.":
                 $ helpedYui = True
+                pause 0.5
 
-                m "Okay [y] I will help you."
+                $ hbbpoints += 5
+                $ play_sound(addPoints)
+                "You received {color=#40ff00}5 HBB Points.{/color}"
+
+
+
+                m "Okay [y]! I will help you."
 
                 y "Thank you so much!"
 
@@ -2390,13 +2942,17 @@ label talkOnHarass:
 
             m "I'm afraid I cannot help. I might get in trouble."
 
-            y "Is that so? That's a real shame..."
+            if not kurtneyHelp:
+                kk "Is that so? That's a real shame..."
+
+            else:
+                y "Is that so? That's a real shame..."
 
             jump badEndStory
 
     else:
-        scene schoolground
-        show kurt talk opened
+        scene class2
+        show kurtney talk opened
         with fade
 
         kk "Dude... I have something to talk about."
@@ -2455,35 +3011,76 @@ label talkOnHarass:
 
         kk "You wanted to be an Attorney right? Help me use this \"Safe Spaces Act\" to arrest that nasty piece of ****."
 
-
+        $ timeout_label = "ignorePerv"
         menu:
             "Should I help her?"
 
             "Help her.":
+                pause 0.5
+
+                $ hbbpoints += 5
+                $ play_sound(addPoints)
+                "You received {color=#40ff00}5 HBB Points.{/color}"
+
+
+
+                m "Okay [kk]! I will help you."
+
+                kk "Thank you so much!"
+
                 jump arrestButch
 
             "Don't help her.":
+                $ kurtneyHelp = False
                 jump ignorePerv
 
 label arrestButch:
+    stop music fadeout 0.5
+    scene school gate with fade
+    play sound "audio/music/Transition2.ogg"
+    show screen arrestTransition
+    pause 3.0
+    hide screen arrestTransition
 
     scene black
     centered "A few days later..."
 
+     
+
+    $ play_music(fight,fadein=0.9)
+
     if helpedYui is True:
-        scene classroom
-        show teacher smile
+        scene class2
+        show teacher smile1
         with fade
 
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
+        $ play_sound(pervlaugh,fadein=1.0)
+
+        b "Hwehehehehewehweh"
+
         "Everyone" "What?!!"
 
-        show kurt neutral
+        with hpunch
 
-        m "Something good will happen today."
+        pause 2.0
+
+        hide teacher smile1 with dissolve
+
+        pause 2.0
+
+        with fade
+
+        $ play_sound(siren,fadein=1.0)
+
+        m "Hey [kk]! Something good will happen today."
+
+        show kurtney talk opened with dissolve
 
         kk "What? There's nothing good happening when there's a surprise quiz."
+
+        kk "Police sirens?! Whaaaat?"
 
         m "Just wait and see dude. Haha~"
 
@@ -2497,37 +3094,75 @@ label arrestButch:
 
         scene hallway
 
+        $ play_sound(walking,fadein=0.5)
+
         "Footsteps can be heard in the hallway."
 
-        scene classroom
+        pause 3.0
+
+        scene class2
+
+        $ play_sound(doorknock)
 
         "???" "Excuse me. Please open the door."
 
-        show teacher closed with dissolve
+        $ play_sound(radio,fadein=0.5)
+
+        show teacher closed1 with dissolve
 
         b "Who the hell is disturbing my class!!!"
 
         hide teacher closed
 
+        $ play_sound(doorknock)
+
         "Continuous knocking on the door."
+
+        $ play_sound(doorcreak)
 
         "Creeeeek. The door opens."
 
+        show officer with fade
+
         "Uniformed personnels came in. They appear to be police."
 
-        show teacher closed with dissolve
+        m "Officer Greg!!!"
+
+        hide officer with dissolve
+
+        show teacher closed1 with dissolve
 
         b "Why is there police here?!!"
 
+        hide teacher closed1 with dissolve
+
+        $ play_sound(people,fadein=4.0)
+
         "Everyone" "What's happening? Why are they here? Did someone kill?"
+
+        show police with fade
 
         "Policeman Carl" "Everyone please calm down."
 
         "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
 
+        $ play_sound(radio)
+
         "The policeman looks at Butch."
 
+        hide police 
+
+        show teacher closed1 
+
+        with dissolve
+
         b "What the hell are you looking at? I don't know anything about that."
+
+        hide teacher closed1 
+
+        show police
+
+        with dissolve
 
         "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
 
@@ -2535,41 +3170,65 @@ label arrestButch:
 
         "Policeman Carl" "You will be coming with us. Do not resist."
 
+        hide police with fade
+
+        $ play_sound(people,fadein=4.0)
+
         "Everyone" "*gasps*"
 
-        "Officer Greg" "Hey future Attorney! It looks like it went fine."
+        show officer with fade
+
+        o "Hey future Attorney! It looks like it went fine."
 
         m "Waaah! Officer Greg you actually came."
 
-        "Officer Greg" "It's because of you, we caught this disgusting molester. Thank you."
+        o "It's because of you, we caught this disgusting molester. Thank you."
 
-        m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
+        m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
 
-        "Officer Greg" "Hahaha! I like that attitude. Keep doing good things young man."
+        o "Hahaha! I like that attitude. Keep doing good things young man."
 
         m "Yes Sir!"
 
     # Kurt scene
     else:
-        scene classroom
-        show teacher smile
+        scene class2
+        show teacher smile1
         with fade
 
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
+        $ play_sound(pervlaugh,fadein=1.0)
+
+        b "Hwehehehehewehweh"
+
         "Everyone" "What?!!"
 
-        show kurt neutral
+        with hpunch
 
-        m "Something good will happen today."
+        pause 2.0
 
-        kk "Is it finally happening?"
+        hide teacher smile1 with dissolve
 
-        m "Yeah I was informed it would be today."
+        pause 2.0
 
-        kk "That's great. Now we just have to sit and watch. Great job Attorney Mark."
+        with fade
 
-        m "Hahahaha~"
+        $ play_sound(siren,fadein=1.0)
+
+        m "Hey [kk]! Something good will happen today."
+
+        show kurtney talk opened with dissolve
+
+        kk "What? There's nothing good happening when there's a surprise quiz."
+
+        kk "Police sirens?! Whaaaat?"
+
+        m "Just wait and see dude. Haha~"
+
+        kk "Whatever Attorney Mark."
+
+        m "Shut up."
 
         scene black
 
@@ -2577,37 +3236,75 @@ label arrestButch:
 
         scene hallway
 
+        $ play_sound(walking,fadein=0.5)
+
         "Footsteps can be heard in the hallway."
 
-        scene classroom
+        pause 3.0
+
+        scene class2
+
+        $ play_sound(doorknock)
 
         "???" "Excuse me. Please open the door."
 
-        show teacher closed with dissolve
+        $ play_sound(radio,fadein=0.5)
+
+        show teacher closed1 with dissolve
 
         b "Who the hell is disturbing my class!!!"
 
         hide teacher closed
 
+        $ play_sound(doorknock)
+
         "Continuous knocking on the door."
+
+        $ play_sound(doorcreak)
 
         "Creeeeek. The door opens."
 
+        show officer with fade
+
         "Uniformed personnels came in. They appear to be police."
 
-        show teacher closed with dissolve
+        m "Officer Greg!!!"
+
+        hide officer with dissolve
+
+        show teacher closed1 with dissolve
 
         b "Why is there police here?!!"
 
+        hide teacher closed1 with dissolve
+
+        $ play_sound(people,fadein=4.0)
+
         "Everyone" "What's happening? Why are they here? Did someone kill?"
+
+        show police with fade
 
         "Policeman Carl" "Everyone please calm down."
 
         "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
 
+        $ play_sound(radio)
+
         "The policeman looks at Butch."
 
+        hide police 
+
+        show teacher closed1 
+
+        with dissolve
+
         b "What the hell are you looking at? I don't know anything about that."
+
+        hide teacher closed1 
+
+        show police
+
+        with dissolve
 
         "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
 
@@ -2615,33 +3312,85 @@ label arrestButch:
 
         "Policeman Carl" "You will be coming with us. Do not resist."
 
+        hide police with fade
+
+        $ play_sound(people,fadein=4.0)
+
         "Everyone" "*gasps*"
 
-        "Sound of handcuffs being placed on the hands."
+        show officer with fade
 
-        "Officer Greg" "Hey future Attorney! It looks like it went fine."
+        o "Hey future Attorney! It looks like it went fine."
 
         m "Waaah! Officer Greg you actually came."
 
-        "Officer Greg" "It's because of you, we caught this disgusting molester. Thank you."
+        o "It's because of you, we caught this disgusting molester. Thank you."
 
         m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
 
-        "Officer Greg" "Hahaha! I like that attitude. Keep doing good things young man."
+        o "Hahaha! I like that attitude. Keep doing good things young man."
 
         m "Yes Sir!"
+        hide officer
+        show kurtney talk opened 
+        with dissolve
 
         kk "Hey! Don't forget about me!!"
 
-        "Officer Greg" "Oh yes, the Attorney's friend. You will also receive compensation."
+        show officer 
+        hide kurtney talk opened
+        with fade
+
+        o "Oh yes, the Attorney's friend. You will also receive compensation."
+
+        hide officer
+        show kurtney angry talk with dissolve
 
         kk "Nevermind compensation, why is my name \"Attorney's friend\"?!!!"
 
+        hide officer
+
+        with dissolve
+
+        $ play_sound(crowdlaugh,fadein=1.5)
+
         "Everyone" "HAHAHAHA!!!"
 
-        $ friendEnding = True
+        # $ friendEnding = True
     
-    jump yuiEnd
+    jump goodEndStory
+
+label goodEndStory:
+
+    $ goodEnding = True
+
+    scene black
+
+    pause 3.0
+
+    centered "[b] was thrown into court later on to be imprisoned."
+
+    centered "Mark was awarded a badge of honor of the school."
+
+    centered "But that's not all!"
+
+    centered "Mark became famous in school and many girls talked to him."
+
+    centered "As in the words of Mark...."
+
+    centered "\"Justice will always prevail!\" ....Thus! You shall receive girls!"
+
+    centered "--Greatest Attorney That Ever Lived."
+
+    centered "GOOD END"
+
+    stop music fadeout 3.0
+
+    pause 3.0
+
+    jump yui_end
+
+
 
 
 label badEndStory:
@@ -2653,5 +3402,7 @@ label badEndStory:
     centered "When the police caught on to the news, [b] went on to hiding. Never getting caught for his crimes."
 
     centered "BAD END"
+
+    jump yui_end
 
 return

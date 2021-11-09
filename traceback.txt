@@ -1,32 +1,60 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 38, in script
-    show text "\“On April 17,2019 a law called Republic Act 11313 or also known as Safe Space Act has
-SyntaxError: EOL while scanning string literal (<none>, line 1)
+After initialization, but before game start.
+  File "game/screens.rpy", line 32, in prepare_screen
+    screen showNotesButton():
+  File "game/screens.rpy", line 32, in prepare
+    screen showNotesButton():
+  File "game/screens.rpy", line 34, in prepare
+    frame:
+  File "game/screens.rpy", line 34, in prepare
+    frame:
+  File "game/screens.rpy", line 37, in prepare
+    imagebutton:
+  File "game/screens.rpy", line 37, in prepare
+    imagebutton:
+  File "game/screens.rpy", line 44, in prepare
+    if notebookOpen:
+  File "game/screens.rpy", line 47, in prepare
+    else:
+SyntaxError: invalid syntax (screens.rpy, line 48)
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 38, in script
-    show text "\“On April 17,2019 a law called Republic Act 11313 or also known as Safe Space Act has
-  File "renpy/ast.py", line 1192, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "renpy/ast.py", line 1162, in show_imspec
-    atl=atl)
-  File "renpy/exports.py", line 744, in show
-    if not base.find_target() and renpy.config.missing_show:
-  File "renpy/display/image.py", line 409, in find_target
-    self.target = target._duplicate(a)
-  File "renpy/text/extras.py", line 250, in _duplicate
-    string = renpy.python.py_eval(param)
-  File "renpy/python.py", line 2264, in py_eval
-    code = py_compile(code, 'eval')
+  File "renpy/bootstrap.py", line 326, in bootstrap
+    renpy.main.main()
+  File "renpy/main.py", line 617, in main
+    run(restart)
+  File "renpy/main.py", line 97, in run
+    renpy.display.screen.prepare_screens()
+  File "renpy/display/screen.py", line 939, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/screens.rpy", line 32, in prepare_screen
+    screen showNotesButton():
+  File "game/screens.rpy", line 32, in prepare
+    screen showNotesButton():
+  File "game/screens.rpy", line 34, in prepare
+    frame:
+  File "game/screens.rpy", line 34, in prepare
+    frame:
+  File "game/screens.rpy", line 37, in prepare
+    imagebutton:
+  File "game/screens.rpy", line 37, in prepare
+    imagebutton:
+  File "game/screens.rpy", line 44, in prepare
+    if notebookOpen:
+  File "game/screens.rpy", line 47, in prepare
+    else:
+  File "renpy/pyanalysis.py", line 712, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+  File "renpy/pyanalysis.py", line 696, in ast_eval_literal
+    expr = py_compile(expr, 'eval', ast_node=True)
   File "renpy/python.py", line 835, in py_compile
     raise e
-SyntaxError: EOL while scanning string literal (<none>, line 1)
+SyntaxError: invalid syntax (screens.rpy, line 48)
 
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
 Hoy Bawal Bastos 1.0
-Sun Oct  3 14:58:49 2021
+Fri Nov  5 16:54:14 2021

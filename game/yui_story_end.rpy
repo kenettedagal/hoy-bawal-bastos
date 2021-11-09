@@ -2,24 +2,27 @@
 
 label yui_end:
 
-    scene endScreen
+    scene bg beautiful park 
     show natasha talk
     with fade
     
+    $ play_music (tutorial)
     # if perfect points + Yui route
 
-    n "Congratulations! You unlocked the secret ending route!"
+    # n "Congratulations! You unlocked the secret ending route!"
 
-    n "Congratulations! You achieved the good ending route!"
+    # n "Congratulations! You achieved the good ending route!"
  
-    # if not perfect points
+    # # if not perfect points
 
-    n "Based on my calculations, you have not achieved the amount of points to unlock it."
+    # n "Based on my calculations, you have not achieved the amount of points to unlock it."
 
-    n "Do you wanna try again or proceed to next story?"
+    # n "Do you wanna try again or proceed to next story?"
 
     if badEndingGame:
-        n "Hellooooooo! [player]"
+
+    
+        n "Hellooooooo!"
 
         n "I'm really sad to say that you reached the \"Bad End\" route."
 
@@ -37,30 +40,63 @@ label yui_end:
 
                 n "You have to take the train, save the girl and help her."
 
-                n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck [player]!"
+                n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck!"
+
+                jump yui_start_case_1
 
             "Proceed to next story.":
                 n "It's fine. You can try this story again once you feel like doing it."
 
-    elif friendEnding:
+    elif goodEnding:
         n "Congratulations! You achieved the good ending route!"
 
-        n "There is still a secret ending route which you can unlock. Do you want to try again or proceed to the next story.?"
+        n "Was it a fun ride? Ahahaha~"
 
-        n "If you try again, I will give you hint to reach the secret ending. Sounds good?"
+        n "Let me see if you achieved the points to unlock the secret ending..."
 
-        menu:
-            n "What do you want to do?"
+        if hbbpoints >= 20:
 
-            "Try it again.":
-                n "Great choice! Now here is the hint."
+            $ timeout_label = None
 
-                n "You have to take the train, save the girl and help her."
+            play sound "audio/sfx/addPoints.mp3"
 
-                n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck [player]!"
+            n "Congratulations! You unlocked the secret ending route!"
 
-            "Proceed to next story.":
-                n "It's fine. You can try this story again once you feel like doing it."
+            n "Do you want to play the secret ending? Or proceed to the next story?"
+
+            n "You can go back and play the secret ending whenever you want."
+
+            menu: 
+                "What do you want to do?"
+
+                "Take me to the secret ending!":
+                    ""
+
+                "Proceed to next story!":
+                    ""
+
+
+
+
+    # elif friendEnding:
+    #     n "Congratulations! You achieved the good ending route!"
+
+    #     n "There is still a secret ending route which you can unlock. Do you want to try again or proceed to the next story.?"
+
+    #     n "If you try again, I will give you hint to reach the secret ending. Sounds good?"
+
+    #     menu:
+    #         n "What do you want to do?"
+
+    #         "Try it again.":
+    #             n "Great choice! Now here is the hint."
+
+    #             n "You have to take the train, save the girl and help her."
+
+    #             n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck [player]!"
+
+    #         "Proceed to next story.":
+    #             n "It's fine. You can try this story again once you feel like doing it."
         
 
 
