@@ -67,6 +67,8 @@ label splashscreen:
 label start:
 
     # START HERE!
+
+    scene black with fade
     
-    jump yui_start_case_1
+    jump tutorial_start
     return
