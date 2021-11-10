@@ -12,7 +12,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("")
+define config.name = _("Beta")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -159,6 +159,8 @@ define config.window_icon = "gui/window_icon.png"
 ## Build configuration #########################################################
 ##
 ## This section controls how Ren'Py turns your project into distribution files.
+
+define config.default_fullscreen = True
 
 init python:
 

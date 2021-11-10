@@ -69,5 +69,4 @@ label start:
     # START HERE!
     
     jump yui_start_case_1
-    
     return
