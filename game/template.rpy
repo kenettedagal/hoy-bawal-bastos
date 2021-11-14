@@ -2,23 +2,23 @@
 
 # Set up LayeredImage Sprites
 
+layeredimage eileen:
 
-# layeredimage eileen:
+    always "eileen_base"
 
-#     always "eileen_base"
+    always "eileen_headband":
+        yoffset 25
 
-#     always "eileen_headband":
-#         yoffset 25
+    group face auto:
+        attribute happy default
 
-#     group face auto:
-#         attribute happy default
+# Declare characters used by this game. The color argument colorizes the
+# name of the character.
 
-# # Declare characters used by this game. The color argument colorizes the
-# # name of the character.
+define e = Character("Eileen", color="#f88787")
+define e_nvl = Character("Eileen", color="#f88787", kind=nvl)
+define nar_nvl = nvl_narrator
 
-# define e = Character("Eileen", color="#f88787")
-# define e_nvl = Character("Eileen", color="#f88787", kind=nvl)
-# define nar_nvl = nvl_narrator
 
 # ## Splashscreen ############################################################
 # ## A portion of the game that plays at launch, before the main menu is shown.
@@ -90,6 +90,7 @@ label templateStart:
     # add a file (named either "bg room.png" or "bg room.jpg") to the
     # images directory to show it.
     
+    
     scene room
 
     # This shows a character sprite.
@@ -115,7 +116,7 @@ label templateStart:
 
     # This adds an integer value to a point-based achievement.
     # To track how much of it has been earned, use a regular variable for now.
-    $ achievement.progress("Point_Collector", 10)
+    $ achievement.progress("HBB_Points_Collector", 10)
     $ persistent.points =+ 10
 
     # These display lines of dialogue.

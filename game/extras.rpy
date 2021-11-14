@@ -160,51 +160,156 @@ image office_button = im.FactorScale("bg/future_office.jpg", 0.25)
 image beach_button = im.FactorScale("bg/sort_of_beautiful_beach_day.jpg", 0.25)
 image bglock_button = "gui/button/bg_locked.jpg"
 
+image hallway = im.Scale("images/hallways.webp", 1920, 1080)
+image walk = im.Scale("images/walk1.webp", 1920, 1080)
+
+image bgroom_button = im.FactorScale("images/bg room2.jpg",0.25)
+image bgtrain_button = im.FactorScale("images/bg train.webp",0.25)
+image trainlandscape_button = im.FactorScale("images/train landscape.png",0.25)
+image bgjeepn_button = im.FactorScale("images/bg jeep n.webp",0.25)
+image hallways_button = im.FactorScale("images/audi1.webp" ,0.25)
+image walk_button = im.FactorScale("images/class1.jpg",0.25)
+image cafeteria_button = im.FactorScale("images/bg cafeteria.jpg",0.25)
+image class2_button = im.FactorScale("images/class2.jpg",0.25)
+
 ## These sprite buttons are 290x290
 image ehappy_button = Crop((170, 245, 290, 290), "eileen happy")
 image eneutral_button = Crop((170, 245, 290, 290), "eileen neutral")
 image esurprised_button = Crop((170, 245, 290, 290), "eileen surprised")
 image eupset_button = Crop((170, 245, 290, 290), "eileen upset")
 image eangry_button = Crop((170, 245, 290, 290), "eileen angry")
+image locked_button = "images/CG/cg_locked.jpg"
+
+image yuiblush_button = im.Scale("yui blush.png",400,400)
+image yuiblushclosed_button = im.Scale("yui blush closed.png",400,400)
+image yuiangry_button = im.Scale("yui angry.png",400,400)
+image yuicrying_button = im.Scale("yui crying.png",400,400)
+image yuiworryopened_button = im.Scale("yui worry opened.png",400,400)
+image yuiwow_button = im.Scale("yui wow.png",400,400)
+
+image kurtneysmile_button = im.Scale("kurtney smile.png",400,400)
+image kurtneyangrytalk_button = im.Scale("kurtney angry talk.png",400,400)
+image kurtneyblushclose_button = im.Scale("kurtney blush close.png",400,400)
+image kurtneyhappyteeth_button = im.Scale("kurtney happy teeth.png",400,400)
+image kurtneytalkopened_button = im.Scale("kurtney talk opened.png",400,400)
+image kurtneyblushsmall_button = im.Scale("kurtney blush small.png",400,400)
+
+
+
 image spritelock_button = "gui/button/sprite_locked.jpg"
 
 init python:
 
+   
+
     g_bg = Gallery()
 
     # Backgrounds for the BG Gallery
-    g_bg.button("room")
-    g_bg.unlock_image("room") 
+    # g_bg.button("room")
+    # g_bg.unlock_image("room") 
 
-    g_bg.button("office")
-    g_bg.image("future_office")
-    g_bg.unlock("future_office")
+    # g_bg.button("office")
+    # g_bg.image("future_office")
+    # g_bg.unlock("future_office")
 
-    g_bg.button("beach")
-    g_bg.image("sort_of_beautiful_beach_day")
-    g_bg.unlock("sort_of_beautiful_beach_day")
+    # g_bg.button("beach")
+    # g_bg.image("sort_of_beautiful_beach_day")
+    # g_bg.unlock("sort_of_beautiful_beach_day")
+
+    g_bg.button("bg room2")
+    g_bg.condition("persistent.unlockroom")
+    g_bg.unlock_image("bg room2")
+
+    g_bg.button("bg train")
+    g_bg.condition("persistent.unlockTrain")
+    g_bg.unlock_image("bg train")
+    
+    g_bg.button("train landscape")
+    g_bg.condition("persistent.unlockTrain2")
+    g_bg.unlock_image("train landscape")
+
+    g_bg.button("bg jeep n")
+    g_bg.condition("persistent.unlockJeep")
+    g_bg.unlock_image("bg jeep n")
+
+    g_bg.button("hallways")
+    g_bg.condition("persistent.unlockHallway")
+    g_bg.unlock_image("audi1")
+
+    g_bg.button("walk1")
+    g_bg.condition("persistent.unlockWalk")
+    g_bg.unlock_image("class1")
+
+    g_bg.button("cafeteria")
+    g_bg.condition("persistent.unlockCafeteria")
+    g_bg.unlock_image("bg cafeteria")
+
+    g_bg.button("class2")
+    g_bg.condition("persistent.unlockClass")
+    g_bg.unlock_image("class2")
+    
+    # g_bg.button("bglock_button")
 
     # Sprites for the Sprite Gallery
     # We put a background in the first spot so Eileen isn't floating in a void.
 
     g_sprite = Gallery()
 
-    g_sprite.button("eileen happy")
-    g_sprite.unlock_image("room", "eileen happy")
+    g_sprite.button("yui blush")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("bg room2", "yui blush")
 
-    g_sprite.button("eileen neutral")
-    g_sprite.unlock_image("room", "eileen neutral")
+    g_sprite.button("yui blush closed")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("bg train morning", "yui blush closed")
 
-    g_sprite.button("eileen surprised")
-    g_sprite.unlock_image("room", "eileen surprised")
+    g_sprite.button("yui angry")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("bg train", "yui angry")
 
-    g_sprite.button("eileen upset")
-    g_sprite.image("room", "eileen upset")
-    g_sprite.unlock("room", "eileen upset")
+    g_sprite.button("yui crying")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("class2", "yui crying")
 
-    g_sprite.button("eileen angry")
-    g_sprite.image("room", "eileen angry")
-    g_sprite.unlock("room", "eileen angry")
+    g_sprite.button("yui worry opened")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("class1", "yui worry opened")
+
+    g_sprite.button("yui wow")
+    g_sprite.condition("persistent.unlockYui")
+    g_sprite.unlock_image("audi2", "yui wow")
+
+    g_sprite.button("kurtney smile")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("audi1","kurtney smile")
+    
+    g_sprite.button("kurtney angry talk")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("bg jeep n","kurtney angry talk")
+
+    g_sprite.button("kurtney blush close")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("bg room2","kurtney blush close")
+
+    g_sprite.button("kurtney happy teeth")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("bg cafeteria","kurtney happy teeth")
+
+    g_sprite.button("kurtney talk opened")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("class1","kurtney talk opened")
+
+    g_sprite.button("kurtney blush small")
+    g_sprite.condition("persistent.unlockKurtney")
+    g_sprite.unlock_image("class2","kurtney blush small")
+    
+
+
+
+
+
+
+    
 
     # The button used for locked images
     g_bg.locked_button = "bglock_button"
@@ -218,10 +323,22 @@ init python:
     mr = MusicRoom(fadeout=1.0)
 
     # Add music files.
-    mr.add("audio/music/Careless-Summer_Looping.mp3", always_unlocked=True)
-    mr.add("audio/music/Future-Business_v001.mp3")
-    mr.add("audio/music/Sculpture-Garden_Looping.mp3")
-    mr.add("audio/music/The-Concrete-Bakes_Looping.mp3")
+    # mr.add("audio/music/Careless-Summer_Looping.mp3", always_unlocked=True)
+    # mr.add("audio/music/Future-Business_v001.mp3")
+    # mr.add("audio/music/Sculpture-Garden_Looping.mp3")
+    # mr.add("audio/music/The-Concrete-Bakes_Looping.mp3")
+    mr.add("audio/music/Doll_Dance.ogg")
+    mr.add("audio/music/Everyone.ogg")
+    mr.add("audio/music/Fight.ogg")
+    mr.add("audio/music/In_Legends.ogg")
+    mr.add("audio/music/Lurking.ogg")
+    mr.add("audio/music/Magical.ogg")
+    mr.add("audio/music/JazzyShop.ogg")
+    mr.add("audio/music/PoppyShop.ogg")
+    mr.add("audio/music/QuirckyShop.ogg")
+    mr.add("audio/music/Relax.ogg")
+    mr.add("audio/music/Shenanigans!.ogg")
+    mr.add("audio/music/Time_for_Rest.ogg")
 
 ## Extras Navigation screen ############################################################
 ##
@@ -331,19 +448,31 @@ screen sprite_gallery():
     ## This use statement includes the extras_menu screen inside this one.
     use extras_menu("Sprite Gallery"):
 
-        grid 5 1:
+        grid 6 2:
 
             xfill True
             yfill True
+            right_margin 100
 
-            ## Call make_button to show a particular button.
+            # Call make_button to show a particular button.
             # add g_sprite.make_button("sprite", "sprite_button")
+            add g_sprite.make_button("yui blush","yuiblush_button")
+            add g_sprite.make_button("yui blush closed", "yuiblushclosed_button")
+            add g_sprite.make_button("yui angry", "yuiangry_button")
+            add g_sprite.make_button("yui crying", "yuicrying_button")
+            add g_sprite.make_button("yui worry opened", "yuiworryopened_button")
+            add g_sprite.make_button("yui wow", "yuiwow_button")
 
-            add g_sprite.make_button("eileen happy", "ehappy_button")
-            add g_sprite.make_button("eileen neutral", "eneutral_button")
-            add g_sprite.make_button("eileen surprised", "esurprised_button")
-            add g_sprite.make_button("eileen upset", "eupset_button")
-            add g_sprite.make_button("eileen angry", "eangry_button")
+            add g_sprite.make_button("kurtney smile", "kurtneysmile_button")
+            add g_sprite.make_button("kurtney angry talk", "kurtneyangrytalk_button")
+            add g_sprite.make_button("kurtney blush close", "kurtneyblushclose_button")
+            add g_sprite.make_button("kurtney happy teeth", "kurtneyhappyteeth_button")
+            add g_sprite.make_button("kurtney talk opened", "kurtneytalkopened_button")
+            add g_sprite.make_button("kurtney blush small", "kurtneyblushsmall_button")
+
+
+
+
 
 ## Background Gallery screen ############################################################
 ##
@@ -357,7 +486,7 @@ screen bg_gallery():
     ## This use statement includes the extras_menu screen inside this one.
     use extras_menu("Background Gallery"):
 
-        grid 1 3:
+        grid 2 4:
 
             xfill True
             yfill True
@@ -365,9 +494,21 @@ screen bg_gallery():
             ## Call make_button to show a particular button.
             # add g_bg.make_button("background", "bg_button")
 
-            add g_bg.make_button("room", "room_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("office", "office_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("beach", "beach_button", xalign=0.5, yalign=0.5)
+            # add g_bg.make_button("room", "room_button", xalign=0.5, yalign=0.5)
+            # add g_bg.make_button("office", "office_button", xalign=0.5, yalign=0.5)
+            # add g_bg.make_button("beach", "beach_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("bg room2","bgroom_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("bg train","bgtrain_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("train landscape","trainlandscape_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("bg jeep n","bgjeepn_button", xalign=0.5,yalign=0.5)
+            
+
+            add g_bg.make_button("hallways","hallways_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("walk1","walk_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("cafeteria","cafeteria_button", xalign=0.5,yalign=0.5)
+            add g_bg.make_button("class2","class2_button", xalign=0.5,yalign=0.5)
+            # add g_bg.make_button("locked_button","bglocked_button")
+
 
 ## Music Gallery screen ############################################################
 ##
@@ -386,10 +527,22 @@ screen music_gallery():
             yalign 0.5
 
             # The buttons that play each track.
-            textbutton "The Concrete Brakes" action mr.Play("audio/music/The-Concrete-Bakes_Looping.mp3")
-            textbutton "Sculpture Garden" action mr.Play("audio/music/Sculpture-Garden_Looping.mp3")
-            textbutton "Future Business" action mr.Play("audio/music/Future-Business_v001.mp3")
-            textbutton "Careless Summer" action mr.Play("audio/music/Careless-Summer_Looping.mp3")
+            # textbutton "The Concrete Brakes" action mr.Play("audio/music/The-Concrete-Bakes_Looping.mp3")
+            # textbutton "Sculpture Garden" action mr.Play("audio/music/Sculpture-Garden_Looping.mp3")
+            # textbutton "Future Business" action mr.Play("audio/music/Future-Business_v001.mp3")
+            # textbutton "Careless Summer" action mr.Play("audio/music/Careless-Summer_Looping.mp3")
+            textbutton "Doll Dance" action mr.Play("audio/music/Doll_Dance.ogg")
+            textbutton "For Everyone" action mr.Play("audio/music/Everyone.ogg")
+            textbutton "Fight On" action mr.Play("audio/music/Fight.ogg")
+            textbutton "In Legends" action mr.Play("audio/music/In_Legends.ogg")   
+            textbutton "Lurking" action mr.Play("audio/music/Lurking.ogg")
+            textbutton "Magical" action mr.Play("audio/music/Magical.ogg")
+            textbutton "Jazzy Shop" action mr.Play("audio/music/JazzyShop.ogg")
+            textbutton "Poppy Shop" action mr.Play("audio/music/PoppyShop.ogg")
+            textbutton "Quircky Shop" action mr.Play("audio/music/QuirckyShop.ogg")
+            textbutton "Relax" action mr.Play("audio/music/Relax.ogg")
+            textbutton "Shenanigans!" action mr.Play("audio/music/Shenanigans!.ogg")
+            textbutton "Time for Rest" action mr.Play("audio/music/Time_for_Rest.ogg")
 
             null height 20
 
@@ -425,9 +578,20 @@ screen replay_gallery():
             yalign 0.5
 
             # The buttons that play each section.
-            textbutton "The Beginning" action Replay("start")
-            textbutton "The Office" action Replay("office")
-            textbutton "The Beach" action Replay("beach")
+            textbutton "Breakfast With Mom" action Replay("breakfastWithMom")
+            textbutton "Ride to School" action Replay("goingToSchool")
+            textbutton "Taking the Morning Train" action Replay("meetWithYui")
+            textbutton "A Stalking Problem" action Replay("meetWithKurt")
+            textbutton "Confrontation" action Replay("confrontation")
+            textbutton "School Ceremony" action Replay("schoolCeremony")
+            textbutton "You Got Lost?" action Replay("afterCeremony")
+            textbutton "Quiz Time" action Replay("socialStudiesQuiz")
+            textbutton "Troubled Days" action Replay("pervTeacher", scope={"lunchWithYui" : True})
+            textbutton "Fighting On!" action Replay("arrestButch")
+            textbutton "Side Story#1 (Kevin)" action Replay("arrestButch")
+            textbutton "Side Story#2 (Chavez)" action Replay("arrestButch")
+            textbutton "Bonus Story (Kyle)" action Replay("arrestButch")
+
 
             null height 20
 
@@ -478,10 +642,27 @@ define gui.dev_notes = _p("""Hello, this is BáiYù of tofurocks here. I want to
 python early:
     simple_achievement_list = (
         # ("Achievement Name", "Description when not unlocked", "Description when unlocked"),
-        ("Beginning", "???", "Started a new game"),
-        ("Office", "???", "Went to the office"),
-        ("Beach", "???", "Went to the beach"),
-        ("Completionist", "???", "Read all of the game")
+        ("Tutorialist","    Complete the tutorial    Status: Not Completed", "    Complete the tutorial    Status: Completed"),
+        ("A New Leaf", "    Started a new game    Status: Not Completed", "    Started a new game    Status: Completed"),
+        ("I Love Mom's Breakfast", "    Eat all foods in breakfast    Status: Not Completed", "    Eat all foods in breakfast    Status: Completed"),
+        ("Newspaper Guy", "    Read newspaper    Status: Not Completed", "    Read newspaper    Status: Completed"),
+        ("TV Guy", "    Watch the TV    Status: Not Completed", "    Watch the TV    Status: Completed"),
+        ("Beep Card","    Ride the train    Status: Not Completed", "    Ride the train    Status: Completed"),
+        ("Bayad Po","    Ride the jeep    Status: Not Completed", "    Ride the jeep    Status: Completed"),
+        ("Ace Attorney","    Perfectly answer all questions when asked by friend about Safe Spaces Act    Status: Not Completed", "    Perfectly answer all questions when asked by friend about Safe Spaces Act    Status: Completed"),
+        ("Escape Artist","    Run away from the stalker    Status: Not Completed", "    Run away from the stalker    Status: Completed"),
+        ("Punching Bag","    Pick a fight    Status: Not Completed", "    Pick a fight    Status: Completed"),
+        ("Teach Me About Punishments","    Listen to Officer Greg's long speech    Status: Not Completed", "    Listen to Officer Greg's long speech    Status: Completed"),
+        ("Bad End","    Achieve a bad ending    Status: Not Completed", "    Achieve a bad ending    Status: Completed"),
+        ("Good End","    Achieve a good ending    Status: Not Completed", "    Achieve a good ending    Status: Completed"),
+        ("Special End","    Achieve a special ending    Status: Not Completed", "    Achieve a special ending    Status: Completed"),
+        ("Lunch Date","    Get invited to lunch    Status: Not Completed", "    Get invited to lunch    Status: Completed"),
+        ("Big Eater","    Eat everything in school cafeteria    Status: Not Completed", "    Eat everything in school cafeteria    Status: Completed"),
+        ("Galaxy Brain","    Achieve a perfect score in quiz    Status: Not Completed", "    Achieve a perfect score in quiz    Status: Completed"),
+        ("Lending A Helping Hand","    Help get the pervert teacher arrested    Status: Not Completed", "    Help get the pervert teacher arrested    Status: Completed"),
+        
+        
+        
     )
 
 ## Registers your achievements to work on backend systems such as Steam
@@ -497,7 +678,7 @@ init python:
         achievement.register(a)
 
         ## This Achievement is based on an integer, and must be defined manually
-        achievement.register("Point Collector", stat_max=100, stat_modulo=0)
+        achievement.register("HBB Points Collector", stat_max=100, stat_modulo=0)
         ## TODO: Simplify achievements that are integer-based
         ## to update in a bar directly tied to achievement.progress
 
@@ -519,22 +700,22 @@ screen achievements():
         style_prefix "about"
 
         vbox:
-
+            spacing 20
             ## This auto-populates our list of simple achievements that will appear
             ## in the screen, so we don't have to manually type each one out.
             for aname, lockdesc, unlockdesc in simple_achievement_list:
 
                 if achievement.has(aname):
 
-                    text "[aname]: [unlockdesc]"
+                    text "{color=#00ffdd}[aname]{/color}: {color=#1cff46}[unlockdesc]{/color}"
 
                 else:
 
-                    text "[aname]: [lockdesc]"
+                    text "{color=#00ffdd}[aname]{/color}: {color=#f5ff30}[lockdesc]{/color}"
 
             ## We have to type each integer based achievement however
             hbox:
-                text "Point Collector:"
+                text "HBB Points Collector:"
 
                 null width 10
 

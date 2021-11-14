@@ -1,7 +1,16 @@
 # init python:
 #     def checkIndex():
 
+screen select():
+    frame:
+        vbox:
+            xalign 0.5
+            yalign 0.5
+            xmaximum 500
+            ymaximum 500
+            textbutton "Go to Story #1" ymaximum 200 action Jump("tutorial_start")
 
+            textbutton "Go to Story #2" ymaximum 200 action Jump("Act_2_School")
 
 
 screen newspaper():
@@ -88,8 +97,8 @@ screen arrestTransition():
 screen showNotesButton():
     modal False
     frame:
-        yalign 0.01
-        xalign 0.01
+        yalign 0.12
+        xalign 1.0
         imagebutton:
             xmaximum 200
             ymaximum 200
@@ -197,8 +206,8 @@ screen notebookPage():
             action [Hide("notebookPage"),SetVariable("notebookIndex", subIndex),Show("notebookPage")]
     
     imagebutton:
-        yalign 0.01
-        xalign 0.01
+        yalign 0.12
+        xalign 1.0
         xmaximum 200
         ymaximum 200
         idle "book.png"

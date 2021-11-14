@@ -267,6 +267,15 @@ label natashaChoice3:
 
         n "Okay let's now move on to the game!"
 
+        python:
+
+            if achievementList[17] == False:
+            
+                achievement.grant("Tutorialist")
+                renpy.notify("Achievement Unlocked: Tutorialist")
+                renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                achievementList[17] = True
+
         stop music fadeout 3.0
         pause 2.0
         jump yui_start_case_1

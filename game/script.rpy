@@ -62,7 +62,7 @@ label splashscreen:
  
     return
 
-## The game starts here.
+## The game starts here
 
 label start:
 
@@ -70,5 +70,5 @@ label start:
 
     scene black with fade
     
-    jump tutorial_start
+    jump yui_start_case_1
     return

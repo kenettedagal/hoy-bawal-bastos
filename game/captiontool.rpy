@@ -97,7 +97,7 @@ init python:
     yawn = "audio/sfx/yawn.wav"
     eat = "audio/sfx/eat.ogg"
     flip = "audio/sfx/newspaper.wav"
-    people = "audio/sfx/peopletalk.wav"
+    people = "audio/sfx/peopletalk.mp3"
     carleave = "audio/sfx/carleaving.ogg"
     subPoints = "audio/sfx/subPoints.wav"
     punch = "audio/sfx/punch.wav"

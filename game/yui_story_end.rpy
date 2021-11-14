@@ -21,10 +21,19 @@ label yui_end:
 
     if badEndingGame:
 
-    
+
         n "Hellooooooo!"
 
         n "I'm really sad to say that you reached the \"Bad End\" route."
+
+        python:
+
+            if achievementList[10] == False:
+                    
+                achievement.grant("Bad End")
+                renpy.notify("Achievement Unlocked: Bad End")
+                renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                achievementList[10] = True
 
         n "It's okay! It's not over yet. You can try again or proceed to the next story."
 
@@ -50,6 +59,15 @@ label yui_end:
     elif goodEnding:
         n "Congratulations! You achieved the good ending route!"
 
+        python:
+
+            if achievementList[11] == False:
+                    
+                achievement.grant("Good End")
+                renpy.notify("Achievement Unlocked: Good End")
+                renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                achievementList[11] = True
+
         n "Was it a fun ride? Ahahaha~"
 
         n "Let me see if you achieved the points to unlock the secret ending..."
@@ -61,6 +79,15 @@ label yui_end:
             play sound "audio/sfx/addPoints.mp3"
 
             n "Congratulations! You unlocked the secret ending route!"
+
+            python:
+
+                if achievementList[12] == False:
+                        
+                    achievement.grant("Special End")
+                    renpy.notify("Achievement Unlocked: Special End")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[12] = True
 
             n "Do you want to play the secret ending? Or proceed to the next story?"
 

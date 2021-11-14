@@ -25,6 +25,17 @@ label yui_start_case_1:
     define mm = Character('Mom',color='#00ff2a')
     default badEndingGame = False
     default kurtneyHelp = False
+    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False]
+    default persistent.unlockroom = False
+    default persistent.unlockTrain = False
+    default persistent.unlockJeep = False
+    default persistent.unlockHallway = False
+    default persistent.unlockTrain2 = False
+    default persistent.unlockWalk = False
+    default persistent.unlockCafeteria = False
+    default persistent.unlockClass = False
+    default persistent.unlockYui = False
+    default persistent.unlockKurtney = False
 
     init python:
         
@@ -43,6 +54,8 @@ label yui_start_case_1:
     show screen titleYui with dissolve
     pause 0.5
     
+    $ persistent.unlockJeep = False
+    $ persistent.unlockroom = False
     
     #Play iphone alarm tone
     pause 2.0
@@ -53,17 +66,28 @@ label yui_start_case_1:
     $ play_sound (phone) 
 
     scene bg room2 with fade
-    
 
     "{i}7:00 AM....{/i}"
     
     "Ugh...."
+
+    python:
+
+        if achievementList[0] == False:
+        
+            achievement.grant("A New Leaf")
+            renpy.notify("Achievement Unlocked: A New Leaf")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            achievementList[0] = True
+
+    $ persistent.unlockroom = True
 
     "Shut up Siri."
 
     "......"
     $ timeout_label = "snooze"
     $ timeout = 10
+
     menu:
 
         "Snooze alarm for 5 minutes":
@@ -79,6 +103,7 @@ label yui_start_case_1:
             "Another day, another dollar..."
 
             jump breakfastWithMom
+
 
 label snooze:
     scene black
@@ -102,6 +127,8 @@ label snooze:
 
 
 label breakfastWithMom:
+
+    scene bg room2 with fade
 
     "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
 
@@ -173,6 +200,7 @@ label breakfastWithMom:
     mm "I made your favorite foods! A scrambled egg, tocino and some bacon."
     $ timeout_label = None
     hide mom happy with dissolve
+
     menu: 
         
         mm "What do you wanna eat?"
@@ -189,6 +217,15 @@ label breakfastWithMom:
         "Of course, all of it!":
             m "All of these dishes in one plate..."
             m "I hope my stomach won't hurt when I'm outside. Haha...."
+
+            python:
+                if achievementList[1] == False:
+
+
+                    achievement.grant("I Love Mom's Breakfast")
+                    renpy.notify("Achievement Unlocked: I Love Mom's Breakfast")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[1] = True
 
             show mom worried with dissolve
             mm "I hope so too! Ahahaha~"
@@ -215,12 +252,30 @@ label breakfastWithMom:
             $ play_sound (paper)
             pause 0.5
             $ law = 'paper'
+            
+            python:
+
+                if achievementList[2] == False:
+                
+                    achievement.grant("Newspaper Guy")
+                    renpy.notify("Achievement Unlocked: Newspaper Guy")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[2] = True
+
             jump law
 
         "Open the TV.":
             $ play_sound (tv)
             pause 0.5
             $ law = 'tv'
+            python:
+
+                if achievementList[3] == False:
+                
+                    achievement.grant("TV Guy")
+                    renpy.notify("Achievement Unlocked: TV Guy")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[3] = True
             jump law
 
 
@@ -292,7 +347,7 @@ label law:
 
     show screen showNotesButton with dissolve
 
-    n "If you look at the top left part of the screen, there is a button."
+    n "If you look at the top right part of the screen, there is a button."
 
     n "This button will log important parts of the law. So always check it out~"
 
@@ -300,6 +355,7 @@ label law:
 
     stop music fadeout 0.5
 
+    $ renpy.end_replay()
     
 
 label goingToSchool:
@@ -346,12 +402,19 @@ label goingToSchool:
         
         # Meet Yui
         "Take the train.":
+
+            
             $ metYui = True
+            $ renpy.end_replay()
             jump meetWithYui
 
         # Meet Kurt(friend)
         "Ride a jeep.":
+
+            $ renpy.end_replay()
             jump meetWithKurt
+
+    
 
 
 label meetWithKurt:
@@ -366,7 +429,19 @@ label meetWithKurt:
     $ play_music(relax, fadein=8)
     $ metYui = False
     scene bg jeep n with fade
-    $ play_sound(people,fadein=3.0,fadeout=1.5)
+    $ persistent.unlockJeep = True
+    python:
+
+        if achievementList[5] == False:
+                
+            achievement.grant("Bayad Po")
+            renpy.notify("Achievement Unlocked: Bayad Po")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            achievementList[5] = True
+
+    pause 0.5
+    $ renpy.music.set_volume(0.5,channel="sound")
+    $ play_sound(people,fadein=0.2,fadeout=5.0) 
     pause 5
     
     "Mark!"
@@ -375,7 +450,7 @@ label meetWithKurt:
 
     "Dude!!"
 
-    $ play_sound(carleave,fadein=3.0)
+    $ play_sound(carleave,fadein=0.5)
 
 
     "Uhmm someone is calling me?"
@@ -607,6 +682,18 @@ label meetWithKurt:
             $ hbbpoints += 3
             $ play_sound(addPoints)
             "You received {color=#40ff00}3 HBB Points.{/color}"
+
+            pause 0.5 
+
+            if hbbpoints == 9:
+                python:
+
+                    if achievementList[6] == False:
+                    
+                        achievement.grant("Ace Attorney")
+                        renpy.notify("Achievement Unlocked: Ace Attorney")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[6] = True
             
             label kurtInfo:
                 $ yuiStoryProgress += 1
@@ -681,373 +768,421 @@ label meetWithKurt:
             jump kurtInfo
 
         ########################################
+    $ renpy.end_replay()
 
-    stop music
-    pause 0.5
-    play sound "audio/music/Piano5.ogg"fadein 0.3
-    scene walk
-    show screen stalkerTransition 
-    with fade
-    pause 3.0
-    hide screen stalkerTransition with dissolve
-    $ play_music(Lurking, fadein=8)
-    
+    label confrontation:
 
-    $ play_sound(walking,fadein=0.3,fadeout=5.0)
-    scene black with fade
+        stop music
+        pause 0.5
+        play sound "audio/music/Piano5.ogg"fadein 0.3
+        scene walk
+        show screen stalkerTransition 
+        with fade
+        pause 3.0
+        hide screen stalkerTransition with dissolve
+        $ play_music(Lurking, fadein=8)
+        $ persistent.unlockWalk = True
 
-    "A peaceful morning for a first day of school."
+        $ play_sound(walking,fadein=0.3,fadeout=5.0)
+        scene black with fade
 
-    "Or so I thought..."
-    scene walk with fade
+        "A peaceful morning for a first day of school."
 
-    show kurtney happy teeth with dissolve
+        "Or so I thought..."
+        scene walk with fade
 
-    kk "Hahaha~ I miss summer vacation."
+        show kurtney happy teeth with dissolve
 
-    m "Oh shut up. All you do is play games and watch anime."
+        kk "Hahaha~ I miss summer vacation."
 
-    kk "Are you talking about yourself? Ahahaha~"
+        m "Oh shut up. All you do is play games and watch anime."
 
-    m "Whatever."
+        kk "Are you talking about yourself? Ahahaha~"
 
-    scene walk with fade
+        m "Whatever."
 
-    "While peacefully chatting ang walking to school, [kk] saw something she doesn't want to see."
+        scene walk with fade
 
-    show kurtney talk opened with dissolve
+        "While peacefully chatting ang walking to school, [kk] saw something she doesn't want to see."
 
-    kk "Hey, Mark..."
+        show kurtney talk opened with dissolve
 
-    m "Hmmm?"
+        kk "Hey, Mark..."
 
-    kk "Look behind our back..."
+        m "Hmmm?"
 
-    m "Back?"
+        kk "Look behind our back..."
 
-    hide kurtney talk opened
+        m "Back?"
 
-    show hood1 with fade
+        hide kurtney talk opened
 
-    pause 3.0
+        show stalker neutral with fade
 
-    hide hood1 with fade
+        pause 3.0
 
-    m "What the hell? Is that the stalker guy from what you've said earlier?"
+        hide stalker neutral with fade
 
-    show kurtney smile with dissolve
+        m "What the hell? Is that the stalker guy from what you've said earlier?"
 
-    kk "Watch your mouth. He might hear you and do something bad."
+        show kurtney smile with dissolve
 
-    m "And now you're concerned for me?"
+        kk "Watch your mouth. He might hear you and do something bad."
 
-    m "I should be the one worrying for you."
+        m "And now you're concerned for me?"
 
-    show kurtney blush close with dissolve
+        m "I should be the one worrying for you."
 
-    kk "Of course, you're my precious childhood friend."
+        show kurtney blush close with dissolve
 
-    m "Hahaha~ whatever. I got this."
+        kk "Of course, you're my precious childhood friend."
 
-    scene walk with fade
+        m "Hahaha~ whatever. I got this."
 
-    menu:
-        "What should I do?"
+        scene walk with fade
 
-        "Run straight to the school gate.":
-            pause 0.5
-            $ subtractPoints()
-            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
-            m "[kk]..."
+        menu:
+            "What should I do?"
 
-            show kurtney talk opened with dissolve
-
-            kk "Yeah?"
-
-            m "Hold my hand."
-
-            show kurtney blush small with dissolve
-
-            kk "Wha? Are you st-stupid?"
-
-            m "Do it!"
-
-            show kurtney blush close with dissolve
-
-            kk "O-o-okayyy...."
-
-            scene black with fade
-
-            $ play_sound(running)
-
-            "With all my might and strength reserved for this day, I grabbed [kk]'s hand and ran like a mad dog."
-
-            "What a crazy person!"
-
-            scene school gate with fade
-
-            "Looking at my back, the guy is nowhere to be seen."
-
-            m "Pant pant pant..."
-
-            show kurtney blush close with dissolve
-
-            kk "Hey tell me what're you trying to do before doing that..."
-
-            kk "Stupid..."
-
-            m "Hahaha~ I just want to get away though. Why did you suddenly become red?"
-
-
-            
-        "Pick a fight with the stalker.":
-            pause 0.5
-            $ subtractPoints()
-            "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
-
-            m "Hey, what do you want?"
-
-            show hood1 with fade
-
-            "???" "Hmmm.. Are you her boyfriend?"
-
-            m "No! She's my childhood friend."
-
-            "???" "Then take this."
-
-            $ play_sound(punch)
-
-            "BAM!" with vpunch
-
-            $ play_sound(punch)
-
-            "AAHHH!" with hpunch
-
-            $ play_sound(punch)
-
-            "PAAAK!" with vpunch
-
-            m "AAAAAAH!!!"
-
-            scene black with fade
-            pause 1.0
-            scene walk with fade
-
-            show kurtney worry with dissolve
-
-            kk "Heyyyyyyy..."
-
-            kk "Wake up Mark..."
-
-            m "What the heck happened?"
-
-            show kurtney happy teeth with dissolve
-
-            kk "Well, he knocked the soul out of you. Hahaha~"
-
-            m "This is no laughing matter. What happened to him?"
-
-            show kurtney smile with dissolve
-
-            kk "He ran away when a lot of people were looking at us."
-
-            m "O-ohhh I see... Ughhhh my head hurts."
-
-            "Achievement Unlocked: Punched in the Face"
-
-        "Confront the stalker and tell him that you'll report him to the police.":
+            "Run straight to the school gate.":
                 pause 0.5
-                $ hbbpoints += 3
-                $ play_sound(addPoints)
-                "You received {color=#40ff00}3 HBB Points.{/color}"
+                $ subtractPoints()
+                "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+                m "[kk]..."
 
-                scene walk with fade 
+                pause 0.5
 
-                m "Excuse me. Stop whatever you're doing. You're disrupting our lives."
+                python:
 
-                show hood1 with dissolve
+                    if achievementList[7] == False:
+                    
+                        achievement.grant("Escape Artist")
+                        renpy.notify("Achievement Unlocked: Escape Artist")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[7] = True
 
-                "???" "Who the hell are you?"
+                show kurtney talk opened with dissolve
 
-                m "I am her friend. I will report you to the police this instant!"
+                kk "Yeah?"
 
-                "???" "Calm down buddy. No reason to be angry. I'll leave now. Enjoy your day."
+                m "Hold my hand."
 
-                hide hood1 
+                show kurtney blush small with dissolve
 
+                kk "Wha? Are you st-stupid?"
+
+                m "Do it!"
+
+                show kurtney blush close with dissolve
+
+                kk "O-o-okayyy...."
+
+                scene black with fade
+
+                $ play_sound(running)
+
+                "With all my might and strength reserved for this day, I grabbed [kk]'s hand and ran like a mad dog."
+
+                "What a crazy person!"
+
+                scene school gate with fade
+
+                "Looking at my back, the guy is nowhere to be seen."
+
+                m "Pant pant pant..."
+
+                show kurtney blush close with dissolve
+
+                kk "Hey tell me what're you trying to do before doing that..."
+
+                kk "Stupid..."
+
+                m "Hahaha~ I just want to get away though. Why did you suddenly become red?"
+
+
+                
+            "Pick a fight with the stalker.":
+                pause 0.5
+                $ subtractPoints()
+                "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
+
+                m "Hey, what do you want?"
+
+                show stalker talk with fade
+
+                "???" "Hmmm.. Are you her boyfriend?"
+
+                m "No! She's my childhood friend."
+
+                "???" "Then take this."
+
+                $ play_sound(punch)
+
+                "BAM!" with vpunch
+
+                $ play_sound(punch)
+
+                "AAHHH!" with hpunch
+
+                $ play_sound(punch)
+
+                "PAAAK!" with vpunch
+
+                m "AAAAAAH!!!"
+
+                scene black with fade
+                pause 1.0
                 scene walk with fade
 
-                "After a few minutes, the stalker was out of sight."
+                pause 0.5
 
-                stop music
+                python:
 
-                m "Sighhhh. Hopefully this doesn't happen to you again."
+                    if achievementList[8] == False:
+                    
+                        achievement.grant("Punching Bag")
+                        renpy.notify("Achievement Unlocked: Punching Bag")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[8] = True
 
                 show kurtney worry with dissolve
 
-                $ play_music(evans,fadein=1.5)
+                kk "Heyyyyyyy..."
 
-                kk "I hope so. You'll be there to protect me right?"
+                kk "Wake up Mark..."
 
-                m "Nope. Not me. But the police. Haha~"
+                m "What the heck happened?"
 
-                show kurtney angry talk with dissolve
+                show kurtney happy teeth with dissolve
 
-                kk "Wha?! Stupid."
+                kk "Well, he knocked the soul out of you. Hahaha~"
 
-                hide kurtney angry talk with dissolve
+                m "This is no laughing matter. What happened to him?"
 
-    
-label kurtneyOfficerScene:
-    scene black with fade
+                show kurtney smile with dissolve
 
-    pause 1.0 
+                kk "He ran away when a lot of people were looking at us."
 
-    scene walk with fade
+                m "O-ohhh I see... Ughhhh my head hurts."
 
-    show officer with dissolve  
+                
 
-    "???" "Excuse me!"
+            "Confront the stalker and tell him that you'll report him to the police.":
+                    pause 0.5
+                    $ hbbpoints += 3
+                    $ play_sound(addPoints)
+                    "You received {color=#40ff00}3 HBB Points.{/color}"
 
-    kk "Ehhh? A police officer?"
+                    scene walk with fade 
 
-    m "Oh great. This makes things easy."
+                    m "Excuse me. Stop whatever you're doing. You're disrupting our lives."
 
-    "The police officer was running towards us with a confused look on his face."
+                    show stalker talk with dissolve
 
-    o "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
+                    "???" "Who the hell are you?"
 
-    m "Uhmmmm my friend here was getting stalked by someone..."
+                    "???" "What's your deal, huh?"
 
-    o "A stalker huh?"
+                    "???" "Stupid kid standing up to me huh."
 
-    o "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
+                    m "I am her friend. I will not hesitate to report you to the police this instant!"
 
-    m "Yes sir, I've read a bit about that law."
+                    hide stalker talk
+                    show stalker angry 
+                    with dissolve
 
-    hide officer
-    show kurtney talk opened 
-    with dissolve
+                    "???" "Calm down buddy. No reason to be angry. I'll leave now. Enjoy your day."
 
-    kk "Hey Mark. It was that law that you told me earlier right?"
+                    "???" "I won't forget this! Be careful from now on."
 
-    m "Yeah it is."
+                    hide stalker angry 
 
-    hide kurtney talk opened
-    show officer
-    with dissolve
+                    scene walk 
+                    
+                    with fade
 
-    o "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
+                    "After a few minutes, the stalker was out of sight."
 
-    $ yuiStoryProgress += 1
+                    stop music
 
-    hide officer with dissolve
+                    m "Sighhhh. Hopefully this doesn't happen to you again."
 
-    menu :
+                    show kurtney worry with dissolve
+
+                    $ play_music(evans,fadein=1.5)
+
+                    kk "I hope so. You'll be there to protect me right?"
+
+                    m "Nope. Not me. But the police. Haha~"
+
+                    show kurtney angry talk with dissolve
+
+                    kk "Wha?! Stupid."
+
+                    hide kurtney angry talk with dissolve
+
         
-        o "Do you want to learn more about the punishments of Safe Spaces Act?"
+    label kurtneyOfficerScene:
+        stop music fadeout 2.0
+        scene black with fade
 
-        "Yes, please tell me about the punishments.":
-            hide officer with dissolve
-            pause 0.5
-            $ play_sound(addPoints)
-            $ hbbpoints += 3
-            "You received {color=#40ff00}3 HBB Points.{/color}"
+        pause 1.0 
+
+        scene walk with fade
+
+        show officer with dissolve 
+
+        $play_music(garden) 
+
+        "???" "Excuse me!"
+
+        kk "Ehhh? A police officer?"
+
+        m "Oh great. This makes things easy."
+
+        "The police officer was running towards us with a confused look on his face."
+
+        o "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
+
+        m "Uhmmmm my friend here was getting stalked by someone..."
+
+        o "A stalker huh?"
+
+        o "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
+
+        m "Yes sir, I've read a bit about that law."
+
+        hide officer
+        show kurtney talk opened 
+        with dissolve
+
+        kk "Hey Mark. It was that law that you told me earlier right?"
+
+        m "Yeah it is."
+
+        hide kurtney talk opened
+        show officer
+        with dissolve
+
+        o "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
+
+        $ yuiStoryProgress += 1
+
+        hide officer with dissolve
+
+        menu :
             
-            show kurtney happy teeth with dissolve
+            o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
-            kk "!!!!"
+            "Yes, please tell me about the punishments.":
+                hide officer with dissolve
+                pause 0.5
+                $ play_sound(addPoints)
+                $ hbbpoints += 3
+                "You received {color=#40ff00}3 HBB Points.{/color}"
+                
+                show kurtney happy teeth with dissolve
 
-            kk "I-I-I want to learn it too..."
+                python:
 
-            hide kurtney happy teeth
-            show officer
-            with dissolve
-            o "Sure thing. Lemme just take out my handbook."
+                    if achievementList[9] == False:
+                    
+                        achievement.grant("Teach Me About Punishments")
+                        renpy.notify("Achievement Unlocked: Teach Me About Punishments")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[9] = True
 
-            pause 2.0
+                kk "!!!!"
 
-            o "Uhhh it says here..."
+                kk "I-I-I want to learn it too..."
 
-            o "On Section 12 of the Safe Spaces Act, 
-            it states the Specific Acts and Penalties for Gender-Based Sexual Harassment in Streets and Public Spaces."
+                hide kurtney happy teeth
+                show officer
+                with dissolve
+                o "Sure thing. Lemme just take out my handbook."
 
-            o "This is quite long so listen carefully okay?"
+                pause 2.0
 
-            with fade
+                o "Uhhh it says here..."
 
-            
-            o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
-            
-            o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
-            
-            o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
-            
-            o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+                o "On Section 12 of the Safe Spaces Act, 
+                it states the Specific Acts and Penalties for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
-            o "The penalties will be...!"
-            
-            o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+                o "This is quite long so listen carefully okay?"
 
-            o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
+                with fade
 
-            o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
+                
+                o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
+                
+                o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
+                
+                o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
+                
+                o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
 
-            o "The next on the list!"
+                o "The penalties will be...!"
+                
+                o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
-            with fade
+                o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
 
-            o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
-            
-            o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
+                o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
 
-            o "The penalties you will face is...!"
-             
-            o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
+                o "The next on the list!"
 
-            o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
+                with fade
 
-            o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
+                o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
+                
+                o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
 
-            o "Moving on!"
+                o "The penalties you will face is...!"
+                
+                o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
-            with fade
+                o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
 
-            o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
+                o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
 
-            o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+                o "Moving on!"
 
-            o "You will face the penalties of...!"
+                with fade
 
-            o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
+                o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
-            o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
-            
-            o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
+                o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
-            hide officer with fade
+                o "You will face the penalties of...!"
 
-            m "......"
+                o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
 
-            m "My head hurts... Ahahaha!"
+                o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
+                
+                o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
-            show kurtney talk opened with dissolve
+                hide officer with fade
 
-            kk "Wait, that's a really good law, Officer!"
-            
-            hide kurtney talk closed
+                m "......"
 
-        "No, I don't really care.":
-            pause 0.5
-            $ subtractPoints()
-            "Your points have been deducted by 1 HBB Point."
-            
+                m "My head hurts... Ahahaha!"
 
-    show screen newNote with fade
-    pause 2.0
-    stop music
+                show kurtney talk opened with dissolve
 
-    jump schoolCeremony
+                kk "Wait, that's a really good law, Officer!"
+                
+                hide kurtney talk closed
+
+            "No, I don't really care.":
+                pause 0.5
+                $ subtractPoints()
+                "Your points have been deducted by 1 HBB Point."
+                
+        $ renpy.end_replay()
+        show screen newNote with fade
+        pause 2.0
+        stop music
+        jump schoolCeremony
 
 
 label meetWithYui:
@@ -1059,8 +1194,20 @@ label meetWithYui:
     with fade
     pause 3.0
     hide screen trainTransition
-
+    $ persistent.unlockTrain = True
+    $ persistent.unlockTrain2 = True
     scene train landscape with fade
+
+    python:
+
+        if achievementList[4] == False:
+                
+            achievement.grant("Beep Card")
+            renpy.notify("Achievement Unlocked: Beep Card")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            achievementList[4] = True
+
+    pause 0.5
 
     $play_sound(trainambience,fadein=0.1)
 
@@ -1174,7 +1321,16 @@ label meetWithYui:
 
             m "AAAAAAH!!!"
 
-            "Achievement Unlocked: Punched in the Face"
+            pause 0.5
+
+            python:
+
+                if achievementList[8] == False:
+                    
+                    achievement.grant("Punching Bag")
+                    renpy.notify("Achievement Unlocked: Punching Bag")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[8] = True
 
             "....Officer!"
 
@@ -1462,6 +1618,18 @@ label meetWithYui:
                         $ play_sound(addPoints)
                         $ hbbpoints += 3
                         "You received {color=#40ff00}3 HBB Points.{/color}"
+
+                        if hbbpoints == 9:
+                        
+                            python:
+
+                                if achievementList[6] == False:
+                                
+                                    achievement.grant("Ace Attorney")
+                                    renpy.notify("Achievement Unlocked: Ace Attorney")
+                                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                                    achievementList[6] = True
+                        
                     
                     show yui neutral with dissolve
                     label yuiInfo:
@@ -1593,6 +1761,15 @@ label meetWithYui:
             y "!!!!"
 
             y "I-I-I want to learn it too..."
+
+            python:
+
+                if achievementList[9] == False:
+                    
+                    achievement.grant("Teach Me About Punishments")
+                    renpy.notify("Achievement Unlocked: Teach Me About Punishments")
+                    renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                    achievementList[9] = True
 
             hide yui smile close
             show officer
@@ -1741,6 +1918,8 @@ label meetWithYui:
 
         stop music fadeout 1.0
 
+        $ renpy.end_replay()
+
         jump schoolCeremony
 
 label schoolCeremony:
@@ -1838,7 +2017,7 @@ label schoolCeremony:
 
 
     
-
+    $ renpy.end_replay()
     jump afterCeremony
 
 label afterCeremony:
@@ -1867,6 +2046,8 @@ label afterCeremony:
 
     "But thankfully, I have [kk]. She's a really good childhood friend."
 
+    
+
     #Flag to check if USER accepts lunch invite
     $ lunchWithYui = True
     stop music fadeout 2.0
@@ -1877,7 +2058,7 @@ label afterCeremony:
     with fade
     pause 3.0
     hide screen lostTransition
-
+    $ persistent.unlockHallway = True
     $ play_music(legends,fadein=2.0)
 
     if metYui is True:
@@ -1975,6 +2156,7 @@ label afterCeremony:
                     "Ehhhh? I've never been invited by a girl to lunch. What should I do?"
 
                     "Sure I'll go eat with you.":
+                        $ persistent.unlockCafeteria = True
                         m "Sure I'll go eat with you."
 
                         show yui wow with dissolve
@@ -1982,6 +2164,15 @@ label afterCeremony:
                         y "For real? Waaaah!"
 
                         show yui smile close with dissolve
+
+                        python:
+
+                            if achievementList[13] == False:
+                                    
+                                achievement.grant("Lunch Date")
+                                renpy.notify("Achievement Unlocked: Lunch Date")
+                                renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                                achievementList[13] = True
 
                         m "Wait why are you so happy?"
 
@@ -2204,6 +2395,7 @@ label lunch:
         y "So what do you want to eat?"
 
         y "Just tell me. I got everything covered."
+        $ persistent.unlockCafeteria = True
 
         scene bg cafeteria with fade
 
@@ -2269,7 +2461,15 @@ label lunch:
 
                 y "Hahaha~ Okay I get it!"
 
-                "Achievement Unlocked: Big EATER!"
+                python:
+
+                    if achievementList[14] == False:
+                            
+                        achievement.grant("Big Eater")
+                        renpy.notify("Achievement Unlocked: Big Eater")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[14] = True
+                pause 0.5
     
     else:
         scene black with fade
@@ -2391,12 +2591,19 @@ label lunch:
 
                 kk "Hahaha~ Okay I get it!"
 
-                "Achievement Unlocked: Big EATER!"
+                python:
+
+                    if achievementList[14] == False:
+                            
+                        achievement.grant("Big Eater")
+                        renpy.notify("Achievement Unlocked: Big Eater")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[14] = True
 
         "...."
         scene black with fade
         pause 2.0
-
+    $ renpy.end_replay()
     jump socialStudiesQuiz
 
 label socialStudiesQuiz:
@@ -2680,6 +2887,16 @@ label quiz:
 
     m "I got [quizPoints] points baby."
 
+    python:
+        if quizPoints == 10:
+
+            if achievementList[15] == False:
+                            
+                achievement.grant("Galaxy Brain")
+                renpy.notify("Achievement Unlocked: Galaxy Brain")
+                renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                achievementList[15] = True
+
     pause 0.5
 
     $ play_sound(addPoints)
@@ -2691,9 +2908,15 @@ label quiz:
     "Mark with a smile on his face, knew he did well."
 
     hide screen displayScore
+
+    $ renpy.end_replay()
+
     show screen showNotesButton
+
     stop music fadeout 2.0
     pause 2.0
+
+    
 
     # Show achievement if perfect
     # Show test result
@@ -2705,7 +2928,7 @@ label pervTeacher:
     scene class2
     show screen pervTransition
     play sound "audio/music/Piano5.ogg"
-
+    $ persistent.unlockClass = True
     pause 3.0
 
     hide screen pervTransition
@@ -2716,7 +2939,7 @@ label pervTeacher:
     
     scene class2 with fade
 
-    $ play_sound(people,fadein=2.0,fadeout=3.0)
+    $ play_sound(people,fadein=0.2,fadeout=3.0)
 
     "Classroom noises...."
     pause 2.0
@@ -2747,7 +2970,7 @@ label pervTeacher:
 
     m "Who?"
 
-    $ play_sound(walking,fadein=0.5)
+    $ play_sound(walking,fadein=0.5,fadeout=3.0)
 
     show kurtney angry talk with dissolve
 
@@ -2922,6 +3145,14 @@ label talkOnHarass:
                 $ play_sound(addPoints)
                 "You received {color=#40ff00}5 HBB Points.{/color}"
 
+                python:
+
+                    if achievementList[16] == False:
+                                    
+                        achievement.grant("Lending A Helping Hand")
+                        renpy.notify("Achievement Unlocked: Lending A Helping Hand")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[16] = True
 
 
                 m "Okay [y]! I will help you."
@@ -3022,17 +3253,31 @@ label talkOnHarass:
                 $ play_sound(addPoints)
                 "You received {color=#40ff00}5 HBB Points.{/color}"
 
+                python:
+
+                    if achievementList[16] == False:
+                                    
+                        achievement.grant("Lending A Helping Hand")
+                        renpy.notify("Achievement Unlocked: Lending A Helping Hand")
+                        renpy.play("audio/sfx/achievement.ogg",channel="sound")
+                        achievementList[16] = True
+
 
 
                 m "Okay [kk]! I will help you."
 
                 kk "Thank you so much!"
 
+                $ renpy.end_replay()
+
                 jump arrestButch
 
             "Don't help her.":
                 $ kurtneyHelp = False
+                $ renpy.end_replay()
                 jump ignorePerv
+
+    $ renpy.end_replay()
 
 label arrestButch:
     stop music fadeout 0.5
@@ -3384,9 +3629,20 @@ label goodEndStory:
 
     centered "GOOD END"
 
+    python:
+
+        if achievementList[11] == False:
+                    
+            achievement.grant("Good End")
+            renpy.notify("Achievement Unlocked: Good End")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            achievementList[11] = True
+
     stop music fadeout 3.0
 
     pause 3.0
+
+    $ renpy.end_replay()
 
     jump yui_end
 
@@ -3403,6 +3659,17 @@ label badEndStory:
 
     centered "BAD END"
 
+    python:
+
+        if achievementList[10] == False:
+                    
+            achievement.grant("Bad End")
+            renpy.notify("Achievement Unlocked: Bad End")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            achievementList[10] = True
+
+    $ renpy.end_replay()
+
     jump yui_end
 
-return
+    return
