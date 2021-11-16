@@ -68,7 +68,10 @@ label start:
 
     # START HERE!
 
-    scene black with fade
+    scene bg train morning
+    show screen select
+    with fade
+
+    "Select a story!"
     
-    jump yui_start_case_1
     return

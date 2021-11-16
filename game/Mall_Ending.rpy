@@ -12,7 +12,7 @@ label Mall_End:
                 
                 if hbbpoints >10:
 
-                centered "You have chosen the bad ending."
+                        centered "You have chosen the bad ending."
                 
                         menu:
                         

@@ -1248,7 +1248,7 @@ label meetWithYui:
 
     pause 3.0
 
-    scene bg train test with fade
+    scene yui harassment with fade
 
     $ play_sound(people,fadein=3.0,fadeout=1.0)
 
@@ -2998,7 +2998,7 @@ label pervTeacher:
 
     "Everyone in the classroom gasped."
 
-    show teacher smile1 at right with dissolve
+    show butch creepy smile at right with dissolve
 
     "???" "I hope we all get along, everyone hehehe~"
 
@@ -3020,13 +3020,13 @@ label pervTeacher:
 
     m "You idiot..."
 
-    show teacher closed1 with dissolve
+    show butch creepy laugh with dissolve
 
     b "Oh did I ask you to talk? You'll be receiving a failing grade."
 
     b "Hehehe~"
 
-    hide teacher closed1 with dissolve
+    hide butch creepy laugh with dissolve
 
     show kurtney talk opened at center with dissolve
 
@@ -3296,11 +3296,14 @@ label arrestButch:
 
     if helpedYui is True:
         scene class2
-        show teacher smile1
+        show butch smile
         with fade
 
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
+        hide butch smile
+
+        show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
         b "Hwehehehehewehweh"
@@ -3311,7 +3314,7 @@ label arrestButch:
 
         pause 2.0
 
-        hide teacher smile1 with dissolve
+        hide butch creepy laugh with dissolve
 
         pause 2.0
 
@@ -3353,11 +3356,11 @@ label arrestButch:
 
         $ play_sound(radio,fadein=0.5)
 
-        show teacher closed1 with dissolve
+        show butch angry with dissolve
 
         b "Who the hell is disturbing my class!!!"
 
-        hide teacher closed
+        hide butch angry
 
         $ play_sound(doorknock)
 
@@ -3375,11 +3378,11 @@ label arrestButch:
 
         hide officer with dissolve
 
-        show teacher closed1 with dissolve
+        show butch surprised with dissolve
 
         b "Why is there police here?!!"
 
-        hide teacher closed1 with dissolve
+        hide butch surprised with dissolve
 
         $ play_sound(people,fadein=4.0)
 
@@ -3397,13 +3400,13 @@ label arrestButch:
 
         hide police 
 
-        show teacher closed1 
+        show butch angry 
 
         with dissolve
 
         b "What the hell are you looking at? I don't know anything about that."
 
-        hide teacher closed1 
+        hide butch angry
 
         show police
 
@@ -3438,11 +3441,14 @@ label arrestButch:
     # Kurt scene
     else:
         scene class2
-        show teacher smile1
+        show butch smile
         with fade
 
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
+        hide butch smile
+
+        show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
         b "Hwehehehehewehweh"
@@ -3453,7 +3459,7 @@ label arrestButch:
 
         pause 2.0
 
-        hide teacher smile1 with dissolve
+        hide butch creepy laugh with dissolve
 
         pause 2.0
 
@@ -3495,11 +3501,11 @@ label arrestButch:
 
         $ play_sound(radio,fadein=0.5)
 
-        show teacher closed1 with dissolve
+        show butch angry with dissolve
 
         b "Who the hell is disturbing my class!!!"
 
-        hide teacher closed
+        hide butch angry
 
         $ play_sound(doorknock)
 
@@ -3517,11 +3523,11 @@ label arrestButch:
 
         hide officer with dissolve
 
-        show teacher closed1 with dissolve
+        show butch surprised with dissolve
 
         b "Why is there police here?!!"
 
-        hide teacher closed1 with dissolve
+        hide butch surprised with dissolve
 
         $ play_sound(people,fadein=4.0)
 
@@ -3539,13 +3545,13 @@ label arrestButch:
 
         hide police 
 
-        show teacher closed1 
+        show butch angry 
 
         with dissolve
 
         b "What the hell are you looking at? I don't know anything about that."
 
-        hide teacher closed1 
+        hide butch angry
 
         show police
 
