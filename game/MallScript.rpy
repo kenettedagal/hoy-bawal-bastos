@@ -3,38 +3,61 @@
 
 
 # Side Character
-define natalie = Character("Natalie")
-define bob = Character("Bob")
-define sg = Character("Strange guy")
-define gd = Character("Guard")
-define tsci = Character("Teacher Johnny")
-define mc = Character("Me")
-define u = Character("Strange guy")
+define natalie = Character("Natalie",color='#d684ad')
+define bob = Character("Bob",color='#a6e0a1')
+define sg = Character("Strange guy",color='#bbdda8')
+define gd = Character("Guard",color='#866bb8')
+define tsci = Character("Teacher Johnny",color='#e0d397')
+define m = Character("Me",color='#00ffea')
+define mc = Character("Mark")
+define u = Character("Unknown guy")
 
+default badending1 = False
+default mending = True
+default gending = False
 
 # Script starts here.
 label Act_2_School:
-        
 
-        scene bg classroom_01_day
-        #play sound "audio/eclsrom.ogg"
-        mc "Oh, no one's here yet. I guess I'm too early."
+stop music
 
-        "I should take a quick nap."
 
-        scene black
+scene black
 
-        #play sound "audio/hey"
-        show unknown worried with dissolve
-        u "Wake up,hey wake up. Class will be starting in a minute."
-        #hbb points lagay
-        menu:
+play sound "audio/sfx/doorcreak.wav"
 
-                "Continue sleeping":
+centered ""
 
-                        jump class1
-                "Wake up":
-                        jump class2
+stop sound
+
+scene bg classroom_01_day
+$hbbpoints +=5
+show screen displayHBBPoints
+
+m "Oh, no one's here yet. I guess I'm too early."
+
+play sound "audio/sfx/yawn.wav" fadeout 1.0
+
+m "I should take a quick nap."
+
+stop sound
+scene black
+
+#play sound "audio/hey"
+show unknown worried with dissolve
+u "Wake up,hey wake up. Class will be starting in a minute."
+#hbb points lagay
+menu ask1:
+
+        "Continue sleeping":
+
+                $ subtractPoints()
+                jump class1
+        "Wake up":
+
+                $ hbbpoints += 3
+                show screen displayHBBPoints
+                jump class2
 
 
 
@@ -43,457 +66,865 @@ label class1:
         scene bg classroom_01_day
 
         
-        mc "............."
+        m "............."
         show johnny angry
         tsci "The class has already started, if you want to sleep feel free to leave this room."
         
         show johnny poker
-        mc "I'm sorry miss it won't happen again."
+        m "I'm sorry miss it won't happen again."
+        hide johnny poker
+        scene black
+        centered "Few Hours later."
 
-        jump lunchbreak
+        pause 1.0
+
+jump lunchbreak
 
 label class2:
 
         scene bg classroom_01_day
-        
+                
+        m "Ah the class is starting."
+
         show johnny poker
         tsci "Good morning everyone, we will begin our class but first of all let's get your attendance."
+        hide johnny poker
+        scene black
+        centered "Few Hours later."
 
-        jump lunchbreak
+        pause 1.0
+
+jump lunchbreak
 
 label lunchbreak:
 
-        scene classroom lunch1
+scene classroom lunch1
 
-        $ play_sound(bell)
+play sound "audio/sfx/bell.mp3"
 
-        tsci "Ok class dismiss,don't forget your activity for the next meeting."
-        tsci "Also remember to cooperate with your members."
+show johnny happy
+tsci "Ok class dismiss,don't forget your activity for the next meeting."
 
-        scene bg cafeteria
 
-        show bob talk with dissolve
-        bob "Ah my head hurts, I can't keep up with the lessons."
+tsci "Also remember to cooperate with your members."
 
-        scene black
-        show bob happy with dissolve
-        mc "This is [bob]. My friend in my first year here"
 
-        mc "He's an athlete person being pursuaded by multiple sports club"
+scene bg cafeteria
 
-        mc "But the guy is lazy and not serious most of the time"
+play music "audio/music/Careless-Summer_Looping.mp3" fadein 3.0
 
-        mc "Well... he's still a good and reliable person"
 
-        scene bg cafeteria
+show bob talk with dissolve
+bob "Ah my head hurts, I can't keep up with the lessons."
 
-        show kurtney talk opened at left with dissolve
-        kk "That's what you always say when your studying."
+scene black
+show bob happy with dissolve
+mc "This is [bob]. My friend in my first year here"
 
-        show bob talk at right with dissolve
-        bob "But the given group activity is kinda hard."
+mc "He's an athlete person being pursuaded by multiple sports club"
 
-        show kurtney happy teeth at left with dissolve
-        kk "Yes,it will be hard for the group your joining."
+mc "But the guy is lazy and not serious most of the time"
 
-        show bob shock at right with dissolve
-        bob "What do you mean by that.I won't burden to my group."
-        bob "Right?"
+mc "Well... he's still a good and reliable person"
 
-        menu:
+scene bg cafeteria
 
-                "Hmmm..."
-                "Agree":
-                #block of code to run
+show kurtney talk opened at left with dissolve
+kk "That's what you always say when your studying."
 
-                        mc "Yes, I'm glad that your part of my group."
-                        show bob talk at right with dissolve
-                        bob "See? I told you."
-                        show kurtney angry talk at left with dissolve
-                        kk "What your part of Bob's group!? Dude I want to be in your group."
+show bob talk at right with dissolve
+bob "But the given group activity is kinda hard."
 
-                        jump Act2
+show kurtney happy teeth at left with dissolve
+kk "Yes,it will be hard for the group your joining."
 
-                "Neutral":
-                #block of code to run
-                        mc "Well your neither the best nor the worst."
-                        show bob sad at right with dissolve
-                        bob "Why do I feel like your insulting me."
-                        show kurtney talk opened at left with dissolve
-                        kk "It's because your lazy and only do financial support."
-                        show bob talk at right with dissolve
-                        bob "I also do moral support those two are enough."
-                        show kurtney angry talk at left with dissolve
-                        kk "No, it's still not enough."
+show bob shock at right with dissolve
+bob "What do you mean by that.I won't burden to my group."
+bob "Right?"
 
-                        jump Act2
+menu ask2:
+
+        "Hmmm..."
+        "Agree":
+        #block of code to run
+
+                $ hbbpoints += 4
+                show screen displayHBBPoints
+                m "Yes, I'm glad that your part of my group."
+                show bob talk at right with dissolve
+                bob "See? I told you."
+                show kurtney angry talk at left with dissolve
+                kk "What your part of Bob's group!? Dude I want to be in your group."
+                
+                jump Act2
+
+        "Neutral":
+        #block of code to run
+                $ subtractPoints()
+                show screen displayHBBPoints
+                m "Well your neither the best nor the worst."
+                show bob sad at right with dissolve
+                bob "Why do I feel like your insulting me."
+                show kurtney talk opened at left with dissolve
+                kk "It's because your lazy and only do financial support."
+                show bob talk at right with dissolve
+                bob "I also do moral support those two are enough."
+                show kurtney angry talk at left with dissolve
+                kk "No, it's still not enough."
+
+                jump Act2
     
 label Act2:
 
-        hide kurtney angry talk
-        show natalie talk at left with dissolve
-        natalie "H-hello your [mc] right?"
+hide kurtney angry talk
+show natalie talk at left with dissolve
+natalie "H-hello your [mc] right?"
 
-        mc "Yes I am,what is it?"
+m "Yes I am,what is it?"
 
-        show bob happy at right with dissolve
-        bob "Ho,Hello there cutie"
+show bob happy at right with dissolve
+bob "Ho,Hello there cutie."
 
-        show natalie talk at left with dissolve
-        natalie "Oo-oh he-hello."
+show natalie talk at left with dissolve
+natalie "Oo-oh he-hello."
 
-        show bob talk at right with dissolve
-        bob "You're new here? Come join here eat with us."
+show bob talk at right with dissolve
+bob "You're new here? Come join here eat with us."
 
-        #punch sound effect
+play sound "audio/sfx/punch.wav"
 
-        show bob shock at right with dissolve
-        bob "Aw, what's wrong your with you?"
+show bob shock at right with dissolve
+bob "Aw, what's wrong your with you?"
 
-        hide natalie talk
-        show kurtney angry talk at left with dissolve
-        kk "Stop hitting with all the girls in the school,dude!"
+hide natalie talk
+show kurtney angry talk at left with dissolve
+kk "Stop hitting with all the girls in the school,dude!"
 
-        show bob talk at right with dissolve
-        bob "I'm just asking her to join us."
+show bob talk at right with dissolve
+bob "I'm just asking her to join us."
 
-        mc "Don't mind them is there something you want?"
+m "Don't mind them, Is there something you want?"
 
-        hide kurtney angry talk
-        show natalie talk at left with dissolve
-        natalie "Ummm..."
+hide kurtney angry talk
+show natalie talk at left with dissolve
+natalie "Ummm..."
 
-        bob "Speak up don't be shy."
+bob "Speak up don't be shy."
 
-        natalie "A-aabout t-the..."
+natalie "A-aabout t-the..."
 
-        hide natalie talk
-        show kurtney talk opened at left with dissolve
-        kk "Hey are you ok?"
+hide natalie talk
+show kurtney talk opened at left with dissolve
+kk "Hey are you ok?"
 
-        hide kurtney talk opened
-        show natalie talk at left with dissolve
-        natalie "Y-yyees"
+hide kurtney talk opened
+show natalie talk at left with dissolve
+natalie "Y-yyees"
 
-        show bob happy at right with dissolve
-        bob "Ah! just give the letter he'll read it."
+show bob happy at right with dissolve
+bob "Ah! just give the letter he'll read it."
 
-        #punch sound effect
-        "BONK!" with vpunch
-        show bob shock at right with dissolve
-        bob "Aw! could you please stop hitting mc?"
+play sound "audio/sfx/punch.wav"
+"BONK!" with vpunch
+show bob shock at right with dissolve
+bob "Aw! could you please stop hitting mc?"
 
-        hide natalie talk
-        show kurtney angry talk at left with dissolve
-        kk "Seriously?"
+hide natalie talk
+show kurtney angry talk at left with dissolve
+kk "Seriously?"
 
-        show bob sad at right with dissolve
-        bob "I'm just kidding man."
+show bob sad at right with dissolve
+bob "I'm just kidding man."
 
-        hide kurtney angry talk
-        show natalie talk at left with dissolve
-        natalie "Aa-about the group..."
+hide kurtney angry talk
+show natalie talk at left with dissolve
+natalie "Aa-about the group..."
 
-        show bob talk at right with dissolve
-        bob "Oh if you want us to be your friends, sure no problem."
+show bob talk at right with dissolve
+bob "Oh if you want us to be your friends, sure no problem."
 
-        mc "Yes, he's right feel free to talk to us."
+m "Yes, he's right feel free to talk to us."
 
-        hide natalie talk
-        show kurtney talk opened at left with dissolve
-        kk "I think she's trying to tell that she's part of your group activity."
+hide natalie talk
+show kurtney talk opened at left with dissolve
+kk "I think she's trying to tell that she's part of your group activity."
 
-        hide kurtney talk opened
-        show natalie talk at left with dissolve
-        natalie "Yes..."
+hide kurtney talk opened
+show natalie talk at left with dissolve
+natalie "Yes..."
 
-        hide natalie talk
-        show kurtney talk opened at left with dissolve
-        kk "She's the tranferee."
+hide natalie talk
+show kurtney talk opened at left with dissolve
+kk "She's the tranferee."
 
-        show bob shock at right with dissolve
-        bob "[natalie]? Oh the new girl in our class!"
+show bob shock at right with dissolve
+bob "[natalie]? Oh the new girl in our class!"
 
-        mc "Now that I think about it"
+m "Now that I think about it"
 
-        scene black
+scene black
 
-        show natalie happy at center with dissolve
-        "[natalie] a new female student in our class. A tranferee in the middle of prelims."
-        "I don't know anything about her,well... guess she's a shy person."
+show natalie happy at center with dissolve
+"[natalie] a new female student in our class. A tranferee in the middle of prelims."
+"I don't know anything about her,well... guess she's a shy person."
 
-        scene bg cafeteria
+scene bg cafeteria
 
-        show natalie talk at left with dissolve
-        show bob poker at right with dissolve
+show natalie talk at left with dissolve
+show bob poker at right with dissolve
 
-        mc "About the group activity. Why don't be talk about it after school?"
-        show bob talk at right with dissolve
-        bob "Right, we can go to the foodcourt in the mall."
-        show  natalie talk at left with dissolve
-        natalie "O-ook."
-        mc "It's decided then see you later!"
+m "About the group activity. Why don't be talk about it after school?"
+show bob talk at right with dissolve
+bob "Right, we can go to the foodcourt in the mall."
+show  natalie talk at left with dissolve
+natalie "O-ook."
+m "It's decided then see you later!"
+
+stop music
 
 label Act_2_School_Chapter2:
 
-        scene school gate
+scene school gate
 
-        mc "It seems I'm the first one here."
+m "It seems I'm the first one here."
 
-        natalie "....."
 
-        mc "Looks to the side"
+natalie "....."
 
-        show natalie poker with moveinleft
+m "Looks to the side"
 
-        mc "Oh, you're here."
+show natalie poker with dissolve
 
-        natalie "So-sorry for being late."
+m "Oh, you're here."
 
-        mc "You're not late and were still waiting for [bob]."
+show natalie talk with dissolve
+natalie "So-sorry for being late."
 
-        natalie "....."
+m "You're not late and were still waiting for [bob]."
 
-        mc "....."
+show natalie poker with dissolve
+natalie "....."
 
-        mc "(This is bad. It might get awkward here until [bob] comes, what should I do?)"
+m "....."
 
-        menu:
-                
-                "Talk to her":
-                        #block of code to run
-                        jump Act_2_School_1
-                "Keep Silent":
-                        #block of code to run
-                        jump Act_2_School_2
+m "(This is bad. It might get awkward here until [bob] comes, what should I do?)"
+
+menu ask3:
+        
+        "Talk to her":
+                #block of code to run
+                $ hbbpoints += 4
+                jump Act_2_School_1
+        "Keep Silent":
+                #block of code to run
+                jump Act_2_School_2
+
 label Act_2_School_1:        
 
-        scene school gate
+scene school gate
 
-        mc "The weather is nice today."
+m "The weather is nice today."
 
-        natalie "Yes and the wearther report says to be sunny and not expect to rain."
+show natalie talk at left with dissolve
+natalie "Yes and the wearther report says to be sunny and not expect to rain."
 
-        mc "It seems you watch a lot of weather forecast."
+m "It seems you watch a lot of weather forecast."
 
-        natalie "I do like seeing the weather forecast."
+show natalie happy at left with dissolve
+natalie "I do like seeing the weather forecast."
 
-        mc "Is there something you like other than that?"
+m "Is there something you like other than that?"
 
-        natalie "I like to read books and p-play some video games."
+show natalie talk at left with dissolve
+natalie "I like to read books and p-play some video games."
 
-        mc "Oh really?! That's awesome, is there something you recommend to read?"
+m "Oh really?! That's awesome, is there something you recommend to read?"
 
-        bob "Heyoo, Sorry for being late the match took longer than I expected."
+show bob talk at right with dissolve
+bob "Heyoo, Sorry for being late the match took longer than I expected."
 
-        mc "Ok now that everyones here.Are we ready to go?"
+m "Ok now that everyones here.Are we ready to go?"
 
-        bob "Yep, I'm ready."
+show bob happy at right with dissolve
+bob "Yep, I'm ready."
 
-        natalie "I'm good to go."
+show natalie at left with dissolve
+natalie "I'm good to go."
 
-        jump Act_3_Mall
+jump Act_3_Mall
 
 
 label Act_2_School_2:
 
-        scene school gate
+$ subtractPoints()
 
-        "You waited [bob] in silence"
+scene school gate
 
-        mc "Oh really?! That's awesome, is there something you recommend to read?"
+"You waited [bob] in silence"
 
-        bob "Heyoo, Sorry for being late the match took longer than I expected."
+show bob talk at right with dissolve
+bob "Heyoo, Sorry for being late the match took longer than I expected."
 
-        mc "Ok now that everyones here.Are we ready to go?"
+m "Ok now that everyones here.Are we ready to go?"
 
-        bob "Yep, I'm ready."
+show bob happy at right with dissolve
+bob "Yep, I'm ready."
 
-        natalie "....."
+show natalie poker at left with dissolve
+natalie "....."
+
+scene black
+
+pause 1.0
 
 
-        jump Act_3_Mall
+jump Act_3_Mall
 
 
-        label Act_3_Mall:
+label Act_3_Mall:
 
-        #bg mall entrance
 
-        bob "Were here.Are we going to buy materials or we eat first?"
+scene mallwalk_d
 
-        menu:
+show bob talk
+bob "We're here. Are we going to buy materials or we eat first?"
 
-                "Buy materials":
-                        #block of code to run
-                        jump Act_3_Mall1
-                "Eat first":
-                        #block of code to run
-                        jump Act_3_Mall2
+menu:
+
+        "Buy materials":
+                #block of code to run
+                jump Act_3_Mall1
+        "Eat first":
+                #block of code to run
+                jump Act_3_Mall2
 
 label Act_3_Mall1:
 
 
+scene mallwalk_d
 
+m "We should buy materials first."
+
+bob "Ok let's go to the store."
+
+centered "You guys bought the things you need."
+
+jump Act_3_Mall3
 
 label Act_3_Mall2:
 
 
+scene mallwalk_d
+
+m "We shoud go and eat first."
+
+bob "Ok let's go and eat then"
 
 
+jump Act_3_Mall3
 
 
 label Act_3_Mall3:
 
-#foodcourt bg
+scene cafe_memoria_inside_01_afternoon with dissolve
 
-mc "Now that we are ready, shall we start?"
+m "Now that we are ready, shall we start?"
 
+show bob talk at right with dissolve
 bob "Sure."
 
+show natalie talk at left with dissolve
 natalie "Ok."
+
+hide bob talk
+hide natalie talk
+
+scene black
 
 "A couple of minutes later."
 
-mc "We should take a quick break."
+scene cafe_memoria_inside_01_afternoon
+m "We should take a quick break."
 
+show bob happy at right with dissolve
 bob "Finally."
 
+show natalie talk at left with dissolve
 natalie "Excuse me, I gotta fo to the bathroom."
+hide natalie talk
 
+show bob talk at right with dissolve
 bob "[mc], you should buy some snacks."
 
-mc "Why don't you buy some."
+m "Why don't you buy some."
 
+show bob sad at right with dissolve
 bob "I'm kinda tired, please take this one also buy my favorite snack."
 
-mc "Okay man."
+m "Okay man."
 
-#foodcourt bg
+hide bob sad
+
+scene mall_d
 
 "As you are done buying the snacks,you saw natalie talking to someone you don't know."
 
+
+show natalie talk at left with dissolve
 natalie "Sorry I'm with someone."
 
-u "Don't be shy we're just gonna some chat"
+show strangeguy happy at right with dissolve
+sg "Don't be shy we're just gonna some chat."
 
-menu:
+
+menu ask4:
         
         "Help":
                 #block of code to run
+                
                 jump Act_3_Mall4
-        "Keep watching":
+        "Keep Watching":
                 #block of code to run
-                jump Act_3_Mall5
+                jump Act_4_Mall2
 
 label Act_3_Mall4:
 
-mc "[natalie] I'm done buying let's go.Is there a problem?"
+$hbbpoints += 4
 
-u "Tsk..."
+scene mallwalk_d
 
+m "[natalie] I'm done buying let's go.Is there a problem?"
+
+show strangeguy poker at right with dissolve
+sg "Tsk..."
+hide strangeguy poker
+
+show natalie talk at left with dissolve
 natalie "Thank you."
 
-mc "No problem. Do you know that guy?"
+m "No problem. Do you know that guy?"
 
+show natalie talk at left with dissolve
 natalie "I don't know he suddenly approach me."
 
-mc "Really? We should go back [bob] is waiting."
+m "Really? We should go back [bob] is waiting."
 
-#foodcourt seat bg
+scene black with dissolve
 
+scene cafe_memoria_inside_01_afternoon with dissolve
+
+show bob talk at right with dissolve
 bob "What took you so long?"
 
-mc "I stumbled with [natalie] and some guy is trying to hit her"
+m "I stumbled with [natalie] and some guy is trying to hit her."
 
+show bob shock at right with dissolve
 bob "[natalie] are you okay?"
 
+show natalie talk at left with dissolve
 natalie "I'm okay."
 
+show bob happy at right with dissolve
 bob "Good thing he didn't continue bothering you. Anyways you got our snacks?"
 
-mc "Here I got you. Now we should continue finishing this."
+m "Here I got you. Now we should continue finishing this."
 
 jump Act_4_Mall
 
-label Act_3_Mall5:
-
-
 label Act_4_Mall:
 
-#foodcourt bg
+scene cafe_memoria_inside_01_afternoon with dissolve
 
 "You saw the [u] looking at [natalie] in another seat."
 
+show natalie talk at left with dissolve
 natalie "He's here."
 
+show bob shock at right with dissolve
 bob "Who?"
 
-mc "The [u] that was talking to [natalie] earlier."
+m "The [u] that was talking to [natalie] earlier."
 
+show bob angry at right with dissolve
 bob "Maybe I should confront him."
 
+show natalie talk at left with dissolve
 natalie "No it's ok maybe he's just eating here."
 
+show bob sad at right with dissolve
 bob "Ok."
+
+hide natalie talk
+hide bob sad
+
+scene black with dissolve
 
 "Couple of minutes later."
 
+scene cafe_memoria_inside_01_afternoon with dissolve
+
+show bob happy at right with dissolve
 bob "Done at last."
 
-mc "Thank you guys for the cooperation!"
+m "Thank you guys for the cooperation!"
 
+show natalie happy at left with dissolve
 natalie "Thank you too."
 
+show bob talk at right with dissolve
 bob "Don't mention it. Were suppose to do this together."
 
+show natalie talk at left with dissolve
 natalie "I have to go now before it gets dark."
 
-mc "Okay we should head out now it's getting night time."
+m "Okay we should head out now it's getting night time."
 
+show bob happy at right with dissolve
 bob "[natalie] we'll escort you to your ride."
 
+show natalie happy at left with dissolve
 natalie "Thank you!"
 
-# mall
+hide bob happy
+hide natalie happy
 
+scene mall_e
+
+show bob talk at right with dissolve
 bob "Wait up I need to go in the toilet."
+
+hide bob talk
 
 "You saw again the [u]."
 
-mc "Mister is there a problem?"
+m "Mister is there a problem?"
 
-u "No there is no problem. I just want to ask the cute girl's name."
+show strangeguy poker with dissolve
+sg "No, there is no problem. I just want to ask the cute girl's name."
+hide strangeguy poker
 
+show natalie poker with dissolve
 natalie "....."
+hide natalie poker
 
-mc "I don't think she wants to share that info so can you please leave?"
+m "I don't think she wants to share that info so can you please leave?"
 
-u "What? I didn't ask you, I'm asking the cute girl."
+show strangeguy angry with dissolve
+sg "What? I didn't ask you, I'm asking the cute girl."
+hide strangeguy angry
 
-natalie "M-my name is [natalie]"
+m "Mister I don't think she.."
 
-u "That's a beautiful name, we should hang out sometime so give me your number."
+show natalie talk with dissolve
+natalie "It's okay [mc].M-my name is [natalie]"
+hide natalie talk
 
+show strangeguy happy with dissolve
+sg "That's a beautiful name, we should hang out sometime so give me your number."
+hide strangeguy happy
+
+show natalie talk with dissolve
 natalie "Sorry but I just met you so I can't give it to you."
+hide natalie talk
 
-u "Ey girl don't need to be hard to get, we all know you'll come with me in the bed."
+show strangeguy happy with dissolve
+sg "Ey girl don't need to be hard to get, we all know you'll come with me in the bed."
 
-menu :
+menu ask5:
 
         "Warn him":
                 #block of code to run
                 jump Act_4_Mall1
-        "Keep Listening":
+        "Idle":
                 #block of code to run
                 jump Act_4_Mall2
 
+        "Punch":
+                #block of code to run
+                jump Act_5_Mall2
 
 label Act_4_Mall1:
 
+scene mall_e
+
+m "Mister please don't not bother her anymore.She doesn't want to talk to you."
+
+show strangeguy poker with dissolve
+sg "Kid I'm not talking to you and I'm not harming her."
+
+m "She's uncomfortable this is my last warning ,mister."
+
+show strangeguy angry with dissolve
+sg "For the last time I'm not talking to you go away kid."
 
 
+m "Mister are you aware that you can be taken to custody for this."
 
+show strangeguy poker
+sg "What law?"
+
+m "The safe spaces act."
+
+show strangeguy angry
+sg "What spaceship are you talking about?Go away and shoo."
+hide strangeguy angry
+
+show natalie poker at left with dissolve
+show strangeguy happy at right with moveinright
+"The [sg] walk [natalie] closer."
+hide natalie poker
+hide strangeguy happy
+
+
+#show hand
+natalie "kyaah!"
+
+menu:
+        "I should do something."
+        "Call the guard":
+                #block of code to run
+                jump Act_5_Mall1
+        "Punch him":
+                #block of code to run
+                jump Act_5_Mall2
+
+label Act_5_Mall1:
+
+
+m "Guards! guards!"
+
+show police neutral with dissolve
+gd "What's the problem kid?"
+
+m "This guy is harrassing my friend over here."
+
+gd "Is this true sir?"
+hide police neutral
+
+show strangeguy poker with dissolve
+sg "Nope this nerd is just making a random accusations."
+
+m "No I'm not, You can talk with my friend here."
+hide strangeguy poker
+
+show police neutral with dissolve
+gd "Is your friend telling the truth?"
+hide police neutral
+
+show natalie sad with dissolve
+natalie "Ummm.."
+
+m "[natalie] don't be scared, I got you cover this guy won't come for you anymore."
+
+show natalie talk with dissolve
+natalie "My friend told the truth."
+hide natalie talk
+
+show strangeguy shock with dissolve
+sg "What? Now you guys are just pulling some pranks."
+hide strangeguy shock
+
+show police neutral with dissolve
+gd "Ok ok, let's talk this calmly. Miss can you elaborate what happened? "
+hide police neutral
+
+show natalie poker with dissolve
+natalie "Ok."
+hide natalie poker
+
+"Natalie explained everything happened."
+
+jump Mall_End
+
+
+label Act_5_Mall2:
+        
+play sound "audio/sfx/punch.wav"
+
+show strangeguy shock with dissolve
+sg "Ouch!What's wrong with you?"
+
+
+mc "You better leave!"
+
+play sound "audio/sfx/punch.wav"
+
+sg "Aw!guards! guards!"
+hide strangeguy shock
+
+show police neutral with dissolve
+gd "Hey what's the problem here?"
+hide police neutral
+
+show strangeguy angry with dissolve
+sg "There's a psycho here help me!"
+
+mc "What? you're the maniac here."
+hide strangeguy angry
+
+show police neutral with dissolve
+gd "Sir you need to come with me."
+hide police neutral
+
+scene black
+
+play sound "audio/sfx/fail.ogg"
+# You Failed bg
+
+menu:
+        "Try Again":
+                #block of code to run
+                jump Act_2_School
+        "Exit":
+                #block of code to run
+                return
 
 label Act_4_Mall2:
+
+play sound "audio/sfx/walking.ogg"
+sg "(Approaches [natalie])"
+show strangeguy happy at right with moveinright
+sg "Come with me if you don't want your friend be hurt."
+
+show natalie sad at left with dissolve
+natalie "O-ok."
+
+hide strangeguy happy
+hide natalie sad
+
+m "......"
+
+scene black
+
+play sound "audio/sfx/fail.ogg"
+#You Failed bg
+
+menu:
+        "Try Again":
+                #block of code to run
+                jump Act_2_School
+        "Exit":
+                #block of code to run
+                return
+
+label Mall_EndB:
+        $ badending1 = True
+        
+        centered "A couple of minutes of talk."
+
+        centered "In the end you failed to show the strange guy true colors to the guard and allow,"
+
+        centered "The Strange person persuade the guard!"
+                # new achievement "worst decision"
+        show strangeguy happy
+        sg "Kiddo I don't think you know how the world works,see you."
+        
+        menu:
+
+                "Ah this guy pisses me off"
+                        
+                "Punch him":
+                #block of code to run
+                        jump Act_5_Mall2
+                        
+                "Punch him":
+                #block of code to run
+                        jump Act_5_Mall2
+
+label Mall_EndM:
+        $ mending = True
+
+        centered "A few minutes later."
+        
+        centered "With the attempts of the strange guy to twist the story but you succesfully denied them."
+        
+        show police neutral with dissolve
+        gd "I see that's what happened."
+
+        show police angry
+        gd "Mister please stay away from this people."
+        hide police angry
+
+        show strangeguy shock with dissolve
+        sg "Man, I'm just wanna talk."
+
+        show strangeguy angry with dissolve
+        sg "Hey geek boy!If I see you once more you better run."
+
+        m "Sir I think you should take him."
+
+        show stalker happy with dissolve
+        sg "What you gonna do dweeb!?"
+
+        m "Sir are you hearing this? He's violating the law."
+
+        show strangeguy poker with dissolve
+        sg "Again with your space law. I'm a citizen here not an alien."
+
+        menu:
+                "It's Safe spaces act":
+                        #block of code to run
+                        jump Mall_EndM1 
+                "It's Save space act":
+                        #block of code to run
+                        jump Mall_EndM1
+                "It's the law of space":
+                        #block of code to run
+                        jump Mall_EndM1
+                "No you're an alien!":
+                        #block of code to run
+                        jump Mall_EndM1
+label Mall_EndM1:
+
+        m "You should leave."
+
+        show police neutral
+        gd "Sir from what I am seeing the kid is right."
+        hide police neutral
+
+        show strangeguy shock
+        sg "What!?"
+
+        show police angry with dissolve
+        gd "Please leave or I'll arrest you."
+        hide police angry
+
+        show strangeguy poker with dissolve
+        sg "Ok, ok I'll leave."
+        hide strangeguy poker
+
+
+        m "Ah at last that guy is gone."
+
+        show natalie happy at left with dissolve
+        natalie "Thank you [mc]."
+
+        m "No problem remember your my friend, I got your back."
+
+        natalie "Mmhmm."
+
+        show bob talk at right with dissolve
+        bob "Sorry the line in the bathroom is long did I miss something?"
+
+        m "Ah we can talk about it while we walk."
+        hide natalie happy
+        hide bob talk
+
+        scene black
+        #bg The end
+        pause 2.0
+
+
+return
+
+
+
+label Mall_EndG:
+        
+        centered "A few minutes later."
+        
+        centered "Special ending underconstruction"
+
+
 
 return
