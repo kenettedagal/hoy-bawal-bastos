@@ -15,6 +15,7 @@ define pm = Character('Police Man')
 define sg = Character('School Guard')
 
 label chloe:
+    stop music
 
     $ yuiStoryProgress = 3
     show screen showNotesButton

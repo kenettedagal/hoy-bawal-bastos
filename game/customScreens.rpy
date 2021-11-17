@@ -31,7 +31,7 @@ screen select():
             
             textbutton "Go to Side Story #1" ymaximum 200 action [Hide("select"),Jump("Act_2_School")]
 
-            textbutton "Go to Side Story #2" ymaximum 200 action None
+            textbutton "Go to Side Story #2" ymaximum 200 action [Hide("select"),Jump("chloe")]
 
             textbutton "Go to Bonus Story" ymaximum 200 action None
 
