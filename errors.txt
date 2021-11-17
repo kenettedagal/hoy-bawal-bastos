@@ -2,13 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 24: u'python' is not a keyword argument or valid child for the imagebutton statement.
-    python:
-          ^
+File "game/Mall_Ending.rpy", line 20: expected statement.
+    "See the ending":
+                    ^
 
-File "game/screens.rpy", line 50: u'python' is not a keyword argument or valid child for the imagebutton statement.
-    python:
-          ^
-
-Ren'Py Version: Ren'Py 7.4.8.1895
-Fri Nov  5 16:52:40 2021
+Ren'Py Version: Ren'Py 7.4.4.1439
+Wed Nov 17 01:31:08 2021

@@ -3,14 +3,37 @@
 
 screen select():
     frame:
+        xalign 0.2
+        yalign 0.5
+        xminimum 200
+        yminimum 100
         vbox:
-            xalign 0.5
-            yalign 0.5
-            xmaximum 500
-            ymaximum 500
-            textbutton "Go to Story #1" ymaximum 200 action Jump("tutorial_start")
+            textbutton "Go to Tutorial" ymaximum 200 action [Hide("select"),Jump("tutorial_start")]
+    frame:
+        xalign 0.5
+        yalign 0.5
+        xminimum 200
+        yminimum 200
+        vbox:
+            
+            textbutton "Go to Main Story" ymaximum 200 action [Hide("select"),Jump("yui_start_case_1")]
 
-            textbutton "Go to Story #2" ymaximum 200 action Jump("Act_2_School")
+            textbutton "Go to Special Ending #1" ymaximum 200 action None
+
+            textbutton "Go to Special Ending #2" ymaximum 200 action None
+
+    frame:
+        xalign 0.8
+        yalign 0.5
+        xminimum 200
+        yminimum 200
+        vbox:
+            
+            textbutton "Go to Side Story #1" ymaximum 200 action [Hide("select"),Jump("Act_2_School")]
+
+            textbutton "Go to Side Story #2" ymaximum 200 action None
+
+            textbutton "Go to Bonus Story" ymaximum 200 action None
 
 
 screen newspaper():
