@@ -37,7 +37,7 @@ label yui_end:
 
         n "It's okay! It's not over yet. You can try again or proceed to the next story."
 
-        n "If you try again, I will give you hint to reach the secret ending. Sounds good?"
+        n "If you try again, I will give you hint to reach the good ending. Sounds good?"
 
         n "What do you want to do?"
 
@@ -45,6 +45,7 @@ label yui_end:
             n "What do you want to do?"
 
             "Try it again.":
+
                 n "Great choice! Now here is the hint."
 
                 n "You have to take the train, save the girl and help her."
@@ -54,9 +55,13 @@ label yui_end:
                 jump yui_start_case_1
 
             "Proceed to next story.":
+
                 n "It's fine. You can try this story again once you feel like doing it."
 
+                jump Act_2_School
+
     elif goodEnding:
+        
         n "Congratulations! You achieved the good ending route!"
 
         python:
@@ -101,6 +106,35 @@ label yui_end:
 
                 "Proceed to next story!":
                     ""
+                    jump Act_2_School
+
+        else:
+            n "Unfortunately you did not qualify for the Special Ending..."
+
+            n "Do you want to try again or proceed to the next story?"
+
+            n "If you try again, I will give you hint to reach the secret ending. Sounds good?"
+
+            n "What do you want to do?"
+
+            menu:
+
+                "Try it again.":
+                    n "Great choice! Now here is the hint."
+
+                    n "You have to atleast achieve a score of 20 points."
+
+                    n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck!"
+
+                    jump yui_start_case_1
+
+                "Proceed to next story.":
+                    n "It's fine. You can try this story again once you feel like doing it."
+
+                    jump Act_2_School
+
+
+
 
 
 

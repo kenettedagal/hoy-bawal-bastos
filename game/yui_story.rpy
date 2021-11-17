@@ -13,7 +13,7 @@ label yui_start_case_1:
     define kk = Character('Kurtney',color='#51ceff')
     define y = Character('Yui',color='#f9b3ff')
     define t = Character('Teacher Clarisse')
-    define b = Character('Butch')
+    define b = Character('Butch',color='#badb27')
     define o = Character('Officer Greg', color='#30ff45')
     define mc = Character("Mark")
     define m = Character("Me",color='#00ffea')
@@ -418,6 +418,7 @@ label goingToSchool:
 
 
 label meetWithKurt:
+    $ persistent.unlockKurtney = True
     stop music
     pause 0.5
     play sound "audio/music/Piano2.ogg"fadein 0.3
@@ -1030,7 +1031,7 @@ label meetWithKurt:
 
         scene walk with fade
 
-        show officer with dissolve 
+        show police neutral with dissolve 
 
         $play_music(garden) 
 
@@ -1052,7 +1053,7 @@ label meetWithKurt:
 
         m "Yes sir, I've read a bit about that law."
 
-        hide officer
+        hide police neutral
         show kurtney talk opened 
         with dissolve
 
@@ -1061,21 +1062,21 @@ label meetWithKurt:
         m "Yeah it is."
 
         hide kurtney talk opened
-        show officer
+        show police neutral
         with dissolve
 
         o "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
 
         $ yuiStoryProgress += 1
 
-        hide officer with dissolve
+        hide police neutral with dissolve
 
         menu :
             
             o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
             "Yes, please tell me about the punishments.":
-                hide officer with dissolve
+                hide police neutral with dissolve
                 pause 0.5
                 $ play_sound(addPoints)
                 $ hbbpoints += 3
@@ -1097,7 +1098,7 @@ label meetWithKurt:
                 kk "I-I-I want to learn it too..."
 
                 hide kurtney happy teeth
-                show officer
+                show police neutral
                 with dissolve
                 o "Sure thing. Lemme just take out my handbook."
 
@@ -1161,7 +1162,7 @@ label meetWithKurt:
                 
                 o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
-                hide officer with fade
+                hide police neutral with fade
 
                 m "......"
 
@@ -1186,6 +1187,7 @@ label meetWithKurt:
 
 
 label meetWithYui:
+    $ persistent.unlockYui = True
     stop music
     pause 1.5
     play sound "audio/music/Transition1.ogg" fadein 1.0
@@ -1266,13 +1268,9 @@ label meetWithYui:
 
     "I notice that the girl is trembling and shaking."
 
-    show yui worry with dissolve
-
     "Girl" "Plea-please l-l-leave me alo-lone..."
 
     pause 2.0
-
-    hide yui worry with dissolve 
 
     "???" "Hahaha!! She's scared like a child."
 
@@ -1280,10 +1278,9 @@ label meetWithYui:
 
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
-    show yui worry closed with dissolve
-    pause 3
-
-    hide yui worry closed with dissolve 
+    
+    pause 1.5
+    with fade
     $ timeout = 10
     $ timeout_label = "notSaveYui"
     $ deathFlag = False
@@ -1346,13 +1343,13 @@ label meetWithYui:
 
             m "I saw three old men catcalling and sexually harassing a girl student! Please help me."
 
-            show officer with dissolve
+            show police neutral with dissolve
 
             o "I see. Bring me to them."
 
             label withOfficer:
 
-                hide officer with dissolve
+                hide police neutral with dissolve
 
                 with fade
 
@@ -1360,7 +1357,7 @@ label meetWithYui:
 
                 m "These old men are catcalling and making unwanted invitations to this girl."
 
-                show officer with dissolve
+                show police neutral with dissolve
 
                 o "HEY YOU BASTARDS!"
 
@@ -1378,7 +1375,7 @@ label meetWithYui:
 
             #show Yui
 
-            hide officer
+            hide police neutral
             scene bg train morning
             show yui wow 
             with fade
@@ -1719,7 +1716,7 @@ label meetWithYui:
     
     label yuiConflictResolved:
         hide yui smile opened
-        show officer with fade       
+        show police neutral with fade       
         o "Hey kids. You better get going now. I'll clean this mess up."
 
         o "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
@@ -1743,14 +1740,14 @@ label meetWithYui:
         $ timeout = 10
         $ timeout_label = "ignorePunishment"
 
-        hide officer with dissolve
+        hide police neutral with dissolve
 
     menu punishments:
         
         o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         "Yes, please tell me about the punishments.":
-            hide officer with dissolve
+            hide police neutral with dissolve
             pause 0.5
             $ hbbpoints += 3
             $ play_sound(addPoints)
@@ -1772,7 +1769,7 @@ label meetWithYui:
                     achievementList[9] = True
 
             hide yui smile close
-            show officer
+            show police neutral
             with dissolve
             o "Sure thing. Lemme just take out my handbook."
 
@@ -1835,7 +1832,7 @@ label meetWithYui:
             
             o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
-            hide officer with fade
+            hide police neutral with fade
 
             m "......"
 
@@ -1857,7 +1854,7 @@ label meetWithYui:
 
         m "No, I don't really care."
 
-        show officer with dissolve
+        show police neutral with dissolve
 
         o "Ohhhh that's a shame."
         $ subtractPoints()
@@ -1871,7 +1868,7 @@ label meetWithYui:
         show screen newNote 
         pause 2.0
 
-        show officer
+        show police neutral
 
         o "Now go on your way. I'll take care of them. In jail of course."
         
@@ -1881,7 +1878,7 @@ label meetWithYui:
 
         m "Thank you very much sir!"
 
-        hide officer with fade
+        hide police neutral with fade
 
         show yui worry opened with dissolve
 
@@ -3370,35 +3367,35 @@ label arrestButch:
 
         "Creeeeek. The door opens."
 
-        show officer with fade
+        show police neutral with fade
 
         "Uniformed personnels came in. They appear to be police."
 
         m "Officer Greg!!!"
 
-        hide officer with dissolve
+        hide police neutral with dissolve
 
-        show butch surprised with dissolve
+        show butch suprise with dissolve
 
         b "Why is there police here?!!"
 
-        hide butch surprised with dissolve
+        hide butch suprise with dissolve
 
         $ play_sound(people,fadein=4.0)
 
         "Everyone" "What's happening? Why are they here? Did someone kill?"
 
-        show police with fade
+        show police neutral with fade
 
-        "Policeman Carl" "Everyone please calm down."
+        o "Everyone please calm down."
 
-        "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
+        o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
 
         "The policeman looks at Butch."
 
-        hide police 
+        hide police neutral
 
         show butch angry 
 
@@ -3408,15 +3405,15 @@ label arrestButch:
 
         hide butch angry
 
-        show police
+        show police neutral
 
         with dissolve
 
-        "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
+        o "Don't explain to me. Everything that you say will be used against you."
 
-        "Policeman Carl" "The complainant showed a solid proof of evidence."
+        o "The complainant showed a solid proof of evidence."
 
-        "Policeman Carl" "You will be coming with us. Do not resist."
+        o "You will be coming with us. Do not resist."
 
         hide police with fade
 
@@ -3424,7 +3421,7 @@ label arrestButch:
 
         "Everyone" "*gasps*"
 
-        show officer with fade
+        show police neutral with fade
 
         o "Hey future Attorney! It looks like it went fine."
 
@@ -3437,6 +3434,8 @@ label arrestButch:
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         m "Yes Sir!"
+
+        stop sound fadeout 2.0
 
     # Kurt scene
     else:
@@ -3515,29 +3514,29 @@ label arrestButch:
 
         "Creeeeek. The door opens."
 
-        show officer with fade
+        show police neutral with fade
 
         "Uniformed personnels came in. They appear to be police."
 
         m "Officer Greg!!!"
 
-        hide officer with dissolve
+        hide police neutral with dissolve
 
-        show butch surprised with dissolve
+        show butch suprise with dissolve
 
         b "Why is there police here?!!"
 
-        hide butch surprised with dissolve
+        hide butch suprise with dissolve
 
         $ play_sound(people,fadein=4.0)
 
         "Everyone" "What's happening? Why are they here? Did someone kill?"
 
-        show police with fade
+        show police neutral with fade
 
-        "Policeman Carl" "Everyone please calm down."
+        o "Everyone please calm down."
 
-        "Policeman Carl" "We have received a complaint that someone is sexually harassing a student."
+        o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
 
@@ -3553,15 +3552,15 @@ label arrestButch:
 
         hide butch angry
 
-        show police
+        show police neutral
 
         with dissolve
 
-        "Policeman Carl" "Don't explain to me. Everything that you say will be used against you."
+        o "Don't explain to me. Everything that you say will be used against you."
 
-        "Policeman Carl" "The complainant showed a solid proof of evidence."
+        o "The complainant showed a solid proof of evidence."
 
-        "Policeman Carl" "You will be coming with us. Do not resist."
+        o "You will be coming with us. Do not resist."
 
         hide police with fade
 
@@ -3569,7 +3568,7 @@ label arrestButch:
 
         "Everyone" "*gasps*"
 
-        show officer with fade
+        show police neutral with fade
 
         o "Hey future Attorney! It looks like it went fine."
 
@@ -3582,24 +3581,27 @@ label arrestButch:
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         m "Yes Sir!"
-        hide officer
+
+        stop sound fadeout 0.5
+
+        hide police neutral
         show kurtney talk opened 
         with dissolve
 
         kk "Hey! Don't forget about me!!"
 
-        show officer 
+        show police neutral 
         hide kurtney talk opened
         with fade
 
         o "Oh yes, the Attorney's friend. You will also receive compensation."
 
-        hide officer
+        hide police neutral
         show kurtney angry talk with dissolve
 
         kk "Nevermind compensation, why is my name \"Attorney's friend\"?!!!"
 
-        hide officer
+        hide police neutral
 
         with dissolve
 
