@@ -36,6 +36,8 @@ label yui_start_case_1:
     default persistent.unlockClass = False
     default persistent.unlockYui = False
     default persistent.unlockKurtney = False
+    default kurtneySpecial = False
+    default yuiSpecial = False
 
     init python:
         
@@ -66,6 +68,7 @@ label yui_start_case_1:
     $ play_sound (phone) 
 
     scene bg room2 with fade
+
 
     "{i}7:00 AM....{/i}"
     
@@ -3160,6 +3163,8 @@ label talkOnHarass:
 
                 m "Really? Then this will be easy. It should be a solid evidence for his disgusting act."
 
+                $ yuiSpecial = True
+
                 jump arrestButch
 
             "Don't help her.":
@@ -3609,6 +3614,8 @@ label arrestButch:
 
         "Everyone" "HAHAHAHA!!!"
 
+        $ kurtneySpecial = True
+
         # $ friendEnding = True
     
     jump goodEndStory
@@ -3652,6 +3659,11 @@ label goodEndStory:
 
     $ renpy.end_replay()
 
+    if hbbpoints >= 20 and yuiSpecial:
+        jump specialEndYui
+    elif hbbpoints >= 20 and kurtneySpecial:
+        jump specialEndKurtney
+
     jump yui_end
 
 
@@ -3680,4 +3692,358 @@ label badEndStory:
 
     jump yui_end
 
-    return
+label specialEndYui:
+
+    # Library scene
+    
+    pause 3.0
+    scene black with fade
+    centered "A few days later..."
+
+    scene hallway with fade
+    m "Peace has finally been restored!"
+
+    m "After the incident, the police organization talked to me about doing part-time job for them."
+
+    m "I guess that's not too bad. I can get some experience."
+
+    show kurtney worry with fade 
+
+    kk "Heeeey! Why didn't you wait for me earlier this morning?"
+
+    m "I'm sorry! I was going to meet a friend."
+
+    kk "A friend? You? There's no way that's possible."
+
+    m "Oh! And there she is!"
+
+    "....."
+
+    m "Hey Yui!"
+
+    hide kurtney worry
+    show yui blush at left
+    with dissolve
+
+    y "Good morning Mark! Did you see my message last night?"
+
+    m "Yeah but I wasn't able to reply. I was too sleepy."
+
+    y "No its fine!"
+
+    show kurtney talk opened at right with dissolve
+
+    kk "What the hell is happening?"
+
+    show yui smile opened at left with dissolve
+
+    y "Oh I'm sorry for not introducing myself."
+
+    y "My name is Yui and I am a First Year."
+
+    kk "I'm his childhood friend and his classmate."
+
+    y "Oh I see!"
+
+    show kurtney smile at right with dissolve
+
+    kk "So what's your relationship with Mark?"
+
+    show yui blush closed at left with dissolve
+
+    y "O-ohhh we are f-frie-"
+
+    m "Hey [kk] you're being rude."
+
+    show yui smile opened at left with dissolve 
+
+    m "I just happened to run into her in the school ceremony. She was lost and couldn't find her classroom so I helped her."
+
+    show kurtney happy teeth at right with dissolve
+
+    kk "Is that all?"
+
+    show yui blush at left with dissolve 
+
+    y "H-He also saved my life..."
+
+    kk "Saved your life you say?"
+
+    m "Well, it was because of Professor Butch."
+
+    m "That bastard was also teaching in First Year and sexually harassed students."
+
+    m "It just so happened that [y] came to me and asked for help. That's all."
+
+    show yui smile close at left  
+    show kurtney smile at right 
+    with dissolve
+    kk "Hmmmm! I see..."
+
+    kk "That's good."
+
+    kk "For you I guess."
+
+    m "What? You're not happy that I saved her?"
+
+    show kurtney angry talk at right with dissolve
+
+    kk "No! I..."
+
+    kk "...."
+
+    kk "Ugh! Whatever. You're pissing me off."
+
+    hide kurtney angry talk at right 
+    hide yui smile close at left 
+    with fade
+
+    m "Uhhh sorry about that. She's a little bit weird."
+
+    show yui blush with dissolve
+
+    y "It's fine! Actually I'm quite jealous cause she has a childhood friend like you..."
+
+    m "Jealous? Why? I'm not that really great though."
+
+    y "You are! You saved my life."
+
+    y "As a matter of fact, I want to request something to you."
+
+    m "What is it? As long as I can do it."
+
+    y "You said that you were not that good at studying right?"
+
+    m "Yeah?"
+
+    y "I want to help you out. The midterm test are also coming near."
+
+    m "Really? That would be great!"
+
+    y "So uhm..."
+
+    y "Will you come with me to the library after school?"
+
+    "...."
+
+    menu:
+        "Come to library with Yui after school?"
+
+        "Study with her.":
+            jump libraryDate
+
+        "Don't study.":
+            jump credits
+
+
+
+label libraryDate:
+
+    scene library with fade
+    
+    m "Do you know the answer to this one?"
+
+    y "Ohh that's easy."
+
+    m "Sorry I'm really bad at math."
+
+    y "It's okay. That's why I'm here to help you."
+
+    y "To answer this equation...."
+
+    y "You use this formula."
+
+    m "Ohh so it goes just like that huh?"
+
+    y "Yup! It's easy right?"
+
+    m "[y] you're really good at teaching!"
+
+    m "When I'm in class, what goes in my left ear comes out in my right ear."
+
+    y "Hahahaha!"
+
+    scene black with fade 
+
+    centered "After some time..."
+
+    scene library with fade
+
+    y "Mark? Do you have a girlfriend?"
+
+    m "I have none. Why?"
+
+    y "What am I for you?"
+
+    m "A friend?"
+
+    y "You see, I think I..."
+
+    m "What is this drama?"
+
+    y "Please I'm serious!"
+
+    m "Okay I'm listening."
+
+    y "I think I've fallen in love."
+
+    m "That's good for you!"
+
+    m "With who?"
+
+    y "Are you not listening?!!"
+
+    m "Can you repeat it again?"
+
+    y "Gosh. This is so embarassing. I've fallen in love with you! Please don't make me say it again."
+
+    m "Whaaaaa?"
+
+    m "Why meeee?"
+
+    y "I don't know!! I was just happy that you saved me. Then the next day, my mind can't stop thinking about you."
+
+    y "You've always been in my mind since then!"
+
+    y "So... Mark."
+
+    y "Will you please go out with me?"
+
+    pause 3.0
+
+    jump credits
+
+
+label specialEndKurtney:
+
+    pause 3.0
+    scene black with fade
+    centered "A few days later..."
+
+    scene hallway with fade
+    m "Peace has finally been restored!"
+
+    m "After the incident, the police organization talked to me about doing part-time job for them."
+
+    m "I guess that's not too bad. I can get some experience."
+
+    show kurtney worry with fade 
+
+    kk "Heeeey! Why didn't you wait for me earlier this morning?"
+
+    m "I was on cleaning duty today dude. I'm sorry."
+
+    m "Also, I told you last night that I'm on cleaning duty. Did you forgot?"
+
+    kk "Yeah I think. I was busy playing games."
+
+    scene class2 with fade
+
+    pause 0.5
+
+    show kurtney happy teeth with dissolve
+
+    kk "Hey Mark! What do you say going to arcade after school?"
+
+    m "Sounds like a good idea!"
+
+    kk "Wanna go? I'll treat you."
+
+    m "Woah really? Is this really you?"
+
+    kk "Whaaaat? I'm being this kind to you and you still complain?"
+
+    m "I get it. I get it. Let's go! This'll be fun."
+
+    m "It's been a long time since we've gone to the arcade."
+
+    kk "Yeah!"
+
+    kk "Also, it's my way of thanking you for helping me the other day."
+
+    m "Don't mind it. You're my precious childhood friend."
+
+    kk "Seriously. Stop that."
+
+    m "What?"
+
+    y "Nothing!"
+
+    scene arcade with fade
+
+    $ play_sound(arcade, fadein=0.5,fadeout=0.5)
+
+    m "There's a lot of people here, huh."
+
+    kk "Let's go try racing!"
+
+    m "Yeah sure."
+
+    kk "Wanna bet something? If I win, you will do what I will say. Is that okay?"
+
+    m "What if I win?"
+
+    kk "You'll never win in a race against me though?"
+
+    m "I guess I never won a single racing game against you. Hahahaha!"
+
+    pause 5.0
+
+    window hide
+
+    scene town with fade
+
+    window show
+
+    "........."
+
+    m "In the end, I still lost."
+
+    kk "That's fine. You never had the chance to win anyways~"
+
+    m "You driving maniac."
+
+    kk "What?!"
+
+    m "So what is it? Your request?"
+
+    kk "Hmmmm."
+
+    kk "Do you promise you'll not get angry?"
+
+    m "Yeah! As long as its not jumping off a cliff. Then it's fine."
+
+    kk "H-H-Hold..."
+
+    m "Hold?"
+
+    kk "Hold my hands..."
+
+    m "Did it get hurt? Sure I'll hold your hands."
+
+    kk ".........."
+
+    m "Why'd you suddenly got red?"
+
+    kk "You stupid monkey!"
+    
+    pause 3.0
+
+    jump credits
+
+
+
+
+
+
+
+
+
+
+
+    
+    
+
+
+
+

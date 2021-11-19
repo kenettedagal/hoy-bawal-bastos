@@ -766,9 +766,9 @@ screen credits():
 
             null height 300
 
-            text "Producer" size 100
+            text "Hoy! Bawal Bastos" size 100
             null height 50
-            text "BáiYù"
+            text "A Capstone Project"
 
             #null height 200
 
@@ -776,29 +776,29 @@ screen credits():
             # null height 50
             # text "Lorem Ipsum"
 
-            #null height 200
+            null height 200
 
-            # text "Script" size 100
-            # null height 50
-            # text "Lorem Ipsum"
+            text "Script" size 100
+            null height 50
+            text "Jan Kenette Dagal"
 
             null height 200
             
             text "Art" size 100
             null height 50
 
-            text "Mannequin by HelloAR14"
+            text "Kyle Panuringan"
 
-            null height 50
+            # null height 50
 
-            text "Uncle Mugen" 
+            # text "" 
 
             null height 200
 
             text "Soundtrack" size 100
             null height 50 
 
-            text "Eric Matyas"
+            text "Kenette Dagal"
 
             null height 200
 
@@ -811,31 +811,33 @@ screen credits():
                 xalign 0.5
                 spacing 200
 
-                text "BáiYù"
+                text "Kenette Dagal"
 
-                text "bobcgames"
+                text "Kevin Panuringan"
+
+                text "Mark Francis Chavez"
 
             null height 50
 
-            hbox:
+            # hbox:
 
-                xalign 0.5
-                spacing 200
+            #     xalign 0.5
+            #     spacing 200
 
-                text "minute" 
+            #     text "minute" 
 
-                text "npckc" 
+            #     text "npckc" 
 
             null height 200
 
-            text "Special Thanks" size 100
+            text "Voice Over" size 100
             null height 50 
 
-            text "Renall"
+            text "Kevin Panuringan"
 
             null height 50 
 
-            text "tofurocks Patrons"
+            text "Mark Francis Chavez"
 
             null height 200
 

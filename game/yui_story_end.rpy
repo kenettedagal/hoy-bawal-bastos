@@ -122,7 +122,7 @@ label yui_end:
                 "Try it again.":
                     n "Great choice! Now here is the hint."
 
-                    n "You have to atleast achieve a score of 20 points."
+                    n "You have to atleast achieve a score of 20 points and help the girls."
 
                     n "Once you reach the amount of points required, you will unlock the secret ending! Goodluck!"
 
@@ -132,6 +132,8 @@ label yui_end:
                     n "It's fine. You can try this story again once you feel like doing it."
 
                     jump Act_2_School
+
+    
 
 
 
