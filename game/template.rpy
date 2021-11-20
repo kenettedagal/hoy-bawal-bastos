@@ -331,9 +331,9 @@ label credits:
 
         if readtotal == 100:
 
-            $ achievement.grant("Completionist")
+            # $ achievement.grant("Completionist")
 
-            show text "{size=60}{color=#ffffff}You've unlocked a special message. Access it through the Extras Menu.{/color}{/s}":
+            show text "{size=60}{color=#ffffff}You've completed the game!{/color}{/s}":
                 xalign 0.5 yalign 0.5 alpha 0.0
                 linear 1.0 alpha 1.0
 

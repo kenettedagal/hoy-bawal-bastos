@@ -113,6 +113,7 @@ init python:
     radio = "audio/sfx/radio.ogg"
     crowdlaugh = "audio/sfx/crowdlaugh.mp3"
     pervlaugh = "audio/sfx/pervlaugh.wav"
+    arcade = "audio/sfx/arcade.ogg"
 
 # This is where you define the sound captions for each sound file you will be using in the game. Please make sure the names of the sounds defined above match the ones used for the captions below.
 
@@ -149,6 +150,7 @@ init python:
     radio : _("Police radio echo"),
     crowdlaugh : _("People laughing"),
     pervlaugh : _("Perverted laughter"),
+    arcade : _("Arcade sounds"),
     
     }
 
