@@ -892,7 +892,7 @@ screen credits():
 
             text "Made with Ren'Py [renpy.version_only]." size 100
 
-            null height 450
+            null height 100
 
             text "Thanks for Playing!" size 100
 

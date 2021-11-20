@@ -330,6 +330,7 @@ screen navigation():
 
             textbutton _("Start") action Start() alt "Start"
 
+
         else:
 
             # textbutton _("History") action ShowMenu("history") alt ""
@@ -364,6 +365,21 @@ screen navigation():
             ## The quit button is banned on iOS and unnecessary on Android and
             ## Web.
             textbutton _("Quit") action Quit(confirm=not main_menu) alt "Quit"
+
+    
+        
+    imagebutton:
+        xalign 1.0
+        yalign 0.0
+        idle "forms.png"
+        action OpenURL("https://forms.gle/Yxq7ZQux5x2WaETt8")
+    imagebutton:
+        xalign 0.9
+        yalign 0.0
+        idle "itch.png"
+        action OpenURL("https://hoy-bawal-bastos.itch.io/hoy-bawal-bastos")
+                   
+        
 
 
 style navigation_button is gui_button

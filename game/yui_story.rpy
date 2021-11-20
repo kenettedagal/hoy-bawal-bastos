@@ -453,7 +453,7 @@ label meetWithKurt:
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
             achievementList[5] = True
 
-    pause 0.5
+    pause 2.0
     $ renpy.music.set_volume(0.5,channel="sound")
     $ play_sound(people,fadein=0.2,fadeout=5.0) 
     pause 5
@@ -618,10 +618,10 @@ label meetWithKurt:
         show kurtney happy teeth with dissolve
         kk "That's cool. Tell me more about it."
 
-        voice "m26.ogg"
+        voice "m26r.ogg"
         m "Yeah its a great law."
 
-        voice "m27.ogg"
+        voice "m27r.ogg"
         m "It is also known as ...."
 
         hide kurtney happy teeth with dissolve
@@ -674,7 +674,7 @@ label meetWithKurt:
         show kurtney talk opened with dissolve
         kk "So it is called \"Safe Spaces Act\"?"
 
-        voice "m28.ogg"
+        voice "m28r.ogg"
         m "Yeah! It's a cool name right."
 
         #show kurt open mouth
@@ -702,10 +702,10 @@ label meetWithKurt:
 
             kk "Stop spouting nonsense."
             
-            voice "m30.ogg"
+            voice "m30r.ogg"
             m "Hahaha~ I'm just kidding!"
 
-            voice "m31.ogg"
+            voice "m31rs.ogg"
             m "The law was created to..."
             
 
@@ -748,7 +748,7 @@ label meetWithKurt:
                 voice "m34.ogg"
                 m "b) Persistent uninvited comments or gestures on a person's appearance."
 
-                voice "m35.ogg"
+                voice "m35r.ogg"
                 m "c) Relentless requests for personal details."
 
                 voice "m36.ogg"
@@ -758,17 +758,17 @@ label meetWithKurt:
                 m "e) Public masturbation or flashing of private parts, groping, making offensive body gestures 
                 at someone, and other similar lewd sexual actions."
 
-                voice "m38.ogg"
+                voice "m38r.ogg"
                 m "f) Any advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety. 
                 This may include cursing, leering and intrusive gazing, and taunting."
 
                 voice "m39.ogg"
                 m "g) Persistent telling of sexual jokes, use of sexual names."
 
-                voice "m40.ogg"
+                voice "m40r.ogg"
                 m "And last but not the least."
                 
-                voice "m41.ogg"
+                voice "m41rl.ogg"
                 m "h) Stalking."
 
                 show screen newNote with fade
@@ -853,7 +853,7 @@ label meetWithKurt:
 
         kk "Are you talking about yourself? Ahahaha~"
 
-        voice "m49.ogg"
+        voice "m49r.ogg"
         m "Whatever."
 
         scene walk with fade
@@ -964,7 +964,7 @@ label meetWithKurt:
 
                 voice "m60.ogg"
                 m "Hahaha~ I just want to get away though. Why did you suddenly become red?"
-
+                $ runGate = True
 
                 
             "Pick a fight with the stalker.":
@@ -1036,7 +1036,7 @@ label meetWithKurt:
 
                 voice "m67.ogg"
                 m "O-ohhh I see... Ughhhh my head hurts."
-
+                $ runGate = False
                 
 
             "Confront the stalker and tell him that you'll report him to the police.":
@@ -1096,7 +1096,7 @@ label meetWithKurt:
                     kk "Wha?! Stupid."
 
                     hide kurtney angry talk with dissolve
-
+                    $ runGate = False
         
     label kurtneyOfficerScene:
         stop music fadeout 2.0
@@ -1104,7 +1104,10 @@ label meetWithKurt:
 
         pause 1.0 
 
-        scene walk with fade
+        if runGate:
+            scene school gate with fade
+        else:
+            scene walk with fade
 
         show police neutral with dissolve 
 
@@ -1289,7 +1292,7 @@ label meetWithYui:
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
             achievementList[4] = True
 
-    pause 0.5
+    pause 2.0
 
     $play_sound(trainambience,fadein=0.1)
 
@@ -1720,10 +1723,10 @@ label meetWithYui:
 
                     y "Please tell it to me seriously..."
                     
-                    voice "m30.ogg"
+                    voice "m30r.ogg"
                     m "Hahaha~ I'm just kidding!"
 
-                    voice "m31.ogg"
+                    voice "m31rs.ogg"
                     m "The law was created to..."
                     $ yuiThirdAnswer = False
                     jump yuiThirdQuestion
@@ -1766,7 +1769,7 @@ label meetWithYui:
                         voice "m34.ogg"
                         m "b) Persistent uninvited comments or gestures on a person's appearance."
 
-                        voice "m35.ogg"
+                        voice "m35r.ogg"
                         m "c) Relentless requests for personal details."
 
                         voice "m36.ogg"
@@ -1776,17 +1779,17 @@ label meetWithYui:
                         m "e) Public masturbation or flashing of private parts, groping, making offensive body gestures 
                         at someone, and other similar lewd sexual actions."
 
-                        voice "m38.ogg"
+                        voice "m38r.ogg"
                         m "f) Any advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety. 
                         This may include cursing, leering and intrusive gazing, and taunting."
 
                         voice "m39.ogg"
                         m "g) Persistent telling of sexual jokes, use of sexual names."
 
-                        voice "m40.ogg"
+                        voice "m40r.ogg"
                         m "And last but not the least."
 
-                        voice "m41.ogg"
+                        voice "m41rl.ogg"
                         m "h) Stalking."
 
                         show screen newNote with fade
@@ -2436,7 +2439,7 @@ label afterCeremony:
         voice "m201.ogg"
         m "Uhhhh.. Hello?"
 
-        voice "202.ogg"
+        voice "m202.ogg"
         m "You are?"
 
         "Girl" "Can you help me get to my classroom?"
@@ -2939,7 +2942,7 @@ label quiz:
         "Save Spaceship Act":
             ""
         "Safe Spaces Act":
-            voice "149.ogg"
+            voice "m149.ogg"
             m "Okay got that one in the bag!"
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -2960,7 +2963,7 @@ label quiz:
         
         "Catcalling is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            voice "211.ogg"
+            voice "m211.ogg"
             m "That is a freebie."
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -2978,7 +2981,7 @@ label quiz:
         
         "Making unwanted invitations is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            voice "150.ogg"
+            voice "m150.ogg"
             m "Easy."
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -3211,7 +3214,7 @@ label pervTeacher:
 
     kk "There will be someone substituting [t]."
 
-    voice "m160.ogg"
+    # voice "m160.ogg"
     m "Who?"
 
     $ play_sound(walking,fadein=0.5,fadeout=3.0)
@@ -3646,7 +3649,7 @@ label arrestButch:
 
         "Uniformed personnels came in. They appear to be police."
 
-        voice "187.ogg"
+        voice "m187.ogg"
         m "Officer Greg!!!"
 
         hide police neutral with dissolve
@@ -4230,7 +4233,8 @@ label libraryDate:
     y "Will you please go out with me?"
     stop music fadeout 0.5
     pause 3.0
-    
+    hide screen displayHBBPoints
+    hide screen showNotesButton
     play music "audio/music/Future-Business_v001.mp3" fadein 0.5
     jump credits
 
@@ -4250,7 +4254,7 @@ label specialEndKurtney:
     voice "m218.ogg"
     m "After the incident, the police organization talked to me about doing part-time job for them."
 
-    voice ""
+    voice "m219.ogg"
     m "I guess that's not too bad. I can get some experience."
 
     show kurtney worry with fade 
@@ -4327,13 +4331,14 @@ label specialEndKurtney:
     m "I'll try. I haven't done this in a long time"
 
     kk "You can do it!!!"
-    voice "m257.ogg"
-    m "What if I win?"
 
-    kk "You'll never win in a race against me though?"
+    # voice "m257.ogg"
+    # m "What if I win?"
 
-    voice "m259.ogg"
-    m "I guess I never won a single racing game against you. Hahahaha!"
+    # kk "You'll never win in a race against me though?"
+
+    # voice "m259.ogg"
+    # m "I guess I never won a single racing game against you. Hahahaha!"
 
     pause 5.0
 
@@ -4351,13 +4356,13 @@ label specialEndKurtney:
 
     m "That was a lot of fun!"
     voice "m260.ogg"
-    m "In the end, I still lost."
+    # m "In the end, I still lost."
 
     kk "I'll never forget this moment."
 
     m "Hahaha we can do this again sometime."
     voice "m261.ogg"
-    m "You driving maniac."
+    # m "You driving maniac."
 
     kk "Uhmm Mark? Can I request something?"
 
@@ -4391,7 +4396,8 @@ label specialEndKurtney:
     pause 3.0
 
     stop music fadeout 0.5
-
+    hide screen displayHBBPoints
+    hide screen showNotesButton
     play music "audio/music/Future-Business_v001.mp3" fadein 0.5
     jump credits
 
