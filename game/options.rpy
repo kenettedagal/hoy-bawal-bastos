@@ -54,6 +54,7 @@ define config.has_sound = True
 define config.has_music = True
 define config.has_voice = True
 
+define config.voice_filename_format = "audio/voice/{filename}"
 
 ## To allow the user to play a test sound on the sound or voice channel,
 ## uncomment a line below and use it to set a sample sound to play.

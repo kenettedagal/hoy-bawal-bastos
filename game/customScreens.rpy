@@ -18,9 +18,9 @@ screen select():
             
             textbutton "Go to Main Story" ymaximum 200 action [Hide("select"),Jump("yui_start_case_1")]
 
-            textbutton "Go to Special Ending #1" ymaximum 200 action None
+            textbutton "Go to Special Ending #1" ymaximum 200 action [Hide("select"),Jump("specialEndYui")]
 
-            textbutton "Go to Special Ending #2" ymaximum 200 action None
+            textbutton "Go to Special Ending #2" ymaximum 200 action [Hide("select"),Jump("specialEndKurtney")]
 
     frame:
         xalign 0.8
