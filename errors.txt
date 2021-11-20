@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/Mall_Ending.rpy", line 20: expected statement.
-    "See the ending":
-                    ^
+File "game/yui_story.rpy", line 3922: expected simple expression
+    play music "audio/music/Future-Business_v001.mp3" fadein=0.5
+                                                            ^
 
-Ren'Py Version: Ren'Py 7.4.4.1439
-Wed Nov 17 01:31:08 2021
+Ren'Py Version: Ren'Py 7.4.10.2178
+Sat Nov 20 20:53:05 2021

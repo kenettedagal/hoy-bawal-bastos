@@ -739,6 +739,11 @@ transform credits_scroll(speed):
 
 screen credits():
 
+    
+    
+    # python:
+    #     renpy.music.play("audio/music/Future-Business_v001.mp3")
+
     ## Ensure that the game_menu screens don't appear and interrupt the credits.
     key "K_ESCAPE" action NullAction()
     key "K_MENU" action NullAction()

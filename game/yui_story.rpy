@@ -1382,6 +1382,8 @@ label meetWithYui:
             scene bg train morning
             show yui wow 
             with fade
+
+            $ play_music(relax,fadein=0.5)
             "Girl" "Uwaaaaah! Thank y-y-you sooo much!!"
 
             m "Ohhh... I didn't really do anything..."
@@ -2469,7 +2471,7 @@ label lunch:
                         renpy.notify("Achievement Unlocked: Big Eater")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
                         achievementList[14] = True
-                pause 0.5
+                pause 5.0
     
     else:
         scene black with fade
@@ -2602,7 +2604,7 @@ label lunch:
 
         "...."
         scene black with fade
-        pause 2.0
+        pause 5.0
     $ renpy.end_replay()
     jump socialStudiesQuiz
 
@@ -2897,7 +2899,7 @@ label quiz:
                 renpy.play("audio/sfx/achievement.ogg",channel="sound")
                 achievementList[15] = True
 
-    pause 0.5
+    pause 3.0
 
     $ play_sound(addPoints)
 
@@ -3644,6 +3646,8 @@ label goodEndStory:
 
     centered "GOOD END"
 
+    window hide 
+
     python:
 
         if achievementList[11] == False:
@@ -3695,11 +3699,13 @@ label badEndStory:
 label specialEndYui:
 
     # Library scene
-    
+    stop music fadeout 0.5
+    $ timeout_label = None
     pause 3.0
     scene black with fade
     centered "A few days later..."
 
+    $ play_music(relax,fadein=0.5)
     scene hallway with fade
     m "Peace has finally been restored!"
 
@@ -3838,8 +3844,10 @@ label specialEndYui:
 
 
 label libraryDate:
-
+    stop music fadeout 0.5
+    pause 5.0
     scene library with fade
+    $ play_music(tutorial,fadein=0.5)
     
     m "Do you know the answer to this one?"
 
@@ -3908,19 +3916,21 @@ label libraryDate:
     y "So... Mark."
 
     y "Will you please go out with me?"
-
+    stop music fadeout 0.5
     pause 3.0
-
+    
+    play music "audio/music/Future-Business_v001.mp3" fadein 0.5
     jump credits
 
 
 label specialEndKurtney:
-
+    stop music fadeout 0.5
     pause 3.0
     scene black with fade
     centered "A few days later..."
 
     scene hallway with fade
+    $ play_music(relax,fadein=0.5)
     m "Peace has finally been restored!"
 
     m "After the incident, the police organization talked to me about doing part-time job for them."
@@ -3967,29 +3977,36 @@ label specialEndKurtney:
 
     m "What?"
 
-    y "Nothing!"
+    kk "Nothing!"
+
+    scene black with fade
+    window hide
+
+    centered "After school...."
+    window hide
+    pause 3.0
 
     scene arcade with fade
-
+    stop music fadeout 0.5
     $ play_sound(arcade, fadein=0.5,fadeout=0.5)
 
     m "There's a lot of people here, huh."
 
-    kk "Let's go try racing!"
+    kk "Let's go try this claw machine!"
 
     m "Yeah sure."
 
-    kk "Wanna bet something? If I win, you will do what I will say. Is that okay?"
+    kk "Please get me this stuffed toy..."
 
-    m "What if I win?"
+    m "I'll try. I haven't done this in a long time"
 
-    kk "You'll never win in a race against me though?"
-
-    m "I guess I never won a single racing game against you. Hahahaha!"
+    kk "You can do it!!!"
 
     pause 5.0
 
     window hide
+
+    stop sound fadeout 0.5
 
     scene town with fade
 
@@ -3997,13 +4014,15 @@ label specialEndKurtney:
 
     "........."
 
-    m "In the end, I still lost."
+    $ play_music(evans,fadein=0.5)
 
-    kk "That's fine. You never had the chance to win anyways~"
+    m "That was a lot of fun!"
 
-    m "You driving maniac."
+    kk "I'll never forget this moment."
 
-    kk "What?!"
+    m "Hahaha we can do this again sometime."
+
+    kk "Uhmm Mark? Can I request something?"
 
     m "So what is it? Your request?"
 
@@ -4029,6 +4048,9 @@ label specialEndKurtney:
     
     pause 3.0
 
+    stop music fadeout 0.5
+
+    play music "audio/music/Future-Business_v001.mp3" fadein 0.5
     jump credits
 
 
