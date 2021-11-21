@@ -455,7 +455,7 @@ label meetWithKurt:
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
             achievementList[5] = True
 
-    pause 0.5
+    pause 3.0
     $ renpy.music.set_volume(0.5,channel="sound")
     $ play_sound(people,fadein=0.2,fadeout=5.0) 
     pause 5
@@ -473,7 +473,7 @@ label meetWithKurt:
 
     "From where?"
 
-    voice "1.ogg"
+    voice "game_audio_voice_1.ogg"
     "???" "Dude! Are you deaf?"
 
     $ play_sound(punch,fadein=0.5)
@@ -491,7 +491,7 @@ label meetWithKurt:
 
     show kurtney angry talk with dissolve
 
-    voice "2.ogg"
+    voice "game_audio_voice_2.ogg"
     kk "Dude you almost rode the jeep without me."
 
     voice "m13.ogg"
@@ -499,7 +499,7 @@ label meetWithKurt:
 
     show kurtney smile with dissolve
 
-    voice "3.ogg"
+    voice "game_audio_voice_3.ogg"
     kk "Well its fine. Atleast I'm going to school with you."
 
     "This is [kk]. My weird childhood friend."
@@ -510,16 +510,16 @@ label meetWithKurt:
 
     show kurtney talk opened with dissolve
 
-    voice "4.ogg"
+    voice "game_audio_voice_4.ogg"
     kk "Did you know? Something crazy happened to me today. Good thing I found you."
 
     voice "m143.ogg"
     m "What happened?"
 
-    voice "5.ogg"
+    voice "game_audio_voice_5.ogg"
     kk "There was this guy... standing at the corner of our street."
 
-    voice "6.ogg"
+    voice "game_audio_voice_6.ogg"
     kk "He looked unfamiliar to me so I asked him if he was looking for someone or he got lost."
 
     voice "m15.ogg"
@@ -527,7 +527,7 @@ label meetWithKurt:
 
     show kurtney angry talk with dissolve
 
-    voice "7.ogg"
+    voice "game_audio_voice_7.ogg"
     kk "Crazy freaking dude told me, \"You look beautiful today as well.\""
 
     voice "m16.ogg"
@@ -536,7 +536,7 @@ label meetWithKurt:
     voice "m17.ogg"
     m "What does he look like?"
 
-    voice "8.ogg"
+    voice "game_audio_voice_8.ogg"
     kk "He wears a hoodie and a sweat pants."
 
     voice "m18.ogg"
@@ -544,13 +544,13 @@ label meetWithKurt:
 
     show kurtney happy teeth with dissolve
 
-    voice "9.ogg"
+    voice "game_audio_voice_9.ogg"
     kk "Thanks dude! I'm lucky I have someone like you."
 
-    voice "10.ogg"
+    voice "game_audio_voice_10.ogg"
     kk "Ohhhh and speaking of you..."
 
-    voice "11.ogg"
+    voice "game_audio_voice_11.ogg"
     kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
     voice "m19.ogg"
@@ -558,19 +558,19 @@ label meetWithKurt:
 
     show kurtney happy teeth with dissolve
 
-    voice "12.ogg"
+    voice "game_audio_voice_12.ogg"
     kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
     voice "m20.ogg"
     m "Well, don't even talk like you have one."
 
-    voice "13.ogg"
+    voice "game_audio_voice_13.ogg"
     kk "Hahaha~ Don't worry about me. I'm more worried about your future."
 
     voice "m21.ogg"
     m "I'm not a child for you to worry about."
 
-    voice "14.ogg"
+    voice "game_audio_voice_14.ogg"
     kk "Haha!!"
 
     voice "m22.ogg"
@@ -581,7 +581,7 @@ label meetWithKurt:
 
     show kurtney talk opened with dissolve
 
-    voice "15.ogg"
+    voice "game_audio_voice_15.ogg"
     kk "What? If it's boring then I'm not listening to you."
 
     #show kurt without headphone
@@ -589,7 +589,7 @@ label meetWithKurt:
     voice "m24.ogg"
     m "I saw the news this morning. There was a new law.."
 
-    voice "16.ogg"
+    voice "game_audio_voice_16.ogg"
     kk "What kind of law?"
 
     hide kurtney talk opened with dissolve
@@ -634,7 +634,7 @@ label meetWithKurt:
 
     label kurtIntroSecond:
         show kurtney happy teeth with dissolve
-        voice "17.ogg"
+        voice "game_audio_voice_17.ogg"
         kk "That's cool. Tell me more about it."
 
         voice "m26.ogg"
@@ -691,14 +691,14 @@ label meetWithKurt:
     label kurtIntroThird:
 
         show kurtney talk opened with dissolve
-        voice "18.ogg"
+        voice "game_audio_voice_18.ogg"
         kk "So it is called \"Safe Spaces Act\"?"
 
         voice "m28.ogg"
         m "Yeah! It's a cool name right."
 
         #show kurt open mouth
-        voice "19.ogg"
+        voice "game_audio_voice_19.ogg"
         kk "Sure. But what does it mean?"
 
         $ firstTryWrong = False
@@ -719,10 +719,10 @@ label meetWithKurt:
 
             show kurtney angry talk with dissolve
 
-            voice "20.ogg"
+            voice "game_audio_voice_20.ogg"
             kk "Dude are you serious?"
 
-            voice "21.ogg"
+            voice "game_audio_voice_21.ogg"
             kk "Stop spouting nonsense."
             
             voice "m30.ogg"
@@ -799,7 +799,7 @@ label meetWithKurt:
 
                 show kurtney talk opened with dissolve
 
-                voice "22.ogg"
+                voice "game_audio_voice_22.ogg"
                 kk "That was a lot! How'd you memorize it?"
 
                 voice "m42.ogg"
@@ -807,7 +807,7 @@ label meetWithKurt:
 
                 show kurtney happy teeth with dissolve
 
-                voice "23.ogg"
+                voice "game_audio_voice_23.ogg"
                 kk "Attorney Mark? Sounds nice haha~"
 
                 voice "m43.ogg"
@@ -815,7 +815,7 @@ label meetWithKurt:
 
                 show kurtney talk opened with dissolve
 
-                voice "24.ogg"
+                voice "game_audio_voice_24.ogg"
                 kk "So what happens when I do any of those things?"
 
                 voice "m44.ogg"
@@ -823,7 +823,7 @@ label meetWithKurt:
 
                 show kurtney smile with dissolve
 
-                voice "25.ogg"
+                voice "game_audio_voice_25.ogg"
                 kk "Tell me about it okay? It's an interesting law."
 
                 
@@ -837,7 +837,7 @@ label meetWithKurt:
 
             show kurtney angry talk with dissolve
 
-            voice "26.ogg"
+            voice "game_audio_voice_26.ogg"
             kk "What danger? Explain it clearly."
 
             voice "m46.ogg"
@@ -892,13 +892,13 @@ label meetWithKurt:
 
         show kurtney talk opened with dissolve
 
-        voice "27.ogg"
+        voice "game_audio_voice_27.ogg"
         kk "Hey, Mark..."
 
         voice "m50.ogg"
         m "Hmmm?"
 
-        voice "28.ogg"
+        voice "game_audio_voice_28.ogg"
         kk "Look behind our back..."
 
         voice "m51.ogg"
@@ -917,7 +917,7 @@ label meetWithKurt:
 
         show kurtney smile with dissolve
 
-        voice "29.ogg"
+        voice "game_audio_voice_29.ogg"
         kk "Watch your mouth. He might hear you and do something bad."
 
         voice "m53.ogg"
@@ -928,7 +928,7 @@ label meetWithKurt:
 
         show kurtney blush close with dissolve
 
-        voice "30.ogg"
+        voice "game_audio_voice_30.ogg"
         kk "Of course, you're my precious childhood friend."
 
         voice "m55.ogg"
@@ -959,7 +959,7 @@ label meetWithKurt:
 
                 show kurtney talk opened with dissolve
 
-                voice "31.ogg"
+                voice "game_audio_voice_31.ogg"
                 kk "Yeah?"
 
                 voice "m57.ogg"
@@ -967,7 +967,7 @@ label meetWithKurt:
 
                 show kurtney blush small with dissolve
 
-                voice "32.ogg"
+                voice "game_audio_voice_32.ogg"
                 kk "Wha? Are you st-stupid?"
 
                 voice "m58.ogg"
@@ -975,7 +975,7 @@ label meetWithKurt:
 
                 show kurtney blush close with dissolve
 
-                voice "33.ogg"
+                voice "game_audio_voice_33.ogg"
                 kk "O-o-okayyy...."
 
                 scene black with fade
@@ -995,10 +995,10 @@ label meetWithKurt:
 
                 show kurtney blush close with dissolve
 
-                voice "34.ogg"
+                voice "game_audio_voice_34.ogg"
                 kk "Hey tell me what're you trying to do before doing that..."
 
-                voice "35.ogg"
+                voice "game_audio_voice_35.ogg"
                 kk "Stupid..."
 
                 voice "m60.ogg"
@@ -1057,10 +1057,10 @@ label meetWithKurt:
 
                 show kurtney worry with dissolve
 
-                voice "36.ogg"
+                voice "game_audio_voice_36.ogg"
                 kk "Heyyyyyyy..."
 
-                voice "37.ogg"
+                voice "game_audio_voice_37.ogg"
                 kk "Wake up Mark..."
 
                 voice "m64.ogg"
@@ -1068,7 +1068,7 @@ label meetWithKurt:
 
                 show kurtney happy teeth with dissolve
 
-                voice "38.ogg"
+                voice "game_audio_voice_38.ogg"
                 kk "Well, he knocked the soul out of you. Hahaha~"
 
                 voice "m65.ogg"
@@ -1076,7 +1076,7 @@ label meetWithKurt:
 
                 show kurtney smile with dissolve
 
-                voice "39.ogg"
+                voice "game_audio_voice_39.ogg"
                 kk "He ran away when a lot of people were looking at us."
 
                 voice "m67.ogg"
@@ -1136,7 +1136,7 @@ label meetWithKurt:
 
                     $ play_music(evans,fadein=1.5)
 
-                    voice "40.ogg"
+                    voice "game_audio_voice_40.ogg"
                     kk "I hope so. You'll be there to protect me right?"
 
                     voice "m71.ogg"
@@ -1144,7 +1144,7 @@ label meetWithKurt:
 
                     show kurtney angry talk with dissolve
 
-                    voice "41.ogg"
+                    voice "game_audio_voice_41.ogg"
                     kk "Wha?! Stupid."
 
                     hide kurtney angry talk with dissolve
@@ -1165,7 +1165,7 @@ label meetWithKurt:
         voice "Officer51.ogg"
         "???" "Excuse me!"
 
-        voice "42.ogg"
+        voice "game_audio_voice_42.ogg"
         kk "Ehhh? A police officer?"
 
         voice "m72.ogg"
@@ -1192,7 +1192,7 @@ label meetWithKurt:
         show kurtney talk opened 
         with dissolve
 
-        voice "43.ogg"
+        voice "game_audio_voice_43.ogg"
         kk "Hey Mark. It was that law that you told me earlier right?"
 
         voice "m75.ogg"
@@ -1232,7 +1232,7 @@ label meetWithKurt:
 
                 kk "!!!!"
 
-                voice "44.ogg"
+                voice "game_audio_voice_44.ogg"
                 kk "I-I-I want to learn it too..."
 
                 hide kurtney happy teeth
@@ -1309,7 +1309,7 @@ label meetWithKurt:
 
                 show kurtney talk opened with dissolve
 
-                voice "45.ogg"
+                voice "game_audio_voice_45.ogg"
                 kk "Wait, that's a really good law, Officer!"
                 
                 hide kurtney talk closed
@@ -2219,7 +2219,7 @@ label schoolCeremony:
     
 
     if metYui is True:
-        voice "46.ogg"
+        voice "game_audio_voice_46.ogg"
         kk "Dude! I hope we are classmates in this new school year."
 
         voice "m108.ogg"
@@ -2227,7 +2227,7 @@ label schoolCeremony:
 
         show kurtney angry talk with dissolve
 
-        voice "47.ogg"
+        voice "game_audio_voice_47.ogg"
         kk "Why? I'm fun to hang out with right?"
 
         voice "m214.ogg"
@@ -2241,7 +2241,7 @@ label schoolCeremony:
 
         show kurtney happy teeth with dissolve
 
-        voice "1.ogg"
+        voice "game_audio_voice_11.ogg"
         kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
         voice "m215.ogg"
@@ -2249,7 +2249,7 @@ label schoolCeremony:
 
         show kurtney smile with dissolve
 
-        voice "1.ogg"
+        voice "game_audio_voice_12.ogg"
         kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
         voice "m216.ogg"
@@ -2257,18 +2257,18 @@ label schoolCeremony:
 
         show kurtney happy teeth with dissolve
 
-        voice "1.ogg"
+        voice "game_audio_voice_13.ogg"
         kk "Hahaha~ Don't worry about me. I'm more worried about your future."
 
         voice "m217.ogg"
         m "I'm not a child for you to worry about."
 
-        voice "1.ogg"
+        voice "game_audio_voice_14.ogg"
         kk "Haha!!"
 
     else:
         
-        voice "1.ogg"
+        voice "game_audio_voice_46.ogg"
         kk "Dude! I hope we are classmates in this new school year."
 
         voice "m108.ogg"
@@ -2276,7 +2276,7 @@ label schoolCeremony:
 
         show kurtney angry talk
 
-        voice "1.ogg"
+        voice "game_audio_voice_47.ogg"
         kk "Why? I'm fun to hang out with right?"
 
         voice "m214.ogg"
@@ -2293,13 +2293,13 @@ label afterCeremony:
 
     show kurtney smile
     with fade
-    voice "48.ogg"
+    voice "game_audio_voice_48.ogg"
     kk "Lemme check the school bulletin to know our section."
 
     voice "m109.ogg"
     m "Sure dude. Gonna go to the bathroom first."
 
-    voice "49.ogg"
+    voice "game_audio_voice_49.ogg"
     kk "Meet me near the school bulletin okay?"
     
     voice "m110.ogg"
@@ -2657,7 +2657,7 @@ label lunch:
         show kurtney talk opened 
         with fade
 
-        voice "50.ogg"
+        voice "game_audio_voice_50.ogg"
         kk "Hey dude wanna go to cafeteria?"
 
         voice "m132.ogg"
@@ -2665,7 +2665,7 @@ label lunch:
 
         show kurtney happy teeth with dissolve
 
-        voice "51.ogg"
+        voice "game_audio_voice_51.ogg"
         kk "Meeting someone? Hey hey hey what's happening to Mr. Mark, huh?"
 
         voice "m133.ogg"
@@ -2673,7 +2673,7 @@ label lunch:
 
         show kurtney angry talk with dissolve
 
-        voice "52.ogg"
+        voice "game_audio_voice_52.ogg"
         kk "Wah! This little punk."
 
         scene black with fade
@@ -2841,7 +2841,7 @@ label lunch:
 
         show kurtney happy teeth with dissolve
 
-        voice "53.ogg"
+        voice "game_audio_voice_53.ogg"
         kk "Keep on dreaming. Maybe I'll treat you when you get a girlfriend~"
 
         scene bg cafeteria with fade
@@ -2851,7 +2851,7 @@ label lunch:
 
         show kurtney talk opened with dissolve
 
-        voice "54.ogg"
+        voice "game_audio_voice_54.ogg"
         kk "What?"
 
         voice "m144.ogg"
@@ -2859,10 +2859,10 @@ label lunch:
 
         show kurtney happy teeth with dissolve
 
-        voice "55.ogg"
+        voice "game_audio_voice_55.ogg"
         kk "Okay I'll treat to something just for today!"
 
-        voice "56.ogg"
+        voice "game_audio_voice_56.ogg"
         kk "And while you still don't have a girlfriend, I'll eat with you so don't look like a loser!"
 
         voice "m145.ogg"
@@ -2880,13 +2880,13 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "57.ogg"
+                voice "game_audio_voice_57.ogg"
                 kk "Eh, you like Japanese dishes?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
-                voice "58.ogg"
+                voice "game_audio_voice_58.ogg"
                 kk "I... I see."
 
             "Quarter Pound Burger with Large Fries. {image=burger.jpg}":
@@ -2896,13 +2896,13 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "59.ogg"
+                voice "game_audio_voice_59.ogg"
                 kk "Eh, you like American fast-food?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
-                voice "58.ogg"
+                voice "game_audio_voice_58.ogg"
                 kk "I... I see."
 
             "12\" All Meat Pizza with Thin Crust. {image=pizza.jpg}":
@@ -2912,13 +2912,13 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "60.ogg"
+                voice "game_audio_voice_60.ogg"
                 kk "Eh, you like pizza huh?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
-                voice "58.ogg"
+                voice "game_audio_voice_58.ogg"
                 kk "I... I see."
 
             "Apple Risotto. {image=risotto.jpg}":
@@ -2928,13 +2928,13 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "61.ogg"
+                voice "game_audio_voice_61.ogg"
                 kk "Eh, you like Italian food huh?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
-                voice "58.ogg"
+                voice "game_audio_voice_58.ogg"
                 kk "I... I see." 
 
             "All of it. All in. Just do it.":
@@ -2943,7 +2943,7 @@ label lunch:
                 m "I want everything in today's menu."
 
                 show kurtney talk opened with dissolve
-                voice "62.ogg"
+                voice "game_audio_voice_62.ogg"
                 kk "Ehhh? There's no way you can finish all of it."
 
                 voice "m210.ogg"
@@ -2954,7 +2954,7 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "63.ogg"
+                voice "game_audio_voice_63.ogg"
                 kk "Hahaha~ Okay I get it!"
 
                 python:
@@ -3001,7 +3001,7 @@ label socialStudiesQuiz:
 
         show kurtney talk opened with dissolve
 
-        voice "64.ogg"
+        voice "game_audio_voice_64.ogg"
         kk "Hey future Attorney Mark. Do you know this law?"
 
         voice "m146.ogg"
@@ -3011,7 +3011,7 @@ label socialStudiesQuiz:
 
         show kurtney talk opened with dissolve
 
-        voice "65.ogg"
+        voice "game_audio_voice_65.ogg"
         kk "Hey dude. Isn't this what you've just told me earlier in the jeep?"
 
         voice "m147.ogg"
@@ -3019,7 +3019,7 @@ label socialStudiesQuiz:
 
         show kurtney happy teeth with dissolve
 
-        voice "66.ogg"
+        voice "game_audio_voice_66.ogg"
         kk "I'll try to remember it haha~"
 
     jump quiz
@@ -3082,7 +3082,7 @@ label quiz:
         "Save Spaceship Act":
             ""
         "Safe Spaces Act":
-            voice "149.ogg"
+            voice "m149.ogg"
             m "Okay got that one in the bag!"
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -3103,7 +3103,7 @@ label quiz:
         
         "Catcalling is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            voice "211.ogg"
+            voice "m211.ogg"
             m "That is a freebie."
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -3121,7 +3121,7 @@ label quiz:
         
         "Making unwanted invitations is a gender-based sexual harassment covered in Safe Spaces Act."
         "True":
-            voice "150.ogg"
+            voice "m150.ogg"
             m "Easy."
             $ quizNum.append(1)
             $ quizPoints += 1
@@ -3255,7 +3255,7 @@ label quiz:
 
     show kurtney talk opened with dissolve
 
-    voice "67.ogg"
+    voice "game_audio_voice_67.ogg"
     kk "What the hell. That was hard."
 
     hide kurtney talk opened
@@ -3332,34 +3332,34 @@ label pervTeacher:
 
     $ play_music(doll,fadein=3.0)
 
-    voice "68.ogg"
+    voice "game_audio_voice_68.ogg"
     kk "Hey Mark, did you hear the news?"
 
     voice "m212.ogg"
     m "What news?"
 
-    voice "69.ogg"
+    voice "game_audio_voice_69.ogg"
     kk "It's about [t]."
 
     voice "m159.ogg"
     m "What happened to [t]."
 
-    voice "70.ogg"
+    voice "game_audio_voice_70.ogg"
     kk "Based on what I heard, she got sick and is in the hospital."
 
-    voice "71.ogg"
+    voice "game_audio_voice_71.ogg"
     kk "The school faculty doesn't know when she's going back."
 
     voice "m160.ogg"
     m "She's in critical condition?"
 
-    voice "72.ogg"
+    voice "game_audio_voice_72.ogg"
     kk "I don't know dude. That's all I know."
 
-    voice "73.ogg"
+    voice "game_audio_voice_73.ogg"
     kk "Ohh! I almost forgot."
 
-    voice "74.ogg"
+    voice "game_audio_voice_74.ogg"
     kk "There will be someone substituting [t]."
 
     voice "m160.ogg"
@@ -3369,7 +3369,7 @@ label pervTeacher:
 
     show kurtney angry talk with dissolve
 
-    voice "75.ogg"
+    voice "game_audio_voice_75.ogg"
     kk "They say he's a nasty person."
 
     voice "m161.ogg"
@@ -3418,7 +3418,7 @@ label pervTeacher:
 
     show kurtney talk angry at left with dissolve
 
-    voice "76.ogg"
+    voice "game_audio_voice_76.ogg"
     kk "What did you say?!"
 
     voice "m162.ogg"
@@ -3436,7 +3436,7 @@ label pervTeacher:
 
     show kurtney talk opened at center with dissolve
 
-    voice "77.ogg"
+    voice "game_audio_voice_77.ogg"
     kk "Wha-?"
 
     show kurtney talk angry at center with dissolve
@@ -3448,7 +3448,7 @@ label pervTeacher:
 
     show kurtney smile with dissolve
 
-    voice "78.ogg"
+    voice "game_audio_voice_78.ogg"
     kk "O-O-Okaay..."
 
     jump talkOnHarass
@@ -3597,7 +3597,7 @@ label talkOnHarass:
             m "I'm afraid I cannot help. I might get in trouble."
 
             if not kurtneyHelp:
-                voice "79.ogg"
+                voice "game_audio_voice_79.ogg"
                 kk "Is that so? That's a real shame..."
 
             else:
@@ -3610,10 +3610,10 @@ label talkOnHarass:
         show kurtney talk opened
         with fade
 
-        voice "80.ogg"
+        voice "game_audio_voice_80.ogg"
         kk "Dude... I have something to talk about."
 
-        voice "81.ogg"
+        voice "game_audio_voice_81.ogg"
         kk "It's about that law you talked about."
 
         voice "m176.ogg"
@@ -3621,7 +3621,7 @@ label talkOnHarass:
 
         show kurtney smile with dissolve
 
-        voice "82.ogg"
+        voice "game_audio_voice_82.ogg"
         kk "I think we can use this law against that professor."
 
         voice "m177.ogg"
@@ -3629,7 +3629,7 @@ label talkOnHarass:
 
         show kurtney angry talk with dissolve
 
-        voice "83.ogg"
+        voice "game_audio_voice_83.ogg"
         kk "Just the other day, one of our girl classmate got sexually harassed."
 
         voice "m178.ogg"
@@ -3637,21 +3637,21 @@ label talkOnHarass:
 
         show kurtney talk opened with dissolve
 
-        voice "84.ogg"
+        voice "game_audio_voice_84.ogg"
         kk "I've also got stories from other girls in First Year. According to them..."
 
         show kurtney angry talk with dissolve
 
-        voice "85.ogg"
+        voice "game_audio_voice_85.ogg"
         kk "When he gave a test the other day... He stares at the girls in a lascivious manner."
 
-        voice "86.ogg"
+        voice "game_audio_voice_86.ogg"
         kk "When they are in the laboratory, he sneakily touches the butt of some of the girls."
 
-        voice "87.ogg"
+        voice "game_audio_voice_87.ogg"
         kk "Then he says, \"It's not my fault that you are sexy.\""
 
-        voice "89.ogg"
+        voice "game_audio_voice_89.ogg"
         kk "And then one time, he... he tried to grope someone."
 
         voice "m179.ogg"
@@ -3660,32 +3660,32 @@ label talkOnHarass:
         voice "m180.ogg"
         m "We really need to do something."
 
-        voice "90.ogg"
+        voice "game_audio_voice_90.ogg"
         kk "Yeah I know. Here comes the good part dude."
 
         voice "m181.ogg"
         m "What is good in this?"
 
-        voice "91.ogg"
+        voice "game_audio_voice_91.ogg"
         kk "Someone took a video of that nasty bastard doing the crime."
 
         voice "m182.ogg"
         m "Really? That a solid evidence then!"
 
-        voice "92.ogg"
+        voice "game_audio_voice_92.ogg"
         kk "I know right! That disgusting creep should rot in jail forever."
 
         show kurtney happy teeth with dissolve
 
-        voice "1.ogg"
+        # voice "1.ogg"
         kk "Now will you help me out?"
 
         show kurtney smile with dissolve
 
-        voice "93.ogg"
+        voice "game_audio_voice_93.ogg"
         kk "Because of you, I learned of the Safe Spaces Act. I knew of the things which a person shouldn't ever do."
 
-        voice "94.ogg"
+        voice "game_audio_voice_94.ogg"
         kk "You wanted to be an Attorney right? Help me use this \"Safe Spaces Act\" to arrest that nasty piece of ****."
 
         $ timeout_label = "ignorePerv"
@@ -3713,7 +3713,7 @@ label talkOnHarass:
                 voice "m183.ogg"
                 m "Okay [kk]! I will help you."
 
-                voice "95.ogg"
+                voice "game_audio_voice_95.ogg"
                 kk "Thank you so much!"
 
                 $ renpy.end_replay()
@@ -3777,16 +3777,16 @@ label arrestButch:
 
         show kurtney talk opened with dissolve
 
-        voice "96.ogg"
+        voice "game_audio_voice_96.ogg"
         kk "What? There's nothing good happening when there's a surprise quiz."
 
-        voice "97.ogg"
+        voice "game_audio_voice_97.ogg"
         kk "Police sirens?! Whaaaat?"
 
         voice "m185.ogg"
         m "Just wait and see dude. Haha~"
 
-        voice "98.ogg"
+        voice "game_audio_voice_98.ogg"
         kk "Whatever Attorney Mark."
 
         voice "m186.ogg"
@@ -3832,7 +3832,7 @@ label arrestButch:
 
         "Uniformed personnels came in. They appear to be police."
 
-        voice "187.ogg"
+        voice "m187.ogg"
         m "Officer Greg!!!"
 
         hide police neutral with dissolve
@@ -3948,16 +3948,16 @@ label arrestButch:
 
         show kurtney talk opened with dissolve
 
-        voice "96.ogg"
+        voice "game_audio_voice_96.ogg"
         kk "What? There's nothing good happening when there's a surprise quiz."
 
-        voice "97.ogg"
+        voice "game_audio_voice_97.ogg"
         kk "Police sirens?! Whaaaat?"
 
         voice "m185.ogg"
         m "Just wait and see dude. Haha~"
 
-        voice "98.ogg"
+        voice "game_audio_voice_98.ogg"
         kk "Whatever Attorney Mark."
 
         voice "m186.ogg"
@@ -4086,7 +4086,7 @@ label arrestButch:
         show kurtney talk opened 
         with dissolve
 
-        voice "99.ogg"
+        voice "game_audio_voice_99.ogg"
         kk "Hey! Don't forget about me!!"
 
         show police neutral 
@@ -4099,7 +4099,7 @@ label arrestButch:
         hide police neutral
         show kurtney angry talk with dissolve
 
-        voice "100.ogg"
+        voice "game_audio_voice_100.ogg"
         kk "Nevermind compensation, why is my name \"Attorney's friend\"?!!!"
 
         hide police neutral
@@ -4209,13 +4209,13 @@ label specialEndYui:
 
     show kurtney worry with fade 
 
-    voice "101.ogg"
+    voice "game_audio_voice_101.ogg"
     kk "Heeeey! Why didn't you wait for me earlier this morning?"
 
     voice "m220.ogg"
     m "I'm sorry! I was going to meet a friend."
 
-    voice "102.ogg"
+    voice "game_audio_voice_102.ogg"
     kk "A friend? You? There's no way that's possible."
 
     voice "m221.ogg"
@@ -4239,7 +4239,7 @@ label specialEndYui:
 
     show kurtney talk opened at right with dissolve
 
-    voice "103.ogg"
+    voice "game_audio_voice_103.ogg"
     kk "What the hell is happening?"
 
     show yui smile opened at left with dissolve
@@ -4248,14 +4248,14 @@ label specialEndYui:
 
     y "My name is Yui and I am a First Year."
 
-    voice "104.ogg"
+    voice "game_audio_voice_104.ogg"
     kk "I'm his childhood friend and his classmate."
 
     y "Oh I see!"
 
     show kurtney smile at right with dissolve
 
-    voice "105.ogg"
+    voice "game_audio_voice_105.ogg"
     kk "So what's your relationship with Mark?"
 
     show yui blush closed at left with dissolve
@@ -4272,14 +4272,14 @@ label specialEndYui:
 
     show kurtney happy teeth at right with dissolve
 
-    voice "106.ogg"
+    voice "game_audio_voice_106.ogg"
     kk "Is that all?"
 
     show yui blush at left with dissolve 
 
     y "H-He also saved my life..."
 
-    voice "107.ogg"
+    voice "game_audio_voice_107.ogg"
     kk "Saved your life you say?"
 
     voice "m226.ogg"
@@ -4294,13 +4294,13 @@ label specialEndYui:
     show yui smile close at left  
     show kurtney smile at right 
     with dissolve
-    voice "108.ogg"
+    voice "game_audio_voice_108.ogg"
     kk "Hmmmm! I see..."
 
-    voice "109.ogg"
+    voice "game_audio_voice_109.ogg"
     kk "That's good."
 
-    voice "110.ogg"
+    voice "game_audio_voice_110.ogg"
     kk "For you I guess."
 
     voice "m229.ogg"
@@ -4308,7 +4308,7 @@ label specialEndYui:
 
     show kurtney angry talk at right with dissolve
 
-    voice "111.ogg"
+    voice "game_audio_voice_111.ogg"
     kk "No! I..."
 
     kk "...."
@@ -4474,7 +4474,7 @@ label specialEndKurtney:
 
     show kurtney worry with fade 
 
-    voice "1.ogg"
+    voice "game_audio_voice_101.ogg"
     kk "Heeeey! Why didn't you wait for me earlier this morning?"
 
     voice "m248.ogg"
@@ -4483,7 +4483,7 @@ label specialEndKurtney:
     voice "m249.ogg"
     m "Also, I told you last night that I'm on cleaning duty. Did you forgot?"
 
-    voice "113.ogg"
+    voice "game_audio_voice_113.ogg"
     kk "Yeah I think. I was busy playing games."
 
     scene class2 with fade
@@ -4492,19 +4492,19 @@ label specialEndKurtney:
 
     show kurtney happy teeth with dissolve
 
-    voice "114.ogg"
+    voice "game_audio_voice_114.ogg"
     kk "Hey Mark! What do you say going to arcade after school?"
 
     voice "m250.ogg"
     m "Sounds like a good idea!"
 
-    voice "115.ogg"
+    voice "game_audio_voice_115.ogg"
     kk "Wanna go? I'll treat you."
 
     voice "m251.ogg"
     m "Woah really? Is this really you?"
 
-    voice "116.ogg"
+    voice "game_audio_voice_116.ogg"
     kk "Whaaaat? I'm being this kind to you and you still complain?"
 
     voice "m252.ogg"
@@ -4513,22 +4513,22 @@ label specialEndKurtney:
     voice "m253.ogg"
     m "It's been a long time since we've gone to the arcade."
 
-    voice "117.ogg"
+    voice "game_audio_voice_117.ogg"
     kk "Yeah!"
 
-    voice "118.ogg"
+    voice "game_audio_voice_118.ogg"
     kk "Also, it's my way of thanking you for helping me the other day."
 
     voice "m254.ogg"
     m "Don't mind it. You're my precious childhood friend."
 
-    voice "119.ogg"
+    voice "game_audio_voice_119.ogg"
     kk "Seriously. Stop that."
 
     voice "m198.ogg"
     m "What?"
 
-    voice "120.ogg"
+    voice "game_audio_voice_120.ogg"
     kk "Nothing!"
 
     scene arcade with fade
@@ -4544,12 +4544,12 @@ label specialEndKurtney:
     voice "m256.ogg"
     m "Yeah sure."
 
-    voice "122.ogg"
+    voice "game_audio_voice_122.ogg"
     kk "Please get me this stuffed toy..."
 
     m "I'll try. I haven't done this in a long time"
 
-    voice "123.ogg"
+    voice "game_audio_voice_123.ogg"
     kk "You can do it!!!"
 
     # voice "m257.ogg"
@@ -4575,38 +4575,38 @@ label specialEndKurtney:
     $ play_music(evans,fadein=0.5)
 
     m "That was a lot of fun!"
-    voice "m260.ogg"
+    # voice "m260.ogg"
     # m "In the end, I still lost."
 
-    voice "125.ogg"
+    voice "game_audio_voice_125.ogg"
     kk "I'll never forget this moment."
 
     m "Hahaha we can do this again sometime."
-    voice "m261.ogg"
+    # voice "m261.ogg"
     # m "You driving maniac."
 
-    voice "126.ogg"
+    voice "game_audio_voice_126.ogg"
     kk "Uhmm Mark? Can I request something?"
 
     voice "m262.ogg"
     m "So what is it? Your request?"
 
-    voice "127.ogg"
+    voice "game_audio_voice_127.ogg"
     kk "Hmmmm."
 
-    voice "128.ogg"
+    voice "game_audio_voice_128.ogg"
     kk "Do you promise you'll not get angry?"
 
     voice "m263.ogg"
     m "Yeah! As long as its not jumping off a cliff. Then it's fine."
 
-    voice "129.ogg"
+    voice "game_audio_voice_129.ogg"
     kk "H-H-Hold..."
 
     voice "m264.ogg"
     m "Hold?"
 
-    voice "130.ogg"
+    voice "game_audio_voice_130.ogg"
     kk "Hold my hands..."
 
     voice "m265.ogg"
@@ -4617,7 +4617,7 @@ label specialEndKurtney:
     voice "m266.ogg"
     m "Why'd you suddenly got red?"
 
-    voice "131.ogg"
+    voice "game_audio_voice_131.ogg"
     kk "You stupid monkey!"
     
     pause 3.0
