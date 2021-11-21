@@ -25,7 +25,7 @@ label yui_start_case_1:
     define mm = Character('Mom',color='#00ff2a')
     default badEndingGame = False
     default kurtneyHelp = False
-    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False]
+    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False]
     default persistent.unlockroom = False
     default persistent.unlockTrain = False
     default persistent.unlockJeep = False
@@ -56,6 +56,7 @@ label yui_start_case_1:
     show screen titleYui with dissolve
     pause 0.5
     
+    $ achievement.clear_all()
     $ persistent.unlockJeep = False
     $ persistent.unlockroom = False
     
@@ -637,10 +638,10 @@ label meetWithKurt:
         voice "game_audio_voice_17.ogg"
         kk "That's cool. Tell me more about it."
 
-        voice "m26.ogg"
+        voice "m26r.ogg"
         m "Yeah its a great law."
 
-        voice "m27.ogg"
+        voice "m27r.ogg"
         m "It is also known as ...."
 
         hide kurtney happy teeth with dissolve
@@ -694,7 +695,7 @@ label meetWithKurt:
         voice "game_audio_voice_18.ogg"
         kk "So it is called \"Safe Spaces Act\"?"
 
-        voice "m28.ogg"
+        voice "m28r.ogg"
         m "Yeah! It's a cool name right."
 
         #show kurt open mouth
@@ -883,7 +884,7 @@ label meetWithKurt:
         #voice ".ogg" missing
         kk "Are you talking about yourself? Ahahaha~"
 
-        voice "m49.ogg"
+        voice "m49r.ogg"
         m "Whatever."
 
         scene walk with fade
@@ -1092,7 +1093,7 @@ label meetWithKurt:
 
                     scene walk with fade 
 
-                    voice "m213.ogg"
+                    # voice "m213.ogg"
                     m "Excuse me. Stop whatever you're doing. You're disrupting our lives."
 
                     show stalker talk with dissolve
@@ -1489,8 +1490,10 @@ label meetWithYui:
             $ play_sound(addPoints)
             $ hbbpoints += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
-            hide yui worry closed
+            # hide yui worry closed
             voice "m79.ogg"
+
+            # scene yui harassment with fade
             m "Officer! Officer!!"
 
             voice "m80.ogg"
@@ -1598,7 +1601,7 @@ label meetWithYui:
 
             y "You see, when I was a child... I had a trauma."
 
-            voice "m88.ogg"
+            # voice "m88.ogg"
             m "A trauma? Can I hear more of this?"
 
             y "Uhmmm y-yes..."
@@ -1621,7 +1624,7 @@ label meetWithYui:
 
             y "What is it?"
 
-            voice "m90.ogg"
+            # voice "m90.ogg"
             m "It's about a law."
 
             y "A law? What kind of law?"
@@ -2558,7 +2561,7 @@ label afterCeremony:
         voice "m201.ogg"
         m "Uhhhh.. Hello?"
 
-        voice "202.ogg"
+        voice "m202.ogg"
         m "You are?"
 
         "Girl" "Can you help me get to my classroom?"
@@ -2833,7 +2836,7 @@ label lunch:
         show kurtney talk opened 
         with fade
 
-        voice "50.ogg"
+        voice "game_audio_voice_50.ogg"
         kk "Hey dude wanna go to cafeteria?"
 
         voice "m142.ogg"
@@ -2928,7 +2931,7 @@ label lunch:
 
                 show kurtney talk opened with dissolve
 
-                voice "game_audio_voice_61.ogg"
+                # voice "game_audio_voice_61.ogg"
                 kk "Eh, you like Italian food huh?"
 
                 voice "m136.ogg"
@@ -4308,12 +4311,12 @@ label specialEndYui:
 
     show kurtney angry talk at right with dissolve
 
-    voice "game_audio_voice_111.ogg"
+    # voice "game_audio_voice_111.ogg"
     kk "No! I..."
 
     kk "...."
 
-    voice "112.ogg"
+    voice "game_audio_voice_112.ogg"
     kk "Ugh! Whatever. You're pissing me off."
 
     hide kurtney angry talk at right 
@@ -4469,7 +4472,7 @@ label specialEndKurtney:
     voice "m218.ogg"
     m "After the incident, the police organization talked to me about doing part-time job for them."
 
-    voice ""
+    # voice ""
     m "I guess that's not too bad. I can get some experience."
 
     show kurtney worry with fade 
@@ -4538,7 +4541,7 @@ label specialEndKurtney:
     voice "m255.ogg"
     m "There's a lot of people here, huh."
 
-    voice "121.ogg"
+    voice "game_audio_voice_121.ogg"
     kk "Let's go try this claw machine!"
 
     voice "m256.ogg"
@@ -4549,7 +4552,7 @@ label specialEndKurtney:
 
     m "I'll try. I haven't done this in a long time"
 
-    voice "game_audio_voice_123.ogg"
+    # voice "game_audio_voice_123.ogg"
     kk "You can do it!!!"
 
     # voice "m257.ogg"
