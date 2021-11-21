@@ -1014,11 +1014,13 @@ label meetWithKurt:
 
                 show stalker talk with fade
 
+                voice "stalker1.ogg"
                 "???" "Hmmm.. Are you her boyfriend?"
 
                 voice "m62.ogg"
                 m "No! She's my childhood friend."
 
+                voice "stalker2.ogg"
                 "???" "Then take this."
 
                 $ play_sound(punch)
@@ -1093,10 +1095,13 @@ label meetWithKurt:
 
                     show stalker talk with dissolve
 
+                    voice "stalker3.ogg"
                     "???" "Who the hell are you?"
 
+                    voice "stalker4.ogg"
                     "???" "What's your deal, huh?"
 
+                    voice "stalker5.ogg"
                     "???" "Stupid kid standing up to me huh."
 
                     voice "m69.ogg"
@@ -1106,8 +1111,10 @@ label meetWithKurt:
                     show stalker angry 
                     with dissolve
 
+                    voice "stalker6.ogg"
                     "???" "Calm down buddy. No reason to be angry. I'll leave now. Enjoy your day."
 
+                    voice "stalker7.ogg"
                     "???" "I won't forget this! Be careful from now on."
 
                     hide stalker angry 
@@ -1153,6 +1160,7 @@ label meetWithKurt:
 
         $play_music(garden) 
 
+        voice "Officer51.ogg"
         "???" "Excuse me!"
 
         voice "42.ogg"
@@ -1163,13 +1171,16 @@ label meetWithKurt:
 
         "The police officer was running towards us with a confused look on his face."
 
+        #voice need
         o "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
 
         voice "m73.ogg"
         m "Uhmmmm my friend here was getting stalked by someone..."
 
+        #voice need
         o "A stalker huh?"
 
+        #voice need
         o "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
 
         voice "m74.ogg"
@@ -1385,10 +1396,13 @@ label meetWithYui:
 
     "Moving closer towards the exit... I hear some conversation."
 
+    voice "a1Man1.ogg"
     "???" "Hey there sexy little miss. Are you free tonight and have a drink." 
 
+    voice "a2Man2.ogg"
     "???" "Don't worry, we won't do anything do bad to you hehehe..."
 
+    voice "a3Man3.ogg"
     "???" "Do you need money or anything? Just tell us."
 
     "I can see three old men sexually harassing a young student girl."
@@ -1399,10 +1413,13 @@ label meetWithYui:
 
     pause 2.0
 
+    voice "a4Man1.ogg"
     "???" "Hahaha!! She's scared like a child."
 
+    voice "a5Man2.ogg"
     "???" "Hey, you're teasing her too much. She might report us."
 
+    voice "a6Man3.ogg"
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
     
@@ -1424,10 +1441,13 @@ label meetWithYui:
             voice "m77.ogg"
             m "Hey you bastards! Stop sexually harrassing that girl."
 
+            voice "a7Man1.ogg"
             "???" "Who the hell are you? His boyfriend perhaps?"
 
+            voice "a8Man2.ogg"
             "???" "You little punk talking to me like that. I'll crush you."
 
+            voice "a9Man3.ogg"
             "???" "Take this you pesky little boy."
 
             $ play_sound(punch)
@@ -1476,6 +1496,7 @@ label meetWithYui:
 
             show police neutral with dissolve
 
+            voice "Officer1.ogg"
             o "I see. Bring me to them."
 
             label withOfficer:
@@ -1500,10 +1521,13 @@ label meetWithYui:
 
                 with hpunch
 
+                voice "a10Man1.ogg"
                 "???" "What the hell. Run guys!!"
 
+                voice "a11Man2.ogg"
                 "???" "Holy crap don't leave me."
 
+                voice "a12Man3.ogg"
                 "???" "Dammnit!"
 
                 with vpunch
@@ -1916,13 +1940,16 @@ label meetWithYui:
         voice "Officer8.ogg"
         o "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
 
+        voice "Officer9.ogg"
         o "This may include cursing, leering and intrusive gazing, and taunting."
 
         voice "m104.ogg"
         m "WOW! That's a really great law."
 
+        voice "Officer10.ogg"
         o "I know kid."
 
+        voice "Officer11.ogg"
         o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         $ yuiStoryProgress += 1
@@ -1961,65 +1988,91 @@ label meetWithYui:
             hide yui smile close
             show police neutral
             with dissolve
+            voice "Officer12.ogg"
             o "Sure thing. Lemme just take out my handbook."
 
             pause 2.0
 
+            voice "Officer13.ogg"
             o "Uhhh it says here..."
 
+            voice "Officer14.ogg"
             o "On Section 12 of the Safe Spaces Act, 
             it states the {color=#30ff45}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
+            voice "Officer15.ogg"
             o "This is quite long so listen carefully okay?"
 
             with fade
 
+            voice "Officer16.ogg"
             o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
             
+            voice "Officer17.ogg"
             o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
             
+            voice "Officer18.ogg"
             o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
             
+            voice "Officer19.ogg"
             o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
 
+            voice "Officer20.ogg"
             o "The penalties will be...!"
             
+            voice "Officer21.ogg"
             o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
+            voice "Officer22.ogg"
             o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
 
+            voice "Officer23.ogg"
             o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
 
+            voice "Officer24.ogg"
             o "The next on the list!"
 
             with fade
 
+            voice "Officer25.ogg"
             o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
             
+            voice "Officer26.ogg"
             o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
 
+            voice "Officer27.ogg"
             o "The penalties you will face is...!"
              
+            voice "Officer28.ogg"
             o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
+            voice "Officer29.ogg"
             o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
 
+            voice "Officer30.ogg"
             o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
 
+            voice "Officer31.ogg"
             o "Moving on!"
 
             with fade
 
+            voice "Officer32.ogg"
             o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
+            voice "Officer33.ogg"
             o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
+            voice "Officer34.ogg"
             o "You will face the penalties of...!"
 
+            voice "Officer35.ogg"
             o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
 
+            voice "Officer36.ogg"
             o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
             
+            voice "Officer37.ogg"
             o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
             hide police neutral with fade
@@ -2048,6 +2101,7 @@ label meetWithYui:
 
         show police neutral with dissolve
 
+        voice "Officer38.ogg"
         o "Ohhhh that's a shame."
         $ subtractPoints()
         $ hbbpoints -= 3
@@ -2062,11 +2116,13 @@ label meetWithYui:
 
         show police neutral
 
+        voice "Officer39.ogg"
         o "Now go on your way. I'll take care of them. In jail of course."
         
         voice "m195.ogg"
         m "Sir, can I ask for your name?"
 
+        voice "Officer40.ogg"
         o "Oh it's Greg. Find me whenever you are troubled."
 
         voice "m196.ogg"
@@ -3750,6 +3806,7 @@ label arrestButch:
 
         $ play_sound(doorknock)
 
+        voice "Officer41.ogg"
         "???" "Excuse me. Please open the door."
 
         $ play_sound(radio,fadein=0.5)
@@ -3791,8 +3848,10 @@ label arrestButch:
 
         show police neutral with fade
 
+        voice "Officer42.ogg"
         o "Everyone please calm down."
 
+        voice "Officer43.ogg"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
@@ -3814,10 +3873,13 @@ label arrestButch:
 
         with dissolve
 
+        voice "Officer44.ogg"
         o "Don't explain to me. Everything that you say will be used against you."
 
+        voice "Officer45.ogg"
         o "The complainant showed a solid proof of evidence."
 
+        voice "Officer46.ogg"
         o "You will be coming with us. Do not resist."
 
         hide police with fade
@@ -3828,16 +3890,19 @@ label arrestButch:
 
         show police neutral with fade
 
+        voice "Officer47.ogg"
         o "Hey future Attorney! It looks like it went fine."
 
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
 
+        voice "Officer48.ogg"
         o "It's because of you, we caught this disgusting molester. Thank you."
 
         voice "m189.ogg"
         m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
 
+        voice "Officer49.ogg"
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         voice "m190.ogg"
@@ -3953,8 +4018,10 @@ label arrestButch:
 
         show police neutral with fade
 
+        voice "Officer42.ogg"
         o "Everyone please calm down."
 
+        voice "Officer43.ogg"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
@@ -3976,10 +4043,13 @@ label arrestButch:
 
         with dissolve
 
+        voice "Officer44.ogg"
         o "Don't explain to me. Everything that you say will be used against you."
 
+        voice "Officer45.ogg"
         o "The complainant showed a solid proof of evidence."
 
+        voice "Officer46.ogg"
         o "You will be coming with us. Do not resist."
 
         hide police with fade
@@ -3990,16 +4060,19 @@ label arrestButch:
 
         show police neutral with fade
 
+        voice "Officer47.ogg"
         o "Hey future Attorney! It looks like it went fine."
 
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
 
+        voice "Officer48.ogg"
         o "It's because of you, we caught this disgusting molester. Thank you."
 
         voice "m189.ogg"
         m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
 
+        voice "Officer49.ogg"
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         voice "m190.ogg"
