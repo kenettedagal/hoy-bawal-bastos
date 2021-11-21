@@ -132,37 +132,39 @@ label snooze:
 
 label breakfastWithMom:
 
+    scene black with fade
+
+    centered "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
+
+    centered "Today marks the day of me being a Second-Year highschool student."
+
+    centered "I am your average highschool boy if you wanna know."
+
+    centered "I barely pass my subjects but I'm also quite decent at sports."
+
+    centered "Gotta brag when you gotta brag. Hahaha~"
+
+    centered "Becoming an Attorney is my dream."
+
+    centered "You know why?"
+
+    centered "Cause I have played lots of detective games!"
+
+    centered "Hahaha I know its nonsense but still..."
+
+    centered "Anyways! My hobbies are sleeping and watching anime."
+
+    centered "Wait is this even called hobbies? It's more of a \"I've got nothing else to do in life.\""
+
+    centered "Well...."
+
+    centered "Nothing eventful has happened yet in my life."
+
+    centered "I haven't even experienced the so called \"romance of highschool.\""
+
+    centered "I wonder if it starts now? Hahaha~"
+
     scene bg room2 with fade
-
-    "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
-
-    "Today marks the day of me being a Second-Year highschool student."
-
-    "I am your average highschool boy if you wanna know."
-
-    "I barely pass my subjects but I'm also quite decent at sports."
-
-    "Gotta brag when you gotta brag. Hahaha~"
-
-    "Becoming an Attorney is my dream."
-
-    "You know why?"
-
-    "Cause I have played lots of detective games!"
-
-    "Hahaha I know its nonsense but still..."
-
-    "Anyways! My hobbies are sleeping and watching anime."
-
-    "Wait is this even called hobbies? It's more of a \"I've got nothing else to do in life.\""
-
-    "Well...."
-
-    "Nothing eventful has happened yet in my life."
-
-    "I haven't even experienced the so called \"romance of highschool.\""
-
-    "I wonder if it starts now? Hahaha~"
 
     "....."
 
