@@ -473,7 +473,7 @@ label meetWithKurt:
 
     "From where?"
 
-    voice "game_audio_voice_1.ogg"
+    
     "???" "Dude! Are you deaf?"
 
     $ play_sound(punch,fadein=0.5)
@@ -1489,7 +1489,8 @@ label meetWithYui:
             $ play_sound(addPoints)
             $ hbbpoints += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
-            hide yui worry closed
+            #hide yui worry closed
+            
             voice "m79.ogg"
             m "Officer! Officer!!"
 
@@ -2558,7 +2559,7 @@ label afterCeremony:
         voice "m201.ogg"
         m "Uhhhh.. Hello?"
 
-        voice "202.ogg"
+        voice "m202.ogg"
         m "You are?"
 
         "Girl" "Can you help me get to my classroom?"
@@ -4469,7 +4470,7 @@ label specialEndKurtney:
     voice "m218.ogg"
     m "After the incident, the police organization talked to me about doing part-time job for them."
 
-    voice ""
+    voice "m219.ogg"
     m "I guess that's not too bad. I can get some experience."
 
     show kurtney worry with fade 

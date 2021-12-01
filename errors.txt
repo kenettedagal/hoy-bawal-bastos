@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/screens.rpy", line 371: Line is indented, but the preceding xalign statement does not expect a block. Please check this line's indentation.
-    yalign 0.0
-    ^
+File "game/yui_story.rpy", line 1493: expected 'image_name_component' not found.
+    show
+        ^
 
-Ren'Py Version: Ren'Py 7.4.10.2178
-Sat Nov 20 23:08:37 2021
+Ren'Py Version: Ren'Py 7.4.4.1439
+Wed Dec  1 09:19:09 2021
