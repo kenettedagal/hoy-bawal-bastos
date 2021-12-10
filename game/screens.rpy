@@ -137,7 +137,7 @@ style window:
     yalign gui.textbox_yalign
     ysize gui.textbox_height
 
-    background gui.preference("ADVtextbox", "gui/textbox_1.png")
+    background gui.preference("ADVtextbox", "gui/textbox.png")
     # background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
     ## ^ Old Version ^ Use if you do not intend to have texbox color options
 
@@ -212,22 +212,37 @@ default timeout = 10.0
 default timeout_label = None
 
 default persistent.timed_choices = True
+
+default bonus_script = False
+
 screen choice(items):
     style_prefix "choice"
-
+    
     vbox:
         for i in items:
             textbutton i.caption action i.action activate_sound "audio/sfx/confirm.ogg"
-
+    
     if (timeout_label is not None) and persistent.timed_choices:
         text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55
         bar:
-
             xalign 0.5
-            ypos 100
+            ypos 180
             xsize 740
             value AnimatedValue(old_value=0.0, value=1.0, range=1.0, delay=timeout)
-        timer timeout action Jump(timeout_label)
+        timer timeout action Jump(timeout_label) 
+    elif ((timeout_label is not None) and persistent.timed_choices) and bonus_script:
+        vbar:
+            xpos 70
+            ypos 180
+            xsize 70
+            value AnimatedValue(old_value=0.0, value=1.0, range=1.0, delay=timeout)
+        timer timeout action Jump(timeout_label) 
+        text "{color=#FFF}{b}T{/color}{/b}" ypos 400 xpos 80 size 70
+        text "{color=#FFF}{b}I{/color}{/b}" ypos 470 xpos 87 size 70
+        text "{color=#FFF}{b}M{/color}{/b}" ypos 540 xpos 72 size 65
+        text "{color=#FFF}{b}E{/color}{/b}" ypos 610 xpos 80 size 70
+        text "{color=#FFF}{b}R{/color}{/b}" ypos 680 xpos 80 size 70
+   
 
 #screen choice(items):
 #    style_prefix "choice"
@@ -909,12 +924,12 @@ screen preferences():
 
                     if renpy.variant("pc"):
 
-                        textbutton _("Black") action [gui.SetPreference("ADVtextbox", "gui/textbox_1.png"), gui.SetPreference("NVLtextbox", "gui/nvl_1.png")] alt "Change to Black Textbox"
+                        textbutton _("Black") action [gui.SetPreference("ADVtextbox", "gui/textbox.png"), gui.SetPreference("NVLtextbox", "gui/nvl_1.png")] alt "Change to Black Textbox"
                         textbutton _("White") action [gui.SetPreference("ADVtextbox", "gui/textbox_2.png"), gui.SetPreference("NVLtextbox", "gui/nvl_2.png")]  alt "Change to White Textbox"
 
                     elif renpy.variant("mobile"):
 
-                        textbutton _("Black") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox_1.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_1.png")]
+                        textbutton _("Black") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_1.png")]
                         textbutton _("White") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox_2.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_2.png")]
 
                 ## Toggles
@@ -1799,7 +1814,7 @@ style say_dialogue:
 
 style window:
     variant "small"
-    background gui.preference("m_ADVtextbox", "gui/phone/textbox_1.png")
+    background gui.preference("m_ADVtextbox", "gui/phone/textbox.png")
     #background "gui/phone/textbox.png"
 
 style radio_button:

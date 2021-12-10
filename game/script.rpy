@@ -42,7 +42,7 @@ label splashscreen:
         
         ## No input will be detected for the set time stated.
         ## Set this to be a little longer than how long the animation takes.
-        $ renpy.pause(8.5, hard=True)
+        $ renpy.pause(1.0, hard=True)
  
         $ persistent.seen_splash = True
     
@@ -57,9 +57,35 @@ label splashscreen:
     with fade
  
     label skip_splash:
+        $_dismiss_pause = False
+        scene black
+        with fade
+
+        scene black
+        with Pause(1)
+
+        show logo_company with dissolve
+        with Pause(2)
+
+        scene black with dissolve
+        with Pause(1)
  
         pass
- 
+
+        scene black
+
+        play sound "audio/flash.mp3"
+
+        show menu1 at truecenter with zoomin
+
+        show white at truecenter
+        with dissolve
+
+        hide white at truecenter
+        with dissolve
+
+        play sound "audio/openings.mp3" volume 1.0
+
     return
 
 ## The game starts here

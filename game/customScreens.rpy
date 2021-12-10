@@ -1,5 +1,8 @@
 # init python:
 #     def checkIndex():
+define narrator = Character(ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+
+image movie intro = Movie(play="movie_background.ogv")
 
 screen select():
     frame:
@@ -28,12 +31,8 @@ screen select():
         xminimum 200
         yminimum 200
         vbox:
-            
-            textbutton "Go to Side Story #1" ymaximum 200 action [Hide("select"),Jump("Act_2_School")]
 
-            textbutton "Go to Side Story #2" ymaximum 200 action [Hide("select"),Jump("chloe")]
-
-            textbutton "Go to Bonus Story" ymaximum 200 action None
+            textbutton "Go to Bonus Story" ymaximum 200 action [Hide("select"),Jump("bonusS01")]
 
 
 screen newspaper():
@@ -363,3 +362,12 @@ screen testScreen():
                     yalign 0.5
                     
                     action [Hide("testScreen"), Show("showNotesButton", dissolve)]
+
+#CTC Code
+image ctc:
+    "ctc.png", #This is your image
+    subpixel True #This line makes sure that ATL is smooth
+    yalign 0.96 xalign 0.82 #Adjust these numbers to fit your own textbox
+    linear 0.5 xalign 0.833
+    linear 0.5 xalign 0.82
+    repeat

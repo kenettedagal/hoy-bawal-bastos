@@ -4,28 +4,28 @@ label yui_start_case_1:
     image aerial = im.Scale("images/school aerial.webp", 1920, 1080)
     image hallway = im.Scale("images/hallways.webp", 1920, 1080)
     image pools = im.Scale("images/pool.webp", 1920, 1080)
-    image classroom lunch1 = im.Scale("images/classroom lunch.webp", 1920,1080)
+    image classroom lunch1 = im.Scale("images/classroom lunch.webp", 1920,1080)  
     image classroom2 = im.Scale("images/classroom_2.webp",1920,1080)
     image classroom morning = im.Scale("images/classroom_morning.webp",1920,1080)
     image walk = im.Scale("images/walk1.webp", 1920, 1080)
     image school gate = im.Scale("images/school gate1.webp", 1920, 1080)
 
-    define kk = Character('Kurtney',color='#51ceff')
-    define y = Character('Yui',color='#f9b3ff')
-    define t = Character('Teacher Clarisse')
-    define b = Character('Butch',color='#badb27')
-    define o = Character('Officer Greg', color='#30ff45')
-    define mc = Character("Mark")
-    define m = Character("Me",color='#00ffea')
+    define kk = Character('Kurtney',color='#51ceff',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define y = Character('Yui',color='#f9b3ff',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define t = Character('Teacher Clarisse',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define b = Character('Butch',color='#badb27',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define o = Character('Officer Greg', color='#30ff45',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define mc = Character("Mark",ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define m = Character("Me",color='#00ffea',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
 
     default notebookOpen = False
     default hbbpoints = 0
     default yuiStoryProgress = 0
     default notebookIndex = 0
-    define mm = Character('Mom',color='#00ff2a')
+    define mm = Character('Mom',color='#00ff2a',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
     default badEndingGame = False
     default kurtneyHelp = False
-    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False]
+    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False, False]
     default persistent.unlockroom = False
     default persistent.unlockTrain = False
     default persistent.unlockJeep = False
@@ -72,6 +72,7 @@ label yui_start_case_1:
 
     "{i}7:00 AM....{/i}"
     
+    voice "bm1.ogg"
     "Ugh...."
 
     python:
@@ -85,6 +86,7 @@ label yui_start_case_1:
 
     $ persistent.unlockroom = True
 
+    voice "bm2.ogg"
     "Shut up Siri."
 
     "......"
@@ -103,6 +105,7 @@ label yui_start_case_1:
             
             scene bg room2 with dissolve
 
+            voice "bm3.ogg"
             "Another day, another dollar..."
 
             jump breakfastWithMom
@@ -111,6 +114,7 @@ label yui_start_case_1:
 label snooze:
     scene black
 
+    voice "bm3.ogg"
     "Just a few more minutes...."
 
     "Zzzzzz...."
@@ -134,40 +138,58 @@ label breakfastWithMom:
 
     scene black with fade
 
+    window hide
+
+    voice "bm4.ogg"
     centered "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
 
+    voice "bm5.ogg"
     centered "Today marks the day of me being a Second-Year highschool student."
 
+    voice "bm6.ogg"
     centered "I am your average highschool boy if you wanna know."
 
+    voice "bm7.ogg"
     centered "I barely pass my subjects but I'm also quite decent at sports."
 
+    voice "bm8.ogg"
     centered "Gotta brag when you gotta brag. Hahaha~"
 
+    voice "bm9.ogg"
     centered "Becoming an Attorney is my dream."
 
+    voice "bm10.ogg"
     centered "You know why?"
 
+    voice "bm11.ogg"
     centered "Cause I have played lots of detective games!"
 
+    voice "bm12.ogg"
     centered "Hahaha I know its nonsense but still..."
 
+    voice "bm13.ogg"
     centered "Anyways! My hobbies are sleeping and watching anime."
 
+    voice "bm14.ogg"
     centered "Wait is this even called hobbies? It's more of a \"I've got nothing else to do in life.\""
 
+    voice "bm15.ogg"
     centered "Well...."
 
+    voice "bm16.ogg"
     centered "Nothing eventful has happened yet in my life."
 
+    voice "bm17.ogg"
     centered "I haven't even experienced the so called \"romance of highschool.\""
 
+    voice "bm18.ogg"
     centered "I wonder if it starts now? Hahaha~"
 
     scene bg room2 with fade
 
     "....."
 
+    voice "mm1.ogg"
     mm "Mark! Are you awake?"
 
     $ play_sound (doorknock) 
@@ -190,9 +212,10 @@ label breakfastWithMom:
     m "Yes mom... Please stop knocking on the door."
 
     show mom worried at left with dissolve
-
+    voice "mm2.ogg"
     mm "It's your first day at school honey..."
 
+    voice "mm3.ogg"
     mm "I told you to sleep early last night. Did you play games all night again?"
 
     voice "m4.ogg"
@@ -200,19 +223,21 @@ label breakfastWithMom:
 
     scene kitchen with fade
     show mom happy at left with dissolve
-
+    voice "mm4.ogg"
     mm "Go now and eat breakfast with me. Your father left early for work."
 
     voice "m5.ogg"
     m "What did you cook for breakfast [mm]?"
 
     show mom happy closed at left with dissolve
+    voice "mm5.ogg"
     mm "I made your favorite foods! A scrambled egg, tocino and some bacon."
     $ timeout_label = None
     hide mom happy with dissolve
 
     menu: 
         
+        # voice "mm6.ogg"
         mm "What do you wanna eat?"
 
         "Scrambled eggs.":
@@ -228,6 +253,7 @@ label breakfastWithMom:
             m "Crispy and juicy bacon. The best breakfast food invented."
 
         "Of course, all of it!":
+            voice "m267.ogg"
             m "All of these dishes in one plate..."
             voice "m9.ogg"
             m "I hope my stomach won't hurt when I'm outside. Haha...."
@@ -242,6 +268,7 @@ label breakfastWithMom:
                     achievementList[1] = True
 
             show mom worried with dissolve
+            "mm7.ogg"
             mm "I hope so too! Ahahaha~"
             hide mom worried with dissolve
 
@@ -253,7 +280,7 @@ label breakfastWithMom:
     m "Thank you for the food, Mom!"
 
     show mom happy at left with dissolve
-    
+    voice "mm8.ogg"
     mm "No worries! It's gonna be a big day for you honey."
 
     "...."
@@ -379,26 +406,36 @@ label goingToSchool:
 
     $ play_music(poppy)
 
+    voice "bm19.ogg"
     "Well, that was a great law. Hopefully I can teach someone about it."
 
+    voice "bm20.ogg"
     "Hmmm. As expected, there will be a class introduction soon. How should I introduce myself?"
 
+    voice "bm21.ogg"
     "Ehem....."
 
+    voice "bm22.ogg"
     "\"How y'all doin' everyone! The greatest future attorney is in this class. The name's Mark!\""
 
+    voice "bm23.ogg"
     "How's that? Hmmm..."
 
+    voice "bm24.ogg"
     "No... that's... way too embarassing."
 
+    voice "bm25.ogg"
     "How about..."
 
+    voice "bm26.ogg"
     "\"Pleased to meet you everyone. Please call me Mark.\""
 
     "...."
 
+    voice "bm27.ogg"
     "Yeah that'll work. Short and simple."
     
+    voice "bm28.ogg"
     "They don't need to know that I am dreaming to be an attorney someday."
 
     "{i}8:15 AM...{/i}"
@@ -497,16 +534,51 @@ label meetWithKurt:
     voice "m13.ogg"
     m "Sorry I didn't notice you at all."
 
-    show kurtney smile with dissolve
+    show kurtney smile zorder 3 with dissolve
 
     voice "kk3.ogg"
     kk "Well its fine. Atleast I'm going to school with you."
 
+    $_dismiss_pause = False
+    show movie intro at offscreenleft
+    show ymagenta zorder 2 at offscreenright
+    with ease
+    
+    play sound "audio/fast.wav" volume 0.5
+
+    show movie intro at left
+    show ymagenta zorder 2 at right
+    with ease
+
+    show k name zorder 3 at offscreenright
+    with ease
+
+    play sound "audio/ting.wav"
+
+    show kurtney happy teeth zorder 3 at left
+    show k name zorder 3 at left
+    with MoveTransition(0.4)
+
+    voice "bm51.ogg"
     "This is [kk]. My weird childhood friend."
 
+    voice "bm52.ogg"
     "We have been friends since elementary school. She is a little boyish and sometimes annoying."
 
+    voice "bm53.ogg"
     "But I don't hate it at all."
+
+    play sound "audio/fast.wav" volume 0.5
+
+    $_dismiss_pause = False
+    show movie intro at offscreenright
+    show ymagenta zorder 2 at offscreenleft  
+    with ease
+    
+    show kurtney smile zorder 3 at center
+    show k name zorder 2 at offscreenright
+    with MoveTransition(0.2)
+    $ renpy.pause(0.3, hard=True)
 
     show kurtney talk opened with dissolve
 
@@ -599,6 +671,7 @@ label meetWithKurt:
     $ timeout_label = "kurtFirstQuestionTimerOut"
 
     menu kurtFirstQuestion:
+        # voice "bm43.ogg"
         "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
 
         "Re-semiprivate Act No. 11313":
@@ -708,6 +781,7 @@ label meetWithKurt:
         hide kurtney talk opened with dissolve 
 
     menu kurtThirdQuestion:
+        # voice "bm45.ogg"
         "Wait, what does the Safe Spaces Act mean again?"
 
         "To protect Earth from aliens.":
@@ -874,13 +948,13 @@ label meetWithKurt:
 
         show kurtney happy teeth with dissolve
 
-        #voice ".ogg" missing
+        # voice "kk131.acc"
         kk "Hahaha~ I miss summer vacation."
 
         voice "m48.ogg"
         m "Oh shut up. All you do is play games and watch anime."
 
-        #voice ".ogg" missing
+        # voice "kk132.acc"
         kk "Are you talking about yourself? Ahahaha~"
 
         voice "m49.ogg"
@@ -982,12 +1056,15 @@ label meetWithKurt:
 
                 $ play_sound(running)
 
+                voice "bm29.ogg"
                 "With all my might and strength reserved for this day, I grabbed [kk]'s hand and ran like a mad dog."
 
+                voice "bm30.ogg"
                 "What a crazy person!"
 
                 scene school gate with fade
 
+                voice "bm31.ogg"
                 "Looking at my back, the guy is nowhere to be seen."
 
                 voice "m59.ogg"
@@ -1016,13 +1093,13 @@ label meetWithKurt:
 
                 show stalker talk with fade
 
-                voice "stalker1.ogg"
+                voice "stalk1.mp3"
                 "???" "Hmmm.. Are you her boyfriend?"
 
                 voice "m62.ogg"
                 m "No! She's my childhood friend."
 
-                voice "stalker2.ogg"
+                voice "stalk2.mp3"
                 "???" "Then take this."
 
                 $ play_sound(punch)
@@ -1097,13 +1174,13 @@ label meetWithKurt:
 
                     show stalker talk with dissolve
 
-                    voice "stalker3.ogg"
+                    voice "stalk3.mp3"
                     "???" "Who the hell are you?"
 
-                    voice "stalker4.ogg"
+                    voice "stalk4.mp3"
                     "???" "What's your deal, huh?"
 
-                    voice "stalker5.ogg"
+                    voice "stalk5.mp3"
                     "???" "Stupid kid standing up to me huh."
 
                     voice "m69.ogg"
@@ -1113,10 +1190,10 @@ label meetWithKurt:
                     show stalker angry 
                     with dissolve
 
-                    voice "stalker6.ogg"
+                    voice "stalk6.mp3"
                     "???" "Calm down buddy. No reason to be angry. I'll leave now. Enjoy your day."
 
-                    voice "stalker7.ogg"
+                    voice "stalk7.mp3"
                     "???" "I won't forget this! Be careful from now on."
 
                     hide stalker angry 
@@ -1162,7 +1239,7 @@ label meetWithKurt:
 
         $play_music(garden) 
 
-        voice "Officer51.ogg"
+        voice "newOfficer51.mp3"
         "???" "Excuse me!"
 
         voice "kk42.ogg"
@@ -1173,16 +1250,16 @@ label meetWithKurt:
 
         "The police officer was running towards us with a confused look on his face."
 
-        #voice need
+        voice "newOfficer52.mp3"
         o "Excuse me young ones... I just saw what happened earlier. Can you tell me more about the event?"
 
         voice "m73.ogg"
         m "Uhmmmm my friend here was getting stalked by someone..."
 
-        #voice need
+        voice "newOfficer53.mp3" 
         o "A stalker huh?"
 
-        #voice need
+        voice "newOfficer54.mp3"
         o "Did you know that stalking is a grave crime? According to the Safe Spaces Act that is."
 
         voice "m74.ogg"
@@ -1202,6 +1279,7 @@ label meetWithKurt:
         show police neutral
         with dissolve
 
+        voice "newOfficer55.mp3"
         o "Stalking is a serious crime. Do you guys want to learn about the punishment for violating the Safe Spaces Act?"
 
         $ yuiStoryProgress += 1
@@ -1238,66 +1316,92 @@ label meetWithKurt:
                 hide kurtney happy teeth
                 show police neutral
                 with dissolve
+
+                voice "newOfficer12.mp3"
                 o "Sure thing. Lemme just take out my handbook."
 
                 pause 2.0
 
+                voice "newOfficer13.mp3"
                 o "Uhhh it says here..."
 
+                voice "newOfficer14.mp3"
                 o "On Section 12 of the Safe Spaces Act, 
-                it states the Specific Acts and Penalties for Gender-Based Sexual Harassment in Streets and Public Spaces."
+                it states the {color=#30ff45}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
+                voice "newOfficer15.mp3"
                 o "This is quite long so listen carefully okay?"
 
                 with fade
 
-                
+                voice "newOfficer16.mp3"
                 o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
                 
+                voice "newOfficer17.mp3"
                 o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
                 
+                voice "newOfficer18.mp3"
                 o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
                 
+                voice "newOfficer19.mp3"
                 o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
 
+                voice "newOfficer20.mp3"
                 o "The penalties will be...!"
                 
+                voice "newOfficer21.mp3"
                 o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
+                voice "newOfficer22.mp3"
                 o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
 
+                voice "newOfficer23.mp3"
                 o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
 
+                voice "newOfficer24.mp3"
                 o "The next on the list!"
 
                 with fade
 
+                voice "newOfficer25.mp3"
                 o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
                 
+                voice "newOfficer26.mp3"
                 o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
 
+                voice "newOfficer27.mp3"
                 o "The penalties you will face is...!"
                 
+                voice "newOfficer28.mp3"
                 o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
+                voice "newOfficer29.mp3"
                 o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
 
+                voice "newOfficer30.mp3"
                 o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
 
+                voice "newOfficer31.mp3"
                 o "Moving on!"
 
                 with fade
 
+                voice "newOfficer32.mp3"
                 o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
+                voice "newOfficer33.mp3"
                 o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
+                voice "newOfficer34.mp3"
                 o "You will face the penalties of...!"
 
+                voice "newOfficer35.mp3"
                 o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
 
+                voice "newOfficer36.mp3"
                 o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
                 
+                voice "newOfficer37.mp3"
                 o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
                 hide police neutral with fade
@@ -1355,27 +1459,35 @@ label meetWithYui:
 
     pause 5.0
 
+    voice "bm32.ogg"
     "Aaaaaaah~ The landscape is so nice."
 
+    voice "bm33.ogg"
     "I wish every morning was something like this..."
 
+    voice "bm34.ogg"
     "But that's a pointless wish."
     
     scene trainpeople with fade
     pause 2.0
     
+    voice "bm35.ogg"
     "Eh, it is surprisingly quiet today..."
 
+    voice "bm36.ogg"
     "Even though its the first day of class?"
 
+    voice "bm37.ogg"
     "Well, I shouldn't be complaining about this."
 
     stop sound fadeout 5.0
     
     $ play_music(evans,fadein=1.0)
 
+    voice "bm38.ogg"
     "I kinda like this atmosphere."
 
+    voice "bm39.ogg"
     "Hopefully, this day goes successful."
 
     "...."
@@ -1398,30 +1510,33 @@ label meetWithYui:
 
     "Moving closer towards the exit... I hear some conversation."
 
-    voice "a1Man1.ogg"
+    voice "man1line1.mp3"
     "???" "Hey there sexy little miss. Are you free tonight and have a drink." 
 
-    voice "a2Man2.ogg"
+    voice "man2line1.mp3"
     "???" "Don't worry, we won't do anything do bad to you hehehe..."
 
-    voice "a3Man3.ogg"
+    voice "man3line1.mp3"
     "???" "Do you need money or anything? Just tell us."
 
+    voice "bm40.ogg"
     "I can see three old men sexually harassing a young student girl."
 
+    voice "bm41.ogg"
     "I notice that the girl is trembling and shaking."
-
+    
+    voice "yui109.ogg"
     "Girl" "Plea-please l-l-leave me alo-lone..."
 
     pause 2.0
 
-    voice "a4Man1.ogg"
+    voice "man1line2.mp3"
     "???" "Hahaha!! She's scared like a child."
 
-    voice "a5Man2.ogg"
+    voice "man2line2.mp3"
     "???" "Hey, you're teasing her too much. She might report us."
 
-    voice "a6Man3.ogg"
+    voice "man3line2.mp3"
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
     
@@ -1443,13 +1558,13 @@ label meetWithYui:
             voice "m77.ogg"
             m "Hey you bastards! Stop sexually harrassing that girl."
 
-            voice "a7Man1.ogg"
+            voice "man1line3.mp3"
             "???" "Who the hell are you? His boyfriend perhaps?"
 
-            voice "a8Man2.ogg"
+            voice "man2line3.mp3"
             "???" "You little punk talking to me like that. I'll crush you."
 
-            voice "a9Man3.ogg"
+            voice "man3line3.mp3"
             "???" "Take this you pesky little boy."
 
             $ play_sound(punch)
@@ -1499,7 +1614,7 @@ label meetWithYui:
 
             show police neutral with dissolve
 
-            voice "Officer1.ogg"
+            voice "newOfficer1.mp3"
             o "I see. Bring me to them."
 
             label withOfficer:
@@ -1516,21 +1631,21 @@ label meetWithYui:
 
                 show police neutral with dissolve
 
-                voice "Officer2.ogg"
+                voice "newOfficer2.mp3"
                 o "HEY YOU BASTARDS!"
 
-                voice "Officer3.ogg"
+                voice "newOfficer3.mp3"
                 o "Face the consequences of your crimes!"
 
                 with hpunch
 
-                voice "a10Man1.ogg"
+                voice "man1line4.mp3"
                 "???" "What the hell. Run guys!!"
 
-                voice "a11Man2.ogg"
+                voice "man2line4.mp3"
                 "???" "Holy crap don't leave me."
 
-                voice "a12Man3.ogg"
+                voice "man3line4.mp3"
                 "???" "Dammnit!"
 
                 with vpunch
@@ -1541,29 +1656,33 @@ label meetWithYui:
             scene bg train morning
             show yui wow 
             with fade
+            
+            voice "yui1.ogg"
             "Girl" "Uwaaaaah! Thank y-y-you sooo much!!"
 
             voice "m82.ogg"
             m "Ohhh... I didn't really do anything..."
 
             show yui smile close with dissolve
-
+            voice "yui2.ogg"
             "Girl" "You saved my life...."
 
             voice "m83.ogg"
             m "Life?"
 
             show yui smile opened with dissolve
-
+            
+            voice "yui3.ogg"
             "Girl" "Uhmm..."
-
+            
+            voice "yui4.ogg"
             "Girl" "Can you tell me your name?"
 
             voice "m84.ogg"
             m "Ohhh. My name is Mark. How about you?"
 
             show yui blush with dissolve
-
+            voice "yui5.ogg"
             "Girl" "Y-Y-Yu.."
 
             voice "m85.ogg"
@@ -1571,43 +1690,77 @@ label meetWithYui:
 
             show yui surprised blush with dissolve
 
+            voice "bm42.ogg"
             "She's gotten a bit red of a sudden..."
 
-            show yui blush closed with dissolve
-
+            show yui blush closed zorder 3 with dissolve
+            voice "yui6.ogg"
             "Girl" "Ple-please call me Yui."
+
+            $_dismiss_pause = False
+            show movie intro at offscreenright
+            show ypurple zorder 2 at offscreenleft
+            with ease
+
+            play sound "audio/fast.wav" volume 0.5
+
+            show movie intro at right
+            show ypurple zorder 2 at left
+            with ease
+
+            show y name zorder 3 at offscreenleft
+            with ease
+
+            play sound "audio/ting.wav"
+
+            show yui yandere mode zorder 3 at right
+            show y name zorder 2 at left
+            with MoveTransition(0.4)
 
             voice "m86.ogg"
             m "[y], huh? What a cute name."
 
-            show yui surprised blush with dissolve
+            play sound "audio/fast.wav" volume 0.5
 
+            $_dismiss_pause = False
+            show movie intro at offscreenleft
+            show ypurple zorder 2 at offscreenright
+            with ease
+
+            show yui yandere mode at center 
+            show y name zorder 2 at offscreenleft
+            with MoveTransition(0.2)
+            $ renpy.pause(0.3, hard=True)
+
+            show yui surprised blush with dissolve
+            voice "yui7.ogg"
             y "EHHH?!! Cute?"
 
             show yui blush closed with dissolve
-
+            voice "yui8.ogg"
             y "{i}......waaah!{/i}"
 
             voice "m87.ogg"
             m "Hey, [y]. I saw you earlier that you were shaking and trembling."
 
             show yui worry with dissolve
-
+            voice "yui9.ogg"
             y "Yeah that was embarassing to see...."
 
             show yui worry closed with dissolve
-
+            voice "yui10.ogg"
             y "You see, when I was a child... I had a trauma."
 
             voice "m88.ogg"
             m "A trauma? Can I hear more of this?"
-
+            voice "yui11.ogg"
             y "Uhmmm y-yes..."
 
             show yui worry opened with dissolve
-
+            voice "yui12.ogg"
             y "When I was in 4th Grade, my boy classmates would make fun of my appearance."
 
+            voice "yui106.ogg"
             y "It made me stop going to school... And I was homeschooled since then."
 
             voice "m215.ogg"
@@ -1620,11 +1773,13 @@ label meetWithYui:
 
             show yui wow with dissolve
 
+            voice "yui13.ogg"
             y "What is it?"
 
             voice "m90.ogg"
             m "It's about a law."
 
+            voice "yui14.ogg"
             y "A law? What kind of law?"
 
             voice "m91.ogg"
@@ -1634,6 +1789,7 @@ label meetWithYui:
             $ yuiFirstAnswer = True
             hide yui wow with dissolve
             menu yuiFirstQuestion:
+                # voice "bm43.ogg"
                 "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
 
                 "Re-semiprivate Act No. 11313":
@@ -1699,6 +1855,7 @@ label meetWithYui:
 
             show yui wow with dissolve
 
+            voice "yui107.ogg"
             y "What is that law?"
 
             voice "m97.ogg"
@@ -1707,6 +1864,7 @@ label meetWithYui:
             $ yuiSecondAnswer = True
             hide yui wow with dissolve
             menu yuiSecondQuestion:
+                # voice "bm44.ogg"
                 "It is also known as ...."
                 
                 "Safe Spaces Act":
@@ -1767,12 +1925,13 @@ label meetWithYui:
 
                 show yui wow with dissolve
 
+                voice "yui15.ogg"
                 y "So it is called \"Safe Spaces Act\"?"
 
                 voice "m102.ogg"
                 m "Yeah! It's a cool name right?"
 
-                #show kurt open mouth
+                voice "yui16.ogg"
                 y "Uhm. But what does it mean?"
 
                 $ yuiThirdAnswer = True
@@ -1781,6 +1940,7 @@ label meetWithYui:
                 hide yui wow with dissolve
 
             menu yuiThirdQuestion:
+                # voice "bm45.ogg"
                 "Wait, what does the Safe Spaces Act mean again?"
 
                 "To protect Earth from aliens.":
@@ -1790,8 +1950,10 @@ label meetWithYui:
                     
                     show yui smile close with dissolve
 
+                    voice "yui17.ogg"
                     y "Wait that's really funny~"
 
+                    voice "yui18.ogg"
                     y "Please tell it to me seriously..."
                     
                     voice "m30.ogg"
@@ -1867,14 +2029,14 @@ label meetWithYui:
                         pause 1.0
 
                         show yui wow with dissolve
-
+                        voice "yui19.ogg"
                         y "That was a lot! How'd you memorize it?"
 
                         voice "m42.ogg"
                         m "Well you know... I wanted to be an attorney. So this much is not that big deal."
 
                         show yui smile opened with dissolve
-
+                        voice "yui20.ogg"
                         y "You wanted to be an attorney? That sounds really nice~"
 
                         voice "m103.ogg"
@@ -1888,6 +2050,7 @@ label meetWithYui:
                     $ subtractPoints()
                     "Your points are deducted by {color=#c0ff73}1 HBB Point!{/color}"
                     
+                    voice "yui21.ogg"
                     y "What danger? Please explain it clearly."
 
                     voice "m192.ogg"
@@ -1902,6 +2065,7 @@ label meetWithYui:
 
                     
 
+        # voice "bm46.ogg"
         "I'll pretend that I didn't hear the conversation.":
             pause 0.5
             $ play_sound(subPoints)
@@ -1913,10 +2077,13 @@ label meetWithYui:
             
     label notSaveYui:
         $ badEndingGame = True
+        voice "bm46.ogg"
         "I'll pretend that I didn't hear the conversation."
 
+        voice "bm47.ogg"
         "I should just ignore them..."
 
+        voice "bm48.ogg"
         "I don't wanna get in trouble."
 
         jump yui_end
@@ -1928,31 +2095,31 @@ label meetWithYui:
         hide yui smile opened
         show police neutral with fade       
         
-        voice "Officer4.ogg"
+        voice "newOfficer4.mp3"
         o "Hey kids. You better get going now. I'll clean this mess up."
 
-        voice "Officer5.ogg"
+        voice "newOfficer5.mp3"
         o "Based on the Implementing Rules and Regulation of Republic Act No. 11313..."
 
-        voice "Officer6.ogg"
+        voice "newOfficer6.mp3"
         o "Those guys broke the law by (1) Catcalling and making unwanted invitations."
 
-        voice "Officer7.ogg"
+        voice "newOfficer7.mp3"
         o "(2) Making statements of sexual comments and suggestions."
 
-        voice "Officer8.ogg"
+        voice "newOfficer8.mp3"
         o "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
 
-        voice "Officer9.ogg"
+        voice "newOfficer9.mp3"
         o "This may include cursing, leering and intrusive gazing, and taunting."
 
         voice "m104.ogg"
         m "WOW! That's a really great law."
 
-        voice "Officer10.ogg"
+        voice "newOfficer10.mp3"
         o "I know kid."
 
-        voice "Officer11.ogg"
+        voice "newOfficer11.mp3"
         o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
         $ yuiStoryProgress += 1
@@ -1977,6 +2144,7 @@ label meetWithYui:
 
             y "!!!!"
 
+            voice "yui22.ogg"
             y "I-I-I want to learn it too..."
 
             python:
@@ -1991,91 +2159,91 @@ label meetWithYui:
             hide yui smile close
             show police neutral
             with dissolve
-            voice "Officer12.ogg"
+            voice "newOfficer12.mp3"
             o "Sure thing. Lemme just take out my handbook."
 
             pause 2.0
 
-            voice "Officer13.ogg"
+            voice "newOfficer13.mp3"
             o "Uhhh it says here..."
 
-            voice "Officer14.ogg"
+            voice "newOfficer14.mp3"
             o "On Section 12 of the Safe Spaces Act, 
             it states the {color=#30ff45}Specific Acts and Penalties{/color} for Gender-Based Sexual Harassment in Streets and Public Spaces."
 
-            voice "Officer15.ogg"
+            voice "newOfficer15.mp3"
             o "This is quite long so listen carefully okay?"
 
             with fade
 
-            voice "Officer16.ogg"
+            voice "newOfficer16.mp3"
             o "a) For acts such as cursing, wolf-whistling, catcalling, leering and intrusive gazing. taunting, cursing, unwanted invitations, misogynistic, transphobic, homophobic, and sexist slurs;" 
             
-            voice "Officer17.ogg"
+            voice "newOfficer17.mp3"
             o"Persistent unwanted comments on one's appearance, relentless requests for one's personal details such as name, contact and social media details or destination;" 
             
-            voice "Officer18.ogg"
+            voice "newOfficer18.mp3"
             o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
             
-            voice "Officer19.ogg"
+            voice "newOfficer19.mp3"
             o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
 
-            voice "Officer20.ogg"
+            voice "newOfficer20.mp3"
             o "The penalties will be...!"
             
-            voice "Officer21.ogg"
+            voice "newOfficer21.mp3"
             o "{color=#30ff45}First Offence{/color}: Fine of One thousand pesos (P 1,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
-            voice "Officer22.ogg"
+            voice "newOfficer22.mp3"
             o "{color=#30ff45}Second Offence{/color}: Arresto menor (6 to 10 days) or a fine of Three thousand pesos (P3,000.00)"
 
-            voice "Officer23.ogg"
+            voice "newOfficer23.mp3"
             o "{color=#30ff45}Third Offence{/color}: Arresto menor (11 to 30 days) and a fine of Ten thousand pesos (P10, 000.00)"
 
-            voice "Officer24.ogg"
+            voice "newOfficer24.mp3"
             o "The next on the list!"
 
             with fade
 
-            voice "Officer25.ogg"
+            voice "newOfficer25.mp3"
             o "b) For acts such as making offensive body gestures at someone, and exposing private parts for the sexual gratification of the perpetrator with the effect of demeaning, harassing, threatening;"
             
-            voice "Officer26.ogg"
+            voice "newOfficer26.mp3"
             o "Or intimidating the offended party including flashing of private parts, public masturbation, groping, and similar lewd sexual actions."
 
-            voice "Officer27.ogg"
+            voice "newOfficer27.mp3"
             o "The penalties you will face is...!"
              
-            voice "Officer28.ogg"
+            voice "newOfficer28.mp3"
             o "{color=#30ff45}First Offence{/color}: Fine of Ten thousand pesos (P 10,000.00) and community service of twelve (12) hours inclusive of attendance to a Gender Sensitivity Seminar conducted by PNP."
 
-            voice "Officer29.ogg"
+            voice "newOfficer29.mp3"
             o "{color=#30ff45}Second Offence{/color}: Arresto menor (11 to 30 days) or a fine of Fifteen thousand pesos (P15,000.00)"
 
-            voice "Officer30.ogg"
+            voice "newOfficer30.mp3"
             o "{color=#30ff45}Third Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) and a fine of Twenty thousand pesos (P20, 000.00)"
 
-            voice "Officer31.ogg"
+            voice "newOfficer31.mp3"
             o "Moving on!"
 
             with fade
 
-            voice "Officer32.ogg"
+            voice "newOfficer32.mp3"
             o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
-            voice "Officer33.ogg"
+            voice "newOfficer33.mp3"
             o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
-            voice "Officer34.ogg"
+            voice "newOfficer34.mp3"
             o "You will face the penalties of...!"
 
-            voice "Officer35.ogg"
+            voice "newOfficer35.mp3"
             o "{color=#30ff45}First Offence{/color}: Arresto menor (11 to 30 days) or a fine of Thirty thousand pesos (P 30,000.00) and completion of community service conducted by PNP."
 
-            voice "Officer36.ogg"
+            voice "newOfficer36.mp3"
             o "{color=#30ff45}Second Offence{/color}: Arresto mayor (1 month and 1 day to 6 months) or a fine of Fifty thousand pesos (P 50,000.00)"
             
-            voice "Officer37.ogg"
+            voice "newOfficer37.mp3"
             o "{color=#30ff45}Third Offence{/color}: Arresto mayor in its maximum period or a fine of One hundred thousand pesos (P100,000.00)"
 
             hide police neutral with fade
@@ -2087,6 +2255,7 @@ label meetWithYui:
 
             show yui wow with dissolve
 
+            voice "yui23.ogg"
             y "Wait, that's a really good law, Officer!"
 
             scene bg train morning with fade
@@ -2104,7 +2273,7 @@ label meetWithYui:
 
         show police neutral with dissolve
 
-        voice "Officer38.ogg"
+        voice "newOfficer38.mp3"
         o "Ohhhh that's a shame."
         $ subtractPoints()
         $ hbbpoints -= 3
@@ -2119,13 +2288,13 @@ label meetWithYui:
 
         show police neutral
 
-        voice "Officer39.ogg"
+        voice "newOfficer39.mp3"
         o "Now go on your way. I'll take care of them. In jail of course."
         
         voice "m195.ogg"
         m "Sir, can I ask for your name?"
 
-        voice "Officer40.ogg"
+        voice "newOfficer40.mp3"
         o "Oh it's Greg. Find me whenever you are troubled."
 
         voice "m196.ogg"
@@ -2135,17 +2304,19 @@ label meetWithYui:
 
         show yui worry opened with dissolve
 
+        voice "yui3.ogg"
         y "Uhmmm..."
 
+        voice "yui24.ogg"
         y "See you Mark! Thank you again..."
 
         voice "m197.ogg"
         m "Bye Yui. No worries. I just can't stand it when I see someone getting harassed."
 
         show yui blush with dissolve
-
+        voice "yui25.ogg"
         y "Uhhhm.. I hope I..." 
-        
+        voice "yui26.ogg"
         y "I can see you aga--"
 
         scene black with fade
@@ -2163,7 +2334,7 @@ label meetWithYui:
         m "What?"
 
         show yui surprised blush with dissolve
-
+        voice "yui27.ogg"
         y "No, you heard nothing!!! Goodbye!"
 
         scene black with fade
@@ -2186,10 +2357,12 @@ label schoolCeremony:
     with fade
 
     $ play_music(quirky,fadein=0.2)
+    voice "bm49.ogg"
     "Borneul Highschool. A prestigious school where only the best can enter."
 
     scene school building with fade
 
+    voice "bm50.ogg"
     "I'm so lucky to be here."
 
     "...."
@@ -2234,11 +2407,46 @@ label schoolCeremony:
         voice "m214.ogg"
         m "Yeah yeah whatever you say."
 
+        $_dismiss_pause = False
+        show movie intro at offscreenleft
+        show ymagenta zorder 2 at offscreenright
+        with ease
+        
+        play sound "audio/fast.wav" volume 0.5
+
+        show movie intro at left
+        show ymagenta zorder 2 at right
+        with ease
+
+        show k name zorder 3 at offscreenright
+        with ease
+
+        play sound "audio/ting.wav"
+
+        show kurtney happy teeth zorder 3 at left
+        show k name zorder 3 at left
+        with MoveTransition(0.4)
+
+        voice "bm51.ogg"
         "This is [kk]. My weird childhood friend."
 
+        voice "bm52.ogg"
         "We have been friends since elementary school. She is a little boyish and sometimes annoying."
 
+        voice "bm53.ogg"
         "But I don't hate it at all."
+
+        play sound "audio/fast.wav" volume 0.5
+
+        $_dismiss_pause = False
+        show movie intro at offscreenright
+        show ymagenta zorder 2 at offscreenleft  
+        with ease
+        
+        show kurtney smile zorder 3 at center
+        show k name zorder 2 at offscreenright
+        with MoveTransition(0.2)
+        $ renpy.pause(0.3, hard=True)
 
         show kurtney happy teeth with dissolve
 
@@ -2308,14 +2516,18 @@ label afterCeremony:
 
     scene football with fade
 
+    voice "bm54.ogg"
     "A new school year..."
 
+    voice "bm55.ogg"
     "I hope it is fun..."
 
     scene pools with fade
 
+    voice "bm56.ogg"
     "Last year, I was a loner in my class."
 
+    voice "bm57.ogg"
     "But thankfully, I have [kk]. She's a really good childhood friend."
 
     
@@ -2348,7 +2560,7 @@ label afterCeremony:
         m "Yui?! You go to my school?"
 
         show yui blush with dissolve
-
+        voice "yui28.ogg"
         y "Y-Yeah! Did you not no-notice my uniform?"
 
         voice "m113.ogg"
@@ -2364,23 +2576,23 @@ label afterCeremony:
         m "No.. sorry. It's my fault."
 
         show yui smile close with dissolve
-
+        voice "yui29.ogg"
         y "No... it's fine! I forgot to tell you we go to the same school."
 
         show yui worry opened with dissolve
-
+        voice "yui30.ogg"
         y "Uhm... M-M-Mark?"
 
         voice "m116.ogg"
         m "Yeah?"
-
+        voice "yui31.ogg"
         y "Can you help me get to my classroom?"
 
         voice "m117.ogg"
         m "Are you perhaps lost?"
 
         show yui smile close with dissolve
-
+        voice "yui32.ogg"
         y "Yeah... this school is really big."
 
         voice "m118.ogg"
@@ -2404,7 +2616,7 @@ label afterCeremony:
                 m "Haaa.."
 
                 show yui blush closed with dissolve
-
+                voice "yui33.ogg"
                 y "Waaaah.. I'm so sweaty."
 
                 voice "m120.ogg"
@@ -2427,15 +2639,15 @@ label afterCeremony:
                 m "Have fun in there!"
 
                 show yui blush closed with dissolve
-
+                voice "yui34.ogg"
                 y "W-w-waaaait Mark!"
-
+                voice "yui3.ogg"
                 y "Uhm...."
 
                 show yui blush with dissolve
-
+                voice "yui35.ogg"
                 y "If it's fine with you.."
-
+                voice "yui36.ogg"
                 y "Can I treat you later in lunch? As a thanks for helping me..."
 
                 $ timeout_label = "notLunch"
@@ -2450,7 +2662,7 @@ label afterCeremony:
                         m "Sure I'll go eat with you."
 
                         show yui wow with dissolve
-
+                        voice "yui37.ogg"
                         y "For real? Waaaah!"
 
                         show yui smile close with dissolve
@@ -2470,6 +2682,7 @@ label afterCeremony:
                         voice "m127.ogg"
                         m "Ready your money though. I'm a big eater."
 
+                        voice "yui38.ogg"
                         y "Ehehe.. sure! You can choose whatever you want."
 
                         $ play_sound(bell) 
@@ -2487,7 +2700,7 @@ label afterCeremony:
                         m "I'll be going now [y]!"
 
                         show yui smile opened with dissolve
-
+                        voice "yui39.ogg"
                         y "See you later.... M-Mark."
 
                         jump lunch
@@ -2500,15 +2713,15 @@ label afterCeremony:
                             m "Sorry, maybe in another day."
 
                             show yui worry with dissolve
-
+                            voice "yui40.ogg"
                             y "Oh.... that's... a shame."
 
                             show yui worry closed with dissolve
-
+                            voice "yui41.ogg"
                             y "I... I see..."
 
                             show yui smile close with dissolve
-
+                            voice "yui42.ogg"
                             y "See you..."
 
                             scene school building with fade
@@ -2528,15 +2741,15 @@ label afterCeremony:
                     m "I'm sorry [y]. I can't help you. I have somewhere to go with my friend."
 
                     show yui worry with dissolve
-
+                    voice "yui43.ogg"
                     y "Ah.... Is that so?"
 
                     show yui worry closed with dissolve
-
+                    voice "yui44.ogg"
                     y "That's a real shame."
 
                     show yui smile close with dissolve
-
+                    voice "yui45.ogg"
                     y "I'll be going now Mark."
 
                     scene hallway with fade
@@ -2548,8 +2761,10 @@ label afterCeremony:
                     jump lunch
     else:
 
+        voice "yui3.ogg"
         "???" "Uhmmm..."
-
+        
+        voice "yui108.ogg"
         "???" "Excu-cuse m-m-me....!"
 
         "Looking at my back, there is someone pull my sleeves..."
@@ -2561,14 +2776,14 @@ label afterCeremony:
 
         voice "m202.ogg"
         m "You are?"
-
+        voice "yui31.ogg"
         "Girl" "Can you help me get to my classroom?"
 
         voice "m117.ogg"
         m "Are you perhaps lost?"
 
         show yui worry opened with dissolve
-
+        voice "yui32.ogg"
         "Girl" "Yeah... this school is really big."
 
         voice "m203.ogg"
@@ -2578,16 +2793,16 @@ label afterCeremony:
         m "You are currently in the Second Year's building."
 
         show yui neutral with dissolve
-
+        voice "yui3.ogg"
         "Girl" "Uhmm..."
-
+        voice "yui4.ogg"
         "Girl" "Can you tell me your name?"
 
         voice "m204.ogg"
         m "Ohhh. My name is Mark. How about you?"
 
         show yui blush with dissolve
-
+        voice "yui5.ogg"
         "Girl" "Y-Y-Yu.."
 
         voice "m205.ogg"
@@ -2598,18 +2813,18 @@ label afterCeremony:
         "She's gotten a bit red of a sudden..."
 
         show yui blush closed with dissolve
-
+        voice "yui6.ogg"
         "Girl" "Ple-please call me Yui."
 
         voice "m206.ogg"
         m "[y], huh? What a cute name."
 
         show yui surprised blush with dissolve
-
+        voice "yui7.ogg"
         y "EHHH?!! Cute?"
 
         show yui blush closed with dissolve
-
+        voice "yui8.ogg"
         y "{i}......waaah!{/i}"
 
         # ADD MORE
@@ -2634,8 +2849,10 @@ label lunch:
 
         scene class1 with fade
 
+        voice "t1.ogg"
         t "To get the answer of this equation..."
 
+        voice "t2.ogg"
         t "You must first..."
 
         $ play_sound(bell) 
@@ -2643,9 +2860,9 @@ label lunch:
         "{i}♫ Kin kon kan kon ♫{/i}"
 
         show clarrise talk with dissolve
-
+        voice "t3.ogg"
         t "Okay Class! You may now take your lunch."
-
+        voice "t4.ogg"
         t "We will have a quiz after your lunch."
 
         with vpunch
@@ -2689,6 +2906,7 @@ label lunch:
 
         $ play_sound(people,fadein=2.0,fadeout=0.5)
 
+        voice "yui110.ogg"
         y "Hey Mark! Here!"
 
         
@@ -2697,16 +2915,17 @@ label lunch:
         m "Sorry [y]. Did you wait?"
 
         show yui neutral with dissolve
-
+        voice "yui46.ogg"
         y "No... I just got here..."
 
         voice "m135.ogg"
         m "Is that so? Then it's fine."
 
         show yui smile opened with dissolve
-
+        voice "yui47.ogg"
         y "So what do you want to eat?"
 
+        voice "yui48.ogg"
         y "Just tell me. I got everything covered."
         $ persistent.unlockCafeteria = True
 
@@ -2715,6 +2934,19 @@ label lunch:
         $ timeout_label = None
         menu:
             "What should I eat?"
+
+            "Chicken Curry {image=curry.png}":
+                voice "m000.mp3"
+                m "I want the Chicken Curry hehehe."
+
+                show yui wow with dissolve
+                voice "yui111.ogg"
+                y "Eh, you like Indian dishes?"
+
+                voice "m136.ogg"
+                m "Yeah they taste good."
+
+                y "I... I see."
 
             "Tonkotsu(Pork) Ramen. {image=ramen.png}":
                 
@@ -2728,6 +2960,7 @@ label lunch:
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
+                voice "yui41.ogg"
                 y "I... I see."
 
             "Quarter Pound Burger with Large Fries. {image=burger.jpg}":
@@ -2736,13 +2969,14 @@ label lunch:
                 m "I want the Quarter Pounder Burger."
 
                 show yui wow with dissolve
-
+                voice "yui50.ogg"
                 y "Eh, you like American fast-food?"
 
                 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
+                voice "yui41.ogg"
                 y "I... I see."
 
             "12\" All Meat Pizza with Thin Crust. {image=pizza.jpg}":
@@ -2751,12 +2985,13 @@ label lunch:
                 m "I want the All Meat Pizza."
 
                 show yui wow with dissolve
-
+                voice "yui51.ogg"
                 y "Eh, you like pizza huh?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
+                voice "yui41.ogg"
                 y "I... I see."
 
             "Apple Risotto. {image=risotto.jpg}":
@@ -2765,12 +3000,13 @@ label lunch:
                 m "I want the Risotto."
 
                 show yui wow with dissolve
-
+                voice "yui52.ogg"
                 y "Eh, you like Italian food huh?"
 
                 voice "m136.ogg"
                 m "Yeah they taste good."
 
+                voice "yui41.ogg"
                 y "I... I see." 
 
             "All of it. All in. Just do it.":
@@ -2779,6 +3015,7 @@ label lunch:
                 m "I want everything in today's menu."
 
                 show yui wow with dissolve
+                voice "yui53.ogg"
                 y "Ehhh? There's no way you can finish all of it."
 
                 
@@ -2790,7 +3027,7 @@ label lunch:
                 m "The moment you said \"I've got everything covered\", I already knew what to do."
 
                 show yui smile close with dissolve
-
+                voice "yui54.ogg"
                 y "Hahaha~ Okay I get it!"
 
                 python:
@@ -2810,8 +3047,10 @@ label lunch:
 
         scene class1 with fade
 
+        voice "t1.ogg"
         t "To get the answer of this equation..."
 
+        voice "t2.ogg"
         t "You must first..."
 
         $ play_sound(bell) 
@@ -2820,8 +3059,10 @@ label lunch:
 
         show clarrise talk with dissolve
 
+        voice "t3.ogg"
         t "Okay Class! You may now take your lunch."
 
+        voice "t4.ogg"
         t "We will have a quiz after your lunch."
 
         with hpunch
@@ -2980,17 +3221,19 @@ label socialStudiesQuiz:
     with fade
 
     $ play_music(everyone,fadein=3.0)
+    voice "t5.ogg"
     t "Okay Class! Listen up!"
 
     
-
+    voice "t19.ogg"
     t "There will be a surprise quiz today."
     
 
     show clarrise talk close with dissolve
-
+    voice "t6.ogg"
     t "It is a 10 item quiz. Make sure to review your notes."
 
+    voice "t7.ogg"
     t "The topic is about the Republic Act No. 11313 also known as \"Safe Spaces Act.\""
 
     scene class1 with fade
@@ -3046,8 +3289,10 @@ label quiz:
     hide screen showNotesButton
     show screen displayScore
     
+    voice "t8.ogg"
     t "Okay Class! Ready or not, here I go!"
     show clarrise talk close with dissolve
+    voice "t9.ogg"
     t "First Question!"
     hide clarrise talk close with dissolve
     $ timeout = 20
@@ -3073,6 +3318,7 @@ label quiz:
     label one:
     $ timeout_label = "two"
     show clarrise talk with dissolve
+    voice "t10.ogg"
     t "Second Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3096,6 +3342,7 @@ label quiz:
     label two:
     $ timeout = 10
     show clarrise talk with dissolve
+    voice "t11.ogg"
     t "Third Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3114,6 +3361,7 @@ label quiz:
             ""
     label three:
     show clarrise talk with dissolve
+    voice "t12.ogg"
     t "Fourth Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3132,6 +3380,7 @@ label quiz:
             ""
     label four:
     show clarrise talk with dissolve
+    voice "t13.ogg"
     t "Fifth Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3150,6 +3399,7 @@ label quiz:
             ""
     label five:
     show clarrise talk with dissolve
+    voice "t14.ogg"
     t "Sixth Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3172,6 +3422,7 @@ label quiz:
             $ play_sound(addPoints)
     label six:
     show clarrise talk with dissolve
+    voice "t15.ogg"
     t "Seventh Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3190,6 +3441,7 @@ label quiz:
             ""
     label seven:    
     show clarrise talk with dissolve
+    voice "t16.ogg"
     t "Eight Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3208,6 +3460,7 @@ label quiz:
             ""
     label eight:
     show clarrise talk with dissolve
+    voice "t17.ogg"
     t "Ninth Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3226,6 +3479,7 @@ label quiz:
             ""
     label nine:
     show clarrise talk with dissolve
+    voice "t18.ogg"
     t "Last Question!"
     show clarrise talk close with dissolve
     hide clarrise talk close with dissolve
@@ -3388,7 +3642,7 @@ label pervTeacher:
 
     pause 1.0
 
-    "???" "Hwehehehe... How you doin' everyone?"
+    "???" "Hwehehehe..."
 
     stop sound fadeout 0.5
 
@@ -3398,23 +3652,25 @@ label pervTeacher:
 
     show butch creepy smile at right with dissolve
 
-    voice "Butch1.ogg"
+    voice "newButch1.mp3"
     "???" "I hope we all get along, everyone hehehe~"
 
-    voice "Butch2.ogg"
+    voice "newButch2.mp3"
     "???" "I will be your substitute teacher for this class."
 
-    voice "Butch3.ogg"
+    voice "newButch3.mp3"
     "???" "Call me Professor Butch."
 
-    voice "Butch4.ogg"
+    voice "newButch4.mp3"
     b "These are some nice looking girls, huh?"
 
-    voice "Butch5.ogg"
+    voice "newButch5.mp3"
     b "Hehehehe... perfect for my taste."
 
+    voice "bm58.ogg"
     "What the hell did he just say?"
 
+    voice "bm59.ogg"
     "Looking at [kk], she is about to stand up."
 
     show kurtney talk angry at left with dissolve
@@ -3427,10 +3683,10 @@ label pervTeacher:
 
     show butch creepy laugh with dissolve
 
-    voice "Butch6.ogg"
+    voice "newButch6.mp3"
     b "Oh did I ask you to talk? You'll be receiving a failing grade."
 
-    voice "Butch7.ogg"
+    $ play_sound(pervlaugh,fadein=1.0)
     b "Hehehe~"
 
     hide butch creepy laugh with dissolve
@@ -3475,16 +3731,17 @@ label talkOnHarass:
         m "You called me out to talk about something?"
 
         show yui worry opened with dissolve
-
+        voice "yui55.ogg"
         y "Y-yeah..."
 
         show yui worry with dissolve
-
+        voice "yui56.ogg"
         y "It's about that law you talked about."
 
         voice "m166.ogg"
         m "The Safe Spaces Act? What about it?"
 
+        voice "yui57.ogg"
         y "I have something to talk about related to it...."
 
         voice "m167.ogg"
@@ -3495,55 +3752,63 @@ label talkOnHarass:
         "While clasping her hands firmly for a while, she finally opened her mouth."
 
         show yui worry opened with dissolve
-
+        voice "yui58.ogg"
         y "It's about my professor..."
-
+        
+        voice "yui59.ogg"
         y "He's doing something bad... And I can't do anything to stop it."
 
         voice "m168.ogg"
         m "Who's this professor? Is he teaching here?"
 
         show yui angry with dissolve
-
+        voice "yui60.ogg"
         y "Y-yeah... I hate him. That disgusting person."
 
+        voice "yui61.ogg"
         y "When he gave a test the other day... He stares at the girls in a lascivious manner."
 
+        voice "yui62.ogg"
         y "When we are in the laboratory, he sneakily touches the butt of some of the girls."
 
+        voice "yui63.ogg"
         y "Then he says, \"It's not my fault that you are sexy.\""
 
+        voice "yui64.ogg"
         y "And then one time, he..."
 
         show yui crying with fade
-
+        voice "yui65.ogg"
         y "He suddenly touched my shoulders... and pinched it in a manner that is so disgusting. Then he whispered something to my ear."
 
         voice "m169.ogg"
         m "WHAT?!" with vpunch
 
         show yui angry with dissolve
-
+        voice "yui66.ogg"
         y "Aaaaah! I hate him. Just remembering it makes me puke."
 
+        voice "yui67.ogg"
         y "I was almost close to crying in the classroom. I was really shaking and trembling."
 
+        voice "yui68.ogg"
         y "The girls in my class can't speak up to him. Also when the boys stand up for us, he gives them a failing mark."
 
         voice "m170.ogg"
         m "Tell me who is this nasty person?"
 
         show yui worry opened with dissolve
-
+        voice "yui69.ogg"
         y "H-h-his name is Butch..."
 
+        voice "yui70.ogg"
         y "They said he was a new faculty teacher..."
 
         voice "m174.ogg"
         m "I see. So he's also teaching the First Year students. That damned bastard."
 
         show yui worry with dissolve
-
+        voice "yui71.ogg"
         y "M-Mark! I have a favor! Please help me out."
 
         voice "m172.ogg"
@@ -3577,8 +3842,10 @@ label talkOnHarass:
                 voice "m173.ogg"
                 m "Okay [y]! I will help you."
 
+                voice "yui72.ogg"
                 y "Thank you so much!"
 
+                voice "yui73.ogg"
                 y "Also before I forget to say... There was someone who took a video when he was doing the crime."
 
                 voice "m174.ogg"
@@ -3602,6 +3869,7 @@ label talkOnHarass:
                 kk "Is that so? That's a real shame..."
 
             else:
+                voice "yui74.ogg"
                 y "Is that so? That's a real shame..."
 
             jump badEndStory
@@ -3678,7 +3946,7 @@ label talkOnHarass:
 
         show kurtney happy teeth with dissolve
 
-        # voice "1.ogg"
+        # voice "kk130.acc"
         kk "Now will you help me out?"
 
         show kurtney smile with dissolve
@@ -3748,7 +4016,7 @@ label arrestButch:
         show butch smile
         with fade
 
-        voice "Butch8.ogg"
+        voice "newButch7.mp3"
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
         hide butch smile
@@ -3756,7 +4024,6 @@ label arrestButch:
         show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
-        voice "Butch9.ogg"
         b "Hwehehehehewehweh"
 
         "Everyone" "What?!!"
@@ -3795,11 +4062,15 @@ label arrestButch:
 
         scene black
 
+        window hide
+
         centered "A few minutes later..."
 
         scene hallway
 
         $ play_sound(walking,fadein=0.5)
+
+        window hide
 
         "Footsteps can be heard in the hallway."
 
@@ -3809,14 +4080,14 @@ label arrestButch:
 
         $ play_sound(doorknock)
 
-        voice "Officer41.ogg"
+        voice "newOfficer41.mp3"
         "???" "Excuse me. Please open the door."
 
         $ play_sound(radio,fadein=0.5)
 
         show butch angry with dissolve
 
-        voice "Butch10.ogg"
+        voice "newButch8.mp3"
         b "Who the hell is disturbing my class!!!"
 
         hide butch angry
@@ -3840,7 +4111,7 @@ label arrestButch:
 
         show butch suprise with dissolve
 
-        voice "Butch11.ogg"
+        voice "newButch9.mp3"
         b "Why is there police here?!!"
 
         hide butch suprise with dissolve
@@ -3851,10 +4122,10 @@ label arrestButch:
 
         show police neutral with fade
 
-        voice "Officer42.ogg"
+        voice "newOfficer42.mp3"
         o "Everyone please calm down."
 
-        voice "Officer43.ogg"
+        voice "newOfficer43.mp3"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
@@ -3867,7 +4138,7 @@ label arrestButch:
 
         with dissolve
 
-        voice "Butch12.ogg"
+        voice "newButch10.mp3"
         b "What the hell are you looking at? I don't know anything about that."
 
         hide butch angry
@@ -3876,13 +4147,13 @@ label arrestButch:
 
         with dissolve
 
-        voice "Officer44.ogg"
+        voice "newOfficer44.mp3"
         o "Don't explain to me. Everything that you say will be used against you."
 
-        voice "Officer45.ogg"
+        voice "newOfficer45.mp3"
         o "The complainant showed a solid proof of evidence."
 
-        voice "Officer46.ogg"
+        voice "newOfficer46.mp3"
         o "You will be coming with us. Do not resist."
 
         hide police with fade
@@ -3893,19 +4164,19 @@ label arrestButch:
 
         show police neutral with fade
 
-        voice "Officer47.ogg"
+        voice "newOfficer47.mp3"
         o "Hey future Attorney! It looks like it went fine."
 
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
 
-        voice "Officer48.ogg"
+        voice "newOfficer48.mp3"
         o "It's because of you, we caught this disgusting molester. Thank you."
 
         voice "m189.ogg"
         m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
 
-        voice "Officer49.ogg"
+        voice "newOfficer49.mp3"
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         voice "m190.ogg"
@@ -3919,7 +4190,7 @@ label arrestButch:
         show butch smile
         with fade
 
-        voice "Butch8.ogg"
+        voice "newButch7.mp3"
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
         hide butch smile
@@ -3927,7 +4198,6 @@ label arrestButch:
         show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
-        voice "Butch9.ogg"
         b "Hwehehehehewehweh"
 
         "Everyone" "What?!!"
@@ -3966,11 +4236,15 @@ label arrestButch:
 
         scene black
 
+        window hide
+
         centered "A few minutes later..."
 
         scene hallway
 
         $ play_sound(walking,fadein=0.5)
+
+        window hide
 
         "Footsteps can be heard in the hallway."
 
@@ -3980,13 +4254,14 @@ label arrestButch:
 
         $ play_sound(doorknock)
 
+        voice "newOfficer41.mp3"
         "???" "Excuse me. Please open the door."
 
         $ play_sound(radio,fadein=0.5)
 
         show butch angry with dissolve
 
-        voice "Butch10.ogg"
+        voice "newButch8.mp3"
         b "Who the hell is disturbing my class!!!"
 
         hide butch angry
@@ -4010,7 +4285,7 @@ label arrestButch:
 
         show butch suprise with dissolve
 
-        voice "Butch11.ogg"
+        voice "newButch9.mp3"
         b "Why is there police here?!!"
 
         hide butch suprise with dissolve
@@ -4021,23 +4296,23 @@ label arrestButch:
 
         show police neutral with fade
 
-        voice "Officer42.ogg"
+        voice "newOfficer42.mp3"
         o "Everyone please calm down."
 
-        voice "Officer43.ogg"
+        voice "newOfficer43.mp3"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
 
         "The policeman looks at Butch."
 
-        hide police 
+        hide police neutral
 
         show butch angry 
 
         with dissolve
 
-        voice "Butch12.ogg"
+        voice "newButch10.mp3"
         b "What the hell are you looking at? I don't know anything about that."
 
         hide butch angry
@@ -4046,13 +4321,13 @@ label arrestButch:
 
         with dissolve
 
-        voice "Officer44.ogg"
+        voice "newOfficer44.mp3"
         o "Don't explain to me. Everything that you say will be used against you."
 
-        voice "Officer45.ogg"
+        voice "newOfficer45.mp3"
         o "The complainant showed a solid proof of evidence."
 
-        voice "Officer46.ogg"
+        voice "newOfficer46.mp3"
         o "You will be coming with us. Do not resist."
 
         hide police with fade
@@ -4063,19 +4338,19 @@ label arrestButch:
 
         show police neutral with fade
 
-        voice "Officer47.ogg"
+        voice "newOfficer47.mp3"
         o "Hey future Attorney! It looks like it went fine."
 
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
 
-        voice "Officer48.ogg"
+        voice "newOfficer48.mp3"
         o "It's because of you, we caught this disgusting molester. Thank you."
 
         voice "m189.ogg"
-        m "Are you praising me? Hahaha~ No big deal. I am destined to be an Attorney anyways."
+        m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
 
-        voice "Officer49.ogg"
+        voice "newOfficer49.mp3"
         o "Hahaha! I like that attitude. Keep doing good things young man."
 
         voice "m190.ogg"
@@ -4094,7 +4369,7 @@ label arrestButch:
         hide kurtney talk opened
         with fade
 
-        voice "Officer50.ogg"
+        voice "newOfficer50.mp3"
         o "Oh yes, the Attorney's friend. You will also receive compensation."
 
         hide police neutral
@@ -4135,7 +4410,7 @@ label goodEndStory:
 
     centered "As in the words of Mark...."
 
-    centered "\"Justice will always prevail!\" ....Thus! You shall receive girls!"
+    centered "\"Justice will always prevail!\""
 
     centered "--Greatest Attorney That Ever Lived."
 
@@ -4199,6 +4474,8 @@ label specialEndYui:
 
     scene hallway with fade
     
+    $ play_music(quirky)
+    
     voice "m217.ogg"
     m "Peace has finally been restored!"
 
@@ -4231,11 +4508,13 @@ label specialEndYui:
     show yui blush at left
     with dissolve
 
+    voice "yui75.ogg"
     y "Good morning Mark! Did you see my message last night?"
 
     voice "m223.ogg"
     m "Yeah but I wasn't able to reply. I was too sleepy."
 
+    voice "yui76.ogg"
     y "No its fine!"
 
     show kurtney talk opened at right with dissolve
@@ -4244,14 +4523,16 @@ label specialEndYui:
     kk "What the hell is happening?"
 
     show yui smile opened at left with dissolve
-
+    voice "yui77.ogg"
     y "Oh I'm sorry for not introducing myself."
 
+    voice "yui78.ogg"
     y "My name is Yui and I am a First Year."
 
     voice "kk103.ogg"
     kk "I'm his childhood friend and his classmate."
 
+    voice "yui79.ogg"
     y "Oh I see!"
 
     show kurtney smile at right with dissolve
@@ -4260,7 +4541,7 @@ label specialEndYui:
     kk "So what's your relationship with Mark?"
 
     show yui blush closed at left with dissolve
-
+    voice "yui80.ogg"
     y "O-ohhh we are f-frie-"
 
     voice "m224.ogg"
@@ -4277,7 +4558,7 @@ label specialEndYui:
     kk "Is that all?"
 
     show yui blush at left with dissolve 
-
+    voice "yui81.ogg"
     y "H-He also saved my life..."
 
     voice "kk106.ogg"
@@ -4325,31 +4606,37 @@ label specialEndYui:
     m "Uhhh sorry about that. She's a little bit weird."
 
     show yui blush with dissolve
-
+    voice "yui83.ogg"
     y "It's fine! Actually I'm quite jealous cause she has a childhood friend like you..."
 
     voice "m231.ogg"
     m "Jealous? Why? I'm not that really great though."
 
+    voice "yui84.ogg"
     y "You are! You saved my life."
 
+    voice "yui85.ogg"
     y "As a matter of fact, I want to request something to you."
 
     voice "m232.ogg"
     m "What is it? As long as I can do it."
 
+    voice "yui86.ogg"
     y "You said that you were not that good at studying right?"
 
     voice "m233.ogg"
     m "Yeah?"
 
+    # need new voice. wrong file
     y "I want to help you out. The midterm test are also coming near."
 
     voice "m234.ogg"
     m "Really? That would be great!"
 
+    voice "yui87.ogg"
     y "So uhm..."
 
+    voice "yui88.ogg"
     y "Will you come with me to the library after school?"
 
     "...."
@@ -4367,25 +4654,33 @@ label specialEndYui:
 
 label libraryDate:
 
+    stop music
     scene library with fade
     
+    $ play_music(tutorial)
+
     voice "m235.ogg"
     m "Do you know the answer to this one?"
 
+    voice "yui89.ogg"
     y "Ohh that's easy."
 
     voice "m236.ogg"
     m "Sorry I'm really bad at math."
 
+    voice "yui90.ogg"
     y "It's okay. That's why I'm here to help you."
 
+    voice "yui91.ogg"
     y "To answer this equation...."
 
+    voice "yui92.ogg"
     y "You use this formula."
 
     voice "m237.ogg"
     m "Ohh so it goes just like that huh?"
 
+    voice "yui93.ogg"
     y "Yup! It's easy right?"
 
     voice "m238.ogg"
@@ -4394,6 +4689,7 @@ label libraryDate:
     voice "m239.ogg"
     m "When I'm in class, what goes in my left ear comes out in my right ear."
 
+    voice "yui94.ogg"
     y "Hahahaha!"
 
     scene black with fade 
@@ -4401,27 +4697,31 @@ label libraryDate:
     centered "After some time..."
 
     scene library with fade
-
+    voice "yui95.ogg"
     y "Mark? Do you have a girlfriend?"
 
     voice "m240.ogg"
     m "I have none. Why?"
 
+    voice "yui96.ogg"
     y "What am I for you?"
 
     voice "m258.ogg"
     m "A friend?"
 
+    voice "yui97.ogg"
     y "You see, I think I..."
 
     voice "m241.ogg"
     m "What is this drama?"
 
+    voice "yui98.ogg"
     y "Please I'm serious!"
 
     voice "m242.ogg"
     m "Okay I'm listening."
 
+    voice "yui99.ogg"
     y "I think I've fallen in love."
 
     voice "m243.ogg"
@@ -4430,11 +4730,13 @@ label libraryDate:
     voice "m244.ogg"
     m "With who?"
 
+    voice "yui100.ogg"
     y "Are you not listening?!!"
 
     voice "m245.ogg"
     m "Can you repeat it again?"
 
+    voice "yui101.ogg"
     y "Gosh. This is so embarassing. I've fallen in love with you! Please don't make me say it again."
 
     voice "m246.ogg"
@@ -4443,12 +4745,16 @@ label libraryDate:
     voice "m247.ogg"
     m "Why meeee?"
 
+    voice "yui102.ogg"
     y "I don't know!! I was just happy that you saved me. Then the next day, my mind can't stop thinking about you."
 
+    voice "yui103.ogg"
     y "You've always been in my mind since then!"
 
+    voice "yui104.ogg"
     y "So... Mark."
 
+    voice "yui105.ogg"
     y "Will you please go out with me?"
 
     pause 3.0
@@ -4463,6 +4769,8 @@ label specialEndKurtney:
     centered "A few days later..."
 
     scene hallway with fade
+
+    $ play_music(quirky)
     
     voice "m217.ogg"
     m "Peace has finally been restored!"
@@ -4533,9 +4841,9 @@ label specialEndKurtney:
     kk "Nothing!"
 
     scene arcade with fade
-
+    $ play_music(jazzy)
     $ play_sound(arcade, fadein=0.5,fadeout=0.5)
-
+    
     voice "m255.ogg"
     m "There's a lot of people here, huh."
 
