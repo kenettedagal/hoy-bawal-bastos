@@ -148,7 +148,7 @@ style namebox:
     ypos gui.name_ypos
     ysize gui.namebox_height
 
-    background Frame("gui/namebox.png", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
+    background Frame("gui/namebox.jpg", gui.namebox_borders, tile=gui.namebox_tile, xalign=gui.name_xalign)
     padding gui.namebox_borders.padding
 
 style say_label:
@@ -213,7 +213,6 @@ default timeout_label = None
 
 default persistent.timed_choices = True
 
-default bonus_script = False
 
 screen choice(items):
     style_prefix "choice"
@@ -223,25 +222,15 @@ screen choice(items):
             textbutton i.caption action i.action activate_sound "audio/sfx/confirm.ogg"
     
     if (timeout_label is not None) and persistent.timed_choices:
-        text "{color=#FFF}{b}Timer{/color}{/b}" xalign 0.5 ypos 40 size 55
+        
         bar:
             xalign 0.5
-            ypos 180
+            ypos 40
             xsize 740
+            ysize 50
             value AnimatedValue(old_value=0.0, value=1.0, range=1.0, delay=timeout)
         timer timeout action Jump(timeout_label) 
-    elif ((timeout_label is not None) and persistent.timed_choices) and bonus_script:
-        vbar:
-            xpos 70
-            ypos 180
-            xsize 70
-            value AnimatedValue(old_value=0.0, value=1.0, range=1.0, delay=timeout)
-        timer timeout action Jump(timeout_label) 
-        text "{color=#FFF}{b}T{/color}{/b}" ypos 400 xpos 80 size 70
-        text "{color=#FFF}{b}I{/color}{/b}" ypos 470 xpos 87 size 70
-        text "{color=#FFF}{b}M{/color}{/b}" ypos 540 xpos 72 size 65
-        text "{color=#FFF}{b}E{/color}{/b}" ypos 610 xpos 80 size 70
-        text "{color=#FFF}{b}R{/color}{/b}" ypos 680 xpos 80 size 70
+        text "{color=#FFF}{b}TIMER{/color}{/b}" xalign 0.5 ypos 30 size 50
    
 
 #screen choice(items):
@@ -303,7 +292,7 @@ screen quick_menu():
             textbutton _("Save") action ShowMenu('save') alt "Save"
             textbutton _("Q.Save") action QuickSave() alt "Quick Save"
             textbutton _("Q.Load") action QuickLoad() alt "Quick Load"
-            textbutton _("Prefs") action ShowMenu('preferences') alt "Preferences"
+            textbutton _("Settings") action ShowMenu('preferences') alt "Preferences"
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever
 ## the player has not explicitly hidden the interface.
@@ -337,24 +326,25 @@ screen navigation():
         style_prefix "navigation"
 
         xpos gui.navigation_xpos
-        yalign 0.5
+        yalign 0.6
 
         spacing gui.navigation_spacing
 
         if main_menu:
 
-            textbutton _("Start") action Start() alt "Start"
+            textbutton _("Tutorial") action Start("tutorial_start")
 
+            textbutton _("New Game") action Start() alt "Start"
 
         else:
 
             # textbutton _("History") action ShowMenu("history") alt ""
 
-            textbutton _("Save") action ShowMenu("save") alt "Save"
+            textbutton _("Save Game") action ShowMenu("save") alt "Save"
 
-        textbutton _("Load") action ShowMenu("load") alt "Load"
+        textbutton _("Load Game") action ShowMenu("load") alt "Load"
 
-        textbutton _("Preferences") action ShowMenu("preferences") alt "Preferences"
+        textbutton _("Settings") action ShowMenu("preferences") alt "Preferences"
 
         if _in_replay:
 
@@ -370,10 +360,10 @@ screen navigation():
 
             textbutton _("Extras") action ShowMenu("achievements") alt "Extras"
 
-        if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
+        ## if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
             ## Help isn't necessary or relevant to mobile devices.
-            textbutton _("Help") action ShowMenu("help") alt "Help"
+            ## textbutton _("Help") action ShowMenu("help") alt "Help"
 
         if renpy.variant("pc"):
 
@@ -783,7 +773,7 @@ screen preferences():
 
     tag menu
 
-    use game_menu(_("Preferences"), scroll="viewport"):
+    use game_menu(_("Settings"), scroll="viewport"):
 
         vbox:
 
@@ -792,30 +782,33 @@ screen preferences():
 
                 box_wrap True
 
-                if renpy.variant("pc"):
+                # if renpy.variant("pc"):
 
-                    vbox:
-                        style_prefix "radio"
-                        label _("Display")
-                        textbutton _("Window") action Preference("display", "window") alt "Set Display to Windowed"
-                        textbutton _("Fullscreen") action Preference("display", "fullscreen") alt "Set Display to Full Screen"
-
-                vbox:
-                    style_prefix "radio"
-                    label _("Rollback Side")
-                    textbutton _("Disable") action Preference("rollback side", "disable") alt "Disable Rollback Side"
-                    textbutton _("Left") action Preference("rollback side", "left") alt "Set Rollback Side to Left"
-                    textbutton _("Right") action Preference("rollback side", "right") alt "Set Rollback Side to Right"
+                #     vbox:
+                #         style_prefix "radio"
+                #         label _("Display")
+                #         textbutton _("Window") action Preference("display", "window") alt "Set Display to Windowed"
+                #         textbutton _("Fullscreen") action Preference("display", "fullscreen") alt "Set Display to Full Screen"  
 
                 vbox:
                     style_prefix "check"
                     label _("Skip")
                     textbutton _("Unseen Text") action Preference("skip", "toggle") alt "Skip Unseen Text"
                     textbutton _("After Choices") action Preference("after choices", "toggle") alt "Continue Skipping After Choices"
-                    textbutton _("Transitions") action InvertSelected(Preference("transitions", "toggle")) alt "Skip Transitions"
 
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
+
+                vbox:
+
+                    style_prefix "radio"
+                    label _("Font Style")
+
+                    textbutton _("NotoSans") action [gui.SetPreference("font", "gui/fonts/NotoSans-Regular.ttf"), SetVariable("typeface", "NotoSans"), gui.SetPreference("dialogue_spacing", 2)] alt "Change to NotoSans"
+
+                    textbutton _("DejaVuSans") action [gui.SetPreference("font", "DejaVuSans.ttf"), SetVariable("typeface", "DejaVuSans"), gui.SetPreference("dialogue_spacing", 2.01)] alt "Change to DejaVuSans"
+
+                    textbutton _("OpenDyslexic") action [gui.SetPreference("font", "_OpenDyslexic3-Regular.ttf"), SetVariable("typeface", "OpenDyslexic"), gui.SetPreference("dialogue_spacing", -4)]  alt "Change to OpenDyslexic"
 
             null height (4 * gui.pref_spacing)
 
@@ -830,17 +823,6 @@ screen preferences():
                 ## these numbers accordingly.
                 ## TODO: Adjust numbers as needed
 
-
-                vbox:
-
-                    style_prefix "radio"
-                    label _("Typeface")
-
-                    textbutton _("NotoSans") action [gui.SetPreference("font", "gui/fonts/NotoSans-Regular.ttf"), SetVariable("typeface", "NotoSans"), gui.SetPreference("dialogue_spacing", 2)] alt "Change to NotoSans"
-
-                    textbutton _("DejaVuSans") action [gui.SetPreference("font", "DejaVuSans.ttf"), SetVariable("typeface", "DejaVuSans"), gui.SetPreference("dialogue_spacing", 2.01)] alt "Change to DejaVuSans"
-
-                    textbutton _("OpenDyslexic") action [gui.SetPreference("font", "_OpenDyslexic3-Regular.ttf"), SetVariable("typeface", "OpenDyslexic"), gui.SetPreference("dialogue_spacing", -4)]  alt "Change to OpenDyslexic"
                     ## Note: Having so many actions set to a single radio button
                     ## will cause some of the preferences in the same category to appear
                     ## to be all selected, causing players some confusion. Some numbers
@@ -868,84 +850,12 @@ screen preferences():
                             textbutton _("Large") action gui.SetPreference("phone_size", 42)
                             textbutton _("Regular") action gui.SetPreference("phone_size", 40)
 
-                ## Change Line Spacing
-
-                vbox:
-
-                    style_prefix "radio"
-                    label _("Line Spacing")
-
-                    if typeface == "OpenDyslexic":
-
-                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", -2) alt "Change the height of the space between lines of dialogue"
-                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", -4) alt "Change the height of the space between lines of dialogue"
-
-                    elif typeface == "DejaVuSans":
-
-                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", 4.01) alt "Change the height of the space between lines of dialogue"
-                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", 2.01) alt "Change the height of the space between lines of dialogue"
-
-                    else:
-
-                        textbutton _("Taller") action gui.SetPreference("dialogue_spacing", 4) alt "Change the height of the space between lines of dialogue"
-                        textbutton _("Regular") action gui.SetPreference("dialogue_spacing", 2) alt "Change the height of the space between lines of dialogue"
-
-                    # # A template for making a new size option for text rendering
-                    # # Though, there is not much reason to add a small option...
-                    # textbutton _("Small") action gui.SetPreference("size", 25)
-
-                    # # A bar version of text size adjustments
-                    # # This messes with the rest of the GUI however, so I personally don't like it
-                    #  bar value Preference("font size")
-                    # bar value Preference("font line spacing")
-
-            null height (4 * gui.pref_spacing)
-
-            hbox:
-
-                ## Change Text Color
-
-                box_wrap True
-                vbox:
-
-                    style_prefix "radio"
-                    label _("Text Color")
-
-                    textbutton _("White") action gui.SetPreference("color", "#ffffff") alt "Change to White Text"
-                    textbutton _("Cream") action gui.SetPreference("color", "#FBF0D9") alt "Change to Cream Text"
-                    textbutton _("Black") action gui.SetPreference("color", "#000000") alt "Change to Black Text"
-
-                ## Change Textbox Background
-
-                vbox:
-
-                    style_prefix "radio"
-                    label _("Textbox Background")
-
-                    if renpy.variant("pc"):
-
-                        textbutton _("Black") action [gui.SetPreference("ADVtextbox", "gui/textbox.png"), gui.SetPreference("NVLtextbox", "gui/nvl_1.png")] alt "Change to Black Textbox"
-                        textbutton _("White") action [gui.SetPreference("ADVtextbox", "gui/textbox_2.png"), gui.SetPreference("NVLtextbox", "gui/nvl_2.png")]  alt "Change to White Textbox"
-
-                    elif renpy.variant("mobile"):
-
-                        textbutton _("Black") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_1.png")]
-                        textbutton _("White") action [gui.SetPreference("m_ADVtextbox", "gui/phone/textbox_2.png"), gui.SetPreference("m_NVLtextbox", "gui/phone/nvl_2.png")]
-
-                ## Toggles
-                ## You can also create SetField() buttons with on/off variables if you prefer that look.
-
                 vbox:
 
                     style_prefix "check"
                     label _("Toggle")
 
-                    ## Turn Screenshake On or Off
-                    ## This setting can be found in captiontool.rpy
-
                     textbutton "Screenshake" action ToggleField(persistent,"screenshake",true_value=True,false_value=False) alt "Toggle Screen Shake"
-
-                    ## Self-voicing does not work on smartphone devices, so this option only shows if the user is playing on a PC.
 
                     if renpy.variant("pc"):
 
@@ -959,27 +869,13 @@ screen preferences():
                     textbutton _("Audio Titles") action ToggleVariable("persistent.sound_captions") alt "Toggle Sound Captions"
                     textbutton _("Image Descriptions") action ToggleVariable("persistent.image_captions") alt "Toggle Image Descriptions"
 
-                ## This shows Ren'Py's built-in accessibility menu. This can also be displayed by pressing "A" on the keyboard when playing on a PC. As this option can break the way the game is displayed and also does not support translation as of the latest Ren'Py build, you may want to hide the option.
-                # textbutton _("More Options...") action Show("_accessibility")
+            null height (4 * gui.pref_spacing)
 
             null height (4 * gui.pref_spacing)
 
             hbox:
                 style_prefix "slider"
                 box_wrap True
-
-                vbox:
-
-                    label _("Text Speed")
-
-                    bar value Preference("text speed")
-
-                    label _("Auto-Forward Time")
-
-                    bar value Preference("auto-forward time")
-
-                    label _("Textbox Opacity")
-                    bar value FieldValue(persistent, 'say_window_alpha', 1.0, max_is_zero=False, offset=0, step=.2) xmaximum 525 alt "Textbox Opacity"
 
                 vbox:
 
@@ -1015,7 +911,20 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
-                            alt "Mute All"
+                            alt "Mute All"  
+
+                vbox:
+
+                    label _("Text Speed")
+
+                    bar value Preference("text speed")
+
+                    label _("Auto-Forward Time")
+
+                    bar value Preference("auto-forward time")
+
+                    label _("Textbox Opacity")
+                    bar value FieldValue(persistent, 'say_window_alpha', 1.0,offset=0, step=.2) xmaximum 525 alt "Textbox Opacity"
 
 ## v Old Version v
 # screen preferences():
@@ -1802,15 +1711,14 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
-            textbutton _("Prefs") action ShowMenu("preferences")
+            textbutton _("Settings") action ShowMenu("preferences")
 
 
 style say_dialogue:
     variant "small"
-    size gui.preference("phone_size", 40)
+    size gui.preference("phone_size", 32)
 
 style window:
     variant "small"

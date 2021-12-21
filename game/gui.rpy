@@ -421,15 +421,16 @@ init python:
 
         ## Font sizes.
         gui.text_size = gui.preference("phone_size", 40)
-        gui.name_text_size = 54
-        gui.notify_text_size = 38
-        # gui.interface_text_size = 33 #45
-        gui.button_text_size = 45
+        gui.name_text_size = 40
+        gui.notify_text_size = 30
+        gui.interface_text_size = 33
+        gui.button_text_size = 40
         # gui.label_text_size = 51
 
         ## Adjust the location of the textbox.
-        gui.textbox_height = 360
-        gui.name_xpos = 120
+        gui.textbox_height = 275    
+        gui.name_xpos = 370
+        gui.name_ypos = 10
         gui.text_xpos = 135
         gui.text_width = 1650
 
@@ -444,7 +445,7 @@ init python:
         gui.history_height = 285
         gui.history_text_width = 1035
 
-        gui.quick_button_text_size = 30
+        gui.quick_button_text_size = 21
 
         ## File button layout.
         gui.file_slot_cols = 2

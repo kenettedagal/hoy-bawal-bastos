@@ -25,7 +25,7 @@ label yui_start_case_1:
     define mm = Character('Mom',color='#00ff2a',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
     default badEndingGame = False
     default kurtneyHelp = False
-    default achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False, False]
+    default persistent.achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False, False]
     default persistent.unlockroom = False
     default persistent.unlockTrain = False
     default persistent.unlockJeep = False
@@ -48,6 +48,25 @@ label yui_start_case_1:
                 play_sound(subPoints)
                 "Your points are deducted by 1 HBB Point"
 
+    #Disclaimer & Company Logo
+    $ quick_menu = False
+    stop music
+    $_dismiss_pause = False
+    scene black with fade
+    with Pause(1)
+
+    scene disclaimer with dissolve
+    with Pause(7)
+
+    scene black with fade
+    with Pause(1)
+
+    show logo_company with dissolve
+    with Pause(4)
+
+    scene black with fade
+    with Pause(1)
+
     #START OF YUI STORY
     stop music
     hide screen displayHBBPoints
@@ -56,43 +75,47 @@ label yui_start_case_1:
     show screen titleYui with dissolve
     pause 0.5
     
-    $ persistent.unlockJeep = False
-    $ persistent.unlockroom = False
-    
     #Play iphone alarm tone
     pause 2.0
     hide screen titleYui with dissolve
     pause 0.5
     stop music
     
+    $ quick_menu = True
+    
+    $ preferences.set_volume("sfx", 1.0)
     $ play_sound (phone) 
 
     scene bg room2 with fade
 
 
     "{i}7:00 AM....{/i}"
-    
-    voice "bm1.ogg"
+    $ preferences.set_volume("voice", 0.50)
+    voice "bm0.ogg"
     "Ugh...."
-
+    
+    $ preferences.set_volume("sfx", 0.30)
     python:
 
-        if achievementList[0] == False:
+        if persistent.achievementList[0] == False:
         
             achievement.grant("A New Leaf")
             renpy.notify("Achievement Unlocked: A New Leaf")
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
-            achievementList[0] = True
+            persistent.achievementList[0] = True
 
     $ persistent.unlockroom = True
 
-    voice "bm2.ogg"
+    pause 1.9
+    voice "bm1.ogg"
     "Shut up Siri."
 
     "......"
     $ timeout_label = "snooze"
     $ timeout = 10
 
+    $ preferences.set_volume("music", 0.20)
+    $ preferences.set_volume("voice", 0.30)
     menu:
 
         "Snooze alarm for 5 minutes":
@@ -105,7 +128,7 @@ label yui_start_case_1:
             
             scene bg room2 with dissolve
 
-            voice "bm3.ogg"
+            voice "bm2.ogg"
             "Another day, another dollar..."
 
             jump breakfastWithMom
@@ -113,15 +136,16 @@ label yui_start_case_1:
 
 label snooze:
     scene black
-
+    $ preferences.set_volume("voice", 0.40)
     voice "bm3.ogg"
     "Just a few more minutes...."
 
     "Zzzzzz...."
 
     pause 2.0
+    $ preferences.set_volume("sfx", 1.0)
     $ play_sound (phone)
-
+    
     scene bg room2 with dissolve
 
     "{i}7:27 AM....{/i}"
@@ -129,17 +153,21 @@ label snooze:
     $ play_music (rest, fadein=0.3) 
 
     voice "m1.ogg"
+    $ preferences.set_volume("voice", 0.50)
     m "NO WAY!!! I ALMOST SLEPT FOR ANOTHER 30 MINUTES!"
-
+    $ preferences.set_volume("sfx", 0.50)
     jump breakfastWithMom
 
 
 label breakfastWithMom:
 
-    scene black with fade
-
+    scene black 
+    show mark
+    with fade
+    pause 2.0 
     window hide
-
+    $ preferences.set_volume("voice", 0.35)
+    hide mark with dissolve
     voice "bm4.ogg"
     centered "My name is {color=#00ffea}Markkuss{/color}. I know it is a weird name so I told my friends and family to just call me {color=#00ffea}Mark.{/color}"
 
@@ -170,6 +198,7 @@ label breakfastWithMom:
     voice "bm13.ogg"
     centered "Anyways! My hobbies are sleeping and watching anime."
 
+    $ preferences.set_volume("voice", 0.45)
     voice "bm14.ogg"
     centered "Wait is this even called hobbies? It's more of a \"I've got nothing else to do in life.\""
 
@@ -188,10 +217,10 @@ label breakfastWithMom:
     scene bg room2 with fade
 
     "....."
-
+    $ preferences.set_volume("voice", 0.40)
     voice "mm1.ogg"
     mm "Mark! Are you awake?"
-
+    $ preferences.set_volume("sfx", 0.50)
     $ play_sound (doorknock) 
     pause 0.5
     with hpunch
@@ -203,11 +232,17 @@ label breakfastWithMom:
 
     pause 3.0
 
+    $ preferences.set_volume("sfx", 0.70)
+
     $ play_sound(yawn)
 
+    pause 2.0
+    
+    $ preferences.set_volume("voice", 0.35)
+    $ preferences.set_volume("music", 0.20)
     voice "m2.ogg"
     m "Oh yes. It definitely starts with my mom's yelling in the morning."
-
+    $ preferences.set_volume("voice", 0.40)
     voice "m3.ogg"
     m "Yes mom... Please stop knocking on the door."
 
@@ -223,6 +258,7 @@ label breakfastWithMom:
 
     scene kitchen with fade
     show mom happy at left with dissolve
+    $ preferences.set_volume("voice", 0.45)
     voice "mm4.ogg"
     mm "Go now and eat breakfast with me. Your father left early for work."
 
@@ -234,7 +270,8 @@ label breakfastWithMom:
     mm "I made your favorite foods! A scrambled egg, tocino and some bacon."
     $ timeout_label = None
     hide mom happy with dissolve
-
+    $ preferences.set_volume("voice", 0.40)
+    $ preferences.set_volume("sfx", 0.40)
     menu: 
         
         # voice "mm6.ogg"
@@ -257,29 +294,31 @@ label breakfastWithMom:
             m "All of these dishes in one plate..."
             voice "m9.ogg"
             m "I hope my stomach won't hurt when I'm outside. Haha...."
-
+            
             python:
-                if achievementList[1] == False:
+                if persistent.achievementList[1] == False:
 
 
                     achievement.grant("I Love Mom's Breakfast")
                     renpy.notify("Achievement Unlocked: I Love Mom's Breakfast")
                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                    achievementList[1] = True
-
+                    persistent.achievementList[1] = True
+                    renpy.pause(1.5)
+            
             show mom worried with dissolve
-            "mm7.ogg"
+            voice "mm7.ogg"
             mm "I hope so too! Ahahaha~"
             hide mom worried with dissolve
-
+    $ preferences.set_volume("sfx", 0.99)
     $ play_sound(eat,fadein=0.5)
     "{i}Munch munch munch....{\i}"
     pause 8
-            
+    $ preferences.set_volume("voice", 0.90)        
     voice "m10.ogg"
     m "Thank you for the food, Mom!"
-
+    $ preferences.set_volume("sfx", 0.50)
     show mom happy at left with dissolve
+    $ preferences.set_volume("voice", 0.50)   
     voice "mm8.ogg"
     mm "No worries! It's gonna be a big day for you honey."
 
@@ -287,6 +326,7 @@ label breakfastWithMom:
 
     hide mom happy with dissolve
     $ law = ''
+    $ preferences.set_volume("sfx", 0.30)
     menu:
         "I should first look at some news before leaving..."
 
@@ -297,12 +337,12 @@ label breakfastWithMom:
             
             python:
 
-                if achievementList[2] == False:
+                if persistent.achievementList[2] == False:
                 
                     achievement.grant("Newspaper Guy")
                     renpy.notify("Achievement Unlocked: Newspaper Guy")
                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                    achievementList[2] = True
+                    persistent.achievementList[2] = True
 
             jump law
 
@@ -312,12 +352,12 @@ label breakfastWithMom:
             $ law = 'tv'
             python:
 
-                if achievementList[3] == False:
+                if persistent.achievementList[3] == False:
                 
                     achievement.grant("TV Guy")
                     renpy.notify("Achievement Unlocked: TV Guy")
                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                    achievementList[3] = True
+                    persistent.achievementList[3] = True
             jump law
 
 
@@ -330,15 +370,15 @@ label law:
     if law == 'paper':
 
         show image "images/paper1.png" with dissolve
-        pause 5.0
+        pause 3.0
         hide image "images/paper1.png" with dissolve
         play sound "audio/sfx/newspaper.wav" 
         show image "images/ssacover.jpg" with dissolve
-        pause 8.0
+        pause 3.0
         play sound "audio/sfx/newspaper.wav"
         hide image "images/ssacover.jpg"
         show image "images/cnnssa.jpg" with dissolve
-        pause 12.0
+        pause 3.0
         play sound "audio/sfx/newspaper.wav"
     
     else:
@@ -346,21 +386,21 @@ label law:
         pause 3.0
         hide image "images/tv.jpg" with dissolve
         show image "images/ssacover.jpg" with dissolve
-        pause 10.0
+        pause 3.0
         show image "images/cnnssa.jpg" with dissolve
-        pause 12.0
+        pause 3.0
         hide image "images/cnnssa.jpg"
         show image "images/duterte.jpg" with dissolve
-        pause 5.0 
+        pause 3.0
         hide image "images/duterte.jpg" 
          
     
     # Show punishments
 
     show image "images/punishment1.jpg" with dissolve
-    pause 30.0
+    pause 3.0
     show image "images/punishment2.jpg" with dissolve
-    pause 20.0
+    pause 3.0
 
 
 
@@ -383,17 +423,11 @@ label law:
 
     pause 1.5
 
-    show natasha talk with dissolve
-
-    n "Hey its me again~"
-
     show screen showNotesButton with dissolve
 
-    n "If you look at the top right part of the screen, there is a button."
+    "If you look at the top right part of the screen, there is a button."
 
-    n "This button will log important parts of the law. So always check it out~"
-
-    n "Bye now!"
+    "This button will log important parts of the law. So always check it out~"
 
     stop music fadeout 0.5
 
@@ -442,8 +476,7 @@ label goingToSchool:
 
     $ play_sound(carleave,fadein=1.5)
 
-    "Oh!!! I didn't notice the time at all."
-
+    pause 2.0 
     "Should I take a jeep or train today?"
     $ timeout = 8
     $ timeout_label = "meetWithKurt"
@@ -483,17 +516,18 @@ label meetWithKurt:
     $ metYui = False
     scene bg jeep n with fade
     $ persistent.unlockJeep = True
+
     python:
 
-        if achievementList[5] == False:
+        if persistent.achievementList[5] == False:
                 
             achievement.grant("Bayad Po")
             renpy.notify("Achievement Unlocked: Bayad Po")
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
-            achievementList[5] = True
+            persistent.achievementList[5] = True
 
     pause 3.0
-    $ renpy.music.set_volume(0.5,channel="sound")
+    $ preferences.set_volume(0.5,channel="sound")
     $ play_sound(people,fadein=0.2,fadeout=5.0) 
     pause 5
     
@@ -625,7 +659,7 @@ label meetWithKurt:
     voice "kk11.ogg"
     kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
 
-    voice "m19.ogg"
+    voice "m215.ogg"
     m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
 
     show kurtney happy teeth with dissolve
@@ -633,13 +667,13 @@ label meetWithKurt:
     voice "kk12.ogg"
     kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
-    voice "m20.ogg"
+    voice "m216n.ogg"
     m "Well, don't even talk like you have one."
 
     voice "kk13.ogg"
     kk "Hahaha~ Don't worry about me. I'm more worried about your future."
 
-    voice "m21.ogg"
+    voice "m217n.ogg"
     m "I'm not a child for you to worry about."
 
     voice "kk14.ogg"
@@ -821,12 +855,12 @@ label meetWithKurt:
             if hbbpoints == 9:
                 python:
 
-                    if achievementList[6] == False:
+                    if persistent.achievementList[6] == False:
                     
                         achievement.grant("Ace Attorney")
                         renpy.notify("Achievement Unlocked: Ace Attorney")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[6] = True
+                        persistent.achievementList[6] = True
             
             label kurtInfo:
                 $ yuiStoryProgress += 1
@@ -1024,12 +1058,12 @@ label meetWithKurt:
 
                 python:
 
-                    if achievementList[7] == False:
+                    if persistent.achievementList[7] == False:
                     
                         achievement.grant("Escape Artist")
                         renpy.notify("Achievement Unlocked: Escape Artist")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[7] = True
+                        persistent.achievementList[7] = True
 
                 show kurtney talk opened with dissolve
 
@@ -1125,12 +1159,12 @@ label meetWithKurt:
 
                 python:
 
-                    if achievementList[8] == False:
+                    if persistent.achievementList[8] == False:
                     
                         achievement.grant("Punching Bag")
                         renpy.notify("Achievement Unlocked: Punching Bag")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[8] = True
+                        persistent.achievementList[8] = True
 
                 show kurtney worry with dissolve
 
@@ -1301,12 +1335,12 @@ label meetWithKurt:
 
                 python:
 
-                    if achievementList[9] == False:
+                    if persistent.achievementList[9] == False:
                     
                         achievement.grant("Teach Me About Punishments")
                         renpy.notify("Achievement Unlocked: Teach Me About Punishments")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[9] = True
+                        persistent.achievementList[9] = True
 
                 kk "!!!!"
 
@@ -1344,7 +1378,10 @@ label meetWithKurt:
                 o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
                 
                 voice "newOfficer19.mp3"
-                o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+                o "The persistent telling of sexual jokes, use of sexual names, comments and demands..."
+
+                voice "newOfficer19c.mp3"
+                o "...and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
 
                 voice "newOfficer20.mp3"
                 o "The penalties will be...!"
@@ -1390,7 +1427,10 @@ label meetWithKurt:
                 o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
                 voice "newOfficer33.mp3"
-                o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+                o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks..."
+
+                voice "newOfficer33c.mp3"
+                o "...or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
                 voice "newOfficer34.mp3"
                 o "You will face the penalties of...!"
@@ -1446,20 +1486,22 @@ label meetWithYui:
 
     python:
 
-        if achievementList[4] == False:
+        if persistent.achievementList[4] == False:
                 
             achievement.grant("Beep Card")
             renpy.notify("Achievement Unlocked: Beep Card")
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
-            achievementList[4] = True
+            persistent.achievementList[4] = True
 
-    pause 0.5
+    pause 2.5
 
     $play_sound(trainambience,fadein=0.1)
-
+    $ preferences.set_volume("sfx", 0.20)
     pause 5.0
 
     voice "bm32.ogg"
+
+    $ preferences.set_volume("voice", 0.45)
     "Aaaaaaah~ The landscape is so nice."
 
     voice "bm33.ogg"
@@ -1503,22 +1545,23 @@ label meetWithYui:
     pause 3.0
 
     scene yui harassment with fade
-
+    $ preferences.set_volume("sfx", 0.30)
     $ play_sound(people,fadein=3.0,fadeout=1.0)
 
     "{i}Crowd noises...{/i}"
 
     "Moving closer towards the exit... I hear some conversation."
-
-    voice "man1line1.mp3"
+    stop sound fadeout 0.5
+    $ preferences.set_volume("voice", 0.32)
+    voice "man1line1.mp3" 
     "???" "Hey there sexy little miss. Are you free tonight and have a drink." 
-
+    $ preferences.set_volume("voice", 0.28)
     voice "man2line1.mp3"
     "???" "Don't worry, we won't do anything do bad to you hehehe..."
-
+    $ preferences.set_volume("voice", 0.22)
     voice "man3line1.mp3"
     "???" "Do you need money or anything? Just tell us."
-
+    $ preferences.set_volume("voice", 0.45)
     voice "bm40.ogg"
     "I can see three old men sexually harassing a young student girl."
 
@@ -1529,7 +1572,8 @@ label meetWithYui:
     "Girl" "Plea-please l-l-leave me alo-lone..."
 
     pause 2.0
-
+    with fade
+    $ preferences.set_volume("voice", 0.28)
     voice "man1line2.mp3"
     "???" "Hahaha!! She's scared like a child."
 
@@ -1539,7 +1583,7 @@ label meetWithYui:
     voice "man3line2.mp3"
     "???" "Boss, don't worry. She can't even say the sentence straight."
 
-    
+    $ preferences.set_volume("sfx", 0.30)
     pause 1.5
     with fade
     $ timeout = 10
@@ -1554,86 +1598,89 @@ label meetWithYui:
             pause 0.5
 
             $ deathFlag = True
-
+            $ preferences.set_volume("voice", 0.50)
             voice "m77.ogg"
             m "Hey you bastards! Stop sexually harrassing that girl."
-
+            $ preferences.set_volume("voice", 0.25)
             voice "man1line3.mp3"
             "???" "Who the hell are you? His boyfriend perhaps?"
-
+            $ preferences.set_volume("voice", 0.29)
             voice "man2line3.mp3"
             "???" "You little punk talking to me like that. I'll crush you."
 
             voice "man3line3.mp3"
-            "???" "Take this you pesky little boy."
-
+            "???" "Take this you little pesky boy."
+            $ preferences.set_volume("sfx", 0.20)
             $ play_sound(punch)
 
             "BAM!" with vpunch
 
             $ play_sound(punch)
-
+            with fade
             "AAHHH!" with hpunch
 
             $ play_sound(punch)
-
+            with fade
             "PAAAK!" with vpunch
 
             with fade
-
+            $ preferences.set_volume("voice", 0.35)
             voice "m78.ogg"
             m "AAAAAAH!!!"
 
-            pause 0.5
+            pause 1.5
 
             python:
 
-                if achievementList[8] == False:
+                if persistent.achievementList[8] == False:
                     
                     achievement.grant("Punching Bag")
                     renpy.notify("Achievement Unlocked: Punching Bag")
                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                    achievementList[8] = True
-
-            "....Officer!"
+                    persistent.achievementList[8] = True
+                    renpy.pause(1.5)
 
             jump withOfficer
 
         "I'll go and inform the train security.":
             "Good choice!"
+            
             $ play_sound(addPoints)
             $ hbbpoints += 3
             "You received {color=#40ff00}3 HBB Points.{/color}"
             #hide yui worry closed
-            
+            $ preferences.set_volume("voice", 0.40)
+            scene bg train morning 
+            show police neutral 
+            with fade
             voice "m79.ogg"
             m "Officer! Officer!!"
 
             voice "m80.ogg"
             m "I saw three old men catcalling and sexually harassing a girl student! Please help me."
 
-            show police neutral with dissolve
-
+            $ preferences.set_volume("voice", 0.25)
             voice "newOfficer1.mp3"
             o "I see. Bring me to them."
 
             label withOfficer:
 
                 hide police neutral with dissolve
-
+                show yui harassment
                 with fade
 
+                $ preferences.set_volume("voice", 0.40)
                 voice "m81.ogg"
                 m "Officer! Here!"
-
+                
                 voice "m106.ogg"
                 m "These old men are catcalling and making unwanted invitations to this girl."
 
                 show police neutral with dissolve
-
+                $ preferences.set_volume("voice", 0.30)
                 voice "newOfficer2.mp3"
                 o "HEY YOU BASTARDS!"
-
+                $ preferences.set_volume("voice", 0.23)
                 voice "newOfficer3.mp3"
                 o "Face the consequences of your crimes!"
 
@@ -1641,25 +1688,24 @@ label meetWithYui:
 
                 voice "man1line4.mp3"
                 "???" "What the hell. Run guys!!"
-
+                $ preferences.set_volume("voice", 0.20)
                 voice "man2line4.mp3"
                 "???" "Holy crap don't leave me."
-
-                voice "man3line4.mp3"
-                "???" "Dammnit!"
-
+                $ preferences.set_volume("voice", 0.30)
                 with vpunch
 
             #show Yui
-
+            stop music fadeout 0.5
             hide police neutral
             scene bg train morning
             show yui wow 
             with fade
+            $ preferences.set_volume("music", 0.15)
+            $ play_music(tutorial, fadein=0.5)
             
             voice "yui1.ogg"
             "Girl" "Uwaaaaah! Thank y-y-you sooo much!!"
-
+            $ preferences.set_volume("voice", 0.40)
             voice "m82.ogg"
             m "Ohhh... I didn't really do anything..."
 
@@ -1763,7 +1809,8 @@ label meetWithYui:
             voice "yui106.ogg"
             y "It made me stop going to school... And I was homeschooled since then."
 
-            voice "m215.ogg"
+            # Wrong file. Missing voice
+            voice "m215n.ogg"
             m "I can't imagine how you must feel. My heart hurts for you."
 
             show yui worry closed with dissolve
@@ -1788,8 +1835,9 @@ label meetWithYui:
             $ timeout_label = "yuiFirstQuestionTimerOut"
             $ yuiFirstAnswer = True
             hide yui wow with dissolve
+            voice "bm43.ogg"
             menu yuiFirstQuestion:
-                # voice "bm43.ogg"
+                
                 "Aaaaah... What is it again? The law that was approved on 17th of April, 2019?"
 
                 "Re-semiprivate Act No. 11313":
@@ -1863,8 +1911,9 @@ label meetWithYui:
             $ timeout_label = "yuiSecondQuestionTimerOut"
             $ yuiSecondAnswer = True
             hide yui wow with dissolve
+            voice "bm44.ogg"
             menu yuiSecondQuestion:
-                # voice "bm44.ogg"
+                
                 "It is also known as ...."
                 
                 "Safe Spaces Act":
@@ -1938,9 +1987,9 @@ label meetWithYui:
                 $ timeout_label = "yuiInfo"
 
                 hide yui wow with dissolve
-
+            voice "bm45.ogg"
             menu yuiThirdQuestion:
-                # voice "bm45.ogg"
+                
                 "Wait, what does the Safe Spaces Act mean again?"
 
                 "To protect Earth from aliens.":
@@ -1977,12 +2026,12 @@ label meetWithYui:
                         
                             python:
 
-                                if achievementList[6] == False:
+                                if persistent.achievementList[6] == False:
                                 
                                     achievement.grant("Ace Attorney")
                                     renpy.notify("Achievement Unlocked: Ace Attorney")
                                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                                    achievementList[6] = True
+                                    persistent.achievementList[6] = True
                         
                     
                     show yui neutral with dissolve
@@ -2067,6 +2116,7 @@ label meetWithYui:
 
         # voice "bm46.ogg"
         "I'll pretend that I didn't hear the conversation.":
+            $ preferences.set_volume("sfx", 0.10)
             pause 0.5
             $ play_sound(subPoints)
             "Your have lost all your points!"
@@ -2077,6 +2127,7 @@ label meetWithYui:
             
     label notSaveYui:
         $ badEndingGame = True
+        $ preferences.set_volume("voice", 0.50)
         voice "bm46.ogg"
         "I'll pretend that I didn't hear the conversation."
 
@@ -2086,7 +2137,16 @@ label meetWithYui:
         voice "bm48.ogg"
         "I don't wanna get in trouble."
 
-        jump yui_end
+        scene white
+        $ timeout_label = None
+        menu:
+            "You have met a bad ending!"
+
+            "Retry from the start.":
+                jump yui_start_case_1
+
+            "Return to Main Menu":
+                return
 
         # IMPLEMENT BAD ENDING!
 
@@ -2095,6 +2155,7 @@ label meetWithYui:
         hide yui smile opened
         show police neutral with fade       
         
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer4.mp3"
         o "Hey kids. You better get going now. I'll clean this mess up."
 
@@ -2109,16 +2170,16 @@ label meetWithYui:
 
         voice "newOfficer8.mp3"
         o "(3) Making advances, whether verbal or physical, that is unwanted and has threatened one's sense of personal space and physical safety." 
-
+        $ preferences.set_volume("voice", 0.25)
         voice "newOfficer9.mp3"
         o "This may include cursing, leering and intrusive gazing, and taunting."
-
+        $ preferences.set_volume("voice", 0.40)
         voice "m104.ogg"
         m "WOW! That's a really great law."
-
+        $ preferences.set_volume("voice", 0.20)
         voice "newOfficer10.mp3"
         o "I know kid."
-
+        $ preferences.set_volume("voice", 0.25)
         voice "newOfficer11.mp3"
         o "Do you want to learn more about the punishments of Safe Spaces Act?"
 
@@ -2143,26 +2204,27 @@ label meetWithYui:
             show yui smile close with dissolve
 
             y "!!!!"
-
+            $ preferences.set_volume("voice", 0.40)
             voice "yui22.ogg"
             y "I-I-I want to learn it too..."
 
             python:
 
-                if achievementList[9] == False:
+                if persistent.achievementList[9] == False:
                     
                     achievement.grant("Teach Me About Punishments")
                     renpy.notify("Achievement Unlocked: Teach Me About Punishments")
                     renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                    achievementList[9] = True
+                    persistent.achievementList[9] = True
 
             hide yui smile close
             show police neutral
             with dissolve
+            $ preferences.set_volume("voice", 0.25)
             voice "newOfficer12.mp3"
             o "Sure thing. Lemme just take out my handbook."
 
-            pause 2.0
+            pause 1.0
 
             voice "newOfficer13.mp3"
             o "Uhhh it says here..."
@@ -2186,7 +2248,11 @@ label meetWithYui:
             o "The use of words, gestures or actions that ridicule on the basis of sex, gender or sexual orientation, identity and/or expression including sexist, homophobic, and transphobic statements and slurs;" 
             
             voice "newOfficer19.mp3"
-            o "The persistent telling of sexual jokes, use of sexual names, comments and demands, and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety." 
+            o "The persistent telling of sexual jokes, use of sexual names, comments and demands..." 
+
+            voice "newOfficer19c.mp3"
+
+            o "...and any statement that has made an invasion on a person's personal space or threatens the person's sense of personal safety."
 
             voice "newOfficer20.mp3"
             o "The penalties will be...!"
@@ -2232,7 +2298,10 @@ label meetWithYui:
             o "c) For acts such as stalking, and any of the acts mentioned in paragraphs (a) and (b), when accompanied by touching, pinching or brushing against the body of the offended person;"
 
             voice "newOfficer33.mp3"
-            o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
+            o "Or any touching, pinching, or brushing against the genitalia, face, arms, anus, groin, breasts, inner thighs, face, buttocks..."
+
+            voice "newOfficer33c.mp3"
+            o "...or any part of the victim's body even when not accompanied by acts mentioned in paragraphs (a) and (b)."
 
             voice "newOfficer34.mp3"
             o "You will face the penalties of...!"
@@ -2290,13 +2359,13 @@ label meetWithYui:
 
         voice "newOfficer39.mp3"
         o "Now go on your way. I'll take care of them. In jail of course."
-        
+        $ preferences.set_volume("voice", 0.40)
         voice "m195.ogg"
         m "Sir, can I ask for your name?"
-
+        $ preferences.set_volume("voice", 0.25)
         voice "newOfficer40.mp3"
         o "Oh it's Greg. Find me whenever you are troubled."
-
+        $ preferences.set_volume("voice", 0.40)
         voice "m196.ogg"
         m "Thank you very much sir!"
 
@@ -2370,7 +2439,7 @@ label schoolCeremony:
     scene audi1 with fade
 
     pause 1.0 
-
+    $ preferences.set_volume("sfx", 0.20)
     $ play_sound(speaker,fadein=0.5,fadeout=0.5)
 
     "President" "To all the newcomer students, I welcome you!"
@@ -2382,7 +2451,7 @@ label schoolCeremony:
     "President" "To all those that are nearing graduation, I hope you achieved what you wanted here."
 
     scene audi3 with dissolve
-
+    $ preferences.set_volume("sfx", 0.28)
     $ play_sound(clap,fadein=2.0)
 
     "President" "That is all for my speech. Thank you!"
@@ -2393,6 +2462,7 @@ label schoolCeremony:
     
 
     if metYui is True:
+        $ preferences.set_volume("sfx", 0.40)
         voice "kk46.ogg"
         kk "Dude! I hope we are classmates in this new school year."
 
@@ -2449,19 +2519,19 @@ label schoolCeremony:
         $ renpy.pause(0.3, hard=True)
 
         show kurtney happy teeth with dissolve
-
+        $ preferences.set_volume("voice", 0.60)
         voice "kk11.ogg"
         kk "Dude we're already 2nd year in highschool. When are you getting a girlfriend?"
-
+        $ preferences.set_volume("voice", 0.40)
         voice "m215.ogg"
         m "Why are you even asking me that. Even if I wanted to have one, no one likes me at all!"
 
         show kurtney smile with dissolve
-
+        $ preferences.set_volume("voice", 0.60)
         voice "kk12.ogg"
         kk "You poor little thing. Don't worry, I'll always be here for you so you don't look like a loser."
 
-        voice "m216.ogg"
+        voice "m216n.ogg"
         m "Well, don't even talk like you have one."
 
         show kurtney happy teeth with dissolve
@@ -2469,9 +2539,9 @@ label schoolCeremony:
         voice "kk13.ogg"
         kk "Hahaha~ Don't worry about me. I'm more worried about your future."
 
-        voice "m217.ogg"
+        voice "m217n.ogg"
         m "I'm not a child for you to worry about."
-
+        $ preferences.set_volume("voice", 0.40)
         voice "kk14.ogg"
         kk "Haha!!"
 
@@ -2502,9 +2572,10 @@ label afterCeremony:
 
     show kurtney smile
     with fade
+    $ preferences.set_volume("voice", 0.60)
     voice "kk48.ogg"
     kk "Lemme check the school bulletin to know our section."
-
+    $ preferences.set_volume("voice", 0.50)
     voice "m109.ogg"
     m "Sure dude. Gonna go to the bathroom first."
 
@@ -2515,7 +2586,7 @@ label afterCeremony:
     m "Yeah just go."
 
     scene football with fade
-
+    $ preferences.set_volume("music", 0.15)
     voice "bm54.ogg"
     "A new school year..."
 
@@ -2531,7 +2602,7 @@ label afterCeremony:
     "But thankfully, I have [kk]. She's a really good childhood friend."
 
     
-
+    $ preferences.set_volume("sfx", 0.30)
     #Flag to check if USER accepts lunch invite
     $ lunchWithYui = True
     stop music fadeout 2.0
@@ -2543,8 +2614,9 @@ label afterCeremony:
     pause 3.0
     hide screen lostTransition
     $ persistent.unlockHallway = True
-    $ play_music(legends,fadein=2.0)
-
+    $ preferences.set_volume("music", 0.12)
+    $ play_music(meeting,fadein=0.5)
+    $ preferences.set_volume("voice", 0.45)
     if metYui is True:
 
         "???" "Hey..."
@@ -2669,12 +2741,12 @@ label afterCeremony:
 
                         python:
 
-                            if achievementList[13] == False:
+                            if persistent.achievementList[13] == False:
                                     
                                 achievement.grant("Lunch Date")
                                 renpy.notify("Achievement Unlocked: Lunch Date")
                                 renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                                achievementList[13] = True
+                                persistent.achievementList[13] = True
 
                         voice "m126.ogg"
                         m "Wait why are you so happy?"
@@ -2838,7 +2910,7 @@ label lunch:
     stop music fadeout 1.0
 
     pause 1.0
-
+    $ preferences.set_volume("music", 0.15)
     $ play_music(relax, fadein=2.0)
 
     if lunchWithYui is True:
@@ -2874,7 +2946,7 @@ label lunch:
         scene class1
         show kurtney talk opened 
         with fade
-
+        $ preferences.set_volume("voice", 0.50)
         voice "kk50.ogg"
         kk "Hey dude wanna go to cafeteria?"
 
@@ -2882,7 +2954,7 @@ label lunch:
         m "Sorry dude. I'm meeting someone today."
 
         show kurtney happy teeth with dissolve
-
+        $ preferences.set_volume("voice", 0.40)
         voice "kk51.ogg"
         kk "Meeting someone? Hey hey hey what's happening to Mr. Mark, huh?"
 
@@ -2893,7 +2965,7 @@ label lunch:
 
         voice "kk52.ogg"
         kk "Wah! This little punk."
-
+        stop music fadeout 0.5
         scene black with fade
         
         pause 1.0
@@ -2903,9 +2975,9 @@ label lunch:
         show yui smile close with dissolve
 
         pause 2.0
-
+        $ preferences.set_volume("sfx", 0.20)
         $ play_sound(people,fadein=2.0,fadeout=0.5)
-
+        $ preferences.set_volume("voice", 0.50)
         voice "yui110.ogg"
         y "Hey Mark! Here!"
 
@@ -2928,7 +3000,8 @@ label lunch:
         voice "yui48.ogg"
         y "Just tell me. I got everything covered."
         $ persistent.unlockCafeteria = True
-
+        $ play_music(morning, fadein=0.5)
+        $ preferences.set_volume("music", 0.12)
         scene bg cafeteria with fade
 
         $ timeout_label = None
@@ -3032,13 +3105,13 @@ label lunch:
 
                 python:
 
-                    if achievementList[14] == False:
+                    if persistent.achievementList[14] == False:
                             
                         achievement.grant("Big Eater")
                         renpy.notify("Achievement Unlocked: Big Eater")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[14] = True
-                pause 0.5
+                        persistent.achievementList[14] = True
+                pause 2.0
     
     else:
         scene black with fade
@@ -3201,12 +3274,12 @@ label lunch:
 
                 python:
 
-                    if achievementList[14] == False:
+                    if persistent.achievementList[14] == False:
                             
                         achievement.grant("Big Eater")
                         renpy.notify("Achievement Unlocked: Big Eater")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[14] = True
+                        persistent.achievementList[14] = True
 
         "...."
         scene black with fade
@@ -3216,11 +3289,17 @@ label lunch:
 
 label socialStudiesQuiz:
     stop music fadeout 1.0
+    $ play_music(everyone,fadein=3.0)
     scene class1
+    show screen quizTransition
+    pause 3.0
+    hide screen quizTransition
     show clarrise talk 
     with fade
+    $ preferences.set_volume("voice", 0.40)
+    
 
-    $ play_music(everyone,fadein=3.0)
+    
     voice "t5.ogg"
     t "Okay Class! Listen up!"
 
@@ -3244,10 +3323,10 @@ label socialStudiesQuiz:
         "No way!!! I know this law. I could ace this test."
 
         show kurtney talk opened with dissolve
-
+        $ preferences.set_volume("voice", 0.60)
         voice "kk64.ogg"
         kk "Hey future Attorney Mark. Do you know this law?"
-
+        $ preferences.set_volume("voice", 0.40)
         voice "m146.ogg"
         m "Of course. Leave it to me."
     else:
@@ -3272,23 +3351,21 @@ label quiz:
     $ quizPoints = 0
     $ quizNum = []
     scene class1
-    show natasha talk 
-    with fade
-    n "Hey its me again!"
+    
 
-    n "Your goal in this quiz to score high points! At the end of the quiz, your correct points will be added to HBB Points!"
+    "Your goal in this quiz to score high points! At the end of the quiz, your correct points will be added to HBB Points!"
 
-    n "Don't worry! Getting wrong answers will not reduce your points!"
+    "Don't worry! Getting wrong answers will not reduce your points!"
 
-    n "Goodluck!"
-    hide natasha talk with dissolve
+    "Goodluck!"
+
     pause 2.0
 
     show clarrise talk
     with fade
     hide screen showNotesButton
     show screen displayScore
-    
+    $ preferences.set_volume("voice", 0.45)
     voice "t8.ogg"
     t "Okay Class! Ready or not, here I go!"
     show clarrise talk close with dissolve
@@ -3299,7 +3376,7 @@ label quiz:
     $ timeout_label = "one"
     menu:
         
-        "It is the law that recognizes that both men and women must have equality, security, and safety not only 
+        "This law recognizes that both men and women must have equality, security, and safety not only 
         in private but also on the streets, public spaces, online, workplaces and educational and training institutions."
 
         "Republic Act No. 11616":
@@ -3509,12 +3586,12 @@ label quiz:
     "Everyone is turning their heads. Asking if they did well."
 
     show kurtney talk opened with dissolve
-
+    $ preferences.set_volume("voice", 0.60)
     voice "kk67.ogg"
     kk "What the hell. That was hard."
 
     hide kurtney talk opened
-
+    $ preferences.set_volume("voice", 0.40)
     voice "m157.ogg"
     m "Was it? I don't think so. Haha~"
 
@@ -3522,21 +3599,21 @@ label quiz:
         for i in quizNum: 
             if quizNum[i] == 1:
                 hbbpoints += 1
-
+    $ preferences.set_volume("voice", 0.50)
     voice "m158.ogg"
     m "I got [quizPoints] points baby."
 
     python:
         if quizPoints == 10:
 
-            if achievementList[15] == False:
+            if persistent.achievementList[15] == False:
                             
                 achievement.grant("Galaxy Brain")
                 renpy.notify("Achievement Unlocked: Galaxy Brain")
                 renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                achievementList[15] = True
+                persistent.achievementList[15] = True
 
-    pause 0.5
+    pause 2.5
 
     $ play_sound(addPoints)
 
@@ -3544,7 +3621,7 @@ label quiz:
 
 
 
-    "Mark with a smile on his face, knew he did well."
+    "Mark, with a smile on his face, knew he did well."
 
     hide screen displayScore
 
@@ -3577,22 +3654,22 @@ label pervTeacher:
     centered "1 Week Later..."
     
     scene class2 with fade
-
+    $ preferences.set_volume("sfx", 0.21)
     $ play_sound(people,fadein=0.2,fadeout=3.0)
-
+    $ preferences.set_volume("music", 0.15)
     "Classroom noises...."
     pause 2.0
 
     show kurtney talk opened with dissolve
 
     $ play_music(doll,fadein=3.0)
-
+    $ preferences.set_volume("voice", 0.60)
     voice "kk68.ogg"
     kk "Hey Mark, did you hear the news?"
 
     voice "m212.ogg"
     m "What news?"
-
+    
     voice "kk69.ogg"
     kk "It's about [t]."
 
@@ -3601,7 +3678,8 @@ label pervTeacher:
 
     voice "kk70.ogg"
     kk "Based on what I heard, she got sick and is in the hospital."
-
+    $ preferences.set_volume("music", 0.27)
+    $ preferences.set_volume("voice", 0.45)
     voice "kk71.ogg"
     kk "The school faculty doesn't know when she's going back."
 
@@ -3617,9 +3695,9 @@ label pervTeacher:
     voice "kk74.ogg"
     kk "There will be someone substituting [t]."
 
-    voice "m160.ogg"
+    voice "m160n.ogg"
     m "Who?"
-
+    $ preferences.set_volume("sfx", 0.40)
     $ play_sound(walking,fadein=0.5,fadeout=3.0)
 
     show kurtney angry talk with dissolve
@@ -3633,11 +3711,11 @@ label pervTeacher:
     hide kurtney angry talk with dissolve
 
     "Noise of footsteps towards the door."
-
+    $ preferences.set_volume("sfx", 0.25)
     $ play_sound(doorcreak)
 
     pause 2.0
-
+    $ preferences.set_volume("sfx", 0.20)
     $ play_sound(pervlaugh,fadein=1.0)
 
     pause 1.0
@@ -3651,7 +3729,7 @@ label pervTeacher:
     "Everyone in the classroom gasped."
 
     show butch creepy smile at right with dissolve
-
+    $ preferences.set_volume("voice", 0.28)
     voice "newButch1.mp3"
     "???" "I hope we all get along, everyone hehehe~"
 
@@ -3660,13 +3738,13 @@ label pervTeacher:
 
     voice "newButch3.mp3"
     "???" "Call me Professor Butch."
-
+    
     voice "newButch4.mp3"
     b "These are some nice looking girls, huh?"
 
     voice "newButch5.mp3"
     b "Hehehehe... perfect for my taste."
-
+    $ preferences.set_volume("voice", 0.40)
     voice "bm58.ogg"
     "What the hell did he just say?"
 
@@ -3674,7 +3752,7 @@ label pervTeacher:
     "Looking at [kk], she is about to stand up."
 
     show kurtney talk angry at left with dissolve
-
+    $ preferences.set_volume("voice", 0.50)
     voice "kk76.ogg"
     kk "What did you say?!"
 
@@ -3682,7 +3760,7 @@ label pervTeacher:
     m "You idiot..."
 
     show butch creepy laugh with dissolve
-
+    $ preferences.set_volume("voice", 0.28)
     voice "newButch6.mp3"
     b "Oh did I ask you to talk? You'll be receiving a failing grade."
 
@@ -3692,14 +3770,14 @@ label pervTeacher:
     hide butch creepy laugh with dissolve
 
     show kurtney talk opened at center with dissolve
-
+    $ preferences.set_volume("voice", 0.50)
     voice "kk77.ogg"
-    kk "Wha-?"
+    kk "What?!"
 
     show kurtney talk angry at center with dissolve
 
     "I whispered in Kurt's ears."
-
+    $ preferences.set_volume("voice", 0.45)
     voice "m163.ogg"
     m "Just let it slide dude. I will find a way to report this nasty professor."
 
@@ -3804,8 +3882,8 @@ label talkOnHarass:
         voice "yui70.ogg"
         y "They said he was a new faculty teacher..."
 
-        voice "m174.ogg"
-        m "I see. So he's also teaching the First Year students. That damned bastard."
+        voice "m171.ogg"
+        m "I see. So he's also teaching the First Year students."
 
         show yui worry with dissolve
         voice "yui71.ogg"
@@ -3831,12 +3909,12 @@ label talkOnHarass:
 
                 python:
 
-                    if achievementList[16] == False:
+                    if persistent.achievementList[16] == False:
                                     
                         achievement.grant("Lending A Helping Hand")
                         renpy.notify("Achievement Unlocked: Lending A Helping Hand")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[16] = True
+                        persistent.achievementList[16] = True
 
 
                 voice "m173.ogg"
@@ -3970,12 +4048,12 @@ label talkOnHarass:
 
                 python:
 
-                    if achievementList[16] == False:
+                    if persistent.achievementList[16] == False:
                                     
                         achievement.grant("Lending A Helping Hand")
                         renpy.notify("Achievement Unlocked: Lending A Helping Hand")
                         renpy.play("audio/sfx/achievement.ogg",channel="sound")
-                        achievementList[16] = True
+                        persistent.achievementList[16] = True
 
 
 
@@ -4008,9 +4086,10 @@ label arrestButch:
     centered "A few days later..."
 
      
-
+    $ preferences.set_volume("music", 0.12)
     $ play_music(fight,fadein=0.9)
-
+    $ preferences.set_volume("voice", 0.30)
+    $ preferences.set_volume("sfx", 0.15)
     if helpedYui is True:
         scene class2
         show butch smile
@@ -4020,7 +4099,7 @@ label arrestButch:
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
         hide butch smile
-
+        $ preferences.set_volume("sfx", 0.25)
         show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
@@ -4037,14 +4116,14 @@ label arrestButch:
         pause 2.0
 
         with fade
-
+        $ preferences.set_volume("sfx", 0.13)
         $ play_sound(siren,fadein=1.0)
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m184.ogg"
         m "Hey [kk]! Something good will happen today."
 
         show kurtney talk opened with dissolve
-
+        $ preferences.set_volume("voice", 0.60)
         voice "kk95.ogg"
         kk "What? There's nothing good happening when there's a surprise quiz."
 
@@ -4067,7 +4146,7 @@ label arrestButch:
         centered "A few minutes later..."
 
         scene hallway
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(walking,fadein=0.5)
 
         window hide
@@ -4077,25 +4156,26 @@ label arrestButch:
         pause 3.0
 
         scene class2
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(doorknock)
-
+        $ preferences.set_volume("voice", 0.28)
         voice "newOfficer41.mp3"
         "???" "Excuse me. Please open the door."
-
+        $ preferences.set_volume("sfx", 0.35)
         $ play_sound(radio,fadein=0.5)
-
+        "Police radio echoing..."
+        pause 1.5
         show butch angry with dissolve
-
+        $ preferences.set_volume("voice", 0.35)
         voice "newButch8.mp3"
         b "Who the hell is disturbing my class!!!"
 
         hide butch angry
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(doorknock)
 
         "Continuous knocking on the door."
-
+        
         $ play_sound(doorcreak)
 
         "Creeeeek. The door opens."
@@ -4103,32 +4183,34 @@ label arrestButch:
         show police neutral with fade
 
         "Uniformed personnels came in. They appear to be police."
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m187.ogg"
         m "Officer Greg!!!"
 
         hide police neutral with dissolve
 
         show butch suprise with dissolve
-
+        $ preferences.set_volume("voice", 0.30)
         voice "newButch9.mp3"
         b "Why is there police here?!!"
 
         hide butch suprise with dissolve
-
+        $ preferences.set_volume("sfx", 0.29)
         $ play_sound(people,fadein=4.0)
 
         "Everyone" "What's happening? Why are they here? Did someone kill?"
 
         show police neutral with fade
-
+        $ preferences.set_volume("voice", 0.40)
         voice "newOfficer42.mp3"
         o "Everyone please calm down."
-
+        stop sound fadeout 0.5
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer43.mp3"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
+        "Police radio echoing..."
 
         "The policeman looks at Butch."
 
@@ -4163,22 +4245,23 @@ label arrestButch:
         "Everyone" "*gasps*"
 
         show police neutral with fade
-
+        $ preferences.set_volume("voice", 0.47)
         voice "newOfficer47.mp3"
         o "Hey future Attorney! It looks like it went fine."
-
+        $ preferences.set_volume("voice", 0.55)
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
-
+        stop sound fadeout 0.5
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer48.mp3"
         o "It's because of you, we caught this disgusting molester. Thank you."
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m189.ogg"
         m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
-
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer49.mp3"
         o "Hahaha! I like that attitude. Keep doing good things young man."
-
+        $ preferences.set_volume("voice", 0.50) 
         voice "m190.ogg"
         m "Yes Sir!"
 
@@ -4194,7 +4277,7 @@ label arrestButch:
         b "Bring out a pen and paper. We will be having a surprise quiz."
 
         hide butch smile
-
+        $ preferences.set_volume("sfx", 0.25)
         show butch creepy laugh
         $ play_sound(pervlaugh,fadein=1.0)
 
@@ -4211,14 +4294,14 @@ label arrestButch:
         pause 2.0
 
         with fade
-
+        $ preferences.set_volume("sfx", 0.13)
         $ play_sound(siren,fadein=1.0)
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m184.ogg"
         m "Hey [kk]! Something good will happen today."
 
         show kurtney talk opened with dissolve
-
+        $ preferences.set_volume("voice", 0.60)
         voice "kk95.ogg"
         kk "What? There's nothing good happening when there's a surprise quiz."
 
@@ -4241,7 +4324,7 @@ label arrestButch:
         centered "A few minutes later..."
 
         scene hallway
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(walking,fadein=0.5)
 
         window hide
@@ -4251,25 +4334,26 @@ label arrestButch:
         pause 3.0
 
         scene class2
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(doorknock)
-
+        $ preferences.set_volume("voice", 0.28)
         voice "newOfficer41.mp3"
         "???" "Excuse me. Please open the door."
-
+        $ preferences.set_volume("sfx", 0.35)
         $ play_sound(radio,fadein=0.5)
-
+        "Police radio echoing..."
+        pause 1.5
         show butch angry with dissolve
-
+        $ preferences.set_volume("voice", 0.35)
         voice "newButch8.mp3"
         b "Who the hell is disturbing my class!!!"
 
         hide butch angry
-
+        $ preferences.set_volume("sfx", 0.50)
         $ play_sound(doorknock)
 
         "Continuous knocking on the door."
-
+        
         $ play_sound(doorcreak)
 
         "Creeeeek. The door opens."
@@ -4277,32 +4361,34 @@ label arrestButch:
         show police neutral with fade
 
         "Uniformed personnels came in. They appear to be police."
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m187.ogg"
         m "Officer Greg!!!"
 
         hide police neutral with dissolve
 
         show butch suprise with dissolve
-
+        $ preferences.set_volume("voice", 0.30)
         voice "newButch9.mp3"
         b "Why is there police here?!!"
 
         hide butch suprise with dissolve
-
+        $ preferences.set_volume("sfx", 0.29)
         $ play_sound(people,fadein=4.0)
 
         "Everyone" "What's happening? Why are they here? Did someone kill?"
 
         show police neutral with fade
-
+        $ preferences.set_volume("voice", 0.40)
         voice "newOfficer42.mp3"
         o "Everyone please calm down."
-
+        stop sound fadeout 0.5
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer43.mp3"
         o "We have received a complaint that someone is sexually harassing a student."
 
         $ play_sound(radio)
+        "Police radio echoing..."
 
         "The policeman looks at Butch."
 
@@ -4337,26 +4423,27 @@ label arrestButch:
         "Everyone" "*gasps*"
 
         show police neutral with fade
-
+        $ preferences.set_volume("voice", 0.47)
         voice "newOfficer47.mp3"
         o "Hey future Attorney! It looks like it went fine."
-
+        $ preferences.set_volume("voice", 0.55)
         voice "m188.ogg"
         m "Waaah! Officer Greg you actually came."
-
+        stop sound fadeout 0.5
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer48.mp3"
         o "It's because of you, we caught this disgusting molester. Thank you."
-
+        $ preferences.set_volume("voice", 0.50)
         voice "m189.ogg"
         m "Are you praising me? Hahaha~ No big deal. I am destined to be the greatest Attorney anyways."
-
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer49.mp3"
         o "Hahaha! I like that attitude. Keep doing good things young man."
-
+        $ preferences.set_volume("voice", 0.50) 
         voice "m190.ogg"
         m "Yes Sir!"
 
-        stop sound fadeout 0.5
+        stop sound fadeout 2.0
 
         hide police neutral
         show kurtney talk opened 
@@ -4368,13 +4455,13 @@ label arrestButch:
         show police neutral 
         hide kurtney talk opened
         with fade
-
+        $ preferences.set_volume("voice", 0.30)
         voice "newOfficer50.mp3"
         o "Oh yes, the Attorney's friend. You will also receive compensation."
 
         hide police neutral
         show kurtney angry talk with dissolve
-
+        $ preferences.set_volume("voice", 0.50)
         voice "kk99.ogg"
         kk "Nevermind compensation, why is my name \"Attorney's friend\"?!!!"
 
@@ -4387,8 +4474,6 @@ label arrestButch:
         "Everyone" "HAHAHAHA!!!"
 
         $ kurtneySpecial = True
-
-        # $ friendEnding = True
     
     jump goodEndStory
 
@@ -4414,16 +4499,20 @@ label goodEndStory:
 
     centered "--Greatest Attorney That Ever Lived."
 
-    centered "GOOD END"
+    show good ending with pixellate
 
+    pause 5.0
+    hide good ending with pixellate
+
+    centered "GOOD END"
     python:
 
-        if achievementList[11] == False:
+        if persistent.achievementList[11] == False:
                     
             achievement.grant("Good End")
             renpy.notify("Achievement Unlocked: Good End")
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
-            achievementList[11] = True
+            persistent.achievementList[11] = True
 
     stop music fadeout 3.0
 
@@ -4435,8 +4524,15 @@ label goodEndStory:
         jump specialEndYui
     elif hbbpoints >= 20 and kurtneySpecial:
         jump specialEndKurtney
+    $ timeout_label = None
+    menu:
+        "You have met a good ending! Hint: To unlock bonus content, finish with 20 HBB Points above."
 
-    jump yui_end
+        "Retry from the start.":
+            jump yui_start_case_1
+
+        "Return to Main Menu":
+            return
 
 
 
@@ -4449,20 +4545,33 @@ label badEndStory:
 
     centered "When the police caught on to the news, [b] went on to hiding. Never getting caught for his crimes."
 
+    show bad ending with pixellate
+
+    pause 5.0
+
+    hide bad ending with pixellate
     centered "BAD END"
 
     python:
 
-        if achievementList[10] == False:
+        if persistent.achievementList[10] == False:
                     
             achievement.grant("Bad End")
             renpy.notify("Achievement Unlocked: Bad End")
             renpy.play("audio/sfx/achievement.ogg",channel="sound")
-            achievementList[10] = True
+            persistent.achievementList[10] = True
 
     $ renpy.end_replay()
+    $ timeout_label = None
+    scene white
+    menu:
+        "You have met a bad ending! Hint: To unlock bonus content, finish with a good ending and 20 HBB Points above."
 
-    jump yui_end
+        "Retry from the start.":
+            jump yui_start_case_1
+
+        "Return to Main Menu":
+            return
 
 label specialEndYui:
 
@@ -4486,10 +4595,10 @@ label specialEndYui:
     m "I guess that's not too bad. I can get some experience."
 
     show kurtney worry with fade 
-
+    $ preferences.set_volume("voice", 0.60) 
     voice "kk100.ogg"
     kk "Heeeey! Why didn't you wait for me earlier this morning?"
-
+    $ preferences.set_volume("voice", 0.50) 
     voice "m220.ogg"
     m "I'm sorry! I was going to meet a friend."
 
@@ -4507,7 +4616,7 @@ label specialEndYui:
     hide kurtney worry
     show yui blush at left
     with dissolve
-
+    $ preferences.set_volume("voice", 0.45) 
     voice "yui75.ogg"
     y "Good morning Mark! Did you see my message last night?"
 
@@ -4521,29 +4630,29 @@ label specialEndYui:
 
     voice "kk102.ogg"
     kk "What the hell is happening?"
-
+    $ preferences.set_volume("voice", 0.40) 
     show yui smile opened at left with dissolve
     voice "yui77.ogg"
     y "Oh I'm sorry for not introducing myself."
 
     voice "yui78.ogg"
     y "My name is Yui and I am a First Year."
-
+    $ preferences.set_volume("voice", 0.45) 
     voice "kk103.ogg"
     kk "I'm his childhood friend and his classmate."
-
+    $ preferences.set_volume("voice", 0.40) 
     voice "yui79.ogg"
     y "Oh I see!"
 
     show kurtney smile at right with dissolve
-
+    $ preferences.set_volume("voice", 0.45)
     voice "kk104.ogg"
     kk "So what's your relationship with Mark?"
-
+    $ preferences.set_volume("voice", 0.40)
     show yui blush closed at left with dissolve
     voice "yui80.ogg"
     y "O-ohhh we are f-frie-"
-
+    $ preferences.set_volume("voice", 0.45)
     voice "m224.ogg"
     m "Hey [kk] you're being rude."
 
@@ -4563,7 +4672,7 @@ label specialEndYui:
 
     voice "kk106.ogg"
     kk "Saved your life you say?"
-
+    $ preferences.set_volume("voice", 0.42)
     voice "m226.ogg"
     m "Well, it was because of Professor Butch."
 
@@ -4604,14 +4713,14 @@ label specialEndYui:
 
     voice "m230.ogg"
     m "Uhhh sorry about that. She's a little bit weird."
-
+    $ preferences.set_volume("voice", 0.37)
     show yui blush with dissolve
     voice "yui83.ogg"
     y "It's fine! Actually I'm quite jealous cause she has a childhood friend like you..."
-
+    $ preferences.set_volume("voice", 0.42)
     voice "m231.ogg"
     m "Jealous? Why? I'm not that really great though."
-
+    $ preferences.set_volume("voice", 0.39)
     voice "yui84.ogg"
     y "You are! You saved my life."
 
@@ -4627,7 +4736,7 @@ label specialEndYui:
     voice "m233.ogg"
     m "Yeah?"
 
-    # need new voice. wrong file
+    voice "yui82.ogg"
     y "I want to help you out. The midterm test are also coming near."
 
     voice "m234.ogg"
@@ -4648,7 +4757,7 @@ label specialEndYui:
             jump libraryDate
 
         "Don't study.":
-            jump credits
+            jump creditss
 
 
 
@@ -4656,9 +4765,10 @@ label libraryDate:
 
     stop music
     scene library with fade
-    
+    $ preferences.set_volume("music", 0.18)
+    $ preferences.set_volume("voice", 0.39)
     $ play_music(tutorial)
-
+    
     voice "m235.ogg"
     m "Do you know the answer to this one?"
 
@@ -4695,7 +4805,7 @@ label libraryDate:
     scene black with fade 
 
     centered "After some time..."
-
+    $ preferences.set_volume("music", 0.15)
     scene library with fade
     voice "yui95.ogg"
     y "Mark? Do you have a girlfriend?"
@@ -4757,9 +4867,21 @@ label libraryDate:
     voice "yui105.ogg"
     y "Will you please go out with me?"
 
-    pause 3.0
+    stop music fadeout 0.5
+    python:
 
-    jump credits
+        if persistent.achievementList[12] == False:
+                        
+            achievement.grant("Special End")
+            renpy.notify("Achievement Unlocked: Special End")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            persistent.achievementList[12] = True
+    pause 3.0
+    $ preferences.set_volume("music", 0.30)
+    $ preferences.set_volume("sfx", 0.30)
+    hide screen displayHBBPoints
+    hide screen showNotesButton
+    jump creditss
 
 
 label specialEndKurtney:
@@ -4930,13 +5052,20 @@ label specialEndKurtney:
     kk "You stupid monkey!"
     
     pause 3.0
+    python:
 
+        if persistent.achievementList[12] == False:
+                        
+            achievement.grant("Special End")
+            renpy.notify("Achievement Unlocked: Special End")
+            renpy.play("audio/sfx/achievement.ogg",channel="sound")
+            persistent.achievementList[12] = True
     stop music fadeout 0.5
     hide screen displayHBBPoints
     hide screen showNotesButton
     play music "audio/music/Future-Business_v001.mp3" fadein 0.5
-
-    jump credits
+    
+    jump creditss
 
 
 

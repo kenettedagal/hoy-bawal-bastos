@@ -16,76 +16,58 @@ image splash_anim_1:
     ease_quad 7.0 alpha 1.0 zoom 2.0
 
 label splashscreen:
-
+    $ preferences.set_volume("music", 0.30)
+    $ preferences.set_volume("sfx", 0.40)
     scene black
 
-    ## The first time the game is launched, players can set their accessibility settings.
-    if not persistent.firstlaunch:
-
-        ## This screen is at the top of extras.rpy
-
-        call screen splash_settings
-
-        ## This screen will not appear in subsequent launches of the game when
-        ## the following variable becomes true.
-        $ persistent.firstlaunch = True
-
-    ## Here begins our splashscreen animation.
-    show splash_anim_1
-    show text "{size=60}Made with Ren'Py [renpy.version_only]{/s}":
-        xalign 0.5 yalign 0.8 alpha 0.0
-        pause 6.0
-        linear 1.0 alpha 1.0
-    
-    ## The first time the game is launched, players cannot skip the animation.
-    if not persistent.seen_splash:
-        
-        ## No input will be detected for the set time stated.
-        ## Set this to be a little longer than how long the animation takes.
-        $ renpy.pause(1.0, hard=True)
- 
-        $ persistent.seen_splash = True
-    
-    ## Players can skip the animation in subsequent launches of the game.
-    else:
- 
-        if renpy.pause(8.5):
- 
-            jump skip_splash
-
+    $_dismiss_pause = False
     scene black
     with fade
+
+    scene black
+    with Pause(1)
+
+    show logo_company with dissolve
+    with Pause(2)
+
+    scene black with dissolve
+    with Pause(1)
  
-    label skip_splash:
-        $_dismiss_pause = False
-        scene black
-        with fade
+    pass
 
-        scene black
-        with Pause(1)
+    scene black
 
-        show logo_company with dissolve
-        with Pause(2)
+    play sound "audio/flash.mp3"
 
-        scene black with dissolve
-        with Pause(1)
- 
-        pass
+    show menu1 at truecenter with zoomin
 
-        scene black
+    show white at truecenter
+    with dissolve
 
-        play sound "audio/flash.mp3"
+    hide white at truecenter
+    with dissolve
 
-        show menu1 at truecenter with zoomin
+    play sound "audio/openings.mp3"
 
-        show white at truecenter
-        with dissolve
+    # RESET ALL
 
-        hide white at truecenter
-        with dissolve
-
-        play sound "audio/openings.mp3" volume 1.0
-
+    
+    # $ achievement.clear_all()
+    # $ persistent.unlockJeep = False
+    # $ persistent.unlockroom = False
+    # $ persistent.unlockroom = False
+    # $ persistent.unlockTrain = False
+    # $ persistent.unlockJeep = False
+    # $ persistent.unlockHallway = False
+    # $ persistent.unlockTrain2 = False
+    # $ persistent.unlockWalk = False
+    # $ persistent.unlockCafeteria = False
+    # $ persistent.unlockClass = False
+    # $ persistent.unlockYui = False
+    # $ persistent.unlockKurtney = False
+    # $ readtotal = 0
+    # $ persistent.achievementList = [False, False,False,False,False,False,False,False,False,False,False,False,False,False,False,False,False, False]
+    # $ persistent.completed = False
     return
 
 ## The game starts here
@@ -93,11 +75,7 @@ label splashscreen:
 label start:
 
     # START HERE!
-
-    scene bg train morning
-    show screen select
-    with fade
-
-    "Select a story!"
+    
+    jump starting
     
     return

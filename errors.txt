@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/yui_story.rpy", line 1493: expected 'image_name_component' not found.
-    show
-        ^
+File "game/yui_story.rpy", line 4551: end of line expected.
+    show GoodEnding.png with pixellate
+                   ^
 
-Ren'Py Version: Ren'Py 7.4.4.1439
-Wed Dec  1 09:19:09 2021
+Ren'Py Version: Ren'Py 7.4.10.2178
+Tue Dec 21 16:37:29 2021

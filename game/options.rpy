@@ -31,7 +31,7 @@ define config.version = "1.0"
 
 define gui.about = _p("""This Ren'Py Visual Novel Game is a capstone project that aims to educate users about Safe Spaces Act in an entertaining fashion.
 
-Made by: Jan Kenette Dagal\n
+Made by:\nJan Kenette Dagal\n
          Kevin Panuringan\n
          Kyle Panuringan\n
          Mark Francis Chavez

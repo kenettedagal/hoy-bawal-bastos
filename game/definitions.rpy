@@ -7,17 +7,7 @@ init -1:
     ## When you add, delete or rename an image or music resource, change redefine_resources to True and launch the project
 
 ## Sprites:
-    # image eileen_base = "images/sprites/eileen_base.png"
-    # image eileen_face_angry = "images/sprites/eileen_face_angry.png"
-    # image eileen_face_happy = "images/sprites/eileen_face_happy.png"
-    # image eileen_face_neutral = "images/sprites/eileen_face_neutral.png"
-    # image eileen_face_surprised = "images/sprites/eileen_face_surprised.png"
-    # image eileen_face_upset = "images/sprites/eileen_face_upset.png"
-    # image eileen_headband = "images/sprites/eileen_headband.png"
 ## BGs:
-    # image future_office = "images/BG/future_office.jpg"
-    # image room = "images/BG/room.jpg"
-    # image sort_of_beautiful_beach_day = "images/BG/sort_of_beautiful_beach_day.jpg"
 ## CGs:
     # image cg_locked = "images/CG/cg_locked.jpg"
 
@@ -33,6 +23,8 @@ init -1:
     # JazzyShop = "audio/music/JazzyShop.ogg"
     # Lurking = "audio/music/Lurking.ogg"
     # Magical = "audio/music/Magical.ogg"
+    # Meeting = "audio/music/Meeting.mp3"
+    # Morning = "audio/music/Morning.mp3"
     # Piano1 = "audio/music/Piano1.ogg"
     # Piano2 = "audio/music/Piano2.ogg"
     # Piano3 = "audio/music/Piano3.ogg"
@@ -64,6 +56,8 @@ init -1:
     # JazzyShop: _("")
     # Lurking: _("")
     # Magical: _("")
+    # Meeting: _("")
+    # Morning: _("")
     # Piano1: _("")
     # Piano2: _("")
     # Piano3: _("")
@@ -90,7 +84,9 @@ init -1:
     # Chest-Drawer_Open = "audio/sfx/Chest-Drawer_Open.mp3"
     # Edge-of-Ocean = "audio/sfx/Edge-of-Ocean.mp3"
     # Interior-Door_Close = "audio/sfx/Interior-Door_Close.mp3"
+    # achievement = "audio/sfx/achievement.ogg"
     # addPoints = "audio/sfx/addPoints.mp3"
+    # arcade = "audio/sfx/arcade.ogg"
     # bell = "audio/sfx/bell.mp3"
     # carleaving = "audio/sfx/carleaving.ogg"
     # clap = "audio/sfx/clap.wav"
@@ -99,12 +95,13 @@ init -1:
     # doorcreak = "audio/sfx/doorcreak.wav"
     # doorknock = "audio/sfx/doorknock.mp3"
     # eat = "audio/sfx/eat.ogg"
+    # fail = "audio/sfx/fail.ogg"
     # iphone = "audio/sfx/iphone.ogg"
     # menu = "audio/sfx/menu.ogg"
     # minusPoints = "audio/sfx/minusPoints.wav"
     # newspaper = "audio/sfx/newspaper.wav"
     # operator = "audio/sfx/operator.mp3"
-    # peopletalk = "audio/sfx/peopletalk.wav"
+    # peopletalk = "audio/sfx/peopletalk.mp3"
     # pervlaugh = "audio/sfx/pervlaugh.wav"
     # punch = "audio/sfx/punch.wav"
     # radio = "audio/sfx/radio.ogg"
@@ -124,7 +121,9 @@ init -1:
     # Chest-Drawer_Open: _("")
     # Edge-of-Ocean: _("")
     # Interior-Door_Close: _("")
+    # achievement: _("")
     # addPoints: _("")
+    # arcade: _("")
     # bell: _("")
     # carleaving: _("")
     # clap: _("")
@@ -133,6 +132,7 @@ init -1:
     # doorcreak: _("")
     # doorknock: _("")
     # eat: _("")
+    # fail: _("")
     # iphone: _("")
     # menu: _("")
     # minusPoints: _("")

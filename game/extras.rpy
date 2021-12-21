@@ -194,8 +194,6 @@ image kurtneyhappyteeth_button = im.Scale("kurtney happy teeth.png",400,400)
 image kurtneytalkopened_button = im.Scale("kurtney talk opened.png",400,400)
 image kurtneyblushsmall_button = im.Scale("kurtney blush small.png",400,400)
 
-
-
 image spritelock_button = "gui/button/sprite_locked.jpg"
 
 init python:
@@ -302,14 +300,6 @@ init python:
     g_sprite.button("kurtney blush small")
     g_sprite.condition("persistent.unlockKurtney")
     g_sprite.unlock_image("class2","kurtney blush small")
-    
-
-
-
-
-
-
-    
 
     # The button used for locked images
     g_bg.locked_button = "bglock_button"
@@ -339,6 +329,8 @@ init python:
     mr.add("audio/music/Relax.ogg")
     mr.add("audio/music/Shenanigans!.ogg")
     mr.add("audio/music/Time_for_Rest.ogg")
+    mr.add("audio/music/Morning.ogg")
+    mr.add("audio/music/Meeting.ogg")
 
 ## Extras Navigation screen ############################################################
 ##
@@ -364,13 +356,13 @@ screen extras_navigation():
 
         textbutton _("Replay Room") action ShowMenu("replay_gallery") alt "Replay Room"
 
-        if persistent.game_clear:
+        # if persistent.game_clear:
 
-            textbutton _("Developer Notes") action ShowMenu("dev_notes") alt "Developer Notes"
+        #     textbutton _("Developer Notes") action ShowMenu("dev_notes") alt "Developer Notes"
 
-        else:
+        # else:
 
-            textbutton _("???") action None alt ":Locked Option"
+        #     textbutton _("???") action None alt ":Locked Option"
 
         textbutton _("Return") action Return() alt "Return"
 
@@ -461,19 +453,16 @@ screen sprite_gallery():
             add g_sprite.make_button("yui angry", "yuiangry_button")
             add g_sprite.make_button("yui crying", "yuicrying_button")
             add g_sprite.make_button("yui worry opened", "yuiworryopened_button")
-            add g_sprite.make_button("yui wow", "yuiwow_button")
+            add g_sprite.make_button("yui wow", "yuiwow_button")  
 
             add g_sprite.make_button("kurtney smile", "kurtneysmile_button")
             add g_sprite.make_button("kurtney angry talk", "kurtneyangrytalk_button")
             add g_sprite.make_button("kurtney blush close", "kurtneyblushclose_button")
             add g_sprite.make_button("kurtney happy teeth", "kurtneyhappyteeth_button")
             add g_sprite.make_button("kurtney talk opened", "kurtneytalkopened_button")
-            add g_sprite.make_button("kurtney blush small", "kurtneyblushsmall_button")
+            add g_sprite.make_button("kurtney blush small", "kurtneyblushsmall_button")  
 
-
-
-
-
+            
 ## Background Gallery screen ############################################################
 ##
 ## This is a simple screen that shows buttons that display a background.
@@ -543,6 +532,8 @@ screen music_gallery():
             textbutton "Relax" action mr.Play("audio/music/Relax.ogg")
             textbutton "Shenanigans!" action mr.Play("audio/music/Shenanigans!.ogg")
             textbutton "Time for Rest" action mr.Play("audio/music/Time_for_Rest.ogg")
+            textbutton "Morning" action mr.Play("audio/music/Morning.ogg")
+            textbutton "Meeting" action mr.Play("audio/music/Meeting.ogg")
 
             null height 20
 
@@ -588,10 +579,6 @@ screen replay_gallery():
             textbutton "Quiz Time" action Replay("socialStudiesQuiz")
             textbutton "Troubled Days" action Replay("pervTeacher", scope={"lunchWithYui" : True})
             textbutton "Fighting On!" action Replay("arrestButch")
-            textbutton "Side Story#1 (Kevin)" action Replay("arrestButch")
-            textbutton "Side Story#2 (Chavez)" action Replay("arrestButch")
-            textbutton "Bonus Story (Kyle)" action Replay("arrestButch")
-
 
             null height 20
 
@@ -669,7 +656,7 @@ init python:
         achievement.register(a)
 
         ## This Achievement is based on an integer, and must be defined manually
-        achievement.register("HBB Points Collector", stat_max=100, stat_modulo=0)
+        achievement.register("HBB Points Collector", stat_max=30, stat_modulo=0)
         ## TODO: Simplify achievements that are integer-based
         ## to update in a bar directly tied to achievement.progress
 
@@ -705,14 +692,14 @@ screen achievements():
                     text "{color=#00ffdd}[aname]{/color}: {color=#f5ff30}[lockdesc]{/color}"
 
             ## We have to type each integer based achievement however
-            hbox:
-                text "HBB Points Collector:"
+            # hbox:
+            #     text "HBB Points Collector:"
 
-                null width 10
+            #     null width 10
 
-                bar value persistent.points range 100 xsize 525
+            #     bar value persistent.points range 100 xsize 525
 
-            text "[persistent.readtotal]% of the game read"
+            # text "[persistent.readtotal]% of the game read"
 
 ## End Credits Scroll ############################################################
 ## ATL for scrolling screen object. In this case, credits roll.
@@ -729,8 +716,6 @@ transform credits_scroll(speed):
 ## Credits screen.
 
 screen credits():
-
-    
     
     # python:
     #     renpy.music.play("audio/music/Future-Business_v001.mp3")
@@ -745,7 +730,7 @@ screen credits():
     ## If a player has seen the end credits before, this button appears.
     if persistent.credits_seen:
 
-        textbutton _("Skip End Credits") action Jump("skip_credits") xalign 1.0 yalign 1.0
+        textbutton _("Skip") action Jump("skip_credits") xalign 1.0 yalign 1.0
 
     timer 15.0 action Return()
     ## Adjust this number to control when the Credits screen is hidden and the game
@@ -758,7 +743,8 @@ screen credits():
         xalign 0.5
 
         vbox:
-            label "Credits" xalign 0.5
+
+            label "{color=#fffb00}Credits{/color}" xalign 0.5
 
             null height 300
 
@@ -802,29 +788,15 @@ screen credits():
             text "Programming" size 100
             null height 50
 
-            hbox:
-
-                xalign 0.5
-                spacing 200
-
-                text "Kenette Dagal"
-
-                text "Kevin Panuringan"
-
-                text "Mark Francis Chavez"
-
+            text "Kevin Panuringan"
             null height 50
+                
+            text "Kevin Panuringan"
+            null height 50
+                
+            text "Kevin Panuringan"
+            null height 100
 
-            # hbox:
-
-            #     xalign 0.5
-            #     spacing 200
-
-            #     text "minute" 
-
-            #     text "npckc" 
-
-            null height 200
 
             text "Voice Over" size 100
             null height 50 

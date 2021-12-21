@@ -176,8 +176,8 @@ init python:
     doll = "audio/music/Doll_Dance.ogg"
     fight = "audio/music/Fight.ogg"
     everyone = "audio/music/Everyone.ogg"
-    
-    
+    meeting = "audio/music/Meeting.ogg"
+    morning = "audio/music/Morning.ogg"
 
 # This is where you define the music captions for each music file you will be using in the game. Please make sure the names of the music defined above match the ones used for the captions below.
 
@@ -202,7 +202,8 @@ init python:
     doll : _("Doll Dance"),
     fight : _("Fight On"),
     everyone : _("Everyone"),
-    
+    meeting: _("Meeting"),
+    morning : _("Mornings"),
     }
 
 # This is the sound command. It functions the same way as "play sound" normally does. You can change the fadein, fadeout and loop values when you invoke the command. If you do not change the values, the default values are 0.0 fadein, 0.0 fadeout, and no loop. If you change the values below, that will change the default values for every time you invoke the command.

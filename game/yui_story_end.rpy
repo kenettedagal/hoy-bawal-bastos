@@ -128,17 +128,10 @@ label yui_end:
 
                     jump yui_start_case_1
 
-                "Proceed to next story.":
+                "Return to Main Menu":
                     n "It's fine. You can try this story again once you feel like doing it."
 
-                    jump Act_2_School
-
-    
-
-
-
-
-
+                    jump splashscreen
 
 
     # elif friendEnding:

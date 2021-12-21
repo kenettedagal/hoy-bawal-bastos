@@ -4,6 +4,20 @@ define narrator = Character(ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
 
 image movie intro = Movie(play="movie_background.ogv")
 
+image movie outro = Movie(play="movie_back.webm")
+
+default persistent.completed = False
+
+label starting:
+
+    if persistent.completed:
+        scene movie intro
+        show ymagenta
+        show screen showMainStoryButton 
+        "Select a story!"
+    else:
+        jump yui_start_case_1
+
 screen select():
     frame:
         xalign 0.2
@@ -31,6 +45,10 @@ screen select():
         xminimum 200
         yminimum 200
         vbox:
+            
+            textbutton "Go to Side Story #1" ymaximum 200 action [Hide("select"),Jump("Act_2_School")]
+
+            textbutton "Go to Side Story #2" ymaximum 200 action [Hide("select"),Jump("chloe")]
 
             textbutton "Go to Bonus Story" ymaximum 200 action [Hide("select"),Jump("bonusS01")]
 
@@ -49,7 +67,7 @@ screen titleYui():
         vbox:
             xalign 0.5
             yalign 0.5 
-            text "{b}{color=#ffffff}{size=50}Story #1{/size}\n\n\n{size=80}A New School Year{/size}{/color}{/b}"
+            text "{b}{color=#ffffff}{size=80}A New School Year{/size}{/color}{/b}"
 
 screen jeepTransition():
     frame:
@@ -114,13 +132,40 @@ screen arrestTransition():
             yalign 0.5 
             text "{b}{color=#ffffff}{size=80}Fighting On!{/size}{/color}{/b}"
 
+screen quizTransition():
+    frame:
+        xalign 0.5
+        yalign 0.5
+        vbox:
+            xalign 0.5
+            yalign 0.5 
+            text "{b}{color=#ffffff}{size=80}Quiz Time!{/size}{/color}{/b}"
 
+
+screen showMainStoryButton():
+    modal True
+    frame:
+        background None
+        yalign 0.5
+        xalign 0.1
+        imagebutton:     
+            idle "mainStoryB.png"
+            activate_sound "audio/sfx/confirm.ogg"
+            action [Hide("showMainStoryButton"),Hide("showBonusStoryButton"),Jump("yui_start_case_1")]
+    frame:
+        background None
+        yalign 0.5
+        xalign 0.9
+        imagebutton:
+            idle "bonusStoryB.png"
+            activate_sound "audio/sfx/confirm.ogg"
+            action [Hide("showBonusStoryButton"),Hide("showMainStoryButton"),Jump("bonusS01")]
 
 screen showNotesButton():
     modal False
     frame:
-        yalign 0.12
         xalign 1.0
+        yalign 0.12
         imagebutton:
             xmaximum 200
             ymaximum 200
@@ -148,12 +193,7 @@ screen showNotebook():
     #     else: 
     #         action Show("showNotebook")
     
-            #show screen
-        
-        
-    
-        
-        
+            #show screen    
 
 screen notebookPage():
     modal True
@@ -371,3 +411,60 @@ image ctc:
     linear 0.5 xalign 0.833
     linear 0.5 xalign 0.82
     repeat
+
+label creditss:
+    $ quick_menu = False
+    $_dismiss_pause = False
+    image splash = "images/Company-Logo.png"
+    play music "audio/gymnopedie.ogg" fadein 0.5
+    image cred = Text(credits_s, text_align=0.5)
+    image theend = Text("{size=80}The End", text_align=0.5)
+    image thanks = Text("{size=80}Thanks for Playing!", text_align=0.5)
+    $ credits_speed = 30 #scrolling speed in seconds
+    scene black
+    with fade
+    scene movie outro with fade #replace this with a fancy background
+    show cred at Move((0.5, 3.0), (0.5, 0.0), credits_speed, repeat=False, bounce=False, xanchor="center", yanchor="bottom")
+    show theend:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(5)
+    hide theend
+    with dissolve
+    with Pause(credits_speed - 5)
+    show splash
+    with dissolve
+    with Pause(5)
+    hide splash
+    with dissolve
+    with Pause(1)
+    show thanks:
+        yanchor 0.5 ypos 0.5
+        xanchor 0.5 xpos 0.5
+    with dissolve
+    with Pause(4)
+    hide thanks
+    with dissolve
+    scene black
+    with fade
+
+    stop music fadeout 0.5
+
+    play sound "audio/sfx/achievement.ogg"
+
+    $ persistent.completed = True
+
+    "Bonus Story Unlocked!!!"
+
+    jump splashscreen
+#ffffff
+init python:
+    credits = ('{color=#00a62c}Programmers{/color}', 'Kenette Dagal'),('{color=#00a62c}Programmers{/color}', 'Kyle Panuringan'),('{color=#00a62c}Programmers{/color}', 'Kevin Panuringan'),('{color=#00a62c}Programmers{/color}', 'Mark Chaves'),('{color=#00a62c}Voice Actors{/color}', 'Kenette Dagal'),('{color=#00a62c}Voice Actors{/color}', 'Kevin Panuringan'),('{color=#00a62c}Voice Actors{/color}', 'Mark Chaves'),('{color=#00a62c}Art{/color}', 'Kyle Panuringan')
+    credits_s = "{color=#fffb00}{size=80}Hoy Bawal Bastos!{/color}\n"
+    c1 = ''
+    for c in credits:
+        if not c1==c[0]:
+            credits_s += "\n{size=60}" + c[0] + "\n"
+        credits_s += "{size=40}" + c[1] + "\n"
+        c1=c[0]

@@ -1,28 +1,30 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/tutorial.rpy", line 270, in script
-    python:
-  File "game/tutorial.rpy", line 272, in <module>
-    if achievementList[17] == False:
-IndexError: list index out of range
+  File "game/yui_story.rpy", line 4551, in script
+    show image GoodEnding with pixellate
+  File "game/yui_story.rpy", line 4551, in <module>
+    show image GoodEnding with pixellate
+NameError: name 'GoodEnding' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/tutorial.rpy", line 270, in script
-    python:
-  File "renpy/ast.py", line 928, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2245, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/tutorial.rpy", line 272, in <module>
-    if achievementList[17] == False:
-  File "renpy/python.py", line 992, in __getitem__
-    rv = list.__getitem__(self, index)
-IndexError: list index out of range
+  File "game/yui_story.rpy", line 4551, in script
+    show image GoodEnding with pixellate
+  File "renpy/ast.py", line 1197, in execute
+    show_imspec(self.imspec, atl=getattr(self, "atl", None))
+  File "renpy/ast.py", line 1153, in show_imspec
+    expression = renpy.python.py_eval(expression)
+  File "renpy/python.py", line 2276, in py_eval
+    return py_eval_bytecode(code, globals, locals)
+  File "renpy/python.py", line 2269, in py_eval_bytecode
+    return eval(bytecode, globals, locals)
+  File "game/yui_story.rpy", line 4551, in <module>
+    show image GoodEnding with pixellate
+NameError: name 'GoodEnding' is not defined
 
 Windows-10-10.0.19041
 Ren'Py 7.4.10.2178
 Beta 1.0
-Sun Nov 21 19:05:36 2021
+Tue Dec 21 16:37:52 2021
