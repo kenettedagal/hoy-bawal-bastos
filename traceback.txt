@@ -1,30 +1,36 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/yui_story.rpy", line 4551, in script
-    show image GoodEnding with pixellate
-  File "game/yui_story.rpy", line 4551, in <module>
-    show image GoodEnding with pixellate
-NameError: name 'GoodEnding' is not defined
+  File "renpy/common/00keymap.rpy", line 469, in script
+    python hide:
+  File "renpy/common/00keymap.rpy", line 469, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 488, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+AttributeError: 'NoneType' object has no attribute 'stores'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/yui_story.rpy", line 4551, in script
-    show image GoodEnding with pixellate
-  File "renpy/ast.py", line 1197, in execute
-    show_imspec(self.imspec, atl=getattr(self, "atl", None))
-  File "renpy/ast.py", line 1153, in show_imspec
-    expression = renpy.python.py_eval(expression)
-  File "renpy/python.py", line 2276, in py_eval
-    return py_eval_bytecode(code, globals, locals)
-  File "renpy/python.py", line 2269, in py_eval_bytecode
-    return eval(bytecode, globals, locals)
-  File "game/yui_story.rpy", line 4551, in <module>
-    show image GoodEnding with pixellate
-NameError: name 'GoodEnding' is not defined
+  File "renpy/common/00keymap.rpy", line 469, in script
+    python hide:
+  File "renpy/ast.py", line 928, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 2245, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "renpy/common/00keymap.rpy", line 469, in <module>
+    python hide:
+  File "renpy/common/00keymap.rpy", line 488, in _execute_python_hide
+    renpy.save("_reload-1", "reload save game")
+  File "renpy/loadsave.py", line 394, in save
+    roots = renpy.game.log.freeze(None)
+  File "renpy/python.py", line 2142, in freeze
+    self.complete(False)
+  File "renpy/python.py", line 1726, in complete
+    self.current.stores[name], self.current.delta_ebc[name] = sd.get_changes(begin)
+AttributeError: 'NoneType' object has no attribute 'stores'
 
 Windows-10-10.0.19041
 Ren'Py 7.4.10.2178
 Beta 1.0
-Tue Dec 21 16:37:52 2021
+Mon Jan  3 01:22:06 2022

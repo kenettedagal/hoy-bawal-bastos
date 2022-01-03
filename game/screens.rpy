@@ -285,10 +285,10 @@ screen quick_menu():
 
             ## https://www.renpy.org/doc/html/self_voicing.html#creator-concerns
             # imagebutton auto "foo.png" action None() alt "foo"
-            textbutton _("Back") action Rollback() alt "Back"
+            # textbutton _("Back") action Rollback() alt "Back"
             textbutton _("History") action ShowMenu('history') alt "History"
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) alt "Skip"
-            textbutton _("Auto") action Preference("auto-forward", "toggle") alt "Auto"
+            # textbutton _("Auto") action Preference("auto-forward", "toggle") alt "Auto"
             textbutton _("Save") action ShowMenu('save') alt "Save"
             textbutton _("Q.Save") action QuickSave() alt "Quick Save"
             textbutton _("Q.Load") action QuickLoad() alt "Quick Load"

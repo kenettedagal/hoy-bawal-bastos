@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/yui_story.rpy", line 4551: end of line expected.
-    show GoodEnding.png with pixellate
-                   ^
+File "game/extras.rpy", line 621: is not terminated with a newline. (Check strings and parenthesis.)
+        simple_achievement_list = (
 
 Ren'Py Version: Ren'Py 7.4.10.2178
-Tue Dec 21 16:37:29 2021
+Mon Jan  3 01:21:42 2022

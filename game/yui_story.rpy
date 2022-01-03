@@ -16,7 +16,7 @@ label yui_start_case_1:
     define b = Character('Butch',color='#badb27',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
     define o = Character('Officer Greg', color='#30ff45',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
     define mc = Character("Mark",ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
-    define m = Character("Me",color='#00ffea',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
+    define m = Character("Mark",color='#00ffea',ctc="ctc", ctc_pause="ctc", ctc_position="fixed")
 
     default notebookOpen = False
     default hbbpoints = 0
