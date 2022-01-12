@@ -420,7 +420,7 @@ label creditss:
     image cred = Text(credits_s, text_align=0.5)
     image theend = Text("{size=80}The End", text_align=0.5)
     image thanks = Text("{size=80}Thanks for Playing!", text_align=0.5)
-    $ credits_speed = 50 #scrolling speed in seconds
+    $ credits_speed = 45 #scrolling speed in seconds
     scene black
     with fade
     scene movie outro with fade #replace this with a fancy background
@@ -460,7 +460,7 @@ label creditss:
     jump splashscreen
 #ffffff
 init python:
-    credits = ('{color=#00a62c}Characters{/color}', ' '),('{color=#FFFF00}Mark    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Yui    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Kurtney    Almarie Avila{/color}', ' '),('{color=#FFFF00}Mom    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Officer Greg    Kenette Dagal{/color}', ' '),('{color=#FFFF00}Teacher Clarrise    Kevin Panuringan{/color}', ' '), ('{color=#FFFF00}Professor Butch    Kenette Dagal{/color}', ' '),('{color=#FFFF00}Ray    Mark Francis Chavez {/color}', ' '),('{color=#FFFF00}Elise    Mark Francis Chavez {/color}', ' '),('{color=#FFFF00}Zack    Kevin Panuringan {/color}', ' '),('{color=#FFFF00}Kenneth Daberth    Kenette Dagal {/color}', ' '),('{color=#FFFF00}Ann    Kevin Panuringan {/color}', ' '),('{color=#00a62c}Programmers{/color}', 'Kenette Dagal'),('{color=#00a62c}Programmers{/color}', 'Kyle Panuringan'),('{color=#00a62c}Programmers{/color}', 'Kevin Panuringan'),('{color=#00a62c}Programmers{/color}', 'Mark Chaves'),('{color=#00a62c}Voice Actors{/color}', 'Kenette Dagal'),('{color=#00a62c}Voice Actors{/color}', 'Kevin Panuringan'),('{color=#00a62c}Voice Actors{/color}', 'Mark Chaves'),('{color=#00a62c}Art{/color}', 'Kyle Panuringan')
+    credits = ('\n\n{color=#00a62c}Characters{/color}', ' '),('{color=#FFFF00}Mark    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Yui    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Kurtney    Almarie Avila{/color}', ' '),('{color=#FFFF00}Mom    Kevin Panuringan{/color}', ' '),('{color=#FFFF00}Officer Greg    Kenette Dagal{/color}', ' '),('{color=#FFFF00}Teacher Clarrise    Kevin Panuringan{/color}', ' '), ('{color=#FFFF00}Professor Butch    Kenette Dagal{/color}', ' '),('{color=#FFFF00}Ray    Mark Francis Chavez {/color}', ' '),('{color=#FFFF00}Elise    Mark Francis Chavez {/color}', ' '),('{color=#FFFF00}Zack    Kevin Panuringan {/color}', ' '),('{color=#FFFF00}Kenneth Daberth    Kenette Dagal {/color}', ' '),('{color=#FFFF00}Ann    Kevin Panuringan {/color}', ' '),('{color=#00a62c}Programmers{/color}', 'Kenette Dagal'),('{color=#00a62c}Programmers{/color}', 'Kyle Panuringan'),('{color=#00a62c}Programmers{/color}', 'Kevin Panuringan'),('{color=#00a62c}Programmers{/color}', 'Mark Chaves'),('{color=#00a62c}Voice Actors{/color}', 'Kenette Dagal'),('{color=#00a62c}Voice Actors{/color}', 'Kevin Panuringan'),('{color=#00a62c}Voice Actors{/color}', 'Mark Chaves'),('{color=#00a62c}Art{/color}', 'Kyle Panuringan')
     credits_s = "{color=#fffb00}{size=80}Hoy Bawal Bastos!{/color}\n"
     c1 = ''
     for c in credits:

@@ -445,7 +445,7 @@ init python:
         gui.history_height = 285
         gui.history_text_width = 1035
 
-        gui.quick_button_text_size = 21
+        gui.quick_button_text_size = 30
 
         ## File button layout.
         gui.file_slot_cols = 2
