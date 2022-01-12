@@ -527,7 +527,7 @@ label meetWithKurt:
             persistent.achievementList[5] = True
 
     pause 3.0
-    $ preferences.set_volume(channel="sound", 0.5)
+    $ preferences.set_volume("sfx", 0.5)
     $ play_sound(people,fadein=0.2,fadeout=5.0) 
     pause 5
     

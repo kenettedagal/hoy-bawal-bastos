@@ -2,8 +2,7 @@
 errors listed below, and try again.
 
 
-File "game/extras.rpy", line 621: is not terminated with a newline. (Check strings and parenthesis.)
-        simple_achievement_list = (
+File "game/yui_story.rpy", line 530: non-keyword arg after keyword arg
 
 Ren'Py Version: Ren'Py 7.4.10.2178
-Mon Jan  3 01:21:42 2022
+Wed Jan 12 17:20:25 2022
